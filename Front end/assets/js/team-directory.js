@@ -1,0 +1,33 @@
+(function (win) {
+  win.gatewayTeamFallbackMembers = [
+    { id: "sabarinathan-muthu-er", name: "SABARINATHAN MUTHU.ER", role: "Chief Executive Officer", image: "/assets/images/team-members/sabarinathan-muthu-er.jpeg", linkedin: "", facebook: "", instagram: "" },
+    { id: "kiruba", name: "Kiruba", role: "Chief Financial Officer", image: "/assets/images/team-members/kiruba.jpeg", linkedin: "", facebook: "", instagram: "" },
+    { id: "balaji", name: "Balaji", role: "Chief Executive Director", image: "/assets/images/team-members/balaji.jpg", linkedin: "", facebook: "", instagram: "" },
+    { id: "gayathiri", name: "GAYATHIRI", role: "Senior Developer", image: "/assets/images/team-members/gayathiri.jpeg", linkedin: "", facebook: "", instagram: "" },
+    { id: "devi", name: "Devi", role: "UI/UX Designer", image: "/assets/images/team-members/devi.jpeg", linkedin: "", facebook: "", instagram: "" },
+    { id: "robin", name: "Robin", role: "Backend Developer", image: "/assets/images/team-members/robin.jpeg", linkedin: "", facebook: "", instagram: "" },
+    { id: "prem-kumar", name: "Prem Kumar", role: "Full Stack Developer", image: "/assets/images/team-members/prem-kumar.jpeg", linkedin: "", facebook: "", instagram: "" },
+    { id: "rubini", name: "Rubini", role: "Frontend Developer", image: "/assets/images/team-members/rubini.jpeg", linkedin: "", facebook: "", instagram: "" },
+    { id: "priyadharshini", name: "Priyadharshini", role: "Marketing Manager", image: "/assets/images/team-members/priyadharshini.jpeg", linkedin: "", facebook: "", instagram: "" },
+    { id: "hema", name: "Hema", role: "Project Manager", image: "/assets/images/team-members/hema.jpeg", linkedin: "", facebook: "", instagram: "" },
+    { id: "sivagami", name: "Sivagami", role: "Team Lead", image: "/assets/images/team-members/sivagami.jpeg", linkedin: "", facebook: "", instagram: "" },
+    { id: "durga", name: "Durga", role: "QA Engineer", image: "/assets/images/team-members/durga.jpeg", linkedin: "", facebook: "", instagram: "" },
+    { id: "azhagarsamy", name: "Azhagarsamy", role: "CEO", image: "/assets/images/team-members/azhagarsamy.jpeg", linkedin: "", facebook: "", instagram: "" },
+    { id: "dhavarsanam", name: "Dhavarsanam", role: "Technical Lead", image: "/assets/images/team-members/dhavarsanam.jpeg", linkedin: "", facebook: "", instagram: "" },
+    { id: "vignesh", name: "Vignesh", role: "Software Engineer", image: "/assets/images/team-members/vignesh.jpeg", linkedin: "", facebook: "", instagram: "" },
+    { id: "shafiq", name: "Shafiq", role: "Web Developer", image: "/assets/images/team-members/shafiq.jpeg", linkedin: "", facebook: "", instagram: "" },
+    { id: "kishore", name: "Kishore", role: "App Developer", image: "/assets/images/team-members/kishore.jpeg", linkedin: "", facebook: "", instagram: "" },
+    { id: "preethi", name: "Preethi", role: "Data Analyst", image: "/assets/images/team-members/preethi.jpeg", linkedin: "", facebook: "", instagram: "" },
+    { id: "baheerathan", name: "Baheerathan", role: "Consultant", image: "/assets/images/team-members/baheerathan.jpeg", linkedin: "", facebook: "", instagram: "" },
+    { id: "indhu", name: "Indhu", role: "Content Writer", image: "/assets/images/team-members/indhu.jpeg", linkedin: "", facebook: "", instagram: "" },
+    { id: "sri-guna", name: "Sri Guna", role: "Developer", image: "/assets/images/team-members/sri-guna.jpeg", linkedin: "", facebook: "", instagram: "" },
+    { id: "shanmugapriya", name: "Shanmugapriya", role: "Designer", image: "/assets/images/team-members/shanmugapriya.jpeg", linkedin: "", facebook: "", instagram: "" },
+    { id: "ashok", name: "Ashok", role: "Engineer", image: "/assets/images/team-members/ashok.jpeg", linkedin: "", facebook: "", instagram: "" },
+    { id: "anbu", name: "Anbu", role: "Manager", image: "/assets/images/team-members/anbu.jpeg", linkedin: "", facebook: "", instagram: "" },
+    { id: "santhosh", name: "Santhosh", role: "Developer", image: "/assets/images/team-members/santhosh.jpeg", linkedin: "", facebook: "", instagram: "" },
+    { id: "hithesh", name: "Hithesh", role: "Engineer", image: "/assets/images/team-members/hithesh.jpeg", linkedin: "", facebook: "", instagram: "" },
+    { id: "dinesh", name: "Dinesh", role: "Developer", image: "/assets/images/team-members/dinesh.jpeg", linkedin: "", facebook: "", instagram: "" },
+    { id: "siva", name: "Siva", role: "Technical Lead", image: "/assets/images/team-members/siva.jpeg", linkedin: "", facebook: "", instagram: "" },
+    { id: "dhivya", name: "Dhivya", role: "Designer", image: "/assets/images/team-members/dhivya.jpeg", linkedin: "", facebook: "", instagram: "" }
+  ];
+})(window);
