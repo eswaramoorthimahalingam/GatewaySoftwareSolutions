@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Value Added Training | Gateway Software Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-top {
+            background: #f8f9fa;
+            padding: 8px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .header-top-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .contact-item i {
+            color: #007bff;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #007bff;
+        }
+
+        .main-nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+            font-weight: 800;
+            font-size: 24px;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 10px 0;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-link:hover {
+            color: #007bff;
+        }
+
+        .nav-link i {
+            font-size: 12px;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            min-width: 250px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: #333;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f8f9fa;
+            color: #007bff;
+            padding-left: 25px;
+        }
+
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Value Added Training Hero */
+        .hero-vat {
+            background: linear-gradient(135deg, #0c1b33 0%, #1a3658 50%, #2a4d7a 100%);
+            color: white;
+            padding: 180px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-flow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .tech-node {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #ff8c42;
+            border-radius: 50%;
+            animation: techPulse 4s ease-in-out infinite;
+        }
+
+        .tech-node:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
+        .tech-node:nth-child(2) { top: 40%; left: 25%; animation-delay: 0.5s; }
+        .tech-node:nth-child(3) { top: 60%; left: 35%; animation-delay: 1s; }
+        .tech-node:nth-child(4) { top: 30%; left: 65%; animation-delay: 1.5s; }
+        .tech-node:nth-child(5) { top: 50%; left: 75%; animation-delay: 2s; }
+        .tech-node:nth-child(6) { top: 70%; left: 85%; animation-delay: 2.5s; }
+
+        .tech-node:nth-child(even) {
+            background: #4ecdc4;
+            animation-duration: 6s;
+        }
+
+        @keyframes techPulse {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.5); opacity: 1; }
+        }
+
+        .tech-connection {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, #ff8c42, #4ecdc4);
+            transform-origin: left center;
+            animation: connectionFlow 8s linear infinite;
+        }
+
+        .tech-connection:nth-child(7) { top: 25%; left: 18%; width: 120px; transform: rotate(15deg); animation-delay: 0s; }
+        .tech-connection:nth-child(8) { top: 45%; left: 28%; width: 150px; transform: rotate(-10deg); animation-delay: 2s; }
+        .tech-connection:nth-child(9) { top: 65%; left: 38%; width: 100px; transform: rotate(20deg); animation-delay: 4s; }
+
+        @keyframes connectionFlow {
+            0% { background: linear-gradient(90deg, #ff8c42, transparent); }
+            50% { background: linear-gradient(90deg, #ff8c42, #4ecdc4); }
+            100% { background: linear-gradient(90deg, transparent, #4ecdc4); }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-main {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-vat h1 {
+            font-size: 3.8rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #ff8c42, #4ecdc4, #45b7d1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 140, 66, 0.3);
+        }
+
+        .hero-vat p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        .vat-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 25px 20px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.12);
+            border-color: #ff8c42;
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ff8c42, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: #ccc;
+            font-weight: 500;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff8c42, #4ecdc4);
+            color: white;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 15px rgba(255, 140, 66, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 140, 66, 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid #ff8c42;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline:hover {
+            background: #ff8c42;
+            color: #0c1b33;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 140, 66, 0.3);
+        }
+
+        /* Tech Visualization */
+        .tech-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tech-container {
+            position: relative;
+            width: 350px;
+            height: 350px;
+        }
+
+        .tech-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 140, 66, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tech-circle:nth-child(1) { width: 100%; height: 100%; border-color: rgba(255, 140, 66, 0.2); }
+        .tech-circle:nth-child(2) { width: 80%; height: 80%; border-color: rgba(78, 205, 196, 0.3); }
+        .tech-circle:nth-child(3) { width: 60%; height: 60%; border-color: rgba(255, 140, 66, 0.4); }
+
+        .tech-icon {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #ff8c42, #4ecdc4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            animation: iconFloat 6s ease-in-out infinite;
+        }
+
+        .tech-icon:nth-child(4) { top: 10%; left: 50%; transform: translateX(-50%); animation-delay: 0s; }
+        .tech-icon:nth-child(5) { top: 50%; right: 10%; transform: translateY(-50%); animation-delay: 1s; }
+        .tech-icon:nth-child(6) { bottom: 10%; left: 50%; transform: translateX(-50%); animation-delay: 2s; }
+        .tech-icon:nth-child(7) { top: 50%; left: 10%; transform: translateY(-50%); animation-delay: 3s; }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Technologies Section */
+        .vat-technologies {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ff8c42, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .course {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .course::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #ff8c42, #4ecdc4);
+        }
+
+        .course:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 140, 66, 0.2);
+        }
+
+        .course span {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 15px;
+            display: block;
+            line-height: 1.4;
+        }
+
+        .course a {
+            background: linear-gradient(135deg, #ff8c42, #4ecdc4);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s;
+            margin-top: 15px;
+        }
+
+        .course a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 140, 66, 0.4);
+        }
+
+        /* Highlights Section */
+        .vat-highlights {
+            padding: 120px 0;
+            background: white;
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .highlight-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #ff8c42, #4ecdc4);
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(255, 140, 66, 0.2);
+        }
+
+        .highlight-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff8c42, #4ecdc4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .highlight-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #1e293b;
+        }
+
+        .highlight-card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* Training Methodology */
+        .training-methodology {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #0c1b33, #1a3658);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .methodology-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-card {
+            background: rgba(255,255,255,0.1);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #ff8c42, #4ecdc4);
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.15);
+            box-shadow: 0 20px 40px rgba(255, 140, 66, 0.3);
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #ff8c42, #4ecdc4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: #45b7d1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .step-card h4 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .step-card p {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section-vat {
+            background: linear-gradient(135deg, #ff8c42, #4ecdc4);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section-vat::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 70%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(255,255,255,0.1) 0%, transparent 50%);
+        }
+
+        .cta-section-vat h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section-vat p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            justify-content: center;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ff8c42;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #999;
+            font-size: 14px;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #333;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-top {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .hero-main {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-vat h1 {
+                font-size: 2.8rem;
+            }
+
+            .vat-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 220px;
+                justify-content: center;
+            }
+
+            .tech-container {
+                width: 280px;
+                height: 280px;
+            }
+        }
+        /* Modal background */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 20, 40, 0.8);
+  backdrop-filter: blur(4px);
+  overflow-y: auto;
+}
+
+/* Modal content box */
+.modal-content {
+  background: #ffffff;
+  margin: 5% auto;
+  padding: 25px 35px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 750px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  position: relative;
+  border-top: 6px solid #007bff; /* Blue accent */
+  animation: fadeIn 0.4s ease;
+}
+
+/* Title */
+.modal-content h2 {
+  text-align: center;
+  color: #004aad;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #ff7b00;
+  padding-bottom: 8px;
+}
+
+/* Section headings */
+form h3 {
+  margin-top: 20px;
+  color: #004aad;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-left: 4px solid #ff7b00;
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #004aad;
+  transition: 0.3s;
+}
+
+.close-btn:hover {
+  color: #ff7b00;
+}
+
+/* Input and select */
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1.5px solid #d0d0d0;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: 0.25s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+}
+
+/* Form group layout */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+/* Fix checkbox alignment and style */
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 25px;
+  margin: 12px 0 20px 0;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  color: #333;
+  background: #f8f9fc;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #e2e6ea;
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+
+.checkbox-group label:hover {
+  background: rgba(0, 123, 255, 0.05);
+  border-color: #007bff;
+}
+
+.checkbox-group input[type="checkbox"] {
+  accent-color: #ff7b00; /* orange accent for the tick */
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transform: translateY(0); /* centers perfectly */
+}
+
+/* Responsive spacing */
+@media (max-width: 600px) {
+  .checkbox-group {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+
+/* Buttons */
+.submit-btn {
+  display: block;
+  margin: 20px auto 10px auto;
+  background: linear-gradient(90deg, #007bff, #ff7b00);
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: 0.3s ease;
+}
+
+.submit-btn:hover {
+  transform: scale(1.03);
+  background: linear-gradient(90deg, #005fcc, #ff6a00);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Label styling */
+label {
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+/* Animation for fade in */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scrollbar */
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+.modal-content::-webkit-scrollbar-thumb {
+  background-color: #007bff;
+  border-radius: 8px;
+}
+    </style>
+</head>
+<body>
+    <!-- Header -->
+  <div id="header"></div>
+
+<script src="../assets/js/site-config.js"></script>
+<script src="../assets/js/load-nav.js"></script>
+<script>
+  loadGatewayNavbar("../nav-bar.html");
+</script>
+
+    <!-- Hero Section -->
+    <section class="hero-vat">
+        <div class="tech-flow">
+            <div class="tech-node"></div>
+            <div class="tech-node"></div>
+            <div class="tech-node"></div>
+            <div class="tech-node"></div>
+            <div class="tech-node"></div>
+            <div class="tech-node"></div>
+            <div class="tech-connection"></div>
+            <div class="tech-connection"></div>
+            <div class="tech-connection"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-main">
+                <div class="hero-text">
+                    <h1>VALUE ADDED TRAINING</h1>
+                    <p>With our team of professionals! Gain real-world skills through practical, guided, and certified learning programs.</p>
+                    
+                    <div class="vat-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">40+</div>
+                            <div class="stat-label">Hours Training</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">19</div>
+                            <div class="stat-label">Technologies</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">80%</div>
+                            <div class="stat-label">Practical Focus</div>
+                        </div>
+                    </div>
+
+                    <div class="cta-buttons">
+                        <a href="#technologies" class="btn btn-primary">
+                            <i class="fas fa-laptop-code"></i>
+                            Explore Technologies
+                        </a>
+                        <a href="#apply" class="btn btn-outline">
+                            <i class="fas fa-rocket"></i>
+                            Apply Now
+                        </a>
+                    </div>
+                </div>
+                <div class="tech-visual">
+                    <div class="tech-container">
+                        <div class="tech-circle"></div>
+                        <div class="tech-circle"></div>
+                        <div class="tech-circle"></div>
+                        <div class="tech-icon">
+                            <i class="fab fa-java"></i>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="tech-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section class="vat-technologies" id="technologies">
+        <div class="container">
+            <div class="section-title">
+                <h2>Technologies We Offer</h2>
+                <p>Master cutting-edge technologies with our comprehensive 40-hour training programs</p>
+            </div>
+            
+            <div class="courses-grid">
+                <div class="course">
+                    <span>Data Structure using C</span>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc1ImzVwARzNjc5AwGa7UOld4C1uMgynnsgnETXBS5mF7tH-g/viewform" target="_blank">Apply Now</a>
+                </div>
+                <div class="course">
+                    <span>Programming Techniques with C & C++</span>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc1ImzVwARzNjc5AwGa7UOld4C1uMgynnsgnETXBS5mF7tH-g/viewform" target="_blank">Apply Now</a>
+                </div>
+                <div class="course">
+                    <span>VLSI, VHDL & PCB Design</span>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc1ImzVwARzNjc5AwGa7UOld4C1uMgynnsgnETXBS5mF7tH-g/viewform" target="_blank">Apply Now</a>
+                </div>
+                <div class="course">
+                    <span>PHP with MySQL and Web Design</span>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc1ImzVwARzNjc5AwGa7UOld4C1uMgynnsgnETXBS5mF7tH-g/viewform" target="_blank">Apply Now</a>
+                </div>
+                <div class="course">
+                    <span>Core JAVA 8</span>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc1ImzVwARzNjc5AwGa7UOld4C1uMgynnsgnETXBS5mF7tH-g/viewform" target="_blank">Apply Now</a>
+                </div>
+                <div class="course">
+                    <span>J2EE Struts with Hibernate</span>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc1ImzVwARzNjc5AwGa7UOld4C1uMgynnsgnETXBS5mF7tH-g/viewform" target="_blank">Apply Now</a>
+                </div>
+                <div class="course">
+                    <span>J2EE Spring and Boot</span>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc1ImzVwARzNjc5AwGa7UOld4C1uMgynnsgnETXBS5mF7tH-g/viewform" target="_blank">Apply Now</a>
+                </div>
+                <div class="course">
+                    <span>Android Application Development</span>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc1ImzVwARzNjc5AwGa7UOld4C1uMgynnsgnETXBS5mF7tH-g/viewform" target="_blank">Apply Now</a>
+                </div>
+                <div class="course">
+                    <span>Linux Administration with Scripting</span>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc1ImzVwARzNjc5AwGa7UOld4C1uMgynnsgnETXBS5mF7tH-g/viewform" target="_blank">Apply Now</a>
+                </div>
+                <div class="course">
+                    <span>Embedded & Robotics</span>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc1ImzVwARzNjc5AwGa7UOld4C1uMgynnsgnETXBS5mF7tH-g/viewform" target="_blank">Apply Now</a>
+                </div>
+                <div class="course">
+                    <span>ASP.NET with C#</span>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc1ImzVwARzNjc5AwGa7UOld4C1uMgynnsgnETXBS5mF7tH-g/viewform" target="_blank">Apply Now</a>
+                </div>
+                <div class="course">
+                    <span>Core JAVA with Android</span>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc1ImzVwARzNjc5AwGa7UOld4C1uMgynnsgnETXBS5mF7tH-g/viewform" target="_blank">Apply Now</a>
+                </div>
+                <div class="course">
+                    <span>Big Data – Programming</span>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc1ImzVwARzNjc5AwGa7UOld4C1uMgynnsgnETXBS5mF7tH-g/viewform" target="_blank">Apply Now</a>
+                </div>
+                <div class="course">
+                    <span>Big Data Analytics (Programming with R)</span>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc1ImzVwARzNjc5AwGa7UOld4C1uMgynnsgnETXBS5mF7tH-g/viewform" target="_blank">Apply Now</a>
+                </div>
+                <div class="course">
+                    <span>Big Data & Science (Analytics with R)</span>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc1ImzVwARzNjc5AwGa7UOld4C1uMgynnsgnETXBS5mF7tH-g/viewform" target="_blank">Apply Now</a>
+                </div>
+                <div class="course">
+                    <span>Cloud Computing (AWS)</span>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc1ImzVwARzNjc5AwGa7UOld4C1uMgynnsgnETXBS5mF7tH-g/viewform" target="_blank">Apply Now</a>
+                </div>
+                <div class="course">
+                    <span>IoT (Internet of Things)</span>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc1ImzVwARzNjc5AwGa7UOld4C1uMgynnsgnETXBS5mF7tH-g/viewform" target="_blank">Apply Now</a>
+                </div>
+                <div class="course">
+                    <span>Network Concepts with CCNA</span>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc1ImzVwARzNjc5AwGa7UOld4C1uMgynnsgnETXBS5mF7tH-g/viewform" target="_blank">Apply Now</a>
+                </div>
+                <div class="course">
+                    <span>Cyber Security</span>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc1ImzVwARzNjc5AwGa7UOld4C1uMgynnsgnETXBS5mF7tH-g/viewform" target="_blank">Apply Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlights Section -->
+    <section class="vat-highlights">
+        <div class="container">
+            <div class="section-title">
+                <h2>Training Highlights</h2>
+                <p>What makes our Value Added Training programs exceptional</p>
+            </div>
+            
+            <div class="highlights-grid">
+                <div class="highlight-card">
+                    <div class="highlight-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Corporate Trainers</h3>
+                    <p>Learn from industry experts with years of professional experience in top tech companies</p>
+                </div>
+
+                <div class="highlight-card">
+                    <div class="highlight-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>80% Practical Training</h3>
+                    <p>Hands-on learning approach with real-world projects and coding exercises</p>
+                </div>
+
+                <div class="highlight-card">
+                    <div class="highlight-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3>Regular Assessments</h3>
+                    <p>Weekly MCQ tests and assignments to track your progress and reinforce learning</p>
+                </div>
+
+                <div class="highlight-card">
+                    <div class="highlight-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h3>Project Assessment</h3>
+                    <p>Build and showcase mini-projects that demonstrate your skills to potential employers</p>
+                </div>
+
+                <div class="highlight-card">
+                    <div class="highlight-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Internship Opportunities</h3>
+                    <p>Get hands-on industry experience through our internship placement program</p>
+                </div>
+
+                <div class="highlight-card">
+                    <div class="highlight-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>International Certifications</h3>
+                    <p>Prepare for globally recognized certifications that boost your career prospects</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training Methodology -->
+    <section class="training-methodology">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Training Methodology</h2>
+                <p>A structured approach to ensure maximum learning and skill development</p>
+            </div>
+            
+            <div class="methodology-steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h4>Foundation Building</h4>
+                    <p>Start with fundamental concepts and theory to build a strong technical foundation</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h4>Practical Implementation</h4>
+                    <p>Apply concepts through hands-on coding exercises and real-world examples</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h4>Project Development</h4>
+                    <p>Work on mini-projects to apply your skills in practical scenarios</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4>Skill Enhancement</h4>
+                    <p>Advanced topics and optimization techniques to master the technology</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section-vat" id="apply">
+        <div class="container">
+            <h2>Ready to Boost Your Career?</h2>
+            <p>Join our Value Added Training program and gain industry-relevant skills in just 40 hours</p>
+            <div class="cta-buttons">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc1ImzVwARzNjc5AwGa7UOld4C1uMgynnsgnETXBS5mF7tH-g/viewform" class="btn btn-outline">
+                    <i class="fas fa-comments"></i>
+                    Apply Now
+                </a>
+                <a href="tel:+917397078885" class="btn btn-primary">
+                    <i class="fas fa-phone"></i>
+                    Call +91 7397078885
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Gateway Software Solutions</h3>
+                    <p>Leading software development company providing innovative digital solutions and quality internships.</p>
+                    <div class="contact-info" style="margin-top: 20px;">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+91 7397078885</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@gateway.com</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Internships</h3>
+                    <ul class="footer-links">
+                        <li><a href="reactjstab.html">React JS Development</a></li>
+                        <li><a href="pythonds.html">Python with Data Science</a></li>
+                        <li><a href="pythondj.html">Python with Django</a></li>
+                        <li><a href="flutterapp.html">Flutter Mobile App</a></li>
+                        <li><a href="embeddediot.html">Embedded & IoT</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Support</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Gateway Software Solutions. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navMenu = document.querySelector('.nav-menu');
+            const mobileBtn = document.querySelector('.mobile-menu-btn');
+            if (!navMenu.contains(event.target) && !mobileBtn.contains(event.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = '#fff';
+                header.style.backdropFilter = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

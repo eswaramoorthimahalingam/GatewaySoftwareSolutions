@@ -1,0 +1,1992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python with Django | Gateway Software Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles - Same as previous pages */
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-top {
+            background: #f8f9fa;
+            padding: 8px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .header-top-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .contact-item i {
+            color: #007bff;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #007bff;
+        }
+
+        .main-nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+            font-weight: 800;
+            font-size: 24px;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 10px 0;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-link:hover {
+            color: #007bff;
+        }
+
+        .nav-link i {
+            font-size: 12px;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            min-width: 250px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: #333;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .dropdown-menu a:hover {
+            background: #f8f9fa;
+            color: #007bff;
+            padding-left: 25px;
+        }
+
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Django Hero - Framework Architecture Theme */
+        .hero-django {
+            background: linear-gradient(120deg,#007bff,#ff6a00) ;
+            color: white;
+            padding: 180px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .framework-architecture {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .arch-layer {
+            position: absolute;
+            width: 120px;
+            height: 80px;
+            background: rgba(32, 107, 68, 0.1);
+            border: 2px solid #2f3dfd;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #d26c6c;
+            font-size: 1.2rem;
+            animation: layerFloat 8s ease-in-out infinite;
+        }
+
+        .arch-layer:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .arch-layer:nth-child(2) { top: 40%; left: 25%; animation-delay: 2s; }
+        .arch-layer:nth-child(3) { top: 60%; left: 40%; animation-delay: 4s; }
+        .arch-layer:nth-child(4) { top: 30%; left: 65%; animation-delay: 1s; }
+        .arch-layer:nth-child(5) { top: 50%; left: 80%; animation-delay: 3s; }
+        .arch-layer:nth-child(6) { top: 70%; left: 15%; animation-delay: 5s; }
+
+        @keyframes layerFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(3deg); }
+        }
+
+        .code-snippets {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .code-snippet {
+            position: absolute;
+            font-family: monospace;
+            font-size: 14px;
+            color: rgba(205, 104, 21, 0.815);
+            animation: codeDrift 12s linear infinite;
+        }
+
+        .code-snippet:nth-child(1) { top: 15%; left: 5%; animation-delay: 0s; }
+        .code-snippet:nth-child(2) { top: 35%; left: 20%; animation-delay: 2s; }
+        .code-snippet:nth-child(3) { top: 55%; left: 35%; animation-delay: 4s; }
+        .code-snippet:nth-child(4) { top: 25%; left: 70%; animation-delay: 6s; }
+        .code-snippet:nth-child(5) { top: 45%; left: 85%; animation-delay: 8s; }
+
+        @keyframes codeDrift {
+            0% { transform: translateX(-100px); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateX(100px); opacity: 0; }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-main {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-django h1 {
+            font-size: 3.8rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #ffffff, #ffffff, #f5dd90);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(32, 107, 68, 0.3);
+        }
+
+        .hero-django p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        .django-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 25px 20px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.12);
+            border-color: #d8d8d8;
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #f6f6f6, #d3d3d3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: #ccc;
+            font-weight: 500;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #206b44, #44b78b);
+            color: white;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 15px rgba(32, 107, 68, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(32, 107, 68, 0.5);
+        }
+
+       .btn.btn-outline {
+    background: transparent;
+    color: rgb(121, 241, 223); /* text before hover */
+    border: 2px solid #1fa24b; /* orange border */
+    transition: all 0.3s ease; /* smooth hover effect */
+}
+
+.btn.btn-outline:hover {
+    background: #2a894f; /* blue background on hover */
+    color: rgb(255, 255, 255); /* text turns orange */
+    transform: translateY(-2px);
+}
+        /* Django Architecture Visualization */
+        .django-arch {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .arch-container {
+            position: relative;
+            width: 350px;
+            height: 350px;
+        }
+
+        .arch-component {
+            position: absolute;
+            width: 80px;
+            height: 60px;
+            background: rgba(32, 107, 68, 0.1);
+            border: 2px solid #ffffff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e9e9e9;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .arch-component:hover {
+            background: rgba(32, 107, 68, 0.2);
+            transform: scale(1.1);
+        }
+
+        .arch-component:nth-child(1) { top: 20%; left: 50%; transform: translateX(-50%); z-index: 3; }
+        .arch-component:nth-child(2) { top: 40%; left: 25%; z-index: 2; }
+        .arch-component:nth-child(3) { top: 40%; left: 75%; z-index: 2; }
+        .arch-component:nth-child(4) { top: 60%; left: 15%; z-index: 1; }
+        .arch-component:nth-child(5) { top: 60%; left: 50%; z-index: 1; }
+        .arch-component:nth-child(6) { top: 60%; left: 85%; z-index: 1; }
+
+        .arch-connection {
+            position: absolute;
+            height: 2px;
+            background: #eeeeee;
+            transform-origin: left center;
+            opacity: 0.5;
+        }
+
+        /* Django Features */
+        .django-features {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #206b44, #44b78b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #206b44, #44b78b);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(32, 107, 68, 0.2);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #206b44, #44b78b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #1e293b;
+        }
+
+        .feature-card p {
+            color: #64748b;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .feature-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .feature-tag {
+            background: #206b44;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .orm-tag { background: #44b78b; }
+        .admin-tag { background: #f5dd90; color: #1e293b; }
+
+        /* Projects Showcase */
+        .projects-showcase {
+            padding: 120px 0;
+            background: white;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(32, 107, 68, 0.2);
+        }
+
+        .project-preview {
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #4d07ff, #ff8000);
+        }
+
+        .project-preview::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(45deg, transparent 49%, rgba(255,255,255,0.1) 50%, transparent 51%),
+                linear-gradient(-45deg, transparent 49%, rgba(255,255,255,0.1) 50%, transparent 51%);
+            background-size: 30px 30px;
+        }
+
+        .app-demo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 150px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 8px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            grid-template-rows: auto 1fr auto;
+            gap: 5px;
+            padding: 10px;
+        }
+
+        .demo-sidebar {
+            grid-column: 1;
+            grid-row: 1 / -1;
+            background: #206b44;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            padding: 5px;
+        }
+
+        .demo-nav-item {
+            background: rgba(255,255,255,0.2);
+            height: 4px;
+            border-radius: 2px;
+            animation: navPulse 2s ease-in-out infinite alternate;
+        }
+
+        .demo-nav-item:nth-child(1) { animation-delay: 0s; }
+        .demo-nav-item:nth-child(2) { animation-delay: 0.2s; }
+        .demo-nav-item:nth-child(3) { animation-delay: 0.4s; }
+
+        .demo-content {
+            grid-column: 2;
+            grid-row: 2;
+            background: #44b78b;
+            border-radius: 4px;
+            animation: contentPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes navPulse {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes contentPulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        .project-info {
+            padding: 30px;
+        }
+
+        .project-info h4 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #1e293b;
+        }
+
+        .project-info p {
+            color: #64748b;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            gap: 10px;
+        }
+
+        .project-tag {
+            background: #206b44;
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .drf-tag { background: #44b78b; }
+        .postgres-tag { background: #336791; }
+
+        /* Learning Path */
+        .learning-path {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #0d2b4e, #1a3d6b);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .path-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-card {
+            background: rgba(255,255,255,0.1);
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #206b44, #44b78b);
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.15);
+            box-shadow: 0 20px 40px rgba(32, 107, 68, 0.3);
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #206b44, #44b78b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: #f5dd90;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1e293b;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .step-card h4 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .step-card p {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section-django {
+            background: linear-gradient(135deg, #5d00ff, #ff8913);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section-django::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 70%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(255,255,255,0.1) 0%, transparent 50%);
+        }
+
+        .cta-section-django h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section-django p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+.cta-buttons{
+            justify-content: center;
+        }
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #44b78b;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #999;
+            font-size: 14px;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #333;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-top {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .hero-main {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-django h1 {
+                font-size: 2.8rem;
+            }
+
+            .django-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 220px;
+                justify-content: center;
+            }
+
+            .arch-container {
+                width: 280px;
+                height: 280px;
+            }
+        }
+        /* Modal background */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 20, 40, 0.8);
+  backdrop-filter: blur(4px);
+  overflow-y: auto;
+}
+
+/* Modal content box */
+.modal-content {
+  background: #ffffff;
+  margin: 5% auto;
+  padding: 25px 35px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 750px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  position: relative;
+  border-top: 6px solid #007bff; /* Blue accent */
+  animation: fadeIn 0.4s ease;
+}
+
+/* Title */
+.modal-content h2 {
+  text-align: center;
+  color: #004aad;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #ff7b00;
+  padding-bottom: 8px;
+}
+
+/* Section headings */
+form h3 {
+  margin-top: 20px;
+  color: #004aad;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-left: 4px solid #ff7b00;
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #004aad;
+  transition: 0.3s;
+}
+
+.close-btn:hover {
+  color: #ff7b00;
+}
+
+/* Input and select */
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1.5px solid #d0d0d0;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: 0.25s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+}
+
+/* Form group layout */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+/* Fix checkbox alignment and style */
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 25px;
+  margin: 12px 0 20px 0;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  color: #333;
+  background: #f8f9fc;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #e2e6ea;
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+
+.checkbox-group label:hover {
+  background: rgba(0, 123, 255, 0.05);
+  border-color: #007bff;
+}
+
+.checkbox-group input[type="checkbox"] {
+  accent-color: #ff7b00; /* orange accent for the tick */
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transform: translateY(0); /* centers perfectly */
+}
+
+/* Responsive spacing */
+@media (max-width: 600px) {
+  .checkbox-group {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+/* Buttons */
+.submit-btn {
+  display: block;
+  margin: 20px auto 10px auto;
+  background: linear-gradient(90deg, #007bff, #ff7b00);
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: 0.3s ease;
+}
+
+.submit-btn:hover {
+  transform: scale(1.03);
+  background: linear-gradient(90deg, #005fcc, #ff6a00);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Label styling */
+label {
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+/* Animation for fade in */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scrollbar */
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+.modal-content::-webkit-scrollbar-thumb {
+  background-color: #007bff;
+  border-radius: 8px;
+}
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gateway Navigation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B35;
+            --primary-dark: #E55A2B;
+            --secondary: #1E88E5;
+            --secondary-dark: #1565C0;
+            --accent: #FFD166;
+            --accent2: #06D6A0;
+            --dark: #1A1D2E;
+            --light: #F8F9FA;
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+            --gradient-mixed: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            --gradient-accent: linear-gradient(135deg, var(--accent) 0%, #FFB347 100%);
+            --gradient-hero: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--primary-dark) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: var(--gradient-mixed); border-radius: 10px; }
+
+        /* Enhanced Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 20px 0;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            height: 100px;
+        }
+
+        .navbar.scrolled {
+            padding: 15px 0;
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        /* Logo + Brand Styling */
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 2.2rem;
+            text-decoration: none;
+            gap: 12px;
+        }
+
+        .navbar-brand img {
+            height: 55px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-brand:hover img {
+            transform: scale(1.08);
+        }
+
+        .brand-text {
+            background: var(--gradient-mixed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .brand-text::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 4px;
+            background: var(--gradient-mixed);
+            border-radius: 4px;
+        }
+
+        .accent-text {
+            color: var(--accent);
+            -webkit-text-fill-color: var(--accent);
+        }
+
+        .nav-link {
+            font-weight: 600;
+            margin: 0 12px;
+            color: var(--dark) !important;
+            position: relative;
+            transition: all 0.3s;
+            font-size: 1.05rem;
+        }
+
+        .nav-link:hover {
+            color: var(--primary) !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--gradient-mixed);
+            transition: width 0.4s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Dropdown Menu */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            margin-top: 0;
+            animation: fadeInDown 0.4s;
+        }
+
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            border-radius: 15px;
+            padding: 15px 0;
+            border-top: 3px solid var(--primary);
+            display: none;
+            position: absolute;
+        }
+
+        .dropdown-item {
+            padding: 12px 25px;
+            transition: all 0.3s;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dropdown-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-mixed);
+            transition: left 0.3s;
+            z-index: -1;
+        }
+
+        .dropdown-item:hover::before {
+            left: 0;
+        }
+
+        .dropdown-item:hover {
+            color: white;
+            transform: translateX(8px);
+        }
+
+        .dropdown-toggle::after {
+            margin-left: 8px;
+            border-top: 0.3em solid;
+            border-right: 0.3em solid transparent;
+            border-left: 0.3em solid transparent;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-toggle::after {
+            transform: rotate(180deg);
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translate3d(0, -10px, 0); }
+            to { opacity: 1; transform: translate3d(0, 0, 0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .navbar-brand img {
+                height: 45px;
+            }
+            .brand-text {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar-brand {
+                font-size: 1.6rem;
+            }
+            .navbar-brand img {
+                height: 40px;
+            }
+            .brand-text::after {
+                display: none;
+            }
+            .dropdown:hover .dropdown-menu {
+                display: none;
+            }
+            .dropdown.show .dropdown-menu {
+                display: block;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-brand {
+                gap: 8px;
+            }
+            .brand-text {
+                font-size: 1.5rem;
+            }
+            .navbar-brand img {
+                height: 38px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+<div id="header"></div>
+
+<script src="../assets/js/site-config.js"></script>
+<script src="../assets/js/load-nav.js"></script>
+<script>
+  loadGatewayNavbar("../nav-bar.html");
+</script>
+
+    <!-- Demo Content -->
+    <div class="demo-content">
+        <h1>Gateway Software Solutions</h1>
+        <p>Empowering Innovation Through IT & ITES Excellence</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Enable dropdown on hover for desktop
+        document.querySelectorAll('.dropdown').forEach(dropdown => {
+            dropdown.addEventListener('mouseenter', () => {
+                if (window.innerWidth > 992) {
+                    dropdown.querySelector('.dropdown-toggle').classList.add('show');
+                    dropdown.querySelector('.dropdown-menu').classList.add('show');
+                }
+            });
+            dropdown.addEventListener('mouseleave', () => {
+                if (window.innerWidth > 992) {
+                    dropdown.querySelector('.dropdown-toggle').classList.remove('show');
+                    dropdown.querySelector('.dropdown-menu').classList.remove('show');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+    <!-- Hero Section -->
+    <section class="hero-django">
+        <div class="framework-architecture">
+            <div class="arch-layer">
+                <i class="fas fa-database"></i>
+            </div>
+            <div class="arch-layer">
+                <i class="fas fa-server"></i>
+            </div>
+            <div class="arch-layer">
+                <i class="fas fa-code"></i>
+            </div>
+            <div class="arch-layer">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="arch-layer">
+                <i class="fas fa-rocket"></i>
+            </div>
+            <div class="arch-layer">
+                <i class="fas fa-cogs"></i>
+            </div>
+        </div>
+        <div class="code-snippets">
+            <div class="code-snippet">@login_required</div>
+            <div class="code-snippet">class Meta:</div>
+            <div class="code-snippet">def get_queryset(self):</div>
+            <div class="code-snippet">urlpatterns = [</div>
+            <div class="code-snippet">models.Model</div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-main">
+                <div class="hero-text">
+                    <h1><i class="fab fa-python"></i> Python with Django</h1>
+                    <p>Build robust, scalable web applications with Django. Master the batteries-included framework that powers some of the world's most popular websites.</p>
+                    
+                    <div class="django-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">#1</div>
+                            <div class="stat-label">Python Framework</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">$105K</div>
+                            <div class="stat-label">Avg Salary</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">13K+</div>
+                            <div class="stat-label">Packages</div>
+                        </div>
+                    </div>
+
+                    <div class="cta-buttons">
+                        <a href="/Internshiptraining/form-modal.html" class="btn btn-primary" id="openFormBtn">
+  <i class="fas fa-chart-line"></i>Experience the evolution of database integration.
+</a>
+                        <a href="#features" class="btn btn-outline">
+                            <i class="fas fa-cogs"></i>
+                            Explore Features
+                        </a>
+                    </div>
+                </div>
+                <div class="django-arch">
+                    <div class="arch-container">
+                        <div class="arch-component">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="arch-component">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="arch-component">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="arch-component">
+                            <i class="fas fa-user-cog"></i>
+                        </div>
+                        <div class="arch-component">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="arch-component">
+                            <i class="fas fa-plug"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Django Features -->
+    <section class="django-features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Django Framework Features</h2>
+                <p>Master the powerful features that make Django the most popular Python web framework</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>ORM & Database</h3>
+                    <p>Powerful Object-Relational Mapping with support for multiple databases and migrations</p>
+                    <div class="feature-list">
+                        <span class="feature-tag orm-tag">ORM</span>
+                        <span class="feature-tag">Migrations</span>
+                        <span class="feature-tag">PostgreSQL</span>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Security First</h3>
+                    <p>Built-in protection against common web vulnerabilities and security best practices</p>
+                    <div class="feature-list">
+                        <span class="feature-tag">CSRF</span>
+                        <span class="feature-tag">XSS</span>
+                        <span class="feature-tag">SQL Injection</span>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-cog"></i>
+                    </div>
+                    <h3>Admin Interface</h3>
+                    <p>Automatic admin interface for content management and database operations</p>
+                    <div class="feature-list">
+                        <span class="feature-tag admin-tag">Auto Admin</span>
+                        <span class="feature-tag admin-tag">CRUD</span>
+                        <span class="feature-tag admin-tag">Customizable</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Showcase -->
+    <section class="projects-showcase">
+        <div class="container">
+            <div class="section-title">
+                <h2>Real-World Django Projects</h2>
+                <p>Build production-ready web applications that demonstrate Django expertise</p>
+            </div>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-preview">
+                        <div class="app-demo">
+                            <div class="demo-sidebar">
+                                <div class="demo-nav-item"></div>
+                                <div class="demo-nav-item"></div>
+                                <div class="demo-nav-item"></div>
+                            </div>
+                            <div class="demo-content"></div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h4>E-commerce Platform</h4>
+                        <p>Full-featured e-commerce site with user accounts, payment integration, and inventory management</p>
+                        <div class="project-tech">
+                            <span class="project-tag">Django</span>
+                            <span class="project-tag">Stripe</span>
+                            <span class="project-tag postgres-tag">PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-preview">
+                        <div class="app-demo">
+                            <div class="demo-sidebar">
+                                <div class="demo-nav-item"></div>
+                                <div class="demo-nav-item"></div>
+                                <div class="demo-nav-item"></div>
+                            </div>
+                            <div class="demo-content"></div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h4>Content Management System</h4>
+                        <p>Custom CMS with user roles, content publishing, and media management capabilities</p>
+                        <div class="project-tech">
+                            <span class="project-tag">Django</span>
+                            <span class="project-tag drf-tag">DRF</span>
+                            <span class="project-tag">AWS S3</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-preview">
+                        <div class="app-demo">
+                            <div class="demo-sidebar">
+                                <div class="demo-nav-item"></div>
+                                <div class="demo-nav-item"></div>
+                                <div class="demo-nav-item"></div>
+                            </div>
+                            <div class="demo-content"></div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h4>REST API Backend</h4>
+                        <p>Scalable REST API with authentication, documentation, and third-party integrations</p>
+                        <div class="project-tech">
+                            <span class="project-tag drf-tag">Django REST</span>
+                            <span class="project-tag">JWT</span>
+                            <span class="project-tag">Docker</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Path -->
+    <section class="learning-path">
+        <div class="container">
+            <div class="section-title">
+                <h2>Django Learning Journey</h2>
+                <p>From Django fundamentals to full-stack web development mastery</p>
+            </div>
+            
+            <div class="path-steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <h4>Python & Django Basics</h4>
+                    <p>Master Python fundamentals and Django's MTV architecture with hands-on projects</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h4>Database & ORM</h4>
+                    <p>Learn Django ORM, database modeling, migrations, and query optimization</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4>Security & Deployment</h4>
+                    <p>Implement security best practices and deploy applications to production</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h4>Advanced Django</h4>
+                    <p>Master REST APIs, performance optimization, and advanced Django patterns</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section-django">
+        <div class="container">
+            <h2>Ready to Build Scalable Web Applications?</h2>
+            <p>Join our Python with Django internship and become a full-stack developer in just 12 weeks</p>
+            <div class="cta-buttons">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc1ImzVwARzNjc5AwGa7UOld4C1uMgynnsgnETXBS5mF7tH-g/viewform" class="btn btn-outline">
+                    <i class="fas fa-comments"></i>
+                    Apply now
+                </a>
+                <a href="tel:+917397078885" class="btn btn-primary">
+                    <i class="fas fa-phone"></i>
+                    Call +91 7397078885
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+   <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gateway Software Solutions – Footer</title>
+
+    <!-- Font Awesome for Social Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+          integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        * { box-sizing: border-box; margin:0; padding:0; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background:#f8f9fa; }
+
+        /* ====================== FOOTER ====================== */
+        .footer {
+            background: #e6f7ff; /* Light Blue Background */
+            padding: 45px 0 25px;
+            border-top: 5px solid #b3e0ff;
+            margin-top: 50px;
+            color: #1a1a1a;
+        }
+        .footer .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        /* ---------- Certification Logos ---------- */
+        .cert-logos {
+            text-align: center;
+            margin-bottom: 35px;
+            padding-bottom: 22px;
+            border-bottom: 2px dashed #99d6ff;
+        }
+        .cert-logos img {
+            height: 78px;
+            margin: 0 20px;
+            display: inline-block;
+            vertical-align: middle;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+            transition: transform .3s ease;
+        }
+        .cert-logos img:hover {
+            transform: scale(1.05);
+        }
+
+        /* ---------- 4-Column Grid ---------- */
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 35px;
+            justify-content: space-between;
+        }
+
+        .col {
+            flex: 1;
+            min-width: 180px;
+        }
+        .col h3 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: #1e40af;
+            position: relative;
+            font-weight: 600;
+        }
+        .col h3::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: -7px;
+            width: 34px; height: 3px;
+            background: #f39c12;
+            border-radius: 2px;
+        }
+        .col ul {
+            list-style: none;
+        }
+        .col ul li {
+            margin-bottom: 10px;
+        }
+        .col ul li a {
+            color: #333;
+            text-decoration: none;
+            font-size: 15px;
+            transition: all .3s ease;
+            display: block;
+        }
+        .col ul li a:hover {
+            color: #f39c12;
+            padding-left: 5px;
+        }
+
+        /* ---------- SOCIAL LINKS – VERTICAL ---------- */
+        .social-links {
+            display: flex;
+            flex-direction: column;   /* ← VERTICAL ALIGNMENT */
+            gap: 12px;
+            margin-top: 14px;
+        }
+        .social-links a {
+            color: #f39c12;
+            font-size: 20px;
+            width: 44px;
+            height: 44px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all .3s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+        }
+        .social-links a:hover {
+            background: #f39c12;
+            color: #fff;
+            transform: translateX(5px);
+            box-shadow: 0 6px 14px rgba(243,156,18,0.4);
+        }
+
+        /* ---------- Copyright ---------- */
+        .copyright {
+            text-align: center;
+            margin-top: 35px;
+            padding: 16px 0;
+            background: #ffffff;
+            color: #444;
+            font-size: 14px;
+            border-radius: 8px;
+            margin-left: -20px;
+            margin-right: -20px;
+            margin-bottom: -25px;
+            box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 768px) {
+            .footer-grid {
+                flex-direction: column;
+                text-align: center;
+            }
+            .col h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .cert-logos img {
+                height: 60px;
+                margin: 10px;
+            }
+            .social-links {
+                flex-direction: row;        /* ← Horizontal on mobile for space */
+                justify-content: center;
+                gap: 15px;
+            }
+            .social-links a {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            .copyright {
+                margin-left: -20px;
+                margin-right: -20px;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ====================== FOOTER (Social Links VERTICAL) ====================== -->
+<footer class="footer">
+    <div class="container">
+
+        <!-- Certification Logos – ABOVE Columns -->
+        <div class="cert-logos">
+            <img src="../assets/gsslogo.png"  alt="Gateway Software Solutions">
+            <img src="../assets/certifid.png" alt="ISO 9001:2015 Accredited">
+            <img src="../assets/aicte.png"    alt="AICTE Approved">
+        </div>
+
+        <!-- 4-Column Layout -->
+        <div class="footer-grid">
+
+            <!-- Services -->
+            <div class="col">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="../Services/mobile-app-development.html">Application Development</a></li>
+                    <li><a href="../Services/E-commerce.html">Web Development</a></li>
+                    <li><a href="../Services/digital marketing.html">Digital Marketing</a></li>
+                    <li><a href="../Services/logo-design.html">UI/UX Design</a></li>
+                    <li><a href="../Services/ai-agent.html">Ai Development</a></li>
+                </ul>
+            </div>
+
+            <!-- Company -->
+            <div class="col">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="../home/about.html">About Us</a></li>
+                    <li><a href="../career.html">Careers</a></li>
+                    <li><a href="../home/ourteam.html">Our Team</a></li>
+                    <li><a href="../home/proo.html">Profile</a></li>
+                    <li><a href="../home/faq.html">Faq</a></li>
+                </ul>
+            </div>
+
+            <!-- Internship & Course -->
+            <div class="col">
+                <h3>Internship & Course</h3>
+                <ul>
+                    <li><a href="../Internshiptraining/webtech.html">Web Designing</a></li>
+                    <li><a href="../Internshiptraining/embeddediot.html">Iot</a></li>
+                    <li><a href="../Internshiptraining/flutterapp.html">Mobile App</a></li>
+                    <li><a href="../Internshiptraining/genai.html">Gen-Ai-Agent</a></li>
+                    <li><a href="../Internshiptraining/pythonds.html">Data Science</a></li>
+                    <li><a href="../Internshiptraining/pythonmysql.html">Full Stack</a></li>
+                </ul>
+            </div>
+
+            <!-- Connect With Us – VERTICAL SOCIAL ICONS -->
+            <div class="col">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/company/gateway-software-solutions/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/gatewaycbe?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@GatewaySoftwareSolutions-gss" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+           </div>
+            </div>
+
+        </div>
+
+        <!-- Copyright -->
+        <div class="copyright">
+            © Gateway Software Solutions. All rights reserved. | Empowering Businesses Overturn The Ordinary.
+        </div>
+
+    </div>
+</footer>
+
+</body>
+</html>
+
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navMenu = document.querySelector('.nav-menu');
+            const mobileBtn = document.querySelector('.mobile-menu-btn');
+            if (!navMenu.contains(event.target) && !mobileBtn.contains(event.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = '#fff';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Add Django architecture connections
+        document.addEventListener('DOMContentLoaded', function() {
+            const archContainer = document.querySelector('.arch-container');
+            const components = document.querySelectorAll('.arch-component');
+            
+            // Create connections between components
+            const connections = [
+                [0, 1], [0, 2], [1, 3], [1, 4], [2, 4], [2, 5], [3, 4], [4, 5]
+            ];
+            
+            connections.forEach(([start, end]) => {
+                const connection = document.createElement('div');
+                connection.className = 'arch-connection';
+                
+                const startComp = components[start];
+                const endComp = components[end];
+                
+                const rect1 = startComp.getBoundingClientRect();
+                const rect2 = endComp.getBoundingClientRect();
+                const containerRect = archContainer.getBoundingClientRect();
+                
+                const x1 = rect1.left + rect1.width/2 - containerRect.left;
+                const y1 = rect1.top + rect1.height/2 - containerRect.top;
+                const x2 = rect2.left + rect2.width/2 - containerRect.left;
+                const y2 = rect2.top + rect2.height/2 - containerRect.top;
+                
+                const length = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+                const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+                
+                connection.style.width = length + 'px';
+                connection.style.left = x1 + 'px';
+                connection.style.top = y1 + 'px';
+                connection.style.transform = `rotate(${angle}deg)`;
+                
+                archContainer.appendChild(connection);
+            });
+        });
+        
+  fetch("form-modal.js")
+  .then(res => res.text())
+  .then(code => {
+    eval(code); // executes the JS content dynamically
+  });
+
+
+    </script>
+</body>
+</html>

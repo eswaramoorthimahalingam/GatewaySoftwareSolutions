@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>React JS Development | Gateway Software Solutions</title>
+
+    <!-- Icons & Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Combined CSS (your original styles + popup styles) -->
+    <style>
+        /* ===== Your Original CSS (Part 1) ===== */
+        /* Base styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+            overflow-x: hidden;
+        }
+.form-container {
+  max-height: 90vh;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+        /* Header Styles - Same as previous pages */
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-top {
+            background: #f8f9fa;
+            padding: 8px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .header-top-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .contact-info { display: flex; gap: 30px; }
+        .contact-item { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #666; }
+        .contact-item i { color: #007bff; }
+
+        .social-links { display: flex; gap: 15px; }
+        .social-links a { color: #666; text-decoration: none; font-size: 16px; transition: color 0.3s; }
+        .social-links a:hover { color: #007bff; }
+
+        .main-nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo { display: flex; align-items: center; text-decoration: none; color: #333; font-weight: 800; font-size: 24px; }
+        .logo img { height: 40px; margin-right: 10px; }
+
+        .nav-menu { display: flex; list-style: none; gap: 30px; }
+        .nav-item { position: relative; }
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 10px 0;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .nav-link:hover { color: #007bff; }
+        .nav-link i { font-size: 12px; }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            min-width: 250px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: #333;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        .dropdown-menu a:hover { background: #f8f9fa; color: #007bff; padding-left: 25px; }
+        .dropdown-menu a:last-child { border-bottom: none; }
+        .nav-item:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+
+        /* React Hero - Component Flow Theme */
+        .hero-react {
+            background:linear-gradient(120deg,#007bff,#ff6a00) ;
+            color: white;
+            padding: 180px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .component-flow { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+        .component {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: rgba(97, 218, 251, 0.1);
+            border: 2px solid #61dafb;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #61dafb;
+            font-size: 1.5rem;
+            animation: componentFloat 8s ease-in-out infinite;
+        }
+        .component:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .component:nth-child(2) { top: 40%; left: 25%; animation-delay: 2s; }
+        .component:nth-child(3) { top: 60%; left: 40%; animation-delay: 4s; }
+        .component:nth-child(4) { top: 30%; left: 65%; animation-delay: 1s; }
+        .component:nth-child(5) { top: 50%; left: 80%; animation-delay: 3s; }
+        .component:nth-child(6) { top: 70%; left: 15%; animation-delay: 5s; }
+        @keyframes componentFloat { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-30px) rotate(5deg); } }
+
+        .code-lines { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .code-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #61dafb, transparent);
+            animation: codeFlow 6s linear infinite;
+        }
+        .code-line:nth-child(1) { top: 25%; width: 200px; animation-delay: 0s; }
+        .code-line:nth-child(2) { top: 45%; width: 300px; animation-delay: 1s; }
+        .code-line:nth-child(3) { top: 65%; width: 250px; animation-delay: 2s; }
+        .code-line:nth-child(4) { top: 35%; width: 350px; animation-delay: 3s; }
+        @keyframes codeFlow { 0% { transform: translateX(-100%); opacity: 0; } 50% { opacity: 1; } 100% { transform: translateX(100vw); opacity: 0; } }
+
+        .hero-content { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+        .hero-main { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+
+        .hero-react h1 {
+            font-size: 3.8rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            background: linear-gradient(135deg, #fff9f9,#ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(97, 218, 251, 0.3);
+        }
+
+        .hero-react p { font-size: 1.3rem; margin-bottom: 30px; opacity: 0.9; color: #e0e0e0; line-height: 1.6; }
+
+        .react-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 40px 0; }
+        .stat-item {
+            text-align: center;
+            padding: 25px 20px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        .stat-item:hover { transform: translateY(-5px); background: rgba(255,255,255,0.12); border-color: #61dafb; }
+        .stat-number { font-size: 2.2rem; font-weight: 800; background: linear-gradient(135deg, #ffffff, #ffffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px; }
+        .stat-label { font-size: 0.95rem; color: #ccc; font-weight: 500; }
+
+        .cta-buttons { display: flex; gap: 20px; margin-top: 30px; }
+        .btn { padding: 16px 32px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 16px; transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px; }
+        .btn-primary { background: linear-gradient(135deg, #61dafb, #a855f7); color: white; border: 2px solid transparent; box-shadow: 0 4px 15px rgba(97, 218, 251, 0.3); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(97, 218, 251, 0.5); }
+        .btn.btn-outline { background: transparent; color: white; border: 2px solid #61dafb; backdrop-filter: blur(10px); }
+        .btn.btn-outline:hover { background: #61dafb; color: #0f172a; transform: translateY(-3px); box-shadow: 0 8px 25px rgba(97, 218, 251, 0.3); }
+
+        /* Component Tree Visualization */
+        .component-tree { position: relative; display: flex; justify-content: center; align-items: center; }
+        .tree-container { position: relative; width: 350px; height: 350px; }
+        .tree-node {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            background: rgba(97, 218, 251, 0.1);
+            border: 2px solid #61dafb;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #61dafb;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        .tree-node:hover { background: rgba(97, 218, 251, 0.2); transform: scale(1.1); }
+        .tree-node:nth-child(1) { top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 3; }
+        .tree-node:nth-child(2) { top: 25%; left: 25%; z-index: 2; }
+        .tree-node:nth-child(3) { top: 25%; left: 75%; z-index: 2; }
+        .tree-node:nth-child(4) { top: 75%; left: 25%; z-index: 2; }
+        .tree-node:nth-child(5) { top: 75%; left: 75%; z-index: 2; }
+        .tree-connection { position: absolute; background: #61dafb; height: 2px; transform-origin: left center; }
+        .tree-connection:nth-child(6) { top: 35%; left: 35%; width: 80px; transform: rotate(-45deg); }
+        .tree-connection:nth-child(7) { top: 35%; left: 65%; width: 80px; transform: rotate(45deg); }
+        .tree-connection:nth-child(8) { top: 65%; left: 35%; width: 80px; transform: rotate(45deg); }
+        .tree-connection:nth-child(9) { top: 65%; left: 65%; width: 80px; transform: rotate(-45deg); }
+
+        /* React Ecosystem */
+        .react-ecosystem { padding: 120px 0; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .section-title { text-align: center; margin-bottom: 80px; }
+        .section-title h2 { font-size: 3rem; font-weight: 800; margin-bottom: 20px; background: linear-gradient(135deg, #61dafb, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .section-title p { font-size: 1.2rem; color: #777777; max-width: 600px; margin: 0 auto; line-height: 1.6; }
+        .ecosystem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 50px; }
+        .ecosystem-card { background: white; padding: 40px 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; transition: all 0.4s ease; position: relative; overflow: hidden; }
+        .ecosystem-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(135deg, #61dafb, #a855f7); }
+        .ecosystem-card:hover { transform: translateY(-15px); box-shadow: 0 20px 40px rgba(97, 218, 251, 0.2); }
+        .ecosystem-icon { width: 80px; height: 80px; background: linear-gradient(135deg, #61dafb, #a855f7); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; color: white; font-size: 2rem; }
+        .ecosystem-card h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 15px; color: #1e293b; }
+        .ecosystem-card p { color: #64748b; margin-bottom: 20px; line-height: 1.6; }
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+        .tech-tag { background: #61dafb; color: #0f172a; padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+
+        /* Projects Showcase */
+        .projects-showcase { padding: 120px 0; background: white; }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-top: 50px; }
+        .project-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.1); transition: all 0.4s ease; position: relative; }
+        .project-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 25px 50px rgba(97, 218, 251, 0.2); }
+        .project-preview { height: 250px; position: relative; overflow: hidden; background: linear-gradient(135deg, #61dafb, #a855f7); }
+        .project-preview::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(45deg, transparent 49%, rgba(255,255,255,0.1) 50%, transparent 51%), linear-gradient(-45deg, transparent 49%, rgba(255,255,255,0.1) 50%, transparent 51%); background-size: 30px 30px; }
+
+        .component-demo { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 200px; height: 150px; background: rgba(255,255,255,0.9); border-radius: 10px; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); gap: 5px; padding: 10px; }
+        .demo-element { background: #61dafb; border-radius: 4px; animation: demoPulse 2s ease-in-out infinite alternate; }
+        .demo-element:nth-child(1) { grid-column: 1; grid-row: 1; animation-delay: 0s; }
+        .demo-element:nth-child(2) { grid-column: 2; grid-row: 1; animation-delay: 0.2s; }
+        .demo-element:nth-child(3) { grid-column: 3; grid-row: 1; animation-delay: 0.4s; }
+        .demo-element:nth-child(4) { grid-column: 1; grid-row: 2; animation-delay: 0.6s; }
+        .demo-element:nth-child(5) { grid-column: 2; grid-row: 2; animation-delay: 0.8s; }
+        .demo-element:nth-child(6) { grid-column: 3; grid-row: 2; animation-delay: 1s; }
+        @keyframes demoPulse { 0% { opacity: 0.5; } 100% { opacity: 1; } }
+
+        .project-info { padding: 30px; }
+        .project-info h4 { font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; color: #1e293b; }
+        .project-info p { color: #64748b; margin-bottom: 20px; line-height: 1.6; }
+        .project-tech { display: flex; gap: 10px; }
+        .project-tag { background: #5565f7; color: white; padding: 6px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: 500; }
+        .react-tag { background: #61dafb; color: #0f172a; }
+        .next-tag { background: #000; color: white; }
+
+        /* Learning Path */
+        .learning-path { padding: 120px 0; background: linear-gradient(135deg, #0f172a, #1e293b); color: white; position: relative; overflow: hidden; }
+        .path-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 50px; position: relative; z-index: 1; }
+        .step-card { background: rgba(255,255,255,0.1); padding: 40px 30px; border-radius: 20px; text-align: center; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .step-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(135deg, #61dafb, #a855f7); }
+        .step-card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.15); box-shadow: 0 20px 40px rgba(97, 218, 251, 0.3); }
+        .step-icon { width: 80px; height: 80px; background: linear-gradient(135deg, #61dafb, #a855f7); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; color: white; font-size: 2rem; }
+        .step-number { position: absolute; top: -15px; right: 20px; width: 40px; height: 40px; background: #ff6b6b; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.2rem; }
+        .step-card h4 { font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; color: white; }
+        .step-card p { color: rgba(255,255,255,0.8); line-height: 1.6; }
+
+        /* CTA Section */
+        .cta-section-react { background: linear-gradient(135deg, #1313ff, #ff7b00); color: white; padding: 100px 0; text-align: center; position: relative; overflow: hidden; }
+        .cta-section-react::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 30% 70%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 70% 30%, rgba(255,255,255,0.1) 0%, transparent 50%); }
+        .cta-section-react h2 { font-size: 3rem; font-weight: 800; margin-bottom: 20px; position: relative; z-index: 1; }
+        .cta-section-react p { font-size: 1.3rem; margin-bottom: 40px; opacity: 0.9; position: relative; z-index: 1; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .cta-buttons{ justify-content: center; }
+
+        /* Footer */
+        .footer { background: #1a1a1a; color: white; padding: 60px 0 30px; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-column h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 25px; color: white; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { color: #ccc; text-decoration: none; transition: color 0.3s; }
+        .footer-links a:hover { color: #61dafb; }
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid #333; color: #999; font-size: 14px; }
+
+        /* Mobile Menu */
+        .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.5rem; color: #333; cursor: pointer; }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-top { display: none; }
+            .mobile-menu-btn { display: block; }
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+            .nav-menu.active { display: flex; }
+            .hero-main { grid-template-columns: 1fr; text-align: center; }
+            .hero-react h1 { font-size: 2.8rem; }
+            .react-stats { grid-template-columns: repeat(2, 1fr); }
+            .cta-buttons { flex-direction: column; align-items: center; }
+            .btn { width: 220px; justify-content: center; }
+            .tree-container { width: 280px; height: 280px; }
+        }
+
+        /* ===== Popup (modern glassy) styles ===== */
+        .form-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 12, 15, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 3000;
+            padding: 24px;
+        }
+
+        .form-overlay.active { display: flex; }
+
+        .form-modal {
+            width: 100%;
+            max-width: 900px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,250,250,0.95));
+            border-radius: 14px;
+            box-shadow: 0 30px 60px rgba(2,6,23,0.6);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            animation: slideUp 260ms cubic-bezier(.2,.8,.2,1);
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(18px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .form-left {
+            padding: 30px 36px;
+        }
+
+        .form-right {
+            background: linear-gradient(135deg, #061025 0%, #09203a 100%);
+            color: white;
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .company-title {
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            color: #0f172a;
+        }
+
+        .modal-header h2 {
+            font-size: 1.4rem;
+            margin-bottom: 6px;
+            color: #0f172a;
+        }
+
+        .modal-sub {
+            color: #475569;
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+
+        .form-row { display:flex; gap:12px; margin-bottom:12px; }
+        .form-row .form-field { flex:1; display:flex; flex-direction:column; gap:6px; }
+        input[type="text"], input[type="email"], select, textarea {
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #e6e9ee;
+            background: white;
+            font-size: 0.95rem;
+        }
+        input:focus, select:focus, textarea:focus { outline: none; box-shadow: 0 6px 20px rgba(99, 102, 241, 0.08); border-color: #7c93ff; }
+
+        .form-actions { display:flex; gap:12px; margin-top:18px; align-items:center; }
+        .btn-ghost {
+            background: transparent;
+            border: 1px solid #cbd5e1;
+            padding: 10px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .btn-primary-green {
+            background: linear-gradient(135deg,#2ecc71,#27ae60);
+            color:white;
+            padding: 10px 16px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .close-x {
+            position: absolute;
+            right: 14px;
+            top: 12px;
+            font-size: 22px;
+            color: #475569;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Form right area text */
+        .form-right h3 { font-size: 1.2rem; margin-bottom: 8px; font-weight: 700; }
+        .form-right p { font-size: 0.95rem; color: rgba(255,255,255,0.9); text-align:center; max-width:260px; }
+
+        /* Responsive popup */
+        @media (max-width: 880px) {
+            .form-modal { grid-template-columns: 1fr; max-width: 520px; }
+            .form-right { padding: 18px; }
+        }
+
+        /* small adjustments to ensure the Start button is visible above fixed header */
+        .hero-react { padding-top: 220px; }
+/* Modal background */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10, 20, 40, 0.8);
+  backdrop-filter: blur(4px);
+  overflow-y: auto;
+}
+
+/* Modal content box */
+.modal-content {
+  background: #ffffff;
+  margin: 5% auto;
+  padding: 25px 35px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 750px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  position: relative;
+  border-top: 6px solid #007bff; /* Blue accent */
+  animation: fadeIn 0.4s ease;
+}
+
+/* Title */
+.modal-content h2 {
+  text-align: center;
+  color: #004aad;
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #ff7b00;
+  padding-bottom: 8px;
+}
+
+/* Section headings */
+form h3 {
+  margin-top: 20px;
+  color: #004aad;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-left: 4px solid #ff7b00;
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #004aad;
+  transition: 0.3s;
+}
+
+.close-btn:hover {
+  color: #ff7b00;
+}
+
+/* Input and select */
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1.5px solid #d0d0d0;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: 0.25s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+}
+
+/* Form group layout */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 14px;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+/* Fix checkbox alignment and style */
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 25px;
+  margin: 12px 0 20px 0;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  color: #333;
+  background: #f8f9fc;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #e2e6ea;
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+
+.checkbox-group label:hover {
+  background: rgba(0, 123, 255, 0.05);
+  border-color: #007bff;
+}
+
+.checkbox-group input[type="checkbox"] {
+  accent-color: #ff7b00; /* orange accent for the tick */
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transform: translateY(0); /* centers perfectly */
+}
+
+/* Responsive spacing */
+@media (max-width: 600px) {
+  .checkbox-group {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+
+/* Buttons */
+.submit-btn {
+  display: block;
+  margin: 20px auto 10px auto;
+  background: linear-gradient(90deg, #007bff, #ff7b00);
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: 0.3s ease;
+}
+
+.submit-btn:hover {
+  transform: scale(1.03);
+  background: linear-gradient(90deg, #005fcc, #ff6a00);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Label styling */
+label {
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+/* Animation for fade in */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Scrollbar */
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+.modal-content::-webkit-scrollbar-thumb {
+  background-color: #007bff;
+  border-radius: 8px;
+}
+
+    </style>
+</head>
+<body>
+    <!-- ===== START: Your Original HTML (Part 2) - unchanged except small ids/classes added ===== -->
+    <!-- Header -->
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gateway Navigation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FF6B35;
+            --primary-dark: #E55A2B;
+            --secondary: #1E88E5;
+            --secondary-dark: #1565C0;
+            --accent: #FFD166;
+            --accent2: #06D6A0;
+            --dark: #1A1D2E;
+            --light: #F8F9FA;
+            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            --gradient-secondary: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+            --gradient-mixed: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            --gradient-accent: linear-gradient(135deg, var(--accent) 0%, #FFB347 100%);
+            --gradient-hero: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--primary-dark) 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 12px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: var(--gradient-mixed); border-radius: 10px; }
+
+        /* Enhanced Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 20px 0;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            height: 100px;
+        }
+
+        .navbar.scrolled {
+            padding: 15px 0;
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        /* Logo + Brand Styling */
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 2.2rem;
+            text-decoration: none;
+            gap: 12px;
+        }
+
+        .navbar-brand img {
+            height: 55px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-brand:hover img {
+            transform: scale(1.08);
+        }
+
+        .brand-text {
+            background: var(--gradient-mixed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .brand-text::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 4px;
+            background: var(--gradient-mixed);
+            border-radius: 4px;
+        }
+
+        .accent-text {
+            color: var(--accent);
+            -webkit-text-fill-color: var(--accent);
+        }
+
+        .nav-link {
+            font-weight: 600;
+            margin: 0 12px;
+            color: var(--dark) !important;
+            position: relative;
+            transition: all 0.3s;
+            font-size: 1.05rem;
+        }
+
+        .nav-link:hover {
+            color: var(--primary) !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--gradient-mixed);
+            transition: width 0.4s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Dropdown Menu */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            margin-top: 0;
+            animation: fadeInDown 0.4s;
+        }
+
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            border-radius: 15px;
+            padding: 15px 0;
+            border-top: 3px solid var(--primary);
+            display: none;
+            position: absolute;
+        }
+
+        .dropdown-item {
+            padding: 12px 25px;
+            transition: all 0.3s;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dropdown-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-mixed);
+            transition: left 0.3s;
+            z-index: -1;
+        }
+
+        .dropdown-item:hover::before {
+            left: 0;
+        }
+
+        .dropdown-item:hover {
+            color: white;
+            transform: translateX(8px);
+        }
+
+        .dropdown-toggle::after {
+            margin-left: 8px;
+            border-top: 0.3em solid;
+            border-right: 0.3em solid transparent;
+            border-left: 0.3em solid transparent;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-toggle::after {
+            transform: rotate(180deg);
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translate3d(0, -10px, 0); }
+            to { opacity: 1; transform: translate3d(0, 0, 0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .navbar-brand img {
+                height: 45px;
+            }
+            .brand-text {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar-brand {
+                font-size: 1.6rem;
+            }
+            .navbar-brand img {
+                height: 40px;
+            }
+            .brand-text::after {
+                display: none;
+            }
+            .dropdown:hover .dropdown-menu {
+                display: none;
+            }
+            .dropdown.show .dropdown-menu {
+                display: block;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-brand {
+                gap: 8px;
+            }
+            .brand-text {
+                font-size: 1.5rem;
+            }
+            .navbar-brand img {
+                height: 38px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+ <div id="header"></div>
+
+<script src="../assets/js/site-config.js"></script>
+<script src="../assets/js/load-nav.js"></script>
+<script>
+  loadGatewayNavbar("../nav-bar.html");
+</script>
+
+    <!-- Demo Content -->
+    <div class="demo-content">
+        <h1>Gateway Software Solutions</h1>
+        <p>Empowering Innovation Through IT & ITES Excellence</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Enable dropdown on hover for desktop
+        document.querySelectorAll('.dropdown').forEach(dropdown => {
+            dropdown.addEventListener('mouseenter', () => {
+                if (window.innerWidth > 992) {
+                    dropdown.querySelector('.dropdown-toggle').classList.add('show');
+                    dropdown.querySelector('.dropdown-menu').classList.add('show');
+                }
+            });
+            dropdown.addEventListener('mouseleave', () => {
+                if (window.innerWidth > 992) {
+                    dropdown.querySelector('.dropdown-toggle').classList.remove('show');
+                    dropdown.querySelector('.dropdown-menu').classList.remove('show');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+    <!-- Hero Section -->
+    <section class="hero-react">
+        <!-- decorative code-lines already present -->
+        <div class="code-lines">
+            <div class="code-line"></div>
+            <div class="code-line"></div>
+            <div class="code-line"></div>
+            <div class="code-line"></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-main">
+                <div class="hero-text">
+                    <!-- ADDED id to Start Building Apps so it opens the popup -->
+                    <h1><i class="fab fa-react"></i> React JS Development</h1>
+                    <p>Build modern, scalable web applications with React. Master component-based architecture, state management, and the latest React ecosystem.</p>
+                    
+                    <div class="react-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">42.6%</div>
+                            <div class="stat-label">Market Share</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">$110K</div>
+                            <div class="stat-label">Avg Salary</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">10M+</div>
+                            <div class="stat-label">Developers</div>
+                        </div>
+                    </div>
+
+                    <div class="cta-buttons">
+                        <!-- IMPORTANT: this opens the modal popup -->
+                        <a href="/Internshiptraining/form-modal.html" id="openFormBtn" class="btn btn-primary" aria-haspopup="dialog" aria-controls="gatewayFormModal">
+                            <i class="fas fa-code"></i>
+Welcome to React — the heart of modern web development
+                        </a>
+
+                        <a href="#ecosystem" class="btn btn-outline">
+                            <i class="fas fa-layer-group"></i>
+                            Explore Ecosystem
+                        </a>
+                    </div>
+                </div>
+                <!-- the component-tree area was kept commented out in your original -->
+            </div>
+        </div>
+    </section>
+
+    <!-- React Ecosystem -->
+    <section class="react-ecosystem" id="ecosystem">
+        <div class="container">
+            <div class="section-title">
+                <h2>React Ecosystem Mastery</h2>
+                <p>Master the complete React ecosystem from fundamentals to advanced patterns</p>
+            </div>
+            
+            <div class="ecosystem-grid">
+                <div class="ecosystem-card">
+                    <h3>Core React</h3>
+                    <p>Master React fundamentals, hooks, component lifecycle, and modern patterns</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Hooks</span>
+                        <span class="tech-tag">JSX</span>
+                        <span class="tech-tag">Components</span>
+                    </div>
+                </div>
+
+                <div class="ecosystem-card">
+                    <h3>State Management</h3>
+                    <p>Master Redux, Context API, and modern state management solutions</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Redux</span>
+                        <span class="tech-tag">Context</span>
+                        <span class="tech-tag">Zustand</span>
+                    </div>
+                </div>
+
+                <div class="ecosystem-card">
+                    <h3>Next.js & SSR</h3>
+                    <p>Build production-ready apps with Next.js, SSR, and static generation</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Next.js</span>
+                        <span class="tech-tag">SSR</span>
+                        <span class="tech-tag">API Routes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Showcase -->
+    <section class="projects-showcase">
+        <div class="container">
+            <div class="section-title">
+                <h2>Real-World Projects</h2>
+                <p>Build portfolio-worthy applications that demonstrate React expertise</p>
+            </div>
+            
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-preview">
+                        <div class="component-demo">
+                            <div class="demo-element"></div>
+                            <div class="demo-element"></div>
+                            <div class="demo-element"></div>
+                            <div class="demo-element"></div>
+                            <div class="demo-element"></div>
+                            <div class="demo-element"></div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h4>E-commerce Platform</h4>
+                        <p>Full-stack e-commerce with shopping cart, user authentication, and payment integration</p>
+                        <div class="project-tech">
+                            <span class="project-tag react-tag">React</span>
+                            <span class="project-tag">Redux</span>
+                            <span class="project-tag">Stripe</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-preview">
+                        <div class="component-demo">
+                            <div class="demo-element"></div>
+                            <div class="demo-element"></div>
+                            <div class="demo-element"></div>
+                            <div class="demo-element"></div>
+                            <div class="demo-element"></div>
+                            <div class="demo-element"></div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h4>Social Media Dashboard</h4>
+                        <p>Real-time social media analytics with interactive charts and user management</p>
+                        <div class="project-tech">
+                            <span class="project-tag react-tag">React</span>
+                            <span class="project-tag">Socket.io</span>
+                            <span class="project-tag">Chart.js</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-preview">
+                        <div class="component-demo">
+                            <div class="demo-element"></div>
+                            <div class="demo-element"></div>
+                            <div class="demo-element"></div>
+                            <div class="demo-element"></div>
+                            <div class="demo-element"></div>
+                            <div class="demo-element"></div>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h4>Task Management App</h4>
+                        <p>Collaborative task management with real-time updates and team features</p>
+                        <div class="project-tech">
+                            <span class="project-tag next-tag">Next.js</span>
+                            <span class="project-tag">Firebase</span>
+                            <span class="project-tag">Tailwind</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Path -->
+    <section class="learning-path">
+        <div class="container">
+            <div class="section-title">
+                <h2>React Learning Journey</h2>
+                <p>From React fundamentals to full-stack development mastery</p>
+            </div>
+            
+            <div class="path-steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h4>React Fundamentals</h4>
+                    <p>Master JSX, components, props, state, and React hooks with hands-on projects</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h4>Advanced Patterns</h4>
+                    <p>Learn advanced React patterns, performance optimization, and best practices</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h4>State Management</h4>
+                    <p>Master Redux, Context API, and modern state management solutions</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h4>Full-Stack Development</h4>
+                    <p>Build full-stack applications with Next.js, APIs, and deployment strategies</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section-react">
+        <div class="container">
+            <h2>Ready to Build Modern Web Applications?</h2>
+            <p>Join our React JS internship and become a frontend expert in just 10 weeks</p>
+            <div class="cta-buttons">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSc1ImzVwARzNjc5AwGa7UOld4C1uMgynnsgnETXBS5mF7tH-g/viewform" class="btn btn-outline">
+                    <i class="fas fa-comments"></i>
+                    Apply now
+                </a>
+                <a href="tel:+917397078885" class="btn btn-primary">
+                    <i class="fas fa-phone"></i>
+                    Call +91 7397078885
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gateway Software Solutions – Footer</title>
+
+    <!-- Font Awesome for Social Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+          integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        * { box-sizing: border-box; margin:0; padding:0; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background:#f8f9fa; }
+
+        /* ====================== FOOTER ====================== */
+        .footer {
+            background: #e6f7ff; /* Light Blue Background */
+            padding: 45px 0 25px;
+            border-top: 5px solid #b3e0ff;
+            margin-top: 50px;
+            color: #1a1a1a;
+        }
+        .footer .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        /* ---------- Certification Logos ---------- */
+        .cert-logos {
+            text-align: center;
+            margin-bottom: 35px;
+            padding-bottom: 22px;
+            border-bottom: 2px dashed #99d6ff;
+        }
+        .cert-logos img {
+            height: 78px;
+            margin: 0 20px;
+            display: inline-block;
+            vertical-align: middle;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+            transition: transform .3s ease;
+        }
+        .cert-logos img:hover {
+            transform: scale(1.05);
+        }
+
+        /* ---------- 4-Column Grid ---------- */
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 35px;
+            justify-content: space-between;
+        }
+
+        .col {
+            flex: 1;
+            min-width: 180px;
+        }
+        .col h3 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: #1e40af;
+            position: relative;
+            font-weight: 600;
+        }
+        .col h3::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: -7px;
+            width: 34px; height: 3px;
+            background: #f39c12;
+            border-radius: 2px;
+        }
+        .col ul {
+            list-style: none;
+        }
+        .col ul li {
+            margin-bottom: 10px;
+        }
+        .col ul li a {
+            color: #333;
+            text-decoration: none;
+            font-size: 15px;
+            transition: all .3s ease;
+            display: block;
+        }
+        .col ul li a:hover {
+            color: #f39c12;
+            padding-left: 5px;
+        }
+
+        /* ---------- SOCIAL LINKS – VERTICAL ---------- */
+        .social-links {
+            display: flex;
+            flex-direction: column;   /* ← VERTICAL ALIGNMENT */
+            gap: 12px;
+            margin-top: 14px;
+        }
+        .social-links a {
+            color: #f39c12;
+            font-size: 20px;
+            width: 44px;
+            height: 44px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all .3s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+        }
+        .social-links a:hover {
+            background: #f39c12;
+            color: #fff;
+            transform: translateX(5px);
+            box-shadow: 0 6px 14px rgba(243,156,18,0.4);
+        }
+
+        /* ---------- Copyright ---------- */
+        .copyright {
+            text-align: center;
+            margin-top: 35px;
+            padding: 16px 0;
+            background: #ffffff;
+            color: #444;
+            font-size: 14px;
+            border-radius: 8px;
+            margin-left: -20px;
+            margin-right: -20px;
+            margin-bottom: -25px;
+            box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 768px) {
+            .footer-grid {
+                flex-direction: column;
+                text-align: center;
+            }
+            .col h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .cert-logos img {
+                height: 60px;
+                margin: 10px;
+            }
+            .social-links {
+                flex-direction: row;        /* ← Horizontal on mobile for space */
+                justify-content: center;
+                gap: 15px;
+            }
+            .social-links a {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            .copyright {
+                margin-left: -20px;
+                margin-right: -20px;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ====================== FOOTER (Social Links VERTICAL) ====================== -->
+<footer class="footer">
+    <div class="container">
+
+        <!-- Certification Logos – ABOVE Columns -->
+        <div class="cert-logos">
+            <img src="../assets/gsslogo.png"  alt="Gateway Software Solutions">
+            <img src="../assets/certifid.png" alt="ISO 9001:2015 Accredited">
+            <img src="../assets/aicte.png"    alt="AICTE Approved">
+        </div>
+
+        <!-- 4-Column Layout -->
+        <div class="footer-grid">
+
+            <!-- Services -->
+            <div class="col">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="../Services/mobile-app-development.html">Application Development</a></li>
+                    <li><a href="../Services/E-commerce.html">Web Development</a></li>
+                    <li><a href="../Services/digital marketing.html">Digital Marketing</a></li>
+                    <li><a href="../Services/logo-design.html">UI/UX Design</a></li>
+                    <li><a href="../Services/ai-agent.html">Ai Development</a></li>
+                </ul>
+            </div>
+
+            <!-- Company -->
+            <div class="col">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="../home/about.html">About Us</a></li>
+                    <li><a href="../career.html">Careers</a></li>
+                    <li><a href="../home/ourteam.html">Our Team</a></li>
+                    <li><a href="../home/proo.html">Profile</a></li>
+                    <li><a href="../home/faq.html">Faq</a></li>
+                </ul>
+            </div>
+
+            <!-- Internship & Course -->
+            <div class="col">
+                <h3>Internship & Course</h3>
+                <ul>
+                    <li><a href="../Internshiptraining/webtech.html">Web Designing</a></li>
+                    <li><a href="../Internshiptraining/embeddediot.html">Iot</a></li>
+                    <li><a href="../Internshiptraining/flutterapp.html">Mobile App</a></li>
+                    <li><a href="../Internshiptraining/genai.html">Gen-Ai-Agent</a></li>
+                    <li><a href="../Internshiptraining/pythonds.html">Data Science</a></li>
+                    <li><a href="../Internshiptraining/pythonmysql.html">Full Stack</a></li>
+                </ul>
+            </div>
+
+            <!-- Connect With Us – VERTICAL SOCIAL ICONS -->
+            <div class="col">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/company/gateway-software-solutions/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/gatewaycbe?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@GatewaySoftwareSolutions-gss" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+            </div>
+
+        </div>
+
+        <!-- Copyright -->
+        <div class="copyright">
+            © Gateway Software Solutions. All rights reserved. | Empowering Businesses Overturn The Ordinary.
+        </div>
+
+    </div>
+</footer>
+
+</body>
+</html>
+
+    <!-- ===== END original HTML ===== -->
+<!-- ====== Modal Form ====== -->
+<div id="gatewayFormModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" id="closeFormBtn">&times;</span>
+    <h2>Gateway Software Solutions - Enquiry Form</h2>
+
+    <form id="gatewayForm">
+      <h3>Personal Details</h3>
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label>Address</label>
+        <input type="text" name="address">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Father’s Name</label>
+          <input type="text" name="fatherName">
+        </div>
+        <div class="form-group">
+          <label>D.O.B</label>
+          <input type="date" name="dob">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Age</label>
+          <input type="number" name="age">
+        </div>
+        <div class="form-group">
+          <label>Sex</label>
+          <select name="sex">
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <h3>Education Details</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>College Name</label>
+          <input type="text" name="collegeName">
+        </div>
+        <div class="form-group">
+          <label>Candidate Degree</label>
+          <input type="text" name="degree">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Year of Pass Out</label>
+          <input type="text" name="passoutYear">
+        </div>
+        <div class="form-group">
+          <label>Technical Skills</label>
+          <input type="text" name="skills" placeholder="e.g. Java, Python, React">
+        </div>
+      </div>
+
+      <h3>Requirement</h3>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="requirement" value="Training"> Training</label>
+        <label><input type="checkbox" name="requirement" value="Internship/Training"> Internship/Training</label>
+        <label><input type="checkbox" name="requirement" value="Live Project Training"> Live Project Training</label>
+        <label><input type="checkbox" name="requirement" value="Placement Support"> Placement Support</label>
+        <label><input type="checkbox" name="requirement" value="Project Development"> Project Development</label>
+      </div>
+
+      <h3>Category / Position</h3>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="position" value="Web Development"> Web Development</label>
+        <label><input type="checkbox" name="position" value="Digital Marketing/SEO"> Digital Marketing / SEO</label>
+        <label><input type="checkbox" name="position" value="HR Internship"> HR Internship</label>
+        <label><input type="checkbox" name="position" value="Embedded/C C++"> Embedded / C / C++</label>
+        <label><input type="checkbox" name="position" value="Python/DS"> Python / Data Science</label>
+      </div>
+
+      <h3>Area of Interest</h3>
+      <input type="text" name="interest" placeholder="Your area of interest">
+
+      <h3>References</h3>
+      <textarea name="references" rows="2" placeholder="Any references or how did you hear about us?"></textarea>
+
+      <button type="submit" class="submit-btn">Submit</button>
+    </form>
+  </div>
+</div>
+
+
+    <!-- ===== Combined JS ===== -->
+    <script>
+  const modal = document.getElementById("gatewayFormModal");
+  const openBtn = document.getElementById("openFormBtn");
+  const closeBtn = document.getElementById("closeFormBtn");
+
+  openBtn.onclick = function(e) {
+    e.preventDefault();
+    modal.style.display = "block";
+  }
+
+  closeBtn.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  window.onclick = function(e) {
+    if (e.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+
+  // simple form submit
+  document.getElementById("gatewayForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    alert("Form submitted successfully!");
+    modal.style.display = "none";
+  });
+
+
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const navMenu = document.querySelector('.nav-menu');
+            const mobileBtn = document.querySelector('.mobile-menu-btn');
+            if (!navMenu.contains(event.target) && !mobileBtn.contains(event.target)) {
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                // If link is the Start Building Apps (#) we shouldn't scroll - handled separately
+                if (this.getAttribute('href') === '#') {
+                    e.preventDefault();
+                    return;
+                }
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = '#fff';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Add interactive components (guarded)
+        document.addEventListener('DOMContentLoaded', function() {
+            const componentFlow = document.querySelector('.component-flow');
+            if (componentFlow) {
+                for (let i = 0; i < 8; i++) {
+                    const component = document.createElement('div');
+                    component.className = 'component';
+                    component.innerHTML = '<i class="fas fa-cube"></i>';
+                    component.style.left = Math.random() * 90 + '%';
+                    component.style.top = Math.random() * 85 + '%';
+                    component.style.animationDelay = Math.random() * 8 + 's';
+                    component.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                    componentFlow.appendChild(component);
+                }
+            }
+        });
+
+        // ===== Popup form behavior =====
+        const openFormBtn = document.getElementById('openFormBtn');
+        const formOverlay = document.getElementById('formOverlay');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const gatewayForm = document.getElementById('gatewayForm');
+
+        // Open popup
+        openFormBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            formOverlay.classList.add('active');
+            // prevent page scroll when modal open
+            document.body.style.overflow = 'hidden';
+            // move focus for accessibility
+            const firstInput = document.getElementById('appName');
+            if (firstInput) firstInput.focus();
+        });
+
+        // Close popup helpers
+        function closeModal() {
+            formOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        closeModalBtn.addEventListener('click', closeModal);
+        cancelBtn.addEventListener('click', closeModal);
+
+        // close when clicking outside modal content
+        formOverlay.addEventListener('click', function(e) {
+            if (e.target === formOverlay) closeModal();
+        });
+
+        // ESC to close
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && formOverlay.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // Form submit: validate small fields and then open Google Form in new tab
+        gatewayForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // basic validation
+            const name = document.getElementById('appName');
+            const email = document.getElementById('appEmail');
+
+            let valid = true;
+            [name, email].forEach(field => {
+                if (!field.value || !field.value.trim()) {
+                    field.style.borderColor = '#e74c3c';
+                    valid = false;
+                } else {
+                    field.style.borderColor = '#e6e9ee';
+                }
+            });
+
+            if (!valid) {
+                // small inline message could be added; alert for now
+                alert('Please fill required fields (Name & Email).');
+                return;
+            }
+
+            // optionally collect values to append as query params (not required) - we will just open google form
+            const googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSc1ImzVwARzNjc5AwGa7UOld4C1uMgynnsgnETXBS5mF7tH-g/viewform";
+
+            // Open Google Form in a new tab
+            window.open(googleFormURL, '_blank');
+
+            // reset & close
+            gatewayForm.reset();
+            closeModal();
+        });
+
+        // Ensure Start Building Apps is visible above header on load (no change required but small safety)
+        (function ensureVisibleStartBtn(){
+            const btn = document.getElementById('openFormBtn');
+            if (btn) btn.setAttribute('aria-expanded', 'false');
+        })();
+    </script>
+</body>
+</html>

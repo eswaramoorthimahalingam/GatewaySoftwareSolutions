@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mobile App Development | Gateway Software Solutions</title>
+  <meta name="description" content="Professional Mobile App Development Services - iOS, Android, Cross-Platform Apps. ISO 9001:2015 Certified." />
+  <meta name="description" content="Gateway Software Solutions offers cross-platform and native mobile app development for Android and iOS. We create high-performing, user-friendly mobile apps that drive engagement and growth." />
+<meta name="keywords" content="mobile app development, Android app, iOS app, Flutter development, cross-platform apps, mobile app design, Gateway Software Solutions" />
+  <!-- SEO -->
+  <meta property="og:title" content="Mobile App Development | Gateway Software Solutions" />
+  <meta property="og:description" content="Build engaging mobile applications for iOS and Android with our expert app development services." />
+  <meta property="og:image" content="https://www.gatewaysoftwaresolutions.com/assets/logo.png" />
+  <meta property="og:url" content="https://www.gatewaysoftwaresolutions.com/mobile-app-development/" />
+  <meta property="og:type" content="website" />
+  <meta name="description" content="Launch Android & iOS apps with Gateway Software Solutions. We design and develop high-quality mobile apps that engage users and accelerate growth." />
+
+
+  <!-- <link rel="icon" href="https://www.gatewaysoftwaresolutions.com/favicon.ico" /> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --primary: #0ea5e9;        /* Sky Blue */
+      --primary-light: #38bdf8;
+      --secondary: #f97316;      /* Orange */
+      --secondary-light: #fb923c;
+      --success: #10b981;
+      --danger: #dc2626;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --gray: #64748b;
+      --border: #e2e8f0;
+      --footer-bg: #0f172a;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --glass: rgba(255, 255, 255, 0.15);
+      --neumorph: 8px 8px 16px rgba(0,0,0,0.05), -8px -8px 16px rgba(255,255,255,0.8);
+      --shadow-sm: 0 6px 20px rgba(0,0,0,0.08);
+      --shadow-lg: 0 30px 60px rgba(249,115,22,0.18);
+      --nav-gradient-mixed: linear-gradient(135deg, var(--primary), var(--secondary));
+      --dark-footer: #1a1a1a;
+      --primary-orange: #ff9933;
+    }
+    [data-theme="dark"] {
+      --primary: #fb923c;
+      --secondary: #38bdf8;
+      --dark: #f1f5f9;
+      --light: #1e293b;
+      --gray: #94a3b8;
+      --border: #334155;
+      --card-bg: rgba(30, 41, 59, 0.95);
+      --glass: rgba(255, 255, 255, 0.08);
+      --neumorph: 8px 8px 16px rgba(0,0,0,0.3), -8px -8px 16px rgba(255,255,255,0.05);
+      --shadow-sm: 0 6px 20px rgba(0,0,0,0.3);
+      --shadow-lg: 0 30px 60px rgba(251,146,60,0.25);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #fff, #f1f5f9);
+      color: var(--dark);
+      transition: all 0.4s ease;
+      margin: 0;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* Scroll Progress */
+    .scroll-progress {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--nav-gradient-mixed);
+      transform-origin: 0%;
+      transform: scaleX(0);
+      z-index: 9999;
+      border-radius: 0 0 4px 4px;
+      box-shadow: 0 2px 8px rgba(249,115,22,0.3);
+    }
+
+    /* Navbar */
+    .navbar {
+      backdrop-filter: blur(16px);
+      background: var(--glass);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.4s;
+      padding: 1.2rem 0;
+      z-index: 1000;
+      box-shadow: var(--neumorph);
+    }
+    .navbar.scrolled {
+      background: var(--card-bg);
+      padding: 0.8rem 0;
+      box-shadow: var(--shadow-sm);
+    }
+    .navbar-brand {
+      font-family: 'Montserrat',sans-serif;
+      font-weight:900;
+      font-size:2.2rem;
+      background:var(--nav-gradient-mixed);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      position:relative;
+      letter-spacing:-1px;
+    }
+    .navbar-brand::after {
+      content:''; position:absolute; bottom:-8px; left:0;
+      width:40px; height:4px; background:var(--nav-gradient-mixed);
+      border-radius:4px;
+    }
+    .nav-link {
+      font-weight:600; margin:0 12px; color:var(--dark)!important;
+      position:relative; transition:all .3s; font-size:1.05rem;
+    }
+    .nav-link:hover { color:var(--primary)!important; }
+    .nav-link::after {
+      content:''; position:absolute; bottom:0; left:0;
+      width:0; height:3px; background:var(--nav-gradient-mixed);
+      transition:width .4s;
+    }
+    .nav-link:hover::after { width:100%; }
+    .dropdown:hover .dropdown-menu { display:block; margin-top:0; animation:fadeInDown .4s; }
+    .dropdown-menu {
+      border:none; box-shadow:0 20px 50px rgba(0,0,0,.15);
+      border-radius:15px; padding:15px 0; border-top:3px solid var(--primary);
+      display:none; position:absolute;
+    }
+    .dropdown-item {
+      padding:12px 25px; transition:all .3s; font-weight:500;
+      position:relative; overflow:hidden;
+    }
+    .dropdown-item::before {
+      content:''; position:absolute; top:0; left:-100%;
+      width:100%; height:100%; background:var(--nav-gradient-mixed);
+      transition:left .3s; z-index:-1;
+    }
+    .dropdown-item:hover::before { left:0; }
+    .dropdown-item:hover { color:white; transform:translateX(8px); }
+    .dropdown-toggle::after {
+      margin-left:8px; border-top:.3em solid;
+      border-right:.3em solid transparent; border-left:.3em solid transparent;
+      transition:transform .3s ease;
+    }
+    .dropdown:hover .dropdown-toggle::after { transform:rotate(180deg); }
+    @keyframes fadeInDown {
+      from {opacity:0; transform:translate3d(0,-10px,0);}
+      to   {opacity:1; transform:translate3d(0,0,0);}
+    }
+    @media (max-width:768px){
+      .navbar-brand{font-size:1.8rem;}
+      .dropdown:hover .dropdown-menu{display:none;}
+      .dropdown.show .dropdown-menu{display:block;}
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 8rem 0 6rem;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15), transparent 60%);
+      opacity: 0.6;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .hero-subtitle {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+    }
+
+    /* App Service Cards */
+    .app-service-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      transition: all 0.4s;
+      height: 100%;
+      box-shadow: var(--neumorph);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .app-service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+    }
+    .app-service-icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      background: rgba(249,115,22,0.1);
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .app-feature {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+    .feature-icon {
+      background: rgba(249,115,22,0.1);
+      color: var(--primary);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+      flex-shrink: 0;
+    }
+
+    /* Platform Cards */
+    .platform-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.4s;
+      height: 100%;
+      box-shadow: var(--neumorph);
+      border: 1px solid var(--border);
+    }
+    .platform-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+    .platform-icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+    }
+    .platform-badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+    .platform-badge {
+      background: rgba(249,115,22,0.1);
+      color: var(--primary);
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* Process Steps */
+    .process-step {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      border-radius: 20px;
+      background: var(--card-bg);
+      box-shadow: var(--neumorph);
+      transition: all 0.4s;
+      height: 100%;
+      position: relative;
+    }
+    .process-step:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+    .step-number {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.5rem;
+      margin: 0 auto 1.5rem;
+      box-shadow: 0 8px 20px rgba(249,115,22,0.3);
+    }
+
+    /* App Type Cards */
+    .app-type-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.4s;
+      height: 100%;
+      box-shadow: var(--neumorph);
+      border: 1px solid var(--border);
+    }
+    .app-type-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+    .app-type-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      background: rgba(249,115,22,0.1);
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+
+    /* FAQ Section */
+    .faq-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: var(--neumorph);
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    .faq-card:hover {
+      box-shadow: var(--shadow-sm);
+    }
+    .faq-question {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      display: flex;
+      gap: 12px;
+      align-items: stretch;
+      margin-top: 1.5rem;
+    }
+    .contact-btn, .whatsapp-btn {
+      flex: 1;
+      padding: 0.9rem 1.2rem;
+      border-radius: 16px;
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      transition: all 0.4s;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      min-height: 56px;
+    }
+    .contact-btn {
+      background: var(--secondary);
+      color: white;
+      border: none;
+    }
+    .contact-btn:hover {
+      background: #0284c7;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(14,165,233,0.3);
+    }
+    .whatsapp-btn {
+      background: #25D366;
+      color: white;
+      border: none;
+    }
+    .whatsapp-btn:hover {
+      background: #128C7E;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(37,193,102,0.3);
+    }
+
+    /* Modal Form */
+    .modal-content {
+      border-radius: 20px;
+      border: none;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+    .modal-header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      padding: 1.5rem 2rem;
+    }
+    .modal-title {
+      font-weight: 800;
+      font-size: 1.3rem;
+    }
+    .modal-body { padding: 2rem; }
+    .form-control, .form-select {
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      font-size: 0.95rem;
+      border: 1.5px solid var(--border);
+      transition: all 0.3s;
+    }
+    .form-control:focus, .form-select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 0.2rem rgba(249,115,22,0.25);
+    }
+    .btn-submit {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.85rem 2rem;
+      border-radius: 14px;
+      font-weight: 700;
+      width: 100%;
+      transition: all 0.3s;
+    }
+    .btn-submit:hover {
+      background: #ea580c;
+      transform: translateY(-2px);
+    }
+
+    /* Floating WhatsApp */
+    .floating-whatsapp {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: var(--primary);
+      color: white;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      box-shadow: 0 15px 35px rgba(249,115,22,0.4);
+      z-index: 1000;
+      border: 5px solid white;
+      transition: all 0.4s;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 15px 35px rgba(249,115,22,0.4); }
+      50% { box-shadow: 0 15px 35px rgba(249,115,22,0.6); }
+      100% { box-shadow: 0 15px 35px rgba(249,115,22,0.4); }
+    }
+    .floating-whatsapp:hover {
+      transform: scale(1.15);
+      background: #ea580c;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--dark-footer);
+      color: white;
+      padding: 70px 0 20px;
+      margin-top: 5rem;
+    }
+    .footer-column h4 {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    .footer-column h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: var(--primary-orange);
+    }
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+    .footer-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .footer-links a:hover {
+      color: var(--primary-orange);
+      padding-left: 5px;
+    }
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    /* Buttons */
+    .dark-toggle {
+      background: var(--glass);
+      border: none;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      color: var(--gray);
+      cursor: pointer;
+      box-shadow: var(--neumorph);
+      transition: all 0.3s;
+    }
+    .dark-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: var(--neumorph);
+    }
+
+    /* Section Headers */
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .section-header h2 {
+      font-weight: 900;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .section-header p {
+      font-size: 1.2rem;
+      color: var(--gray);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Mobile App Badge */
+    .mobile-badge {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 12px rgba(249,115,22,0.3);
+    }
+
+    /* Pricing Cards */
+    .pricing-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: all 0.4s;
+      height: 100%;
+      box-shadow: var(--neumorph);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .pricing-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+    }
+    .pricing-card.popular {
+      border: 2px solid var(--primary);
+      transform: scale(1.05);
+    }
+    .pricing-card.popular:hover {
+      transform: scale(1.05) translateY(-10px);
+    }
+    .popular-badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: var(--primary);
+      color: white;
+      padding: 0.5rem 1.5rem;
+      font-weight: 700;
+      font-size: 0.9rem;
+      border-radius: 0 20px 0 20px;
+    }
+    .price {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--primary);
+      margin: 1.5rem 0;
+    }
+    .price-period {
+      font-size: 1rem;
+      color: var(--gray);
+    }
+    .pricing-features {
+      list-style: none;
+      padding: 0;
+      margin: 2rem 0;
+      text-align: left;
+    }
+    .pricing-features li {
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+    }
+    .pricing-features li:last-child {
+      border-bottom: none;
+    }
+    .pricing-features li i {
+      color: var(--success);
+      margin-right: 0.8rem;
+    }
+
+    /* App Showcase */
+    .app-showcase {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 20px;
+      padding: 3rem;
+      color: white;
+      text-align: center;
+      margin: 4rem 0;
+      box-shadow: var(--shadow-lg);
+    }
+    
+    /* Tech Stack */
+    .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .tech-item {
+      background: var(--card-bg);
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      font-weight: 600;
+      box-shadow: var(--neumorph);
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    .tech-item:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    /* Testimonial */
+    .testimonial-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: var(--neumorph);
+      border: 1px solid var(--border);
+      height: 100%;
+    }
+    .client-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+       * { box-sizing: border-box; margin:0; padding:0; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background:#f8f9fa; }
+
+        /* ====================== FOOTER ====================== */
+        .footer {
+            background: #e6f7ff; /* Light Blue Background */
+            padding: 45px 0 25px;
+            border-top: 5px solid #b3e0ff;
+            margin-top: 50px;
+            color: #1a1a1a;
+        }
+        .footer .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        /* ---------- Certification Logos ---------- */
+        .cert-logos {
+            text-align: center;
+            margin-bottom: 35px;
+            padding-bottom: 22px;
+            border-bottom: 2px dashed #99d6ff;
+        }
+        .cert-logos img {
+            height: 78px;
+            margin: 0 20px;
+            display: inline-block;
+            vertical-align: middle;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+            transition: transform .3s ease;
+        }
+        .cert-logos img:hover {
+            transform: scale(1.05);
+        }
+
+        /* ---------- 4-Column Grid ---------- */
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 35px;
+            justify-content: space-between;
+        }
+
+        .col {
+            flex: 1;
+            min-width: 180px;
+        }
+        .col h3 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: #1e40af;
+            position: relative;
+            font-weight: 600;
+        }
+        .col h3::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: -7px;
+            width: 34px; height: 3px;
+            background: #f39c12;
+            border-radius: 2px;
+        }
+        .col ul {
+            list-style: none;
+        }
+        .col ul li {
+            margin-bottom: 10px;
+        }
+        .col ul li a {
+            color: #333;
+            text-decoration: none;
+            font-size: 15px;
+            transition: all .3s ease;
+            display: block;
+        }
+        .col ul li a:hover {
+            color: #f39c12;
+            padding-left: 5px;
+        }
+
+        /* ---------- SOCIAL LINKS – VERTICAL ---------- */
+        .social-links {
+            display: flex;
+            flex-direction: column;   /* ← VERTICAL ALIGNMENT */
+            gap: 12px;
+            margin-top: 14px;
+        }
+        .social-links a {
+            color: #f39c12;
+            font-size: 20px;
+            width: 44px;
+            height: 44px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all .3s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+        }
+        .social-links a:hover {
+            background: #f39c12;
+            color: #fff;
+            transform: translateX(5px);
+            box-shadow: 0 6px 14px rgba(243,156,18,0.4);
+        }
+
+        /* ---------- Copyright ---------- */
+        .copyright {
+            text-align: center;
+            margin-top: 35px;
+            padding: 16px 0;
+            background: #ffffff;
+            color: #444;
+            font-size: 14px;
+            border-radius: 8px;
+            margin-left: -20px;
+            margin-right: -20px;
+            margin-bottom: -25px;
+            box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 768px) {
+            .footer-grid {
+                flex-direction: column;
+                text-align: center;
+            }
+            .col h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .cert-logos img {
+                height: 60px;
+                margin: 10px;
+            }
+            .social-links {
+                flex-direction: row;        /* ← Horizontal on mobile for space */
+                justify-content: center;
+                gap: 15px;
+            }
+            .social-links a {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            .copyright {
+                margin-left: -20px;
+                margin-right: -20px;
+                border-radius: 0;
+            }
+        }
+  </style>
+</head>
+<body>
+
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="progress"></div>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="https://www.gatewaysoftwaresolutions.com"><img height="50px" width="200px" src="../assets/gsslogo.png" alt="Gateway Software Solutions"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link active dropdown-toggle" href="../index.html" id="homeDropdown" role="button" >Home</a>
+            <ul class="dropdown-menu" aria-labelledby="homeDropdown">
+              <li><a class="dropdown-item" href="/home/about.html">About Gateway</a></li>
+              <li><a class="dropdown-item" href="/home/proo.html">Profile</a></li>
+              <li><a class="dropdown-item" href="/home/ourteam.html">Our Core Team</a></li>
+              <li><a class="dropdown-item" href="/home/faq.html">FAQ</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/product.html">Products</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="hireDropdown" role="button" data-bs-toggle="dropdown">
+              Services
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="hireDropdown">
+              <li><a class="dropdown-item" href="/Services/digitalmarketing.html">Digital Marketing</a></li>
+              <li><a class="dropdown-item" href="/Services/Search-Engine.html">Search Engine Optimization</a></li>
+              <li><a class="dropdown-item" href="/Services/E-commerce.html">E-commerce Development</a></li>
+              <li><a class="dropdown-item" href="/Services/mobile-app-development.html">Mobile App Development</a></li>
+              <li><a class="dropdown-item" href="/Services/social-media-marketing.html">Social Media Marketing</a></li>
+              <li><a class="dropdown-item" href="/Services/ai-agent.html">AI Agent Development Company</a></li>
+              <li><a class="dropdown-item" href="/Services/IOT-development.html">IOT & Robotics</a></li>
+              <li><a class="dropdown-item" href="/Services/word-press-development.html">Wordpress Development</a></li>
+              <li><a class="dropdown-item" href="/Services/branding.html">Branding</a></li>
+              <li><a class="dropdown-item" href="/Services/logo-design.html">Logo Design</a></li>
+              <li><a class="dropdown-item" href="/Services/meta-ads.html">Meta Ads</a></li>
+              <li><a class="dropdown-item" href="/Services/game-development.html">Game Development</a></li>
+              <li><a class="dropdown-item" href="/Services/digital-transformation.html">Digital Transformation Services</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown">
+              Internships
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="productsDropdown">
+             <li><a class="dropdown-item" href="/Internshiptraining/webtech.html">Web Technology</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/flutterapp.html">Mobile App</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/embeddediot.html">Embedded Iot</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/genai.html">Gen Ai</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/cybersecurity.html">Cyber Security</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/javaj2ee.html">Java</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/pythondj.html">Python With Django</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/powerbi.html">Data Analytics</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/pythonds.html">Data Science</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/pythonmysql.html">Python Full Stack</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/reactjstab.html">React js</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/rtoolsprog.html">R Tool</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/softwaretesting.html">Software Testing</a></li>
+           </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Ai.html">AI Development</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/iot_robotic.html">Iot & Robotics</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/career.html">Careers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contactus.html">Contact Us</a>
+          </li>
+          <li class="nav-item">
+  <a 
+    class="nav-link" 
+    href="https://lms.sgsoftwaresolution.com/" 
+    style="color: var(--primary); text-decoration: none; font-weight: 700; border: 2px solid var(--primary); border-radius: 30px; padding: 8px 20px !important;"
+    target="_blank" 
+    rel="noopener noreferrer">
+    LMS Portal
+  </a>
+</li>
+          <li class="nav-item">
+            <button class="dark-toggle ms-3" id="themeToggle">
+              <i class="fas fa-moon"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero text-center">
+    <div class="container position-relative" data-aos="fade-up">
+      <div class="mobile-badge">MOBILE APP DEVELOPMENT</div>
+      <h1 class="display-3 fw-900 mb-4">Mobile App <span style="background: linear-gradient(135deg, #fff, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Development</span></h1>
+      <p class="hero-subtitle">Build Engaging, High-Performance Mobile Applications for iOS and Android</p>
+      <p class="mb-0 fs-5">
+        <strong>Contact Our App Experts:</strong> 
+        <span class="copy-text fw-bold text-white" data-copy="+91739707885">+91 73970 78885</span>
+        <button class="btn btn-sm btn-outline-light ms-2 copy-btn" data-copy="+917397078885"><i class="fas fa-copy"></i></button>
+      </p>
+      <div class="cta-section justify-content-center">
+        <button class="contact-btn" data-bs-toggle="modal" data-bs-target="#contactModal">
+          <i class="fas fa-calendar-alt"></i> Get Free Consultation
+        </button>
+        <a href="https://wa.me/917397078885?text=Hi,%20I'm%20interested%20in%20your%20Mobile%20App%20Development%20Services" class="whatsapp-btn" target="_blank">
+          <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SERVICES ==================== -->
+  <section class="py-5">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2>Our Mobile App Development Services</h2>
+        <p>We create custom mobile applications that deliver exceptional user experiences and drive business growth</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="app-service-card">
+            <div class="app-service-icon">
+              <i class="fab fa-apple"></i>
+            </div>
+            <h3>iOS App Development</h3>
+            <p>Native iOS applications built with Swift and Objective-C, optimized for all Apple devices.</p>
+            <div class="app-feature">
+              <div class="feature-icon"><i class="fas fa-check"></i></div>
+              <div>Optimized for iPhone & iPad</div>
+            </div>
+            <div class="app-feature">
+              <div class="feature-icon"><i class="fas fa-check"></i></div>
+              <div>App Store deployment</div>
+            </div>
+            <div class="app-feature">
+              <div class="feature-icon"><i class="fas fa-check"></i></div>
+              <div>Apple Watch & Apple TV support</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="app-service-card">
+            <div class="app-service-icon">
+              <i class="fab fa-android"></i>
+            </div>
+            <h3>Android App Development</h3>
+            <p>Native Android apps using Kotlin and Java, designed for diverse device compatibility.</p>
+            <div class="app-feature">
+              <div class="feature-icon"><i class="fas fa-check"></i></div>
+              <div>Material Design implementation</div>
+            </div>
+            <div class="app-feature">
+              <div class="feature-icon"><i class="fas fa-check"></i></div>
+              <div>Google Play Store deployment</div>
+            </div>
+            <div class="app-feature">
+              <div class="feature-icon"><i class="fas fa-check"></i></div>
+              <div>Multiple screen size optimization</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="app-service-card">
+            <div class="app-service-icon">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+            <h3>Cross-Platform Development</h3>
+            <p>Build once, deploy everywhere with React Native, Flutter, and Xamarin solutions.</p>
+            <div class="app-feature">
+              <div class="feature-icon"><i class="fas fa-check"></i></div>
+              <div>Single codebase for iOS & Android</div>
+            </div>
+            <div class="app-feature">
+              <div class="feature-icon"><i class="fas fa-check"></i></div>
+              <div>Faster development cycles</div>
+            </div>
+            <div class="app-feature">
+              <div class="feature-icon"><i class="fas fa-check"></i></div>
+              <div>Cost-effective solution</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PLATFORMS ==================== -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2>Our Development Platforms</h2>
+        <p>We leverage the latest technologies to build robust and scalable mobile applications</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="platform-card">
+            <div class="platform-icon">
+              <i class="fab fa-react"></i>
+            </div>
+            <h4>React Native</h4>
+            <p>Build native mobile apps using JavaScript and React</p>
+            <div class="platform-badges">
+              <span class="platform-badge">Cross-Platform</span>
+              <span class="platform-badge">JavaScript</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="platform-card">
+            <div class="platform-icon">
+              <i class="fab fa-flutter"></i>
+            </div>
+            <h4>Flutter</h4>
+            <p>Google's UI toolkit for natively compiled applications</p>
+            <div class="platform-badges">
+              <span class="platform-badge">Cross-Platform</span>
+              <span class="platform-badge">Dart</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="platform-card">
+            <div class="platform-icon">
+              <i class="fab fa-swift"></i>
+            </div>
+            <h4>Swift</h4>
+            <p>Powerful and intuitive programming language for iOS</p>
+            <div class="platform-badges">
+              <span class="platform-badge">iOS</span>
+              <span class="platform-badge">Native</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+          <div class="platform-card">
+            <div class="platform-icon">
+              <i class="fab fa-android"></i>
+            </div>
+            <h4>Kotlin</h4>
+            <p>Modern programming language for Android development</p>
+            <div class="platform-badges">
+              <span class="platform-badge">Android</span>
+              <span class="platform-badge">Native</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PROCESS ==================== -->
+  <section class="py-5">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2>Our App Development Process</h2>
+        <p>We follow a structured approach to deliver high-quality mobile applications on time</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="process-step">
+            <div class="step-number">1</div>
+            <h4>Discovery & Planning</h4>
+            <p>We analyze your requirements, target audience, and business objectives to create a comprehensive project plan.</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="process-step">
+            <div class="step-number">2</div>
+            <h4>UI/UX Design</h4>
+            <p>Our designers create intuitive and engaging user interfaces that provide exceptional user experiences.</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="process-step">
+            <div class="step-number">3</div>
+            <h4>Development</h4>
+            <p>Our developers build your app using the latest technologies and following best coding practices.</p>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+          <div class="process-step">
+            <div class="step-number">4</div>
+            <h4>Testing & Deployment</h4>
+            <p>We thoroughly test your app across devices and assist with app store submission and deployment.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== APP TYPES ==================== -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2>Types of Apps We Develop</h2>
+        <p>We create diverse mobile applications tailored to your specific business needs</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="app-type-card">
+            <div class="app-type-icon">
+              <i class="fas fa-shopping-cart"></i>
+            </div>
+            <h4>E-commerce Apps</h4>
+            <p>Feature-rich shopping apps with secure payment integration and inventory management.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="app-type-card">
+            <div class="app-type-icon">
+              <i class="fas fa-building"></i>
+            </div>
+            <h4>Enterprise Apps</h4>
+            <p>Custom business applications for internal processes, CRM, and workflow automation.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="app-type-card">
+            <div class="app-type-icon">
+              <i class="fas fa-gamepad"></i>
+            </div>
+            <h4>Gaming Apps</h4>
+            <p>Engaging mobile games with stunning graphics, smooth gameplay, and monetization features.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+          <div class="app-type-card">
+            <div class="app-type-icon">
+              <i class="fas fa-utensils"></i>
+            </div>
+            <h4>Food Delivery Apps</h4>
+            <p>Complete food ordering and delivery solutions with real-time tracking and payment options.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+          <div class="app-type-card">
+            <div class="app-type-icon">
+              <i class="fas fa-heartbeat"></i>
+            </div>
+            <h4>Healthcare Apps</h4>
+            <p>Medical and wellness applications with appointment booking, telemedicine, and health tracking.</p>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+          <div class="app-type-card">
+            <div class="app-type-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h4>Education Apps</h4>
+            <p>Interactive learning platforms with course management, assessments, and progress tracking.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TECH STACK ==================== -->
+  <section class="py-5">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2>Our Technology Stack</h2>
+        <p>We use cutting-edge technologies to build powerful and scalable mobile applications</p>
+      </div>
+      <div class="tech-stack" data-aos="fade-up">
+        <div class="tech-item">React Native</div>
+        <div class="tech-item">Flutter</div>
+        <div class="tech-item">Swift</div>
+        <div class="tech-item">Kotlin</div>
+        <div class="tech-item">Java</div>
+        <div class="tech-item">Firebase</div>
+        <div class="tech-item">MongoDB</div>
+        <div class="tech-item">Node.js</div>
+        <div class="tech-item">AWS</div>
+        <div class="tech-item">Google Cloud</div>
+        <div class="tech-item">REST APIs</div>
+        <div class="tech-item">GraphQL</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PRICING ==================== -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2>Pricing Plans</h2>
+        <p>Flexible pricing options to suit different business needs and budgets</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="pricing-card">
+            <h3>Basic</h3>
+            <div class="price">₹49,999</div>
+            <p class="price-period">One-time payment</p>
+            <ul class="pricing-features">
+              <li><i class="fas fa-check"></i> Single Platform (iOS or Android)</li>
+              <li><i class="fas fa-check"></i> Basic UI/UX Design</li>
+              <li><i class="fas fa-check"></i> 5-10 Screens</li>
+              <li><i class="fas fa-check"></i> Basic Features</li>
+              <li><i class="fas fa-check"></i> 1 Month Support</li>
+            </ul><a href="/Services/formpro.html">
+            <button class="contact-btn w-100" data-bs-toggle="modal" >Get Started</button></a>
+         </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="pricing-card popular">
+            <div class="popular-badge">Most Popular</div>
+            <h3>Standard</h3>
+            <div class="price">₹89,999</div>
+            <p class="price-period">One-time payment</p>
+            <ul class="pricing-features">
+              <li><i class="fas fa-check"></i> Cross-Platform Development</li>
+              <li><i class="fas fa-check"></i> Custom UI/UX Design</li>
+              <li><i class="fas fa-check"></i> 10-15 Screens</li>
+              <li><i class="fas fa-check"></i> Advanced Features</li>
+              <li><i class="fas fa-check"></i> Backend Integration</li>
+              <li><i class="fas fa-check"></i> 3 Months Support</li>
+            </ul><a href="/Services/formpro.html">
+            <button class="contact-btn w-100" data-bs-toggle="modal" >Get Started</button></a>
+         </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="pricing-card">
+            <h3>Enterprise</h3>
+            <div class="price">₹1,49,999</div>
+            <p class="price-period">One-time payment</p>
+            <ul class="pricing-features">
+              <li><i class="fas fa-check"></i> Multi-Platform Development</li>
+              <li><i class="fas fa-check"></i> Premium UI/UX Design</li>
+              <li><i class="fas fa-check"></i> 15+ Screens</li>
+              <li><i class="fas fa-check"></i> Complex Features</li>
+              <li><i class="fas fa-check"></i> Custom Backend</li>
+              <li><i class="fas fa-check"></i> 6 Months Support</li>
+            </ul><a href="/Services/formpro.html">
+            <button class="contact-btn w-100" data-bs-toggle="modal" >Get Started</button></a>
+         </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TESTIMONIALS ==================== -->
+  <section class="py-5">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2>What Our Clients Say</h2>
+        <p>Hear from businesses that have transformed their mobile presence with our apps</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="testimonial-card">
+            <div class="client-avatar">RS</div>
+            <h5>Raj Sharma</h5>
+            <p class="text-muted">CEO, Retail Solutions</p>
+            <p>"Gateway Software Solutions developed our e-commerce app that increased our mobile sales by 45%. The team was professional and delivered ahead of schedule."</p>
+            <div class="rating">
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="testimonial-card">
+            <div class="client-avatar">PK</div>
+            <h5>Priya Kumar</h5>
+            <p class="text-muted">Founder, HealthPlus</p>
+            <p>"Our healthcare app developed by Gateway has received excellent feedback from users. The intuitive design and smooth functionality have made it a success."</p>
+            <div class="rating">
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="testimonial-card">
+            <div class="client-avatar">AS</div>
+            <h5>Anil Singh</h5>
+            <p class="text-muted">Director, EduTech Solutions</p>
+            <p>"The cross-platform learning app developed by Gateway has helped us reach both iOS and Android users effectively. The performance is excellent on both platforms."</p>
+            <div class="rating">
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+              <i class="fas fa-star text-warning"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FAQ ==================== -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <h2>Frequently Asked Questions</h2>
+        <p>Get answers to common questions about our mobile app development services</p>
+      </div>
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <div class="faq-card" data-aos="fade-up">
+            <div class="faq-question">How long does it take to develop a mobile app?</div>
+            <p>The timeline depends on the complexity of your app. A basic app can take 4-6 weeks, while more complex applications may require 3-6 months. We provide a detailed timeline after understanding your requirements.</p>
+          </div>
+          <div class="faq-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="faq-question">Do you provide post-launch support?</div>
+            <p>Yes, we offer comprehensive post-launch support packages that include bug fixes, updates, and feature enhancements. Our support duration varies based on the package you choose.</p>
+          </div>
+          <div class="faq-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="faq-question">Can you help with app store submission?</div>
+            <p>Absolutely! We handle the complete app store submission process for both Apple App Store and Google Play Store, including preparing all necessary assets and documentation.</p>
+          </div>
+          <div class="faq-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="faq-question">What is the difference between native and cross-platform apps?</div>
+            <p>Native apps are built specifically for one platform (iOS or Android) using platform-specific languages. Cross-platform apps use frameworks like React Native or Flutter to build once and deploy on multiple platforms, offering cost and time savings.</p>
+          </div>
+          <div class="faq-card" data-aos="fade-up" data-aos-delay="400">
+            <div class="faq-question">Do you sign NDAs?</div>
+            <p>Yes, we take client confidentiality seriously. We're happy to sign a Non-Disclosure Agreement before starting any project to protect your intellectual property and business ideas.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CTA ==================== -->
+  <section class="py-5">
+    <div class="container">
+      <div class="app-showcase" data-aos="fade-up">
+        <h2 class="display-5 fw-bold mb-4">Ready to Build Your Mobile App?</h2>
+        <p class="fs-5 mb-4">Let's discuss your project and create a custom mobile solution that drives results.</p>
+        <div class="cta-section justify-content-center">
+          <button class="contact-btn" data-bs-toggle="modal" data-bs-target=""><a href="/Services/formpro.html">
+            <i class="fas fa-calendar-alt"></i> Get Free Consultation</a>
+          </button>
+          <a href="https://wa.me/917397078885?text=Hi,%20I'm%20interested%20in%20your%20Mobile%20App%20Development%20Services" class="whatsapp-btn" target="_blank">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <!-- Your existing footer code remains the same -->
+ <footer class="footer">
+    <div class="container">
+
+        <!-- Certification Logos – ABOVE Columns -->
+        <div class="cert-logos">
+            <img src="/assets/gsslogo.png"  alt="Gateway Software Solutions">
+            <img src="/assets/certifid.png" alt="ISO 9001:2015 Accredited">
+            <img src="/assets/aicte.png"    alt="AICTE Approved">
+        </div>
+
+        <!-- 4-Column Layout -->
+        <div class="footer-grid">
+
+            <!-- Services -->
+            <div class="col">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="Services/mobile-app-development.html">Application Development</a></li>
+                    <li><a href="Services/E-commerce.html">Web Development</a></li>
+                    <li><a href="Services/digital marketing.html">Digital Marketing</a></li>
+                    <li><a href="Services/logo-design.html">UI/UX Design</a></li>
+                    <li><a href="Services/ai-agent.html">Ai Development</a></li>
+                </ul>
+            </div>
+
+            <!-- Company -->
+            <div class="col">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="home/about.html">About Us</a></li>
+                    <li><a href="career.html">Careers</a></li>
+                    <li><a href="home/ourteam.html">Our Team</a></li>
+                    <li><a href="home/proo.html">Profile</a></li>
+                    <li><a href="home/faq.html">Faq</a></li>
+                </ul>
+            </div>
+
+            <!-- Internship & Course -->
+            <div class="col">
+                <h3>Internship & Course</h3>
+                <ul>
+                    <li><a href="Internshiptraining/webtech.html">Web Designing</a></li>
+                    <li><a href="Internshiptraining/embeddediot.html">Iot</a></li>
+                    <li><a href="Internshiptraining/flutterapp.html">Mobile App</a></li>
+                    <li><a href="Internshiptraining/genai.html">Gen-Ai-Agent</a></li>
+                    <li><a href="Internshiptraining/pythonds.html">Data Science</a></li>
+                    <li><a href="Internshiptraining/pythonmysql.html">Full Stack</a></li>
+                </ul>
+            </div>
+
+            <!-- Connect With Us – VERTICAL SOCIAL ICONS -->
+            <div class="col">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/company/gateway-software-solutions/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/gatewaycbe?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@GatewaySoftwareSolutions-gss" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Copyright -->
+        <div class="copyright">
+            © Gateway Software Solutions. All rights reserved. | Empowering Businesses Overturn The Ordinary.
+        </div>
+
+    </div>
+</footer>
+
+  <!-- ==================== FLOATING WHATSAPP ==================== -->
+  <a href="https://wa.me/917397078885?text=Hi,%20I'm%20interested%20in%20your%20Mobile%20App%20Development%20Services" class="floating-whatsapp" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- ==================== CONTACT MODAL ==================== -->
+  <div class="modal fade" id="contactModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="fas fa-envelope me-2"></i> Get a Free Mobile App Consultation</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="contactForm">
+            <div class="row g-3">
+              <div class="col-md-6"><input type="text" class="form-control" placeholder="Full Name *" required></div>
+              <div class="col-md-6"><input type="email" class="form-control" placeholder="Email *" required></div>
+              <div class="col-md-6"><input type="tel" class="form-control" placeholder="Phone *" required></div>
+              <div class="col-md-6"><input type="text" class="form-control" placeholder="Company Name"></div>
+              <div class="col-12">
+                <select class="form-select" required>
+                  <option value="">App Type Interested In *</option>
+                  <option>iOS App Development</option>
+                  <option>Android App Development</option>
+                  <option>Cross-Platform App</option>
+                  <option>Ecommerce Mobile App</option>
+                  <option>Enterprise Mobile App</option>
+                  <option>Free App Consultation</option>
+                </select>
+              </div>
+              <div class="col-12"><textarea class="form-control" rows="3" placeholder="Tell us about your app idea and requirements..."></textarea></div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-submit">
+                  <i class="fas fa-paper-plane"></i> Request Free Consultation
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SCRIPTS ==================== -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <script>
+    // Navbar Scroll & Progress
+    window.addEventListener('scroll', () => {
+      document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50);
+      const scrolled = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+      document.getElementById('progress').style.transform = `scaleX(${scrolled / 100})`;
+    });
+
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    html.dataset.theme = currentTheme;
+    themeToggle.innerHTML = currentTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    themeToggle.addEventListener('click', () => {
+      const newTheme = html.dataset.theme === 'dark' ? 'light' : 'dark';
+      html.dataset.theme = newTheme;
+      localStorage.setItem('theme', newTheme);
+      themeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    });
+
+    // Copy Button
+    document.addEventListener('click', e => {
+      if (e.target.closest('.copy-btn')) {
+        const btn = e.target.closest('.copy-btn');
+        const text = btn.dataset.copy;
+        navigator.clipboard.writeText(text);
+        const icon = btn.querySelector('i');
+        icon.classList.replace('fa-copy', 'fa-check');
+        setTimeout(() => icon.classList.replace('fa-check', 'fa-copy'), 2000);
+      }
+    });
+
+    // Form Submit (Demo)
+    document.getElementById('contactForm').addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Thank you for your interest! Our mobile app development expert will contact you within 24 hours with your free consultation.');
+      bootstrap.Modal.getInstance(document.getElementById('contactModal')).hide();
+    });
+
+    // AOS Init
+    AOS.init({ duration: 1000, once: true });
+
+    // JSON-LD
+    const script = document.createElement('script');
+    script.type = "application/ld+json";
+    script.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Mobile App Development",
+      "provider": {
+        "@type": "Organization",
+        "name": "Gateway Software Solutions",
+        "sameAs": "https://www.gatewaysoftwaresolutions.com"
+      },
+      "areaServed": "India",
+      "description": "Professional mobile app development services including iOS, Android, and cross-platform applications.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Mobile App Development Services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "iOS App Development" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Android App Development" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cross-Platform App Development" } }
+        ]
+      }
+    });
+    document.head.appendChild(script);
+  </script>
+</body>
+</html>

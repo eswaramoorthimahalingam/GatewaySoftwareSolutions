@@ -1,0 +1,246 @@
+<!-- ==================== FOOTER ==================== -->
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gateway Software Solutions – Footer</title>
+
+    <!-- Font Awesome for Social Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+          integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        * { box-sizing: border-box; margin:0; padding:0; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background:#f8f9fa; }
+
+        /* ====================== FOOTER ====================== */
+        .footer {
+            background: #e6f7ff; /* Light Blue Background */
+            padding: 45px 0 25px;
+            border-top: 5px solid #b3e0ff;
+            margin-top: 50px;
+            color: #1a1a1a;
+        }
+        .footer .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        /* ---------- Certification Logos ---------- */
+        .cert-logos {
+            text-align: center;
+            margin-bottom: 35px;
+            padding-bottom: 22px;
+            border-bottom: 2px dashed #99d6ff;
+        }
+        .cert-logos img {
+            height: 78px;
+            margin: 0 20px;
+            display: inline-block;
+            vertical-align: middle;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+            transition: transform .3s ease;
+        }
+        .cert-logos img:hover {
+            transform: scale(1.05);
+        }
+
+        /* ---------- 4-Column Grid ---------- */
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 35px;
+            justify-content: space-between;
+        }
+
+        .col {
+            flex: 1;
+            min-width: 180px;
+        }
+        .col h3 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: #1e40af;
+            position: relative;
+            font-weight: 600;
+        }
+        .col h3::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: -7px;
+            width: 34px; height: 3px;
+            background: #f39c12;
+            border-radius: 2px;
+        }
+        .col ul {
+            list-style: none;
+        }
+        .col ul li {
+            margin-bottom: 10px;
+        }
+        .col ul li a {
+            color: #333;
+            text-decoration: none;
+            font-size: 15px;
+            transition: all .3s ease;
+            display: block;
+        }
+        .col ul li a:hover {
+            color: #f39c12;
+            padding-left: 5px;
+        }
+
+        /* ---------- SOCIAL LINKS – VERTICAL ---------- */
+        .social-links {
+            display: flex;
+            flex-direction: column;   /* ← VERTICAL ALIGNMENT */
+            gap: 12px;
+            margin-top: 14px;
+        }
+        .social-links a {
+            color: #f39c12;
+            font-size: 20px;
+            width: 44px;
+            height: 44px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all .3s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+        }
+        .social-links a:hover {
+            background: #f39c12;
+            color: #fff;
+            transform: translateX(5px);
+            box-shadow: 0 6px 14px rgba(243,156,18,0.4);
+        }
+
+        /* ---------- Copyright ---------- */
+        .copyright {
+            text-align: center;
+            margin-top: 35px;
+            padding: 16px 0;
+            background: #ffffff;
+            color: #444;
+            font-size: 14px;
+            border-radius: 8px;
+            margin-left: -20px;
+            margin-right: -20px;
+            margin-bottom: -25px;
+            box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 768px) {
+            .footer-grid {
+                flex-direction: column;
+                text-align: center;
+            }
+            .col h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .cert-logos img {
+                height: 60px;
+                margin: 10px;
+            }
+            .social-links {
+                flex-direction: row;        /* ← Horizontal on mobile for space */
+                justify-content: center;
+                gap: 15px;
+            }
+            .social-links a {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            .copyright {
+                margin-left: -20px;
+                margin-right: -20px;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ====================== FOOTER (Social Links VERTICAL) ====================== -->
+<footer class="footer">
+    <div class="container">
+
+        <!-- Certification Logos – ABOVE Columns -->
+        <div class="cert-logos">
+            <img src="../assets/gsslogo.png"  alt="Gateway Software Solutions">
+            <img src="../assets/certifid.png" alt="ISO 9001:2015 Accredited">
+            <img src="../assets/aicte.png"    alt="AICTE Approved">
+        </div>
+
+        <!-- 4-Column Layout -->
+        <div class="footer-grid">
+
+            <!-- Services -->
+            <div class="col">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="../Services/mobile-app-development.html">Application Development</a></li>
+                    <li><a href="../Services/E-commerce.html">Web Development</a></li>
+                    <li><a href="../Services/digital marketing.html">Digital Marketing</a></li>
+                    <li><a href="../Services/logo-design.html">UI/UX Design</a></li>
+                    <li><a href="../Services/ai-agent.html">Ai Development</a></li>
+                </ul>
+            </div>
+
+            <!-- Company -->
+            <div class="col">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="../home/about.html">About Us</a></li>
+                    <li><a href="../career.html">Careers</a></li>
+                    <li><a href="../home/ourteam.html">Our Team</a></li>
+                    <li><a href="../home/proo.html">Profile</a></li>
+                    <li><a href="../home/faq.html">Faq</a></li>
+                </ul>
+            </div>
+
+            <!-- Internship & Course -->
+            <div class="col">
+                <h3>Internship & Course</h3>
+                <ul>
+                    <li><a href="../Internshiptraining/webtech.html">Web Designing</a></li>
+                    <li><a href="../Internshiptraining/embeddediot.html">Iot</a></li>
+                    <li><a href="../Internshiptraining/flutterapp.html">Mobile App</a></li>
+                    <li><a href="../Internshiptraining/genai.html">Gen-Ai-Agent</a></li>
+                    <li><a href="../Internshiptraining/pythonds.html">Data Science</a></li>
+                    <li><a href="../Internshiptraining/pythonmysql.html">Full Stack</a></li>
+                </ul>
+            </div>
+
+            <!-- Connect With Us – VERTICAL SOCIAL ICONS -->
+            <div class="col">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/company/gateway-software-solutions/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@GatewaySoftwareSolutions-gss" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Copyright -->
+        <div class="copyright">
+            © Gateway Software Solutions. All rights reserved. | Empowering Businesses Overturn The Ordinary.
+        </div>
+
+    </div>
+</footer>
+
+</body>
+</html>

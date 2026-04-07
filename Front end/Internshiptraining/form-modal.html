@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gateway Software Solutions - Enquiry Form</title>
+  <style>
+    /* Modal background */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(10, 20, 40, 0.8);
+      backdrop-filter: blur(4px);
+      overflow-y: auto;
+      animation: fadeIn 0.4s ease;
+    }
+
+    /* Modal content box */
+    .modal-content {
+      background: #ffffff;
+      margin: 5% auto;
+      padding: 25px 35px;
+      border-radius: 16px;
+      width: 90%;
+      max-width: 750px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+      position: relative;
+      border-top: 6px solid #007bff;
+    }
+
+    /* Title */
+    .modal-content h2 {
+      text-align: center;
+      color: #004aad;
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #ff7b00;
+      padding-bottom: 8px;
+    }
+
+    /* Section headings */
+    form h3 {
+      margin-top: 20px;
+      color: #004aad;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-left: 4px solid #ff7b00;
+      padding-left: 10px;
+      margin-bottom: 10px;
+    }
+
+    /* Close button */
+    .close-btn {
+      position: absolute;
+      top: 12px; right: 18px;
+      font-size: 28px;
+      cursor: pointer;
+      color: #004aad;
+      transition: 0.3s;
+    }
+    .close-btn:hover { color: #ff7b00; }
+
+    /* Input and select */
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1.5px solid #d0d0d0;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+      transition: 0.25s ease;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+    }
+
+    /* Form group layout */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 14px;
+    }
+    .form-row {
+      display: flex;
+      gap: 15px;
+    }
+    .form-row .form-group { flex: 1; }
+
+    /* Checkbox group */
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 25px;
+      margin: 12px 0 20px 0;
+    }
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      color: #333;
+      background: #f8f9fc;
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #e2e6ea;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+    .checkbox-group label:hover {
+      background: rgba(0, 123, 255, 0.05);
+      border-color: #007bff;
+    }
+    .checkbox-group input[type="checkbox"] {
+      accent-color: #ff7b00;
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+
+    /* Buttons */
+    .submit-btn {
+      display: block;
+      margin: 20px auto 10px auto;
+      background: linear-gradient(90deg, #007bff, #ff7b00);
+      color: white;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: 0.3s ease;
+    }
+    .submit-btn:hover {
+      transform: scale(1.05);
+      background: linear-gradient(90deg, #005fcc, #ff6a00);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Label styling */
+    label {
+      font-weight: 500;
+      color: #333;
+      margin-bottom: 4px;
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .form-row { flex-direction: column; }
+      .checkbox-group { flex-direction: column; gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Form Modal -->
+  <div id="gatewayFormModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="closeFormBtn">×</span>
+      
+      <h2>Gateway Software Solutions - Enquiry Form</h2>
+
+      <form id="gatewayForm">
+        <h3>Personal Details</h3>
+        <div class="form-group"><label>Name <span style="color:red;">*</span></label><input type="text" name="name" required></div>
+        
+        <div class="form-row">
+           <div class="form-group"><label>Phone Number</label><input type="text" name="number" required></div>
+        </div>
+                <div class="form-group"><label>Mail</label><input type="text" name="mail"></div>
+        <div class="form-group"><label>Address</label><input type="text" name="address"></div>
+
+        <div class="form-row">
+          <div class="form-group"><label>Age</label><input type="number" name="age"></div>
+          <div class="form-group"><label>Sex</label>
+            <select name="sex">
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <h3>Education Details</h3>
+        <div class="form-row">
+          <div class="form-group"><label>College Name</label><input type="text" name="collegeName"></div>
+          <div class="form-group"><label>Candidate Degree</label><input type="text" name="degree"></div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group"><label>Year of Pass Out</label><input type="text" name="passoutYear"></div>
+          <div class="form-group"><label>Technical Skills</label><input type="text" name="skills" placeholder="e.g. Java, Python, React"></div>
+        </div>
+
+        <h3>Requirement</h3>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="requirement" value="Training"> Training</label>
+          <label><input type="checkbox" name="requirement" value="Internship/Training"> Internship/Training</label>
+          <label><input type="checkbox" name="requirement" value="Live Project Training"> Live Project Training</label>
+          <label><input type="checkbox" name="requirement" value="Placement Support"> Placement Support</label>
+          <label><input type="checkbox" name="requirement" value="Project Development"> Project Development</label>
+        </div>
+
+        <h3>Category / Position</h3>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="position" value="Web Development"> Web Development</label>
+          <label><input type="checkbox" name="position" value="Digital Marketing/SEO"> Digital Marketing/SEO</label>
+          <label><input type="checkbox" name="position" value="HR Internship"> HR Internship</label>
+          <label><input type="checkbox" name="position" value="Embedded/C C++"> Embedded / C / C++</label>
+          <label><input type="checkbox" name="position" value="Python/DS"> Python / Data Science</label>
+        </div>
+
+        <h3>Area of Interest</h3>
+        <div class="form-group"><input type="text" name="interest" placeholder="Your area of interest"></div>
+
+        <h3>References</h3>
+        <div class="form-group"><textarea name="references" rows="2" placeholder="Any references or how did you hear about us?"></textarea></div>
+
+        <button type="submit" class="submit-btn">Send to WhatsApp</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("gatewayFormModal");
+    const closeBtn = document.getElementById("closeFormBtn");
+
+    // Auto open after 2 seconds
+    setTimeout(() => {
+      modal.style.display = "block";
+    }, 2000);
+
+    // Close modal
+    closeBtn.onclick = () => modal.style.display = "none";
+    window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; };
+
+    // Submit → WhatsApp
+    document.getElementById("gatewayForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const data = new FormData(this);
+      let message = "*Gateway Software Solutions - New Enquiry*%0A%0A";
+
+      const add = (label, key) => {
+        const val = data.get(key)?.trim();
+        if (val) message += `*${label}:* ${val}%0A`;
+      };
+
+      const addChecks = (name, label) => {
+        const checks = data.getAll(name);
+        if (checks.length > 0) {
+          message += `*${label}:* ${checks.join(", ")}%0A`;
+        }
+      };
+
+      add("Name", "name");
+      add("Address", "address");
+      add("Phone Number", "number");
+      add("Mail", "mail");
+      add("Age", "age");
+      add("Sex", "sex");
+      add("College Name", "collegeName");
+      add("Degree", "degree");
+      add("Passout Year", "passoutYear");
+      add("Technical Skills", "skills");
+      addChecks("requirement", "Requirement");
+      addChecks("position", "Category/Position");
+      add("Area of Interest", "interest");
+      add("References", "references");
+
+      const phone = "917397078885";  
+
+      const whatsappURL = `https://wa.me/${phone}?text=${message}`;
+      
+      window.open(whatsappURL, "_blank");
+      modal.style.display = "none";
+      
+      // Optional: Reset form
+      this.reset();
+    });
+  </script>
+</body>
+</html>

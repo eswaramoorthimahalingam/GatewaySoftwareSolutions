@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ecommerce Development | Gateway Software Solutions</title>
+  <meta name="description" content="Professional Ecommerce Development Services - Custom Online Stores, Payment Integration, Mobile Commerce. ISO 9001:2015 Certified." />
+  <meta name="description" content="Build responsive and scalable websites with Gateway Software Solutions. Our expert developers deliver modern, secure, and SEO-friendly web applications tailored to your business needs." />
+<meta name="keywords" content="web development, custom web application, website design, responsive website, web solutions, web development company, Gateway Software Solutions, India" />
+  <!-- SEO -->
+  <meta property="og:title" content="Ecommerce Development | Gateway Software Solutions" />
+  <meta property="og:description" content="Build high-converting online stores with our expert ecommerce development services. Custom solutions for your business." />
+  <meta property="og:image" content="https://www.gatewaysoftwaresolutions.com/assets/logo.png" />
+  <meta property="og:url" content="https://www.gatewaysoftwaresolutions.com/ecommerce-development/" />
+  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://gatewaysoftwaresolutions.com/services" />
+
+  <!-- <link rel="icon" href="https://www.gatewaysoftwaresolutions.com/favicon.ico" /> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&family=Montserrat:wght@800;900&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --primary: #0ea5e9;        /* Sky Blue */
+      --primary-light: #38bdf8;
+      --secondary: #f97316;      /* Orange */
+      --secondary-light: #fb923c;
+      --success: #10b981;
+      --danger: #dc2626;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --gray: #64748b;
+      --border: #e2e8f0;
+      --footer-bg: #0f172a;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --glass: rgba(255, 255, 255, 0.15);
+      --neumorph: 8px 8px 16px rgba(0,0,0,0.05), -8px -8px 16px rgba(255,255,255,0.8);
+      --shadow-sm: 0 6px 20px rgba(0,0,0,0.08);
+      --shadow-lg: 0 30px 60px rgba(14,165,233,0.18);
+      --nav-primary: #FF6B35;
+      --nav-primary-dark: #E55A2B;
+      --nav-secondary: #1E88E5;
+      --nav-secondary-dark: #1565C0;
+      --nav-accent: #FFD166;
+      --nav-dark: #1A1D2E;
+      --nav-light: #F8F9FA;
+      --nav-gradient-mixed: linear-gradient(135deg, var(--nav-secondary) 0%, var(--nav-primary) 100%);
+      --dark-footer: #1a1a1a;
+      --primary-orange: #ff9933;
+    }
+    [data-theme="dark"] {
+      --primary: #38bdf8;
+      --secondary: #fb923c;
+      --dark: #f1f5f9;
+      --light: #1e293b;
+      --gray: #94a3b8;
+      --border: #334155;
+      --card-bg: rgba(30, 41, 59, 0.95);
+      --glass: rgba(255, 255, 255, 0.08);
+      --neumorph: 8px 8px 16px rgba(0,0,0,0.3), -8px -8px 16px rgba(255,255,255,0.05);
+      --shadow-sm: 0 6px 20px rgba(0,0,0,0.3);
+      --shadow-lg: 0 30px 60px rgba(56,189,248,0.25);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #e0f2fe, #fed7aa);
+      color: var(--dark);
+      transition: all 0.4s ease;
+      margin: 0;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* Scroll Progress */
+    .scroll-progress {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transform-origin: 0%;
+      transform: scaleX(0);
+      z-index: 9999;
+      border-radius: 0 0 4px 4px;
+      box-shadow: 0 2px 8px rgba(14,165,233,0.3);
+    }
+
+    /* Navbar */
+    .navbar {
+      backdrop-filter: blur(16px);
+      background: var(--glass);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.4s;
+      padding: 1.2rem 0;
+      z-index: 1000;
+      box-shadow: var(--neumorph);
+    }
+    .navbar.scrolled {
+      background: var(--card-bg);
+      padding: 0.8rem 0;
+      box-shadow: var(--shadow-sm);
+    }
+    .navbar-brand {
+      font-family: 'Montserrat',sans-serif;
+      font-weight:900;
+      font-size:2.2rem;
+      background:var(--nav-gradient-mixed);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      position:relative;
+      letter-spacing:-1px;
+    }
+    .navbar-brand::after {
+      content:''; position:absolute; bottom:-8px; left:0;
+      width:40px; height:4px; background:var(--nav-gradient-mixed);
+      border-radius:4px;
+    }
+    .nav-link {
+      font-weight:600; margin:0 12px; color:var(--dark)!important;
+      position:relative; transition:all .3s; font-size:1.05rem;
+    }
+    .nav-link:hover { color:var(--primary)!important; }
+    .nav-link::after {
+      content:''; position:absolute; bottom:0; left:0;
+      width:0; height:3px; background:var(--nav-gradient-mixed);
+      transition:width .4s;
+    }
+    .nav-link:hover::after { width:100%; }
+    .dropdown:hover .dropdown-menu { display:block; margin-top:0; animation:fadeInDown .4s; }
+    .dropdown-menu {
+      border:none; box-shadow:0 20px 50px rgba(0,0,0,.15);
+      border-radius:15px; padding:15px 0; border-top:3px solid var(--primary);
+      display:none; position:absolute;
+    }
+    .dropdown-item {
+      padding:12px 25px; transition:all .3s; font-weight:500;
+      position:relative; overflow:hidden;
+    }
+    .dropdown-item::before {
+      content:''; position:absolute; top:0; left:-100%;
+      width:100%; height:100%; background:var(--nav-gradient-mixed);
+      transition:left .3s; z-index:-1;
+    }
+    .dropdown-item:hover::before { left:0; }
+    .dropdown-item:hover { color:white; transform:translateX(8px); }
+    .dropdown-toggle::after {
+      margin-left:8px; border-top:.3em solid;
+      border-right:.3em solid transparent; border-left:.3em solid transparent;
+      transition:transform .3s ease;
+    }
+    .dropdown:hover .dropdown-toggle::after { transform:rotate(180deg); }
+    @keyframes fadeInDown {
+      from {opacity:0; transform:translate3d(0,-10px,0);}
+      to   {opacity:1; transform:translate3d(0,0,0);}
+    }
+    @media (max-width:768px){
+      .navbar-brand{font-size:1.8rem;}
+      .dropdown.show .dropdown-menu{display:block;}
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 8rem 0 6rem;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15), transparent 60%);
+      opacity: 0.6;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .hero-subtitle {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+    }
+
+    /* Ecommerce Service Cards */
+    .ecommerce-service-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      transition: all 0.4s;
+      height: 100%;
+      box-shadow: var(--neumorph);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .ecommerce-service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+    }
+    .ecommerce-service-icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      background: rgba(14,165,233,0.1);
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ecommerce-feature {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+    .feature-icon {
+      background: rgba(14,165,233,0.1);
+      color: var(--primary);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+      flex-shrink: 0;
+    }
+
+    /* Platform Cards */
+    .platform-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.4s;
+      height: 100%;
+      box-shadow: var(--neumorph);
+      border: 1px solid var(--border);
+    }
+    .platform-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+    .platform-logo {
+      height: 60px;
+      margin-bottom: 1.5rem;
+      filter: grayscale(100%);
+      transition: all 0.3s;
+    }
+    .platform-card:hover .platform-logo {
+      filter: grayscale(0%);
+    }
+
+    /* Process Steps */
+    .process-step {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      border-radius: 20px;
+      background: var(--card-bg);
+      box-shadow: var(--neumorph);
+      transition: all 0.4s;
+      height: 100%;
+      position: relative;
+    }
+    .process-step:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+    .step-number {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.5rem;
+      margin: 0 auto 1.5rem;
+      box-shadow: 0 8px 20px rgba(14,165,233,0.3);
+    }
+
+    /* Pricing Cards */
+    .pricing-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: all 0.4s;
+      height: 100%;
+      box-shadow: var(--neumorph);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .pricing-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+    }
+    .pricing-card.popular {
+      border: 2px solid var(--primary);
+      transform: scale(1.05);
+    }
+    .pricing-card.popular:hover {
+      transform: scale(1.05) translateY(-10px);
+    }
+    .popular-badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: var(--primary);
+      color: white;
+      padding: 0.5rem 1.5rem;
+      font-weight: 700;
+      font-size: 0.9rem;
+      border-radius: 0 20px 0 20px;
+    }
+    .price {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--primary);
+      margin: 1.5rem 0;
+    }
+    .price-period {
+      font-size: 1rem;
+      color: var(--gray);
+    }
+    .pricing-features {
+      list-style: none;
+      padding: 0;
+      margin: 2rem 0;
+      text-align: left;
+    }
+    .pricing-features li {
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+    }
+    .pricing-features li:last-child {
+      border-bottom: none;
+    }
+    .pricing-features li i {
+      color: var(--success);
+      margin-right: 0.8rem;
+    }
+
+    /* FAQ Section */
+    .faq-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: var(--neumorph);
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    .faq-card:hover {
+      box-shadow: var(--shadow-sm);
+    }
+    .faq-question {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      display: flex;
+      gap: 12px;
+      align-items: stretch;
+      margin-top: 1.5rem;
+    }
+    .contact-btn, .whatsapp-btn {
+      flex: 1;
+      padding: 0.9rem 1.2rem;
+      border-radius: 16px;
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      transition: all 0.4s;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      min-height: 56px;
+    }
+    .contact-btn {
+      background: var(--secondary);
+      color: white;
+      border: none;
+    }
+    .contact-btn:hover {
+      background: #ea580c;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(249,115,22,0.3);
+    }
+    .whatsapp-btn {
+      background: #25D366;
+      color: white;
+      border: none;
+    }
+    .whatsapp-btn:hover {
+      background: #128C7E;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(37,193,102,0.3);
+    }
+
+    /* Modal Form */
+    .modal-content {
+      border-radius: 20px;
+      border: none;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+    .modal-header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      padding: 1.5rem 2rem;
+    }
+    .modal-title {
+      font-weight: 800;
+      font-size: 1.3rem;
+    }
+    .modal-body {
+      padding: 2rem;
+    }
+    .form-control, .form-select {
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      font-size: 0.95rem;
+      border: 1.5px solid var(--border);
+      transition: all 0.3s;
+    }
+    .form-control:focus, .form-select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 0.2rem rgba(14,165,233,0.25);
+    }
+    .btn-submit {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.85rem 2rem;
+      border-radius: 14px;
+      font-weight: 700;
+      width: 100%;
+      transition: all 0.3s;
+    }
+    .btn-submit:hover {
+      background: #0284c7;
+      transform: translateY(-2px);
+    }
+
+    /* Floating WhatsApp */
+    .floating-whatsapp {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: var(--primary);
+      color: white;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      box-shadow: 0 15px 35px rgba(14,165,233,0.4);
+      z-index: 1000;
+      border: 5px solid white;
+      transition: all 0.4s;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 15px 35px rgba(14,165,233,0.4); }
+      50% { box-shadow: 0 15px 35px rgba(14,165,233,0.6); }
+      100% { box-shadow: 0 15px 35px rgba(14,165,233,0.4); }
+    }
+    .floating-whatsapp:hover {
+      transform: scale(1.15);
+      background: #0284c7;
+    }
+
+    /* Footer (Digital Marketing Style) */
+    footer {
+      background: var(--dark-footer);
+      color: #cbd5e1;
+      padding: 4rem 0 2rem;
+      font-size: 0.95rem;
+    }
+    footer h4 {
+      color: white;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+    .footer-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-links li {
+      margin-bottom: 0.7rem;
+    }
+    .footer-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      transition: all 0.3s;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+    }
+    .footer-links a:hover {
+      color: var(--primary);
+      transform: translateX(4px);
+    }
+    .footer-links i {
+      margin-right: 8px;
+      width: 20px;
+    }
+    .copyright {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #334155;
+      text-align: center;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+
+    /* Buttons */
+    .dark-toggle {
+      background: var(--glass);
+      border: none;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      color: var(--gray);
+      cursor: pointer;
+      box-shadow: var(--neumorph-inset);
+      transition: all 0.3s;
+    }
+    .dark-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: var(--neumorph);
+    }
+
+    /* Section Headers */
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .section-header h2 {
+      font-weight: 900;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .section-header p {
+      font-size: 1.2rem;
+      color: var(--gray);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Ecommerce Badge */
+    .ecommerce-badge {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 12px rgba(14,165,233,0.3);
+    }
+
+    /* CTA Banner */
+    .cta-banner {
+      background: linear-gradient(135deg, #fffbeb, #fef3c7);
+      border: 1.5px solid #fbbf24;
+      color: #92400e;
+      padding: 1.8rem;
+      border-radius: 20px;
+      font-weight: 700;
+      text-align: center;
+      font-size: 1.15rem;
+      box-shadow: var(--neumorph), 0 8px 25px rgba(251,191,36,0.15);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="scroll-progress" id="progress"></div>
+
+  <!-- NAVBAR (Digital Marketing Style) -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="https://www.gatewaysoftwaresolutions.com"><img height="50px" width="200px" src="../assets/gsslogo.png" alt=""></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link active dropdown-toggle" href="../index.html" id="homeDropdown" role="button" >Home</a>
+            <ul class="dropdown-menu" aria-labelledby="homeDropdown">
+              <li><a class="dropdown-item" href="/home/about.html">About Gateway</a></li>
+                            <li><a class="dropdown-item" href="/home/proo.html">Profile</a></li>
+              <li><a class="dropdown-item" href="/home/ourteam.html">Our Core Team</a></li>
+              <li><a class="dropdown-item" href="/home/faq.html">FAQ</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/product.html">Products</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="hireDropdown" role="button" data-bs-toggle="dropdown">
+              Services
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="hireDropdown">
+              <li><a class="dropdown-item" href="/Services/digitalmarketing.html">Digital Marketing</a></li>
+              <li><a class="dropdown-item" href="/Services/Search-Engine.html">Search Engine Optimization</a></li>
+              <li><a class="dropdown-item" href="/Services/E-commerce.html">E-commerce Development</a></li>
+              <li><a class="dropdown-item" href="/Services/mobile-app-development.html">Mobile App Development</a></li>
+              <li><a class="dropdown-item" href="/Services/social-media-marketing.html">Social Media Marketing</a></li>
+              <li><a class="dropdown-item" href="/Services/ai-agent.html">AI Agent Development Company</a></li>
+              <li><a class="dropdown-item" href="/Services/IOT-development.html">IOT & Robotics</a></li>
+              <li><a class="dropdown-item" href="/Services/word-press-development.html">Wordpress Development</a></li>
+              <li><a class="dropdown-item" href="/Services/branding.html">Branding</a></li>
+              <li><a class="dropdown-item" href="/Services/logo-design.html">Logo Design</a></li>
+              <li><a class="dropdown-item" href="/Services/meta-ads.html">Meta Ads</a></li>
+              <li><a class="dropdown-item" href="/Services/game-development.html">Game Development</a></li>
+              <li><a class="dropdown-item" href="/Services/digital-transformation.html">Digital Transformation Services</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown">
+              Internships
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="productsDropdown">
+             <li><a class="dropdown-item" href="/Internshiptraining/webtech.html">Web Technology</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/flutterapp.html">Mobile App</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/embeddediot.html">Embedded Iot</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/genai.html">Gen Ai</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/cybersecurity.html">Cyber Security</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/javaj2ee.html">Java</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/pythondj.html">Python With Django</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/powerbi.html">Data Analytics</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/pythonds.html">Data Science</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/pythonmysql.html">Python Full Stack</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/reactjstab.html">React js</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/rtoolsprog.html">R Tool</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/softwaretesting.html">Software Testing</a></li>
+          </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Ai.html">AI Development</a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" href="/iot_robotic.html">Iot & Robotics</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/career.html">Careers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contactus.html">Contact Us</a>
+          </li>
+         <li class="nav-item">
+  <a 
+    class="nav-link" 
+    href="https://lms.sgsoftwaresolution.com/" 
+    style="color: var(--primary); text-decoration: none; font-weight: 700; border: 2px solid var(--primary); border-radius: 30px; padding: 8px 20px !important;"
+    target="_blank" 
+    rel="noopener noreferrer">
+    LMS Portal
+  </a>
+</li>
+          <li class="nav-item">
+            <button class="dark-toggle ms-3" id="themeToggle">
+              <i class="fas fa-moon"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- HERO -->
+  <section class="hero text-center">
+    <div class="container position-relative" data-aos="fade-up">
+      <div class="ecommerce-badge">PROFESSIONAL ECOMMERCE SOLUTIONS</div>
+      <h1 class="display-3 fw-900 mb-4">Ecommerce <span style="background: linear-gradient(135deg, #fff, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Development</span></h1>
+      <p class="hero-subtitle">Build High-Converting Online Stores That Drive Sales and Grow Your Business</p>
+      <p class="mb-0 fs-5">
+        <strong>Contact Our Ecommerce Experts:</strong> 
+        <span class="copy-text fw-bold text-white" data-copy="+917397078885">+91 73970 78885</span>
+         <button class="contact-btn" style="background: white; color: var(--primary);" data-bs-toggle="modal" data-bs-target=""><a href="/Services/formpro.html">
+          <i class="fas fa-digital-tachograph"></i> Start Your Digital Journey</a>
+        </button>
+        <button class="btn btn-sm btn-outline-light ms-2 copy-btn" data-copy="+917397078885"><i class="fas fa-copy"></i></button>
+      </p>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="py-5">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Ecommerce Development Services</h2>
+        <p>Comprehensive ecommerce solutions to build, optimize, and scale your online store</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="0">
+          <div class="ecommerce-service-card">
+            <div class="ecommerce-service-icon"><i class="fas fa-shopping-cart"></i></div>
+            <h3 class="fw-800 mb-3">Custom Ecommerce Development</h3>
+            <p>Build fully customized online stores tailored to your unique business requirements and brand identity.</p>
+            <div class="ecommerce-feature"><div class="feature-icon"><i class="fas fa-check"></i></div><div><h6 class="fw-700">Responsive Design</h6><p class="text-muted small">Mobile-first approach for all devices</p></div></div>
+            <div class="ecommerce-feature"><div class="feature-icon"><i class="fas fa-check"></i></div><div><h6 class="fw-700">Product Management</h6><p class="text-muted small">Advanced catalog and inventory system</p></div></div>
+            <div class="ecommerce-feature"><div class="feature-icon"><i class="fas fa-check"></i></div><div><h6 class="fw-700">Custom Features</h6><p class="text-muted small">Tailored functionality for your business</p></div></div>
+            <div class="ecommerce-feature"><div class="feature-icon"><i class="fas fa-check"></i></div><div><h6 class="fw-700">Admin Dashboard</h6><p class="text-muted small">Comprehensive management interface</p></div></div>
+          </div>
+          
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="ecommerce-service-card">
+            <div class="ecommerce-service-icon"><i class="fas fa-credit-card"></i></div>
+            <h3 class="fw-800 mb-3">Payment Gateway Integration</h3>
+            <p>Secure and seamless payment processing with multiple payment options for better conversion rates.</p>
+            <div class="ecommerce-feature"><div class="feature-icon"><i class="fas fa-check"></i></div><div><h6 class="fw-700">Multiple Payment Methods</h6><p class="text-muted small">Credit cards, UPI, net banking, wallets</p></div></div>
+            <div class="ecommerce-feature"><div class="feature-icon"><i class="fas fa-check"></i></div><div><h6 class="fw-700">SSL Security</h6><p class="text-muted small">Bank-level encryption for transactions</p></div></div>
+            <div class="ecommerce-feature"><div class="feature-icon"><i class="fas fa-check"></i></div><div><h6 class="fw-700">Recurring Payments</h6><p class="text-muted small">Subscription and installment options</p></div></div>
+            <div class="ecommerce-feature"><div class="feature-icon"><i class="fas fa-check"></i></div><div><h6 class="fw-700">Fraud Detection</h6><p class="text-muted small">Advanced security and monitoring</p></div></div>
+          </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="ecommerce-service-card">
+            <div class="ecommerce-service-icon"><i class="fas fa-mobile-alt"></i></div>
+            <h3 class="fw-800 mb-3">Mobile Commerce</h3>
+            <p>Optimized mobile shopping experiences with PWA technology and dedicated mobile apps.</p>
+            <div class="ecommerce-feature"><div class="feature-icon"><i class="fas fa-check"></i></div><div><h6 class="fw-700">Progressive Web Apps</h6><p class="text-muted small">App-like experience on mobile browsers</p></div></div>
+            <div class="ecommerce-feature"><div class="feature-icon"><i class="fas fa-check"></i></div><div><h6 class="fw-700">Native Mobile Apps</h6><p class="text-muted small">iOS and Android applications</p></div></div>
+            <div class="ecommerce-feature"><div class="feature-icon"><i class="fas fa-check"></i></div><div><h6 class="fw-700">Push Notifications</h6><p class="text-muted small">Engage customers with timely alerts</p></div></div>
+            <div class="ecommerce-feature"><div class="feature-icon"><i class="fas fa-check"></i></div><div><h6 class="fw-700">Offline Functionality</h6><p class="text-muted small">Shop even without internet connection</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORMS -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="section-header">
+        <h2>Ecommerce Platforms We Work With</h2>
+        <p>We develop on all major ecommerce platforms to deliver the perfect solution for your business</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+          <div class="platform-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Shopify_logo_2018.svg" alt="Shopify" class="platform-logo">
+            <h4 class="fw-800 mb-3">Shopify</h4>
+            <p class="text-muted">Perfect for businesses looking for a quick launch with extensive app ecosystem and reliable hosting.</p>
+            <div class="mt-3">
+              <span class="badge bg-primary me-1">Easy Setup</span>
+              <span class="badge bg-primary me-1">App Store</span>
+              <span class="badge bg-primary">Scalable</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="platform-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/WordPress.com_logo.svg" alt="WooCommerce" class="platform-logo">
+            <h4 class="fw-800 mb-3">WooCommerce</h4>
+            <p class="text-muted">Ideal for WordPress users wanting full control and customization with extensive plugin options.</p>
+            <div class="mt-3">
+              <span class="badge bg-primary me-1">WordPress</span>
+              <span class="badge bg-primary me-1">Customizable</span>
+              <span class="badge bg-primary">Cost-effective</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="platform-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/da/Magento_logo.png" alt="Magento" class="platform-logo">
+            <h4 class="fw-800 mb-3">Magento</h4>
+            <p class="text-muted">Enterprise-level solution for large businesses needing advanced features and scalability.</p>
+            <div class="mt-3">
+              <span class="badge bg-primary me-1">Enterprise</span>
+              <span class="badge bg-primary me-1">Scalable</span>
+              <span class="badge bg-primary">Advanced Features</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="py-5">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Ecommerce Development Process</h2>
+        <p>A systematic approach to building successful online stores that convert visitors into customers</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+          <div class="process-step">
+            <div class="step-number">1</div>
+            <h5 class="fw-800 mb-3">Discovery & Planning</h5>
+            <p class="text-muted">We analyze your business requirements, target audience, and competitors to create a comprehensive ecommerce strategy.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="process-step">
+            <div class="step-number">2</div>
+            <h5 class="fw-800 mb-3">UI/UX Design</h5>
+            <p class="text-muted">Our designers create intuitive, user-friendly interfaces optimized for conversions and seamless shopping experiences.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+          <div class="process-step">
+            <div class="step-number">3</div>
+            <h5 class="fw-800 mb-3">Development & Integration</h5>
+            <p class="text-muted">Our developers build your store with all required features, payment gateways, and third-party integrations.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+          <div class="process-step">
+            <div class="step-number">4</div>
+            <h5 class="fw-800 mb-3">Testing & Launch</h5>
+            <p class="text-muted">Rigorous testing across devices and browsers followed by deployment and post-launch support.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="section-header">
+        <h2>Ecommerce Development Packages</h2>
+        <p>Flexible pricing options designed for businesses of all sizes</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="0">
+          <div class="pricing-card">
+            <h4 class="fw-800">Basic Store</h4>
+            <p class="text-muted">Perfect for startups and small businesses</p>
+            <div class="price">₹49,999<span class="price-period">one-time</span></div>
+            <ul class="pricing-features">
+              <li><i class="fas fa-check"></i> Up to 50 products</li>
+              <li><i class="fas fa-check"></i> Responsive design</li>
+              <li><i class="fas fa-check"></i> Basic payment gateway</li>
+              <li><i class="fas fa-check"></i> Standard checkout</li>
+              <li><i class="fas fa-check"></i> Basic admin panel</li>
+              <li><i class="fas fa-check"></i> 1 month support</li>
+            </ul><a href="/Services/formpro.html">
+            <button class="contact-btn w-100" data-bs-toggle="modal" >Get Started</button></a>
+         </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="pricing-card popular">
+            <div class="popular-badge">MOST POPULAR</div>
+            <h4 class="fw-800">Professional Store</h4>
+            <p class="text-muted">Ideal for growing businesses</p>
+            <div class="price">₹99,999<span class="price-period">one-time</span></div>
+            <ul class="pricing-features">
+              <li><i class="fas fa-check"></i> Up to 500 products</li>
+              <li><i class="fas fa-check"></i> Custom design</li>
+              <li><i class="fas fa-check"></i> Multiple payment gateways</li>
+              <li><i class="fas fa-check"></i> Advanced checkout</li>
+              <li><i class="fas fa-check"></i> Inventory management</li>
+              <li><i class="fas fa-check"></i> SEO optimization</li>
+              <li><i class="fas fa-check"></i> 3 months support</li>
+            </ul><a href="/Services/formpro.html">
+            <button class="contact-btn w-100" data-bs-toggle="modal" >Get Started</button></a>
+         </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="pricing-card">
+            <h4 class="fw-800">Enterprise Store</h4>
+            <p class="text-muted">For established businesses</p>
+            <div class="price">₹2,49,999<span class="price-period">one-time</span></div>
+            <ul class="pricing-features">
+              <li><i class="fas fa-check"></i> Unlimited products</li>
+              <li><i class="fas fa-check"></i> Custom features</li>
+              <li><i class="fas fa-check"></i> Multi-currency support</li>
+              <li><i class="fas fa-check"></i> Advanced analytics</li>
+              <li><i class="fas fa-check"></i> ERP integration</li>
+              <li><i class="fas fa-check"></i> Mobile app</li>
+              <li><i class="fas fa-check"></i> 6 months support</li>
+            </ul><a href="/Services/formpro.html">
+            <button class="contact-btn w-100" data-bs-toggle="modal" >Get Started</button></a>
+         </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-5">
+    <div class="container">
+      <div class="section-header">
+        <h2>Ecommerce Development FAQs</h2>
+        <p>Common questions about our ecommerce development services</p>
+      </div>
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <div class="faq-card" data-aos="fade-up">
+            <div class="faq-question">How long does it take to build an ecommerce website?</div>
+            <p class="text-muted mb-0">The timeline depends on the complexity of your project. A basic store typically takes 4-6 weeks, while more complex enterprise solutions can take 8-12 weeks or more. We provide a detailed project timeline during the planning phase.</p>
+          </div>
+          <div class="faq-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="faq-question">Which ecommerce platform is best for my business?</div>
+            <p class="text-muted mb-0">The best platform depends on your specific needs. Shopify is great for quick launches, WooCommerce offers more customization for WordPress users, and Magento is ideal for large enterprises. We'll recommend the best option during our consultation.</p>
+          </div>
+          <div class="faq-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="faq-question">Do you provide ongoing maintenance and support?</div>
+            <p class="text-muted mb-0">Yes, we offer comprehensive maintenance packages that include security updates, performance optimization, bug fixes, and feature enhancements. All our development packages include post-launch support.</p>
+          </div>
+          <div class="faq-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="faq-question">Can you migrate my existing store to a new platform?</div>
+            <p class="text-muted mb-0">Absolutely! We specialize in ecommerce migrations, ensuring a smooth transition of your products, customers, orders, and SEO rankings to the new platform with minimal downtime.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <div class="container mb-5">
+    <div class="cta-banner" data-aos="fade-up">
+      <i class="fas fa-rocket me-2"></i> READY TO LAUNCH YOUR ONLINE STORE? GET A FREE ECOMMERCE CONSULTATION TODAY!
+    </div>
+  </div>
+
+  <!-- FOOTER (Digital Marketing Style) -->
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gateway Software Solutions – Footer</title>
+
+    <!-- Font Awesome for Social Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+          integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        * { box-sizing: border-box; margin:0; padding:0; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background:#f8f9fa; }
+
+        /* ====================== FOOTER ====================== */
+        .footer {
+            background: #e6f7ff; /* Light Blue Background */
+            padding: 45px 0 25px;
+            border-top: 5px solid #b3e0ff;
+            margin-top: 50px;
+            color: #1a1a1a;
+        }
+        .footer .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        /* ---------- Certification Logos ---------- */
+        .cert-logos {
+            text-align: center;
+            margin-bottom: 35px;
+            padding-bottom: 22px;
+            border-bottom: 2px dashed #99d6ff;
+        }
+        .cert-logos img {
+            height: 78px;
+            margin: 0 20px;
+            display: inline-block;
+            vertical-align: middle;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+            transition: transform .3s ease;
+        }
+        .cert-logos img:hover {
+            transform: scale(1.05);
+        }
+
+        /* ---------- 4-Column Grid ---------- */
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 35px;
+            justify-content: space-between;
+        }
+
+        .col {
+            flex: 1;
+            min-width: 180px;
+        }
+        .col h3 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: #1e40af;
+            position: relative;
+            font-weight: 600;
+        }
+        .col h3::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: -7px;
+            width: 34px; height: 3px;
+            background: #f39c12;
+            border-radius: 2px;
+        }
+        .col ul {
+            list-style: none;
+        }
+        .col ul li {
+            margin-bottom: 10px;
+        }
+        .col ul li a {
+            color: #333;
+            text-decoration: none;
+            font-size: 15px;
+            transition: all .3s ease;
+            display: block;
+        }
+        .col ul li a:hover {
+            color: #f39c12;
+            padding-left: 5px;
+        }
+
+        /* ---------- SOCIAL LINKS – VERTICAL ---------- */
+        .social-links {
+            display: flex;
+            flex-direction: column;   /* ← VERTICAL ALIGNMENT */
+            gap: 12px;
+            margin-top: 14px;
+        }
+        .social-links a {
+            color: #f39c12;
+            font-size: 20px;
+            width: 44px;
+            height: 44px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all .3s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+        }
+        .social-links a:hover {
+            background: #f39c12;
+            color: #fff;
+            transform: translateX(5px);
+            box-shadow: 0 6px 14px rgba(243,156,18,0.4);
+        }
+
+        /* ---------- Copyright ---------- */
+        .copyright {
+            text-align: center;
+            margin-top: 35px;
+            padding: 16px 0;
+            background: #ffffff;
+            color: #444;
+            font-size: 14px;
+            border-radius: 8px;
+            margin-left: -20px;
+            margin-right: -20px;
+            margin-bottom: -25px;
+            box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 768px) {
+            .footer-grid {
+                flex-direction: column;
+                text-align: center;
+            }
+            .col h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .cert-logos img {
+                height: 60px;
+                margin: 10px;
+            }
+            .social-links {
+                flex-direction: row;        /* ← Horizontal on mobile for space */
+                justify-content: center;
+                gap: 15px;
+            }
+            .social-links a {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            .copyright {
+                margin-left: -20px;
+                margin-right: -20px;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ====================== FOOTER (Social Links VERTICAL) ====================== -->
+<footer class="footer">
+    <div class="container">
+
+        <!-- Certification Logos – ABOVE Columns -->
+        <div class="cert-logos">
+            <img src="../assets/gsslogo.png"  alt="Gateway Software Solutions">
+            <img src="../assets/certifid.png" alt="ISO 9001:2015 Accredited">
+            <img src="../assets/aicte.png"    alt="AICTE Approved">
+        </div>
+
+        <!-- 4-Column Layout -->
+        <div class="footer-grid">
+
+            <!-- Services -->
+            <div class="col">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="../Services/mobile-app-development.html">Application Development</a></li>
+                    <li><a href="../Services/E-commerce.html">Web Development</a></li>
+                    <li><a href="../Services/digital marketing.html">Digital Marketing</a></li>
+                    <li><a href="../Services/logo-design.html">UI/UX Design</a></li>
+                    <li><a href="../Services/ai-agent.html">Ai Development</a></li>
+                </ul>
+            </div>
+
+            <!-- Company -->
+            <div class="col">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="../home/about.html">About Us</a></li>
+                    <li><a href="../career.html">Careers</a></li>
+                    <li><a href="../home/ourteam.html">Our Team</a></li>
+                    <li><a href="../home/proo.html">Profile</a></li>
+                    <li><a href="../home/faq.html">Faq</a></li>
+                </ul>
+            </div>
+
+            <!-- Internship & Course -->
+            <div class="col">
+                <h3>Internship & Course</h3>
+                <ul>
+                    <li><a href="../Internshiptraining/webtech.html">Web Designing</a></li>
+                    <li><a href="../Internshiptraining/embeddediot.html">Iot</a></li>
+                    <li><a href="../Internshiptraining/flutterapp.html">Mobile App</a></li>
+                    <li><a href="../Internshiptraining/genai.html">Gen-Ai-Agent</a></li>
+                    <li><a href="../Internshiptraining/pythonds.html">Data Science</a></li>
+                    <li><a href="../Internshiptraining/pythonmysql.html">Full Stack</a></li>
+                </ul>
+            </div>
+
+            <!-- Connect With Us – VERTICAL SOCIAL ICONS -->
+            <div class="col">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/company/gateway-software-solutions/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/gatewaycbe?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@GatewaySoftwareSolutions-gss" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Copyright -->
+        <div class="copyright">
+            © Gateway Software Solutions. All rights reserved. | Empowering Businesses Overturn The Ordinary.
+        </div>
+
+    </div>
+</footer>
+
+</body>
+</html>
+
+  <!-- FLOATING WHATSAPP -->
+  <a href="https://wa.me/917397078885?text=Hi,%20I'm%20interested%20in%20your%20Ecommerce%20Development%20Services" class="floating-whatsapp" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- CONTACT MODAL -->
+  <div class="modal fade" id="contactModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="fas fa-envelope me-2"></i> Get a Free Ecommerce Consultation</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="contactForm">
+            <div class="row g-3">
+              <div class="col-md-6"><input type="text" class="form-control" placeholder="Full Name *" required></div>
+              <div class="col-md-6"><input type="email" class="form-control" placeholder="Email *" required></div>
+              <div class="col-md-6"><input type="tel" class="form-control" placeholder="Phone *" required></div>
+              <div class="col-md-6"><input type="text" class="form-control" placeholder="Business Name"></div>
+              <div class="col-12">
+                <select class="form-select" required>
+                  <option value="">Ecommerce Package Interested In *</option>
+                  <option>Basic Store (₹49,999)</option>
+                  <option>Professional Store (₹99,999)</option>
+                  <option>Enterprise Store (₹2,49,999)</option>
+                  <option>Custom Ecommerce Solution</option>
+                  <option>Free Ecommerce Consultation</option>
+                </select>
+              </div>
+              <div class="col-12"><textarea class="form-control" rows="3" placeholder="Tell us about your business and ecommerce goals..."></textarea></div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-submit">
+                  <i class="fas fa-paper-plane"></i> Request Free Ecommerce Consultation
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <script>
+    // Navbar Scroll & Progress
+    window.addEventListener('scroll', () => {
+      document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50);
+      const scrolled = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+      document.getElementById('progress').style.transform = `scaleX(${scrolled / 100})`;
+    });
+
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    html.dataset.theme = currentTheme;
+    themeToggle.innerHTML = currentTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    themeToggle.addEventListener('click', () => {
+      const newTheme = html.dataset.theme === 'dark' ? 'light' : 'dark';
+      html.dataset.theme = newTheme;
+      localStorage.setItem('theme', newTheme);
+      themeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    });
+
+    // Copy Button
+    document.addEventListener('click', e => {
+      if (e.target.closest('.copy-btn')) {
+        const btn = e.target.closest('.copy-btn');
+        const text = btn.dataset.copy;
+        navigator.clipboard.writeText(text);
+        const icon = btn.querySelector('i');
+        icon.classList.replace('fa-copy', 'fa-check');
+        setTimeout(() => icon.classList.replace('fa-check', 'fa-copy'), 2000);
+      }
+    });
+
+    // Form Submit
+    document.getElementById('contactForm').addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Thank you for your interest! Our ecommerce expert will contact you within 24 hours with your free consultation.');
+      bootstrap.Modal.getInstance(document.getElementById('contactModal')).hide();
+    });
+
+    // AOS Init
+    AOS.init({ duration: 1000, once: true });
+
+    // JSON-LD
+    const ld = document.createElement('script');
+    ld.type = "application/ld+json";
+    ld.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Ecommerce Development",
+      "provider": {
+        "@type": "Organization",
+        "name": "Gateway Software Solutions",
+        "sameAs": "https://www.gatewaysoftwaresolutions.com"
+      },
+      "areaServed": "India",
+      "description": "Professional ecommerce development services including custom online stores, payment gateway integration, and mobile commerce solutions.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Ecommerce Development Services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Ecommerce Development" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Payment Gateway Integration" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mobile Commerce Development" } }
+        ]
+      }
+    });
+    document.head.appendChild(ld);
+  </script>
+</body>
+</html>

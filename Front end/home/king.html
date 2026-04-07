@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Careers | Gateway Software Solutions</title>
+  <meta name="description" content="Join Gateway Software Solutions - ISO 9001:2015 Certified IT Company. Hiring in Coimbatore, Chennai, Madurai." />
+
+  <!-- SEO -->
+  <meta property="og:title" content="Careers at Gateway Software Solutions" />
+  <meta property="og:description" content="Freshers & 0-2 Yrs Experience. Apply via Form or WhatsApp." />
+  <meta property="og:image" content="https://www.gatewaysoftwaresolutions.com/assets/logo.png" />
+  <meta property="og:url" content="https://www.gatewaysoftwaresolutions.com/careers/" />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" href="https://www.gatewaysoftwaresolutions.com/favicon.ico" />
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Montserrat:wght@800;900&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* ==== CAREERS PAGE CSS (from original career.html) ==== */
+    :root {
+      --primary: #0ea5e9;        /* Light Sky Blue */
+      --primary-light: #38bdf8;
+      --secondary: #f97316;      /* Vibrant Orange */
+      --secondary-light: #fb923c;
+      --success: #10b981;
+      --danger: #dc2626;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --gray: #64748b;
+      --border: #e2e8f0;
+      --footer-bg: #0f172a;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --glass: rgba(255, 255, 255, 0.15);
+      --neumorph: 8px 8px 16px rgba(0,0,0,0.05), -8px -8px 16px rgba(255,255,255,0.8);
+      --shadow-sm: 0 6px 20px rgba(0,0,0,0.08);
+      --shadow-lg: 0 30px 60px rgba(14,165,233,0.18);
+    }
+    [data-theme="dark"] {
+      --primary: #38bdf8;
+      --secondary: #fb923c;
+      --dark: #f1f5f9;
+      --light: #1e293b;
+      --gray: #94a3b8;
+      --border: #334155;
+      --card-bg: rgba(30, 41, 59, 0.95);
+      --glass: rgba(255, 255, 255, 0.08);
+      --neumorph: 8px 8px 16px rgba(0,0,0,0.3), -8px -8px 16px rgba(255,255,255,0.05);
+      --shadow-sm: 0 6px 20px rgba(0,0,0,0.3);
+      --shadow-lg: 0 30px 60px rgba(56,189,248,0.25);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #fff, #f1f5f9);
+      color: var(--dark);
+      transition: all 0.4s ease;
+      margin: 0;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* Scroll Progress */
+    .scroll-progress {
+      position: fixed; top:0; left:0; right:0; height:4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transform-origin:0%; transform:scaleX(0);
+      z-index:9999; border-radius:0 0 4px 4px;
+      box-shadow:0 2px 8px rgba(14,165,233,0.3);
+    }
+
+    /* ==== NAVBAR (your new design) ==== */
+    :root {
+      --nav-primary: #FF6B35;
+      --nav-primary-dark: #E55A2B;
+      --nav-secondary: #1E88E5;
+      --nav-secondary-dark: #1565C0;
+      --nav-accent: #FFD166;
+      --nav-accent2: #06D6A0;
+      --nav-dark: #1A1D2E;
+      --nav-light: #F8F9FA;
+      --gradient-primary: linear-gradient(135deg, var(--nav-primary) 0%, var(--nav-primary-dark) 100%);
+      --gradient-secondary: linear-gradient(135deg, var(--nav-secondary) 0%, var(--nav-secondary-dark) 100%);
+      --gradient-mixed: linear-gradient(135deg, var(--nav-secondary) 0%, var(--nav-primary) 100%);
+    }
+
+    .navbar {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(20px);
+      padding:20px 0;
+      box-shadow:0 5px 30px rgba(0,0,0,0.08);
+      transition:all .4s ease;
+      height:100px;
+    }
+    .navbar.scrolled{padding:15px 0;background:rgba(255,255,255,0.98);}
+
+    .navbar-brand{
+      display:flex;align-items:center;font-family:'Montserrat',sans-serif;
+      font-weight:900;font-size:2.2rem;text-decoration:none;gap:12px;
+    }
+    .navbar-brand img{height:55px;transition:transform .3s ease;}
+    .navbar-brand:hover img{transform:scale(1.08);}
+    .brand-text{
+      background:var(--gradient-mixed);-webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;letter-spacing:-1px;
+      position:relative;display:inline-block;
+    }
+    .brand-text::after{
+      content:'';position:absolute;bottom:-8px;left:0;
+      width:40px;height:4px;background:var(--gradient-mixed);
+      border-radius:4px;
+    }
+    .accent-text{color:var(--nav-accent);-webkit-text-fill-color:var(--nav-accent);}
+
+    .nav-link{
+      font-weight:600;margin:0 12px;color:var(--nav-dark)!important;
+      position:relative;transition:all .3s;font-size:1.05rem;
+    }
+    .nav-link:hover{color:var(--nav-primary)!important;}
+    .nav-link::after{
+      content:'';position:absolute;bottom:0;left:0;
+      width:0;height:3px;background:var(--gradient-mixed);
+      transition:width .4s;
+    }
+    .nav-link:hover::after{width:100%;}
+
+    .dropdown:hover .dropdown-menu{display:block;margin-top:0;animation:fadeInDown .4s;}
+    .dropdown-menu{
+      border:none;box-shadow:0 20px 50px rgba(0,0,0,.15);
+      border-radius:15px;padding:15px 0;border-top:3px solid var(--nav-primary);
+      display:none;position:absolute;
+    }
+    .dropdown-item{
+      padding:12px 25px;transition:all .3s;font-weight:500;
+      position:relative;overflow:hidden;
+    }
+    .dropdown-item::before{
+      content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
+      background:var(--gradient-mixed);transition:left .3s;z-index:-1;
+    }
+    .dropdown-item:hover::before{left:0;}
+    .dropdown-item:hover{color:white;transform:translateX(8px);}
+
+    .dropdown-toggle::after{
+      margin-left:8px;border-top:.3em solid;
+      border-right:.3em solid transparent;border-left:.3em solid transparent;
+      transition:transform .3s ease;
+    }
+    .dropdown:hover .dropdown-toggle::after{transform:rotate(180deg);}
+
+    @keyframes fadeInDown{
+      from{opacity:0;transform:translate3d(0,-10px,0);}
+      to{opacity:1;transform:translate3d(0,0,0);}
+    }
+
+    /* ==== HERO, FILTERS, CARDS, MODAL, FOOTER (original career styles) ==== */
+    .hero{
+      background:linear-gradient(135deg,var(--primary),var(--secondary));
+      color:white;padding:7rem 0 6rem;position:relative;overflow:hidden;
+      border-bottom:1px solid rgba(255,255,255,.2);
+    }
+    .hero::before{
+      content:'';position:absolute;top:0;left:0;right:0;bottom:0;
+      background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.15),transparent 60%);
+      opacity:.6;
+    }
+    .hero h1{font-size:3.2rem;font-weight:900;letter-spacing:-1px;
+      text-shadow:0 4px 12px rgba(0,0,0,.2);
+    }
+
+    .filter-bar{background:var(--card-bg);border-radius:20px;padding:1.8rem;
+      margin-bottom:3rem;box-shadow:var(--neumorph);border:1px solid var(--border);
+    }
+
+    .job-card{background:var(--card-bg);border-radius:24px;overflow:hidden;
+      transition:all .5s cubic-bezier(.25,.8,.25,1);height:100%;
+      box-shadow:var(--neumorph);border:1px solid var(--border);
+    }
+    .job-card:hover{transform:translateY(-16px) scale(1.02);
+      box-shadow:var(--shadow-lg);border-color:var(--primary);
+    }
+    .job-header{background:linear-gradient(135deg,var(--primary),var(--secondary));
+      color:white;padding:1.5rem 1.8rem;font-weight:800;font-size:1.2rem;
+      letter-spacing:-.3px;
+    }
+    .badge-urgent{background:#dc2626;color:white;font-size:.75rem;padding:.4rem .9rem;
+      border-radius:50px;font-weight:700;box-shadow:0 2px 8px rgba(220,38,38,.3);
+    }
+    .tag{background:#dbeafe;color:var(--primary);font-size:.82rem;padding:.45rem .9rem;
+      border-radius:12px;margin:.3rem;font-weight:600;border:1.5px solid #93c5fd;
+      box-shadow:0 2px 6px rgba(14,165,233,.1);
+    }
+    [data-theme="dark"] .tag{background:#1e40af;color:#dbeafe;border-color:#60a5fa;}
+
+    .apply-section{display:flex;gap:12px;align-items:stretch;margin-top:1.5rem;}
+    .apply-form-btn,.whatsapp-apply-btn{
+      flex:1;padding:.9rem 1.2rem;border-radius:16px;font-weight:700;
+      font-size:1rem;display:flex;align-items:center;justify-content:center;
+      gap:.6rem;transition:all .4s;box-shadow:0 6px 16px rgba(0,0,0,.1);
+      position:relative;overflow:hidden;text-decoration:none;min-height:56px;
+    }
+    .apply-form-btn{background:var(--secondary);color:white;border:none;}
+    .apply-form-btn:hover{background:#ea580c;transform:translateY(-3px);
+      box-shadow:0 12px 24px rgba(234,88,12,.3);
+    }
+    .whatsapp-apply-btn{background:#25D366;color:white;border:none;}
+    .whatsapp-apply-btn:hover{background:#128C7E;transform:translateY(-3px);
+      box-shadow:0 12px 24px rgba(37,193,102,.3);
+    }
+
+    .modal-content{border-radius:20px;border:none;box-shadow:var(--shadow-lg);overflow:hidden;}
+    .modal-header{background:linear-gradient(135deg,var(--primary),var(--secondary));
+      color:white;border:none;padding:1.5rem 2rem;
+    }
+    .modal-title{font-weight:800;font-size:1.3rem;}
+    .modal-body{padding:2rem;}
+    .form-control,.form-select{
+      border-radius:12px;padding:.75rem 1rem;font-size:.95rem;
+      border:1.5px solid var(--border);transition:all .3s;
+    }
+    .form-control:focus,.form-select:focus{
+      border-color:var(--primary);box-shadow:0 0 0 .2rem rgba(14,165,233,.25);
+    }
+    .btn-submit{background:var(--primary);color:white;border:none;
+      padding:.85rem 2rem;border-radius:14px;font-weight:700;width:100%;
+      transition:all .3s;
+    }
+    .btn-submit:hover{background:#0284c7;transform:translateY(-2px);}
+
+    .no-fee{
+      background:linear-gradient(135deg,#dbeafe,#bfdbfe);
+      border:1.5px solid #60a5fa;color:#1e40af;padding:1.8rem;
+      border-radius:20px;font-weight:700;text-align:center;font-size:1.15rem;
+      box-shadow:var(--neumorph),0 8px 25px rgba(14,165,233,.15);
+    }
+
+    .floating-whatsapp{
+      position:fixed;bottom:28px;right:28px;background:var(--primary);
+      color:white;width:70px;height:70px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      font-size:2.2rem;box-shadow:0 15px 35px rgba(14,165,233,.4);
+      z-index:1000;border:5px solid white;transition:all .4s;
+      animation:pulse 2s infinite;
+    }
+    @keyframes pulse{
+      0%{box-shadow:0 15px 35px rgba(14,165,233,.4);}
+      50%{box-shadow:0 15px 35px rgba(14,165,233,.6);}
+      100%{box-shadow:0 15px 35px rgba(14,165,233,.4);}
+    }
+    .floating-whatsapp:hover{transform:scale(1.15);background:#0284c7;}
+
+    .dark-toggle{
+      background:var(--glass);border:none;width:48px;height:48px;
+      border-radius:50%;font-size:1.5rem;color:var(--gray);
+      cursor:pointer;box-shadow:var(--neumorph-inset);transition:all .3s;
+    }
+    .dark-toggle:hover{transform:scale(1.1);box-shadow:var(--neumorph);}
+
+    /* ==== NEW FOOTER (your latest code) ==== */
+    footer{
+      background-color:#1a1a1a;color:white;padding:70px 0 20px;
+    }
+    .footer-column h4{
+      font-size:1.2rem;margin-bottom:1.5rem;position:relative;
+      padding-bottom:10px;
+    }
+    .footer-column h4::after{
+      content:'';position:absolute;bottom:0;left:0;
+      width:40px;height:2px;background-color:#ff9933;
+    }
+    .footer-links{list-style:none;padding:0;}
+    .footer-links li{margin-bottom:.8rem;}
+    .footer-links a{
+      color:#ccc;text-decoration:none;transition:all .3s ease;
+    }
+    .footer-links a:hover{
+      color:#ff9933;padding-left:5px;
+    }
+    .copyright{
+      text-align:center;padding-top:2rem;margin-top:2rem;
+      border-top:1px solid rgba(255,255,255,.1);
+      font-size:.9rem;color:#aaa;
+    }
+
+    /* ==== RESPONSIVE ==== */
+    @media (max-width:992px){
+      .navbar-brand img{height:45px;}
+      .brand-text{font-size:1.8rem;}
+    }
+    @media (max-width:768px){
+      .navbar-brand{font-size:1.6rem;}
+      .navbar-brand img{height:40px;}
+      .brand-text::after{display:none;}
+      .dropdown:hover .dropdown-menu{display:none;}
+      .dropdown.show .dropdown-menu{display:block;}
+    }
+    @media (max-width:576px){
+      .navbar-brand{gap:8px;}
+      .brand-text{font-size:1.5rem;}
+      .navbar-brand img{height:38px;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== SCROLL PROGRESS ===== -->
+  <div class="scroll-progress" id="progress"></div>
+
+  <!-- ===== NAVBAR ===== -->
+ <div id="header"></div>
+
+<script src="../assets/js/site-config.js"></script>
+<script src="../assets/js/load-nav.js"></script>
+<script>
+  loadGatewayNavbar("../nav-bar.html");
+</script>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero text-center">
+    <div class="container position-relative" data-aos="fade-up">
+      <h1 class="display-3 fw-900 mb-4">Build Your Future with <span style="background: linear-gradient(135deg, #fff, #93c5fd); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Gateway Software Solutions</span></h1>
+      <p class="lead mb-4">ISO 9001:2015 Certified • Coimbatore • Chennai • Madurai</p>
+      <p class="mb-0 fs-5">
+        <strong>Apply via WhatsApp:</strong> 
+        <span class="copy-text fw-bold text-white" data-copy="+91739707885">+91 73970 7885</span>
+        <button class="btn btn-sm btn-outline-light ms-2 copy-btn" data-copy="+91739707885"><i class="fas fa-copy"></i></button>
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== FILTER BAR ===== -->
+  <section class="py-5">
+    <div class="container">
+      <div class="filter-bar">
+        <div class="row g-3 align-items-center">
+          <div class="col-md-4"><input type="text" class="form-control form-control-lg" id="searchInput" placeholder="Search roles..." /></div>
+          <div class="col-md-2"><select class="form-select form-select-lg" id="filterExp"><option value="">Experience</option><option>Fresher</option><option>0-1 Year</option><option>1-2 Years</option></select></div>
+          <div class="col-md-2"><select class="form-select form-select-lg" id="filterYear"><option value="">Passout Year</option><option>2025</option><option>2024</option><option>2023</option><option>2022</option></select></div>
+          <div class="col-md-2"><select class="form-select form-select-lg" id="filterRole"><option value="">All Roles</option><option>Developer</option><option>Designer</option><option>Marketing</option><option>HR</option><option>DevOps</option><option>Manager</option></select></div>
+          <div class="col-md-2"><button class="btn btn-outline-secondary btn-lg w-100" id="clearFilters">Clear</button></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== JOBS GRID ===== -->
+  <section class="py-5" id="jobsContainer">
+    <div class="container">
+      <div class="row" id="jobsGrid"></div>
+      <div id="noResults" class="text-center py-5 d-none">
+        <i class="fas fa-search fa-4x text-muted mb-3"></i>
+        <p class="text-muted fs-5">No openings match your criteria.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NO FEE ALERT ===== -->
+  <div class="container mb-5">
+    <div class="no-fee">
+      NO RECRUITMENT FEE – Gateway Software Solutions never charges candidates for employment.
+    </div>
+  </div>
+
+  <!-- ===== SELECTION PROCESS ===== -->
+  <div class="container">
+    <div class="selection-process text-center p-4 rounded-4" style="background: var(--card-bg); box-shadow: var(--neumorph);">
+      <h5 class="fw-800 text-primary">Selection Process</h5>
+      <p class="text-muted fs-5">Aptitude Test → Technical Interview → HR Round</p>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER (new design) ===== -->
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gateway Software Solutions – Footer</title>
+
+    <!-- Font Awesome for Social Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+          integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        * { box-sizing: border-box; margin:0; padding:0; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background:#f8f9fa; }
+
+        /* ====================== FOOTER ====================== */
+        .footer {
+            background: #e6f7ff; /* Light Blue Background */
+            padding: 45px 0 25px;
+            border-top: 5px solid #b3e0ff;
+            margin-top: 50px;
+            color: #1a1a1a;
+        }
+        .footer .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        /* ---------- Certification Logos ---------- */
+        .cert-logos {
+            text-align: center;
+            margin-bottom: 35px;
+            padding-bottom: 22px;
+            border-bottom: 2px dashed #99d6ff;
+        }
+        .cert-logos img {
+            height: 78px;
+            margin: 0 20px;
+            display: inline-block;
+            vertical-align: middle;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+            transition: transform .3s ease;
+        }
+        .cert-logos img:hover {
+            transform: scale(1.05);
+        }
+
+        /* ---------- 4-Column Grid ---------- */
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 35px;
+            justify-content: space-between;
+        }
+
+        .col {
+            flex: 1;
+            min-width: 180px;
+        }
+        .col h3 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: #1e40af;
+            position: relative;
+            font-weight: 600;
+        }
+        .col h3::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: -7px;
+            width: 34px; height: 3px;
+            background: #f39c12;
+            border-radius: 2px;
+        }
+        .col ul {
+            list-style: none;
+        }
+        .col ul li {
+            margin-bottom: 10px;
+        }
+        .col ul li a {
+            color: #333;
+            text-decoration: none;
+            font-size: 15px;
+            transition: all .3s ease;
+            display: block;
+        }
+        .col ul li a:hover {
+            color: #f39c12;
+            padding-left: 5px;
+        }
+
+        /* ---------- SOCIAL LINKS – VERTICAL ---------- */
+        .social-links {
+            display: flex;
+            flex-direction: column;   /* ← VERTICAL ALIGNMENT */
+            gap: 12px;
+            margin-top: 14px;
+        }
+        .social-links a {
+            color: #f39c12;
+            font-size: 20px;
+            width: 44px;
+            height: 44px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all .3s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+        }
+        .social-links a:hover {
+            background: #f39c12;
+            color: #fff;
+            transform: translateX(5px);
+            box-shadow: 0 6px 14px rgba(243,156,18,0.4);
+        }
+
+        /* ---------- Copyright ---------- */
+        .copyright {
+            text-align: center;
+            margin-top: 35px;
+            padding: 16px 0;
+            background: #ffffff;
+            color: #444;
+            font-size: 14px;
+            border-radius: 8px;
+            margin-left: -20px;
+            margin-right: -20px;
+            margin-bottom: -25px;
+            box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 768px) {
+            .footer-grid {
+                flex-direction: column;
+                text-align: center;
+            }
+            .col h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .cert-logos img {
+                height: 60px;
+                margin: 10px;
+            }
+            .social-links {
+                flex-direction: row;        /* ← Horizontal on mobile for space */
+                justify-content: center;
+                gap: 15px;
+            }
+            .social-links a {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            .copyright {
+                margin-left: -20px;
+                margin-right: -20px;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ====================== FOOTER (Social Links VERTICAL) ====================== -->
+<footer class="footer">
+    <div class="container">
+
+        <!-- Certification Logos – ABOVE Columns -->
+        <div class="cert-logos">
+            <img src="assets/gsslogo.png"  alt="Gateway Software Solutions">
+            <img src="assets/certifid.png" alt="ISO 9001:2015 Accredited">
+            <img src="assets/aicte.png"    alt="AICTE Approved">
+        </div>
+
+        <!-- 4-Column Layout -->
+        <div class="footer-grid">
+
+            <!-- Services -->
+            <div class="col">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="Services/mobile-app-development.html">Application Development</a></li>
+                    <li><a href="Services/E-commerce.html">Web Development</a></li>
+                    <li><a href="Services/digital marketing.html">Digital Marketing</a></li>
+                    <li><a href="Services/logo-design.html">UI/UX Design</a></li>
+                    <li><a href="Services/ai-agent.html">Ai Development</a></li>
+                </ul>
+            </div>
+
+            <!-- Company -->
+            <div class="col">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="home/about.html">About Us</a></li>
+                    <li><a href="career.html">Careers</a></li>
+                    <li><a href="home/ourteam.html">Our Team</a></li>
+                    <li><a href="home/proo.html">Profile</a></li>
+                    <li><a href="home/faq.html">Faq</a></li>
+                </ul>
+            </div>
+
+            <!-- Internship & Course -->
+            <div class="col">
+                <h3>Internship & Course</h3>
+                <ul>
+                    <li><a href="Internshiptraining/webtech.html">Web Designing</a></li>
+                    <li><a href="Internshiptraining/embeddediot.html">Iot</a></li>
+                    <li><a href="Internshiptraining/flutterapp.html">Mobile App</a></li>
+                    <li><a href="Internshiptraining/genai.html">Gen-Ai-Agent</a></li>
+                    <li><a href="Internshiptraining/pythonds.html">Data Science</a></li>
+                    <li><a href="Internshiptraining/pythonmysql.html">Full Stack</a></li>
+                </ul>
+            </div>
+
+            <!-- Connect With Us – VERTICAL SOCIAL ICONS -->
+            <div class="col">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/company/gateway-software-solutions/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Copyright -->
+        <div class="copyright">
+            © Gateway Software Solutions. All rights reserved. | Empowering Businesses Overturn The Ordinary.
+        </div>
+
+    </div>
+</footer>
+
+</body>
+</html>
+
+  <!-- ===== FLOATING WHATSAPP ===== -->
+  <a href="https://wa.me/917397078885?text=Hi,%20I'm%20interested%20in%20careers" class="floating-whatsapp" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- ===== APPLY MODAL ===== -->
+  <div class="modal fade" id="applyModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="fas fa-briefcase me-2"></i> Apply for <span id="modalJobTitle"></span></h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="applyForm">
+            <div class="row g-3">
+              <div class="col-md-6"><input type="text" class="form-control" placeholder="Full Name *" required></div>
+              <div class="col-md-6"><input type="email" class="form-control" placeholder="Email *" required></div>
+              <div class="col-md-6"><input type="tel" class="form-control" placeholder="Phone *" required></div>
+              <div class="col-md-6">
+                <select class="form-select" required>
+                  <option value="">Experience Level *</option>
+                  <option>Fresher</option><option>0-1 Year</option><option>1-2 Years</option>
+                </select>
+              </div>
+              <div class="col-12"><input type="text" class="form-control" placeholder="Current/Last Company"></div>
+              <div class="col-12"><textarea class="form-control" rows="3" placeholder="Why do you want to join Gateway? (Optional)"></textarea></div>
+              <div class="col-12">
+                <input type="file" class="form-control" accept=".pdf,.doc,.docx" placeholder="Upload Resume">
+                <small class="text-muted">PDF, DOC, DOCX (Max 5MB)</small>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-submit"><i class="fas fa-paper-plane"></i> Submit Application</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <!-- <script>
+    // ==== NAVBAR SCROLL ====
+    window.addEventListener('scroll', () => {
+      document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50);
+      const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+      document.getElementById('progress').style.transform = scaleX(${pct / 100});
+    }); -->
+
+    // ==== THEME TOGGLE ====
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    const saved = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    html.dataset.theme = saved;
+    themeToggle && (themeToggle.innerHTML = saved === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>');
+    themeToggle && themeToggle.addEventListener('click', () => {
+      const newTheme = html.dataset.theme === 'dark' ? 'light' : 'dark';
+      html.dataset.theme = newTheme;
+      localStorage.setItem('theme', newTheme);
+      themeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    });
+
+    // ==== JOBS DATA & RENDER ====
+    const jobs = [ /* ... same array you already have ... */ 
+      { title: "HR Intern", urgent: true, exp: "Fresher", year: "2023-2025", role: "HR", salary: "₹2,000 - ₹5,000", desc: "Recruitment, onboarding, records, appraisals, engagement.", perks: "Certificate + Referral + Travel Allowance", whatsapp: "Hi, I'm interested in HR Intern at Gateway (2025 passout)." },
+      { title: "Digital Marketing", urgent: true, exp: "Fresher", year: "2024-2025", role: "Marketing", salary: "Best in Industry", desc: "SEO, Google Analytics, keyword research, link building.", whatsapp: "Hi, applying for Digital Marketing at Gateway (Fresher)." },
+      { title: "Jr DevOps Engineer", urgent: true, exp: "0-1 Year", year: "2022-2024", role: "DevOps", salary: "Competitive", desc: "AWS, Digital Ocean, deployment, server maintenance.", whatsapp: "Hi, interested in Jr DevOps at Gateway." },
+      { title: "Business Development Executive", urgent: true, exp: "0-2 Years", year: "2022-2024", role: "Marketing", salary: "Best in Industry", desc: "Lead generation, cold calling, CRM, IT sales.", whatsapp: "Hi, applying for BDE at Gateway." },
+      { title: "Flutter Developer", urgent: true, exp: "0-2 Years", year: "2022-2024", role: "Developer", salary: "Best in Industry", desc: "Dart, REST API, iOS/Android, Git, Agile.", whatsapp: "Hi, Flutter Developer role at Gateway (0-2 yrs)." },
+      { title: "UI/UX Designer", urgent: true, exp: "0-1 Year", year: "2024-2025", role: "Designer", salary: "Best in Industry", desc: "Figma, wireframes, prototypes, usability testing.", whatsapp: "Hi, applying for UI/UX Designer at Gateway." },
+      { title: "React.js Developer", urgent: true, exp: "Fresher", year: "2022-2024", role: "Developer", salary: "Best in Industry", desc: "React, Redux, WordPress, Headless CMS.", whatsapp: "Hi, React.js role at Gateway (Engineering only)." },
+      { title: "Full Stack Developer (MERN)", urgent: true, exp: "0-2 Years", year: "2024-2025", role: "Developer", salary: "Best in Industry", desc: "WebRTC, HLS, Node.js, MongoDB, real-time apps.", whatsapp: "Hi, MERN Full Stack role at Gateway." },
+      { title: "Project Manager", urgent: true, exp: "0-2 Years", year: "2023-2025", role: "Manager", salary: "Best in Industry", desc: "Team coordination, timelines, client communication.", whatsapp: "Hi, applying for Project Manager at Gateway." }
+    ];
+
+    function renderJobs(filtered){
+      const grid = document.getElementById('jobsGrid');
+      const noRes = document.getElementById('noResults');
+      if(!filtered.length){grid.innerHTML='';noRes.classList.remove('d-none');return;}
+      noRes.classList.add('d-none');
+      grid.innerHTML = filtered.map((j,i)=>`
+        <div class="col-lg-6 col-xl-4 mb-4" data-aos="fade-up" data-aos-delay="${i*100}">
+          <div class="job-card h-100 d-flex flex-column">
+            <div class="job-header d-flex justify-content-between align-items-center">
+              <h5 class="mb-0">${j.title}</h5>
+              ${j.urgent?'<span class="badge-urgent">URGENT</span>':''}
+            </div>
+            <div class="p-4 flex-grow-1">
+              <p class="text-muted small lh-lg">${j.desc}</p>
+              <div class="mt-3 d-flex flex-wrap">
+                <span class="tag">${j.exp}</span>
+                <span class="tag">${j.year}</span>
+                <span class="tag">${j.role}</span>
+                <span class="tag">${j.salary}</span>
+              </div>
+              ${j.perks?<p class="text-success small mt-3 fw-600"><i class="fas fa-gift"></i> ${j.perks}</p>:''}
+            </div>
+            <div class="p-4 pt-0">
+              <div class="apply-section">
+                <button class="apply-form-btn" data-bs-toggle="modal" data-bs-target="#applyModal" data-job="${j.title}">
+                  <i class="fas fa-file-alt"></i> Apply with Form
+                </button>
+                <a href="https://wa.me/91739707885?text=${encodeURIComponent(j.whatsapp)}" target="_blank" class="whatsapp-apply-btn">
+                  <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>`).join('');
+    }
+
+    // ==== MODAL TITLE ====
+    document.getElementById('jobsGrid').addEventListener('click', e=>{
+      const btn = e.target.closest('.apply-form-btn');
+      if(btn) document.getElementById('modalJobTitle').textContent = btn.dataset.job;
+    });
+
+    // ==== FORM SUBMIT (demo) ====
+    document.getElementById('applyForm').addEventListener('submit', e=>{
+      e.preventDefault();
+      alert('Application submitted successfully! We will contact you soon.');
+      bootstrap.Modal.getInstance(document.getElementById('applyModal')).hide();
+    });
+
+    // ==== FILTERS ====
+    function applyFilters(){
+      const search = document.getElementById('searchInput').value.toLowerCase();
+      const exp = document.getElementById('filterExp').value;
+      const year = document.getElementById('filterYear').value;
+      const role = document.getElementById('filterRole').value;
+      const filtered = jobs.filter(j=>{
+        const ms = j.title.toLowerCase().includes(search)||j.desc.toLowerCase().includes(search);
+        const me = !exp || j.exp.includes(exp);
+        const my = !year || j.year.includes(year);
+        const mr = !role || j.role===role;
+        return ms&&me&&my&&mr;
+      });
+      renderJobs(filtered);
+    }
+    ['searchInput','filterExp','filterYear','filterRole'].forEach(id=>document.getElementById(id).addEventListener('input',applyFilters));
+    document.getElementById('clearFilters').addEventListener('click',()=>{['searchInput','filterExp','filterYear','filterRole'].forEach(id=>document.getElementById(id).value='');renderJobs(jobs);});
+
+    // ==== COPY BUTTON ====
+    document.addEventListener('click', e=>{
+      if(e.target.closest('.copy-btn')){
+        const btn = e.target.closest('.copy-btn');
+        const txt = btn.dataset.copy;
+        navigator.clipboard.writeText(txt);
+        const i = btn.querySelector('i');
+        i.classList.replace('fa-copy','fa-check');
+        setTimeout(()=>i.classList.replace('fa-check','fa-copy'),2000);
+      }
+    });
+
+    // ==== INITIALISE ====
+    renderJobs(jobs);
+    AOS.init({duration:1000,once:true});
+
+    // ==== JSON-LD ====
+    const script = document.createElement('script');
+    script.type = "application/ld+json";
+    script.text = JSON.stringify({
+      "@context":"https://schema.org","@type":"JobPosting",
+      "title":"Multiple Openings at Gateway Software Solutions",
+      "description":"Urgent hiring for Developers, Designers, Marketing in Coimbatore, Chennai, Madurai.",
+      "hiringOrganization":{"@type":"Organization","name":"Gateway Software Solutions","sameAs":"https://www.gatewaysoftwaresolutions.com"},
+      "jobLocation":{"@type":"Place","address":{"@type":"PostalAddress","addressLocality":"Coimbatore","addressRegion":"TN","addressCountry":"IN"}},
+      "employmentType":"FULL_TIME","datePosted":"2025-10-28"
+    });
+    document.head.appendChild(script);
+  </script>
+</body>
+</html>

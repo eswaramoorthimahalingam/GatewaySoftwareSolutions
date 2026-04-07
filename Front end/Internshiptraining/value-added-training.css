@@ -1,0 +1,137 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #f8fafc;
+  color: #222;
+  line-height: 1.6;
+}
+
+/* === HEADER === */
+.vat-header {
+  text-align: center;
+  background: linear-gradient(135deg, #0078ff, #0b1b3a);
+  color: white;
+  padding: 50px 20px;
+}
+
+.vat-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.vat-header p {
+  font-size: 1rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.vat-header .hours {
+  font-weight: bold;
+  margin-top: 10px;
+  color: #ffb347;
+}
+
+/* === TECHNOLOGIES === */
+.vat-technologies {
+  padding: 50px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.vat-technologies h2 {
+  text-align: center;
+  color: #0b1b3a;
+  margin-bottom: 30px;
+  font-size: 1.8rem;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 15px;
+}
+
+.course {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.course:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+}
+
+.course span {
+  font-weight: 500;
+  color: #222;
+}
+
+.course a {
+  background: #0078ff;
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+
+.course a:hover {
+  background: #ff6b00;
+}
+
+/* === HIGHLIGHTS === */
+.vat-highlights {
+  background: #fff6f1;
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.vat-highlights h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #0b1b3a;
+}
+
+.vat-highlights ul {
+  list-style: none;
+  display: inline-block;
+  text-align: left;
+}
+
+.vat-highlights li {
+  margin: 8px 0;
+  font-weight: 500;
+  color: #333;
+}
+
+/* === FOOTER === */
+.vat-footer {
+  background: #0b1b3a;
+  color: white;
+  text-align: center;
+  padding: 15px 10px;
+  font-size: 0.9rem;
+}
+
+.vat-footer a {
+  color: #ffb347;
+  text-decoration: none;
+}
+
+.vat-footer a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Project Requirement Form</title>
+
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #4FC3F7;     /* Light Blue */
+            --secondary: #FF7043;   /* Orange */
+            --success: #25D366;     /* WhatsApp Green */
+            --dark-bg: #0D47A1;     /* Deep Blue for Dark Mode */
+            --dark-card: #1565C0;
+            --light: #f8f9fa;
+        }
+*{
+    margin: auto;
+    padding: 0%;
+}
+        body {
+            background: linear-gradient(135deg,#0f2fff 0%, #f57600 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: all 0.3s ease;
+            padding-top: 120px;
+        }
+
+        /* Dark Mode */
+        body.dark-mode {
+            background: linear-gradient(135deg, #0D47A1 0%, #1565C0 100%);
+            color: #e0e0e0;
+        }
+
+        .card {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            overflow: hidden;
+            background: white;
+            border: 2px solid var(--primary);
+        }
+
+        body.dark-mode .card {
+            background: #1e3a5f;
+            color: #e0e0e0;
+            border-color: var(--secondary);
+        }
+
+        .card-header {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        body.dark-mode .card-header {
+            background: var(--dark-card);
+            border-bottom-color: var(--secondary);
+        }
+
+        .btn-whatsapp {
+            background: var(--success);
+            color: white;
+            font-weight: bold;
+            border-radius: 50px;
+            padding: 12px 40px;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp:hover {
+            background: #1ebe52;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .form-control, .form-select {
+            border-radius: 12px;
+            border: 2px solid #ddd;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.2rem rgba(79, 195, 247, 0.25);
+        }
+
+        body.dark-mode .form-control,
+        body.dark-mode .form-select {
+            background: #2d3748;
+            border-color: #4a5568;
+            color: #e0e0e0;
+        }
+
+        body.dark-mode .form-control:focus,
+        body.dark-mode .form-select:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 0.2rem rgba(255, 112, 67, 0.25);
+        }
+
+        .whatsapp-icon {
+            margin-right: 10px;
+        }
+
+/* 
+        .navbar {
+            background: rgba(255, 255, 255, 0.97) !important;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-bottom: 3px solid var(--primary);
+        }
+
+        body.dark-mode .navbar {
+            background: rgba(13, 71, 161, 0.95) !important;
+            border-bottom-color: var(--secondary);
+        }
+
+        .navbar-brand img {
+            height: 50px;
+            width: auto;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .nav-link {
+            color: #333 !important;
+            font-weight: 600;
+            padding: 0.6rem 1.2rem !important;
+            border-radius: 12px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        body.dark-mode .nav-link {
+            color: #e0e0e0 !important;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: var(--primary);
+            color: white !important;
+            transform: translateY(-1px);
+        }
+
+        body.dark-mode .nav-link:hover,
+        body.dark-mode .nav-link.active {
+            background: var(--secondary);
+        }
+
+        .dropdown-menu {
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            border: 2px solid var(--primary);
+            padding: 12px 0;
+            margin-top: 8px;
+        }
+
+        body.dark-mode .dropdown-menu {
+            background: #1a365d;
+            border-color: var(--secondary);
+        }
+
+        .dropdown-item {
+            padding: 10px 24px;
+            border-radius: 10px;
+            margin: 4px 12px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .dropdown-item:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateX(4px);
+        }
+
+        body.dark-mode .dropdown-item:hover {
+            background: var(--secondary);
+        } */
+
+        /* Dark Mode Toggle */
+        .dark-toggle {
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(79, 195, 247, 0.3);
+        }
+
+        body.dark-mode .dark-toggle {
+            background: var(--secondary);
+            box-shadow: 0 4px 15px rgba(255, 112, 67, 0.3);
+        }
+
+        .dark-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 5px;
+            background: var(--secondary);
+            z-index: 99999;
+            transition: width 0.2s ease;
+            box-shadow: 0 0 10px rgba(255, 112, 67, 0.6);
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, #e8f5e8, #d4edda);
+            color: #155724;
+            padding: 20px;
+            border-radius: 16px;
+            margin-top: 25px;
+            border: 2px solid var(--success);
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.15);
+        }
+
+        body.dark-mode .success-message {
+            background: linear-gradient(135deg, #1a3a2a, #2d5a3d);
+            color: #a8e6cf;
+            border-color: var(--success);
+        }
+
+        .success-message h5 {
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        /* WhatsApp Modal */
+        .whatsapp-modal {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .whatsapp-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .whatsapp-modal-content {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 420px;
+            width: 92%;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            border: 3px solid var(--primary);
+            animation: modalPop 0.4s ease;
+        }
+
+        @keyframes modalPop {
+            from { transform: scale(0.7); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        body.dark-mode .whatsapp-modal-content {
+            background: #1a365d;
+            color: #e0e0e0;
+            border-color: var(--secondary);
+        }
+
+        .whatsapp-modal h4 {
+            color: var(--success);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .whatsapp-modal p {
+            margin-bottom: 25px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        body.dark-mode .whatsapp-modal p {
+            color: #ccc;
+        }
+
+        .whatsapp-modal-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .whatsapp-modal-btn {
+            padding: 12px 28px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+
+        .whatsapp-modal-btn.primary {
+            background: var(--success);
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-modal-btn.secondary {
+            background: #f1f5f9;
+            color: #333;
+            border: 2px solid #ddd;
+        }
+
+        body.dark-mode .whatsapp-modal-btn.secondary {
+            background: #2d3748;
+            color: #e0e0e0;
+            border-color: #4a5568;
+        }
+
+        .whatsapp-modal-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .whatsapp-modal-btn.primary:hover {
+            background: #1ebe52;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .spinner {
+            border: 5px solid rgba(79, 195, 247, 0.2);
+            border-left-color: var(--secondary);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 18px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-spinner p {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        body.dark-mode .loading-spinner p {
+            color: var(--secondary);
+        }
+    </style>
+</head>
+<body>
+<div id="header"></div>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="progress"></div>
+
+<script src="../assets/js/site-config.js"></script>
+<script src="../assets/js/load-nav.js"></script>
+<script>
+  loadGatewayNavbar("../nav-bar.html");
+</script>
+    <!-- ==================== NAVBAR ====================
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="https://www.gatewaysoftwaresolutions.com">
+                <img height="50" width="200" src="../assets/gsslogo.png" alt="Gateway Software Solutions">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    Home Dropdown
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="/index.html"  role="button" data-bs-toggle="dropdown">
+                            Home
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="homeDropdown">
+                            <li><a class="dropdown-item" href="/home/about.html">About Gateway</a></li>
+                            <li><a class="dropdown-item" href="/home/proo.html">Profile</a></li>
+                            <li><a class="dropdown-item" href="/home/ourteam.html">Our Core Team</a></li>
+                            <li><a class="dropdown-item" href="/home/faq.html">FAQ</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item"><a class="nav-link" href="/product.html">Products</a></li>
+
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown">
+                            Services
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                            <li><a class="dropdown-item" href="/Services/digital marketing.html">Digital Marketing</a></li>
+                            <li><a class="dropdown-item" href="/Services/Search-Engine.html">Search Engine Optimization</a></li>
+                            <li><a class="dropdown-item" href="/Services/E-commerce.html">E-commerce Development</a></li>
+                            <li><a class="dropdown-item" href="/Services/mobile-app-development.html">Mobile App Development</a></li>
+                            <li><a class="dropdown-item" href="/Services/social-media-marketing.html">Social Media Marketing</a></li>
+                            <li><a class="dropdown-item" href="/Services/ai-agent.html">AI Agent Development Company</a></li>
+                            <li><a class="dropdown-item" href="/Services/IOT-development.html">IOT & Robotics</a></li>
+                            <li><a class="dropdown-item" href="/Services/word-press-development.html">Wordpress Development</a></li>
+                            <li><a class="dropdown-item" href="/Services/branding.html">Branding</a></li>
+                            <li><a class="dropdown-item" href="/Services/logo-design.html">Logo Design</a></li>
+                            <li><a class="dropdown-item" href="/Services/meta-ads.html">Meta Ads</a></li>
+                            <li><a class="dropdown-item" href="/Services/game-development.html">Game Development</a></li>
+                            <li><a class="dropdown-item" href="/Services/digital-transformation.html">Digital Transformation Services</a></li>
+                        </ul>
+                    </li>
+
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="coursesDropdown" role="button" data-bs-toggle="dropdown">
+                            Internships
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="coursesDropdown">
+                           <li><a class="dropdown-item" href="/Internshiptraining/webtech.html">Web Technology</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/flutterapp.html">Mobile App</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/embeddediot.html">Embedded Iot</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/genai.html">Gen Ai</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/cybersecurity.html">Cyber Security</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/javaj2ee.html">Java</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/pythondj.html">Python With Django</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/powerbi.html">Data Analytics</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/pythonds.html">Data Science</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/pythonmysql.html">Python Full Stack</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/reactjstab.html">React js</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/rtoolsprog.html">R Tool</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/softwaretesting.html">Software Testing</a></li>
+            </ul>
+                    </li>
+
+                    <li class="nav-item"><a class="nav-link" href="/Ai.html">AI Development</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/iot_robotic.html">IoT & Robotics</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/career.html">Careers</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contactus.html">Contact Us</a></li>
+
+                    
+                    <li class="nav-item">
+                        <button class="dark-toggle ms-3" id="themeToggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav> -->
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="mb-0">IT Project Requirement Form</h3>
+                        <p class="mb-0 mt-2">உங்க project details fill பண்ணுங்க – நாங்க தொடர்பு கொள்வோம்!</p>
+                    </div>
+                    <div class="card-body p-5">
+                        <!-- Success Message -->
+                        <div class="success-message" id="successMessage">
+                            <h5><i class="fas fa-check-circle"></i> வாழ்த்துக்கள்!</h5>
+                            <p>உங்கள் தகவல் வெற்றிகரமாக அனுப்பப்பட்டது. 24 மணி நேரத்திற்குள் உங்களை தொடர்பு கொள்வோம்!</p>
+                            <button class="btn btn-sm btn-outline-success mt-2" onclick="resetForm()">மீண்டும் புதிய தகவல் அனுப்ப</button>
+                        </div>
+                        
+                        <!-- Main Form -->
+                        <form id="projectForm">
+                            <div class="row g-3">
+                                <!-- Name -->
+                                <div class="col-md-6">
+                                    <label class="form-label">பெயர் / Name *</label>
+                                    <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <!-- Company -->
+                                <div class="col-md-6">
+                                    <label class="form-label">நிறுவனம் / Company</label>
+                                    <input type="text" class="form-control" id="company">
+                                </div>
+                                <!-- Phone -->
+                                <div class="col-md-6">
+                                    <label class="form-label">Phone / WhatsApp *</label>
+                                    <input type="tel" class="form-control" id="phone" required>
+                                </div>
+                                <!-- Email -->
+                                <div class="col-md-6">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email">
+                                </div>
+                                <!-- Project Type -->
+                                <div class="col-12">
+                                    <label class="form-label">Project Type *</label>
+                                    <select class="form-select" id="projectType" required>
+                                        <option value="">-- தேர்ந்தெடு --</option>
+                                        <option value="Website Development">Website Development</option>
+                                        <option value="Mobile App (Android/iOS)">Mobile App (Android/iOS)</option>
+                                        <option value="Web Application">Web Application</option>
+                                        <option value="E-commerce Portal">E-commerce Portal</option>
+                                        <option value="ERP/CRM Software">ERP/CRM Software</option>
+                                        <option value="UI/UX Design">UI/UX Design</option>
+                                        <option value="Digital Marketing">Digital Marketing</option>
+                                        <option value="Maintenance & Support">Maintenance & Support</option>
+                                        <option value="Other">வேறு / Other</option>
+                                    </select>
+                                </div>
+                                <!-- Budget -->
+                                <div class="col-md-6">
+                                    <label class="form-label">Budget (₹)</label>
+                                    <select class="form-select" id="budget">
+                                        <option value="">-- Select --</option>
+                                        <option value="50k - 1 Lakh">₹50,000 - ₹1 லட்சம்</option>
+                                        <option value="1 - 3 Lakhs">₹1 - 3 லட்சம்</option>
+                                        <option value="3 - 5 Lakhs">₹3 - 5 லட்சம்</option>
+                                        <option value="5 - 10 Lakhs">₹5 - 10 லட்சம்</option>
+                                        <option value="10 Lakhs+">₹10 லட்சத்திற்கு மேல்</option>
+                                    </select>
+                                </div>
+                                <!-- Timeline -->
+                                <div class="col-md-6">
+                                    <label class="form-label">Timeline</label>
+                                    <input type="text" class="form-control" id="timeline" placeholder="எ.கா: 2 months">
+                                </div>
+                                <!-- Description -->
+                                <div class="col-12">
+                                    <label class="form-label">Project Description *</label>
+                                    <textarea class="form-control" rows="5" id="description" placeholder="உங்க project பத்தி விரிவா சொல்லுங்க..." required></textarea>
+                                </div>
+                                <!-- Submit Button -->
+                              <div class="col-12 text-center mt-4 d-flex justify-content-center gap-3">
+    <button type="submit" class="btn btn-success px-4" id="submitBtn">
+        Submit
+    </button>
+
+    <button type="button" class="btn btn-whatsapp px-4" id="whatsappBtn">
+        <i class="fab fa-whatsapp whatsapp-icon" style="background-color:#1ebe52;"></i>
+        Send to WhatsApp
+    </button>
+</div>
+<script>
+document.getElementById("whatsappBtn").addEventListener("click", () => {
+    document.getElementById("projectForm").dispatchEvent(new Event("submit"));
+});
+</script>
+
+                            </div>
+                        </form>
+                        
+                        <script>
+const API_URL_PROJECT = gatewayApi("/api/project-enquiry/add");
+
+document.getElementById("projectForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    // Collect values
+    const data = {
+        name: document.getElementById("name").value.trim(),
+        company: document.getElementById("company").value.trim(),
+        phone: document.getElementById("phone").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        projectType: document.getElementById("projectType").value,
+        budget: document.getElementById("budget").value,
+        timeline: document.getElementById("timeline").value.trim(),
+        description: document.getElementById("description").value.trim()
+    };
+
+    // Save to backend
+    const res = await fetch(API_URL_PROJECT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+    });
+
+    const result = await res.json();
+
+    if (result.success) {
+        alert("Thank you! Your enquiry is saved.");
+        document.getElementById("projectForm").reset();
+    }
+
+    // WhatsApp message
+    const message = 
+`📌 *New Project Enquiry*
+
+👤 Name: ${data.name}
+🏢 Company: ${data.company || "-"}
+📞 Phone/WhatsApp: ${data.phone}
+📧 Email: ${data.email || "-"}
+
+🔧 Project Type: ${data.projectType}
+💰 Budget: ${data.budget || "-"}
+⏳ Timeline: ${data.timeline || "-"}
+📝 Description: ${data.description}
+
+Sent via Gateway AI Website`;
+
+    const whatsappURL = `https://wa.me/919500150020?text=${encodeURIComponent(message)}`;
+
+    window.open(whatsappURL, "_blank");
+});
+</script>
+
+                        <!-- Loading Spinner -->
+                        <div class="loading-spinner" id="loadingSpinner">
+                            <div class="spinner"></div>
+                            <p>Processing your request...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Modal -->
+    <div class="whatsapp-modal" id="whatsappModal">
+        <div class="whatsapp-modal-content">
+            <h4><i class="fab fa-whatsapp"></i> WhatsApp திறக்கிறது</h4>
+            <p>உங்கள் செய்தி தயாராக உள்ளது. WhatsApp இல் அனுப்பிய பின் இந்த பக்கத்திற்கு தானாக திரும்புவீர்கள்.</p>
+            <div class="whatsapp-modal-buttons">
+                <button class="whatsapp-modal-btn primary" id="openWhatsApp">WhatsApp திற</button>
+                <button class="whatsapp-modal-btn secondary" id="cancelWhatsApp">ரத்து செய்</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Store form data globally
+        let currentFormData = null;
+        
+        // Elements
+        const whatsappModal = document.getElementById('whatsappModal');
+        const openWhatsAppBtn = document.getElementById('openWhatsApp');
+        const cancelWhatsAppBtn = document.getElementById('cancelWhatsApp');
+        const successMessage = document.getElementById('successMessage');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+        const projectForm = document.getElementById('projectForm');
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const moonIcon = themeToggle.querySelector('i');
+
+        // Dark Mode Toggle
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                moonIcon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                moonIcon.classList.replace('fa-sun', 'fa-moon');
+            }
+        });
+
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (scrollTop / scrollHeight) * 100;
+            document.getElementById('progress').style.width = scrolled + '%';
+        });
+
+        // Form Submit
+        projectForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value.trim();
+            const company = document.getElementById('company').value.trim() || "குறிப்பிடப்படவில்லை";
+            const phone = document.getElementById('phone').value.trim();
+            const email = document.getElementById('email').value.trim() || "குறிப்பிடப்படவில்லை";
+            const projectType = document.getElementById('projectType').value;
+            const budget = document.getElementById('budget').value || "குறிப்பிடப்படவில்லை";
+            const timeline = document.getElementById('timeline').value.trim() || "குறிப்பிடப்படவில்லை";
+            const description = document.getElementById('description').value.trim();
+
+            currentFormData = { name, company, phone, email, projectType, budget, timeline, description };
+            showWhatsAppModal();
+        });
+
+        function showWhatsAppModal() {
+            whatsappModal.classList.add('active');
+        }
+
+        function hideWhatsAppModal() {
+            whatsappModal.classList.remove('active');
+        }
+
+        function openWhatsAppWithData() {
+            if (!currentFormData) return;
+            
+            const whatsappNumber = "919944663366"; // உங்க WhatsApp number
+
+            const message = `
+NEW PROJECT LEAD
+
+*Name:* ${currentFormData.name}
+*Company:* ${currentFormData.company}
+*Phone:* ${currentFormData.phone}
+*Email:* ${currentFormData.email}
+*Project Type:* ${currentFormData.projectType}
+*Budget:* ${currentFormData.budget}
+*Timeline:* ${currentFormData.timeline}
+
+*Description:*
+${currentFormData.description}
+
+---
+Sent from IT Project Form
+`.trim();
+
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+            hideWhatsAppModal();
+            showLoading();
+            
+            const newWindow = window.open(whatsappURL, '_blank');
+            
+            setTimeout(() => {
+                window.focus();
+                hideLoading();
+                showSuccess();
+            }, 3000);
+        }
+
+        function showLoading() {
+            loadingSpinner.style.display = 'block';
+            projectForm.style.display = 'none';
+        }
+
+        function hideLoading() {
+            loadingSpinner.style.display = 'none';
+        }
+
+        function showSuccess() {
+            successMessage.style.display = 'block';
+        }
+
+        function resetForm() {
+            successMessage.style.display = 'none';
+            projectForm.style.display = 'block';
+            projectForm.reset();
+        }
+
+        openWhatsAppBtn.addEventListener('click', openWhatsAppWithData);
+        cancelWhatsAppBtn.addEventListener('click', hideWhatsAppModal);
+
+        whatsappModal.addEventListener('click', function(e) {
+            if (e.target === whatsappModal) {
+                hideWhatsAppModal();
+            }
+        });
+    </script>
+</body>
+</html>
