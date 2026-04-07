@@ -15,7 +15,7 @@ Static frontend pages live in `Front end/`, and the Express + MongoDB backend li
 
 1. Install backend dependencies in `Backend/`.
 2. Start MongoDB and set `MONGODB_URI` if needed.
-3. Run `npm start` inside `Backend/`.
+3. Run `node server.js` or `npm start` from the project root.
 4. Open `http://localhost:5000/`.
 
 ## Notes

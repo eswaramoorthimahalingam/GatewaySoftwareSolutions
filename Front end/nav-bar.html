@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <script src="/assets/js/site-config.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
@@ -202,6 +201,7 @@
         }
         
 
+        /* Enhanced Dropdown Menu */
         .dropdown:hover .dropdown-menu {
             display: block;
             margin-top: 0;
@@ -248,6 +248,7 @@
             transform: translateX(8px);
         }
 
+        /* Dropdown Arrow */
         .dropdown-toggle::after {
             display: inline-block;
             margin-left: 8px;
@@ -267,7 +268,8 @@
 
 </head>
 <body>
-  <nav class="mobile-navbar d-block d-lg-none" >
+  <!-- Mobile Navbar -->
+  <nav class="mobile-navbar     d-block d-lg-none" >
     <div class="mobile-nav-header">
         <a href="./index.html" class="mobile-brand">
             <img src="/assets/gsslogo.png" alt="Gateway Logo" />
@@ -312,61 +314,37 @@
 
       <li class="mobile-dropdown">
         <button class="dropdown-btn">Internships▾</button>
-      <ul class="dropdown-content" id="internshipDropdown"></ul>
-
+        <ul class="dropdown-content">
+              <li><a class="dropdown-item" href="/Internshiptraining/webtech.html">Web Technology</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/flutterapp.html">Mobile App</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/embeddediot.html">Embedded IoT</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/genai.html">Gen AI</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/cybersecurity.html">Cyber Security</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/javaj2ee.html">Java</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/pythondj.html">Python With Django</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/powerbi.html">Data Analytics</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/pythonds.html">Data Science</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/pythonmysql.html">Python Full Stack</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/reactjstab.html">React JS</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/rtoolsprog.html">R Tool</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/softwaretesting.html">Software Testing</a></li>
+    </ul>
       </li>
-<script>
 
-async function loadDynamicMenus() {
-    const container = document.getElementById("internshipDropdown");
-
-    if (!container) return;
-
-    container.innerHTML = `<li><span class="dropdown-item text-muted">Loading...</span></li>`;
-
-    try {
-        const res = await fetch(gatewayApi("/api/menus"));
-        const menus = await res.json();
-
-        if (!Array.isArray(menus) || menus.length === 0) {
-            container.innerHTML = `<li><span class="dropdown-item text-muted">No menus found</span></li>`;
-            return;
-        }
-
-        container.innerHTML = menus
-            .map(menu => `
-                <li>
-                    <a class="dropdown-item" href="/Internshiptraining/${menu.path}">
-                        ${menu.name}
-                    </a>
-                </li>
-            `)
-            .join("");
-
-    } catch (err) {
-        console.error(err);
-        container.innerHTML = `<li><span class="dropdown-item text-danger">Failed to load menus</span></li>`;
-    }
-}
-
-document.addEventListener("DOMContentLoaded", loadDynamicMenus);
-</script>
+ 
 
       <li><a  href="./Ai.html">AI Development</a></li>
       <li><a  href="./iot_robotic.html">IoT & Robotics</a></li>
       <li><a href="./contactus.html">Contact Us</a></li>
-      <li class="nav-item">
-  <a 
-    class="nav-link" 
-    href="https://lms.sgsoftwaresolution.com/" 
-    style="color: var(--primary); text-decoration: none; font-weight: 700; border: 2px solid var(--primary); border-radius: 30px; padding: 8px 20px !important;"
-    target="_blank" 
-    rel="noopener noreferrer">
-    LMS Portal
-  </a>
-</li>
-        </ul>
-     
+      <li style="padding: 10px;">
+        <a 
+          href="https://lms.sgsoftwaresolution.com/" 
+          style="color: var(--primary); text-decoration: none; font-weight: 700; border: 2px solid var(--primary); border-radius: 30px; padding: 8px 18px; display: block; text-align: center;"
+          target="_blank" 
+          rel="noopener noreferrer">
+          LMS Portal
+        </a>
+      </li>
     </ul>
   </nav>
 
@@ -377,7 +355,6 @@ document.addEventListener("DOMContentLoaded", loadDynamicMenus);
       <img src="/assets/gsslogo.png" height="50px" width="200px" alt="Gateway Logo">
     </a>
    
-    <!-- இந்த button-ஐ மட்டும் மாத்தினா போதும் -->
     <button class="navbar-toggler" type="button" 
             data-bs-toggle="collapse" 
             data-bs-target="#navbarNavDropdown" 
@@ -419,89 +396,45 @@ document.addEventListener("DOMContentLoaded", loadDynamicMenus);
               <li><a class="dropdown-item" href="/Services/digital-transformation.html">Digital Transformation</a></li>
             </ul>
           </li>
-          
-<li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-        Internships
-    </a>
 
-   <ul id="dynamicInternMenus" class="dropdown-menu" >
-   </ul>
-</li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Internships</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/Internshiptraining/webtech.html">Web Technology</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/flutterapp.html">Mobile App</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/embeddediot.html">Embedded IoT</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/genai.html">Gen AI</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/cybersecurity.html">Cyber Security</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/javaj2ee.html">Java</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/pythondj.html">Python With Django</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/powerbi.html">Data Analytics</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/pythonds.html">Data Science</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/pythonmysql.html">Python Full Stack</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/reactjstab.html">React JS</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/rtoolsprog.html">R Tool</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/softwaretesting.html">Software Testing</a></li>
+            </ul>
+          </li>
 
-<script>
-  
-  document.addEventListener("DOMContentLoaded", loadDropdownMenus);
-
-  async function loadDropdownMenus() {
-    const dropdown = document.getElementById("dynamicInternMenus");
-    if (!dropdown) return;
-
-    dropdown.innerHTML = `<li><span class="dropdown-item text-muted">Loading...</span></li>`;
-
-    try {
-
-        const res = await fetch(gatewayApi("/api/menus"));
-        const menus = await res.json();
-
-        dropdown.innerHTML = menus
-            .map(menu => `
-                <li>
-                    <a class="dropdown-item" href="/Internshiptraining/${menu.path}">
-                        ${menu.name}
-                    </a>
-                </li>
-            `)
-            .join("");
-
-    } catch (err) {
-        console.error(err);
-        dropdown.innerHTML = `<li><span class="dropdown-item text-danger">Failed to load menus</span></li>`;
-    }
-}
-</script>
           <li class="nav-item"><a class="nav-link" href="/Ai.html">AI Development</a></li>
           <li class="nav-item"><a class="nav-link" href="/iot_robotic.html">IoT & Robotics</a></li>
           <li class="nav-item"><a class="nav-link" href="/career.html">Careers</a></li>
           <li class="nav-item"><a class="nav-link" href="/contactus.html">Contact Us</a></li>
           <li class="nav-item">
-  <a 
-    class="nav-link" 
-    href="https://lms.sgsoftwaresolution.com/" 
-    style="color: var(--primary); text-decoration: none; font-weight: 700; border: 2px solid var(--primary); border-radius: 30px; padding: 8px 20px !important;"
-    target="_blank" 
-    rel="noopener noreferrer">
-    LMS Portal
-  </a>
-</li>
+            <a 
+              class="nav-link" 
+              href="https://lms.sgsoftwaresolution.com/" 
+              style="color: var(--primary); text-decoration: none; font-weight: 700; border: 2px solid var(--primary); border-radius: 30px; padding: 6px 18px !important; display: inline-block; white-space: nowrap;"
+              target="_blank" 
+              rel="noopener noreferrer">
+              LMS Portal
+            </a>
+          </li>
         </ul>
-      </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-
-
-
-  <script>
-    const menuToggle = document.querySelector('.mobile-menu-toggle');
-    console.log(menuToggle);
-    
-    const navMenu = document.querySelector('.mobile-nav-menu');
-    const dropdownButtons = document.querySelectorAll('.dropdown-btn');
-
-    menuToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-      const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-      menuToggle.setAttribute('aria-expanded', !expanded);
-    });
-
-    dropdownButtons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const parent = btn.closest('.mobile-dropdown');
-        parent.classList.toggle('active');
-      });
-    });
-  </script>
+  <!-- Mobile menu toggle script is in each page -->
 </body>
 </html>
