@@ -100,28 +100,28 @@
             transform: translateY(-16px) scale(1.02);
             box-shadow: 0 30px 60px rgba(56,189,248,0.25); border-color: var(--primary);
         }
- .member-img {
-    height: 300px;
-    width: 100%;
-    overflow: hidden;
-    border-radius: 10px; /* optional */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f1f1f1; /* fallback if image fails */
-}
+        .member-img {
+            height: 300px;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f1f1f1;
+        }
 
-.member-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;       /* clean crop */
-    object-position: center; /* keeps face centered */
-    transition: transform 0.5s ease;
-}
+        .member-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.5s ease;
+        }
 
-.team-member:hover .member-img img {
-    transform: scale(1.1);
-}
+        .team-member:hover .member-img img {
+            transform: scale(1.1);
+        }
 
 .member-info {
     padding: 1.8rem;
@@ -137,6 +137,14 @@
 
         .member-role {
             color: var(--secondary); font-weight: 600; margin-bottom: 0; font-size: 1rem;
+        }
+
+        .team-status {
+            width: 100%;
+            text-align: center;
+            padding: 2rem 1rem;
+            color: #475569;
+            font-size: 1.05rem;
         }
 
           .footer {
@@ -434,49 +442,11 @@
                 <h2>Meet Our Core Team</h2>
                 <p class="lead">The innovators behind Gateway's success in digital transformation</p>
             </div>
-                <div class="row g-4" id="teamList">
-
+            <div class="row g-4" id="teamList">
+                <div class="team-status">Loading team members...</div>
+            </div>
         </div>
     </section>
-
-    <script>
-const API_URL_TEAM = gatewayApi("/api/team");
-let allTeamMembers = [];
-
-document.addEventListener("DOMContentLoaded", loadTeamMembers);
-
-async function loadTeamMembers() {
-    try {
-        const res = await fetch(API_URL_TEAM, { cache: "no-store" });
-        const teams = await res.json();
-
-        if (!Array.isArray(teams)) {
-            console.error("Invalid response:", teams);
-            return;
-        }
-
-        // Cache team members for modal
-        allTeamMembers = teams;
-
-        const teamList = document.getElementById("teamList");
-
-        teamList.innerHTML = teams.map(m => `
-            <div class="col-md-6 col-lg-3">
-                <div class="team-member" data-member="${m._id}">
-                    <img class="member-img" src="${gatewayAsset(m.image)}" alt="${m.name}">
-                    <div class="member-info">
-                        <h4>${m.name}</h4>
-                        <div class="member-role">${m.role}</div>
-                    </div>
-                </div>
-            </div>
-        `).join("");
-
-    } catch (err) {
-        console.error("Failed to load team:", err);
-    }
-}
-</script>
 
     <div class="social-modal" id="socialModal">
         <div class="social-modal-content">
@@ -484,7 +454,7 @@ async function loadTeamMembers() {
             <div class="social-modal-img"><img id="modalImage" src="" alt=""></div>
             <h3 class="social-modal-name" id="modalName"></h3>
             <div class="social-modal-role" id="modalRole"></div>
-            <div class="social-links"></div>
+            <div class="social-links" id="modalSocialLinks"></div>
         </div>
     </div>
 
@@ -565,39 +535,98 @@ async function loadTeamMembers() {
     const API_URL_TEAM = gatewayApi("/api/team");
     let allTeamMembers = [];
 
-    document.addEventListener("click", async function (e) {
-        const memberCard = e.target.closest(".team-member");
-        if (!memberCard) return;
+    function escapeHtml(value) {
+        return String(value ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#39;");
+    }
 
-        const id = memberCard.dataset.member;
-        
-        // Find member from cached data
-        const member = allTeamMembers.find(m => m._id === id);
-        if (!member) return;
+    function renderTeamStatus(message) {
+        document.getElementById("teamList").innerHTML = `<div class="team-status">${escapeHtml(message)}</div>`;
+    }
 
+    function renderTeamMembers(members) {
+        const teamList = document.getElementById("teamList");
+        teamList.innerHTML = members.map((member) => `
+            <div class="col-md-6 col-lg-3">
+                <div class="team-member" data-member="${member._id}">
+                    <div class="member-img">
+                        <img src="${gatewayAsset(member.image)}" alt="${escapeHtml(member.name)}" loading="lazy">
+                    </div>
+                    <div class="member-info">
+                        <h4>${escapeHtml(member.name)}</h4>
+                        <div class="member-role">${escapeHtml(member.role)}</div>
+                    </div>
+                </div>
+            </div>
+        `).join("");
+    }
+
+    async function loadTeamMembers() {
+        try {
+            const response = await fetch(API_URL_TEAM, { cache: "no-store" });
+            const teams = await response.json();
+
+            if (!Array.isArray(teams)) {
+                console.error("Invalid response:", teams);
+                renderTeamStatus("Unable to load team members right now.");
+                return;
+            }
+
+            allTeamMembers = teams;
+
+            if (!teams.length) {
+                renderTeamStatus("Team members will appear here soon.");
+                return;
+            }
+
+            renderTeamMembers(teams);
+        } catch (error) {
+            console.error("Failed to load team:", error);
+            renderTeamStatus("Unable to load team members right now.");
+        }
+    }
+
+    function openMemberModal(member) {
         document.getElementById("modalImage").src = gatewayAsset(member.image);
+        document.getElementById("modalImage").alt = member.name;
         document.getElementById("modalName").textContent = member.name;
         document.getElementById("modalRole").textContent = member.role;
 
-        const socialContainer = document.querySelector(".social-links");
-        
-        // Always show social icons (use placeholder # if no link provided)
+        const socialContainer = document.getElementById("modalSocialLinks");
         socialContainer.innerHTML = `
-            <a href="${member.linkedin || '#'}" class="social-link linkedin" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            <a href="${member.facebook || '#'}" class="social-link facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="${member.instagram || '#'}" class="social-link instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="${member.linkedin || '#'}" class="social-link linkedin" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+            <a href="${member.facebook || '#'}" class="social-link facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+            <a href="${member.instagram || '#'}" class="social-link instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
         `;
 
         document.getElementById("socialModal").classList.add("active");
-    });
+    }
 
-    document.getElementById("closeModal").addEventListener("click", () => {
+    function closeMemberModal() {
         document.getElementById("socialModal").classList.remove("active");
+    }
+
+    document.addEventListener("DOMContentLoaded", loadTeamMembers);
+
+    document.addEventListener("click", function (event) {
+        const memberCard = event.target.closest(".team-member");
+        if (!memberCard) return;
+
+        const member = allTeamMembers.find((item) => item._id === memberCard.dataset.member);
+        if (!member) return;
+
+        openMemberModal(member);
     });
 
-    document.getElementById("socialModal").addEventListener("click", e => {
-        if (e.target === document.getElementById("socialModal")) {
-            document.getElementById("socialModal").classList.remove("active");
+    document.getElementById("closeModal").addEventListener("click", closeMemberModal);
+
+    document.getElementById("socialModal").addEventListener("click", function (event) {
+        if (event.target === this) {
+            closeMemberModal();
         }
     });
     </script>
