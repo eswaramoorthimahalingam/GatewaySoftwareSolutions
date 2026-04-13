@@ -34,9 +34,8 @@
 
 </div>
 
-<script src="../assets/js/site-config.js"></script>
 <script>
-const API = gatewayApi("/api/clients");
+const API = "http://localhost:5000/api/clients";
 
 function showToast(msg, type="primary") {
     const toast = document.getElementById("toastBox");
@@ -53,7 +52,7 @@ async function loadClients() {
     document.getElementById("clientList").innerHTML = data.map(c => `
         <div class="col-md-3">
             <div class="card p-2">
-                <img src="${gatewayAsset(c.image)}" class="card-img-top" height="150">
+                <img src="http://localhost:5000${c.image}" class="card-img-top" height="150">
                 <button onclick="deleteClient('${c._id}')" class="btn btn-danger mt-2">Delete</button>
             </div>
         </div>

@@ -1,22 +1,24 @@
 const express = require("express");
 const router = express.Router();
+const multer = require("multer");
+const path = require("path");
 const Application = require("../models/CareerApplication");
-const { buildUploadPath, createUploadMiddleware } = require("../utils/uploads");
 
-const upload = createUploadMiddleware("resumes");
+// storage
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => cb(null, "uploads/resumes"),
+    filename: (req, file, cb) => cb(null, Date.now() + "-" + file.originalname)
+});
+const upload = multer({ storage });
 
 // Submit Application
 router.post("/submit", upload.single("resume"), async (req, res) => {
   try {
-    if (!req.file) {
-      return res.status(400).json({ success: false, error: "Resume file is required" });
-    }
+    const data = req.body;
 
-    const data = {
-      ...req.body,
-      coverLetter: req.body.coverLetter || req.body.message || "",
-      resume: buildUploadPath("resumes", req.file.filename)
-    };
+    if (req.file) {
+      data.resume = req.file.filename; // store only the filename
+    }
 
     const app = await Application.create(data);
     res.json({ success: true, app });

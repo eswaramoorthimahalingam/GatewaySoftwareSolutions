@@ -245,7 +245,6 @@
                 <i class="fas fa-sign-out-alt"></i> Logout
             </button>
         </div>
-<script src="../assets/js/site-config.js"></script>
 <script>
 function logoutAdmin() {
     // Remove localStorage
@@ -426,8 +425,14 @@ function logoutAdmin() {
             </div>
 
             <div class="col-md-4">
+                <label class="form-label">Position (1-34)</label>
+                <input type="number" id="teamOrder" class="form-control" min="1" max="34" value="1">
+            </div>
+
+            <div class="col-md-4">
                 <label class="form-label">Upload Photo</label>
                 <input type="file" id="teamImage" class="form-control">
+                <div id="teamImagePreview" class="mt-2"></div>
             </div>
             <div class="col-md-4">
     <label class="form-label">LinkedIn URL</label>
@@ -692,16 +697,29 @@ function logoutAdmin() {
     </div>
 
 <script>
-const API_URL_CLIENTS = gatewayApi("/api/clients");
-const API_URL_COLLEGES = gatewayApi("/api/college");
-const API_URL_PROJECTS = gatewayApi("/api/project");
-const API_URL_TEAM = gatewayApi("/api/team");
-const API_URL_MENUS = gatewayApi("/api/menus");
-const API_URL_CAREER = gatewayApi("/api/career");
-const API_URL_CAREER_APPLY = gatewayApi("/api/careerApply");
-const API_URL_CONTACT = gatewayApi("/api/contact");
-const API_URL_GET_ENQUIRIES = gatewayApi("/api/enquiry");
-const API_URL_PROJECT_ENQUIRIES = gatewayApi("/api/project-enquiry");
+const API_URL_CLIENTS = "http://localhost:5000/api/clients";
+const API_URL_COLLEGES = "http://localhost:5000/api/college";
+const API_URL_PROJECTS = "http://localhost:5000/api/project";
+const API_URL_TEAM = "http://localhost:5000/api/team";
+const API_URL_MENUS = "http://localhost:5000/api/menus";
+const API_URL_CAREER = "http://localhost:5000/api/career";
+const API_URL_CAREER_APPLY = "http://localhost:5000/api/careerApply";
+const API_URL_CONTACT = "http://localhost:5000/api/contact";
+const API_URL_GET_ENQUIRIES = "http://localhost:5000/api/enquiry";
+const API_URL_PROJECT_ENQUIRIES = "http://localhost:5000/api/project-enquiry";
+
+// Team form elements
+const teamName = document.getElementById("teamName");
+const teamRole = document.getElementById("teamRole");
+const teamOrder = document.getElementById("teamOrder");
+const teamImage = document.getElementById("teamImage");
+const teamLinkedIn = document.getElementById("teamLinkedIn");
+const teamFacebook = document.getElementById("teamFacebook");
+const teamInstagram = document.getElementById("teamInstagram");
+const editTeamId = document.getElementById("editTeamId");
+const addTeamForm = document.getElementById("addTeamForm");
+const teamSubmitBtn = document.getElementById("teamSubmitBtn");
+const teamCancelBtn = document.getElementById("teamCancelBtn");
 
 
 document.querySelectorAll('.nav-item').forEach(item => {
@@ -755,7 +773,7 @@ async function loadClients() {
         document.getElementById("clientList").innerHTML = clients.map(c => `
             <div class="col-md-3">
                 <div class="card p-2">
-                    <img src="${gatewayAsset(c.image)}" class="card-img-top" height="150" alt="Client Logo">
+                    <img src="http://localhost:5000${c.image}" class="card-img-top" height="150" alt="Client Logo">
                     <button onclick="deleteClient('${c._id}')" class="btn btn-danger mt-2">Delete</button>
                 </div>
             </div>
@@ -823,7 +841,7 @@ async function loadColleges() {
         document.getElementById("collegeList").innerHTML = colleges.map(c => `
             <div class="col-md-3">
                 <div class="card p-2 shadow-sm">
-                    <img src="${gatewayAsset(c.image)}" height="140" class="card-img-top mb-2" alt="College Logo">
+                    <img src="http://localhost:5000${c.image}" height="140" class="card-img-top mb-2" alt="College Logo">
 
                     <h5 class="mb-2">${escapeHtml(c.name)}</h5>
                     <p class="mb-2 text-muted">${escapeHtml(c.location)}</p>
@@ -970,7 +988,7 @@ async function loadProjects() {
         container.innerHTML = projects.map(p => `
             <div class="col-md-4">
                 <div class="card shadow-sm p-2">
-                    <img src="${gatewayAsset(p.image)}" class="card-img-top" height="180">
+                    <img src="http://localhost:5000${p.image}" class="card-img-top" height="180">
 
                     <h5 class="mt-2">${p.title}</h5>
                     <p>${p.description}</p>
@@ -1078,12 +1096,21 @@ async function loadTeams() {
             return;
         }
 
+        const maxOrder = teams.length > 0 ? Math.max(...teams.map(t => t.order || 0)) : 0;
+        const nextPosition = maxOrder + 1;
+        
+        if (!document.getElementById("editTeamId").value) {
+            teamOrder.value = nextPosition;
+        }
+
         const container = document.getElementById("teamList");
 
         container.innerHTML = teams.map(m => `
             <div class="col-md-4">
                 <div class="card p-2 shadow-sm">
-                    <img src="${gatewayAsset(m.image)}" class="card-img-top" height="200">
+                    <img src="http://localhost:5000${m.image}" class="card-img-top" height="200" 
+                         onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(m.name)}&background=1e3a8a&color=fff&size=200'"
+                         alt="${m.name}">
                     <h5 class="mt-2">${m.name}</h5>
                     <p class="text-muted">${m.role}</p>
                     <p class="text-muted">${m.linkedin}</p>
@@ -1110,32 +1137,85 @@ document.getElementById("addTeamForm").addEventListener("submit", async function
     e.preventDefault();
 
     const id = document.getElementById("editTeamId").value;
-    let url = `${API_URL_TEAM}/add`;
-    let method = "POST";
-
-    if (id) {
-        url = `${API_URL_TEAM}/${id}`;
-        method = "PUT";
-    }
-
-    const formData = new FormData();
- formData.append("name", teamName.value);
-formData.append("role", teamRole.value);
-formData.append("linkedin", teamLinkedIn.value);
-formData.append("facebook", teamFacebook.value);
-formData.append("instagram", teamInstagram.value);
-
-
+    const isEdit = !!id;
     const img = document.getElementById("teamImage").files[0];
-    if (img) formData.append("image", img);
 
-    const res = await fetch(url, { method, body: formData });
-    const data = await res.json();
+    if (isEdit) {
+        // EDIT MODE - use POST with image if new image selected, PUT otherwise
+        if (img) {
+            const formData = new FormData();
+            formData.append("name", teamName.value);
+            formData.append("role", teamRole.value);
+            formData.append("order", teamOrder.value);
+            formData.append("linkedin", teamLinkedIn.value);
+            formData.append("facebook", teamFacebook.value);
+            formData.append("instagram", teamInstagram.value);
+            formData.append("image", img);
 
-    if (data.success) {
-        showToast(id ? "Team Member Updated!" : "Member Added!", "success");
-        cancelEditTeam();
-        loadTeams();
+            const res = await fetch(`${API_URL_TEAM}/edit/${id}`, {
+                method: "POST",
+                body: formData
+            });
+            const data = await res.json();
+            
+            if (data.success) {
+                showToast("Team Member Updated!", "success");
+                cancelEditTeam();
+                loadTeams();
+            } else {
+                showToast(data.error || "Failed to update!", "danger");
+            }
+        } else {
+            const res = await fetch(`${API_URL_TEAM}/${id}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: teamName.value,
+                    role: teamRole.value,
+                    order: teamOrder.value,
+                    linkedin: teamLinkedIn.value,
+                    facebook: teamFacebook.value,
+                    instagram: teamInstagram.value
+                })
+            });
+            const data = await res.json();
+            
+            if (data.success) {
+                showToast("Team Member Updated!", "success");
+                cancelEditTeam();
+                loadTeams();
+            }
+        }
+    } else {
+        // ADD MODE
+        if (!img) {
+            showToast("Please select an image!", "warning");
+            return;
+        }
+        
+        const formData = new FormData();
+        formData.append("name", teamName.value);
+        formData.append("role", teamRole.value);
+        formData.append("order", teamOrder.value);
+        formData.append("linkedin", teamLinkedIn.value);
+        formData.append("facebook", teamFacebook.value);
+        formData.append("instagram", teamInstagram.value);
+        formData.append("image", img);
+
+        const res = await fetch(`${API_URL_TEAM}/add`, {
+            method: "POST",
+            body: formData
+        });
+        const data = await res.json();
+        console.log("Add response:", data);
+
+        if (data.success) {
+            showToast("Member Added!", "success");
+            cancelEditTeam();
+            loadTeams();
+        } else {
+            showToast(data.error || "Failed to add member!", "danger");
+        }
     }
 });
 
@@ -1146,10 +1226,18 @@ async function editTeam(id) {
     editTeamId.value = m._id;
     teamName.value = m.name;
     teamRole.value = m.role;
+    teamOrder.value = m.order || 1;
 
     teamLinkedIn.value = m.linkedin || "";
     teamFacebook.value = m.facebook || "";
     teamInstagram.value = m.instagram || "";
+
+    const imagePreview = document.getElementById("teamImagePreview");
+    if (m.image) {
+        imagePreview.innerHTML = `<img src="http://localhost:5000${m.image}" style="width:100px;height:100px;object-fit:cover;border-radius:8px;">`;
+    } else {
+        imagePreview.innerHTML = "";
+    }
 
     document.getElementById("teamFormTitle").textContent = "Edit Team Member";
     teamSubmitBtn.textContent = "Update Member";
@@ -1161,7 +1249,9 @@ function cancelEditTeam() {
     editTeamId.value = "";
     addTeamForm.reset();
     teamImage.value = "";
+    teamOrder.value = "1";
     teamCancelBtn.style.display = "none";
+    document.getElementById("teamImagePreview").innerHTML = "";
 
     document.getElementById("teamFormTitle").textContent = "Add Core Team Member";
     teamSubmitBtn.textContent = "Add Member";
@@ -1420,7 +1510,7 @@ async function loadApplications() {
         <td>${a.phone}</td>
         <td>${a.jobTitle}</td>
        <td>
-  <a href="${gatewayAsset(a.resume)}" target="_blank">View Resume</a>
+  <a href="http://localhost:5000${a.resume}" target="_blank">View Resume</a>
 </td>
         <td>${new Date(a.createdAt).toLocaleString()}</td>
       </tr>
@@ -1448,7 +1538,7 @@ async function loadContacts() {
                 <td>${c.phone}</td>
                 <td>${c.service}</td>
                 <td>${c.message}</td>
-                <td>${c.file ? `<a href="${gatewayAsset(c.file)}" target="_blank">View File</a>` : "-"}</td>
+                <td>${c.file ? `<a href="http://localhost:5000${c.file}" target="_blank">View File</a>` : "-"}</td>
                 <td>${new Date(c.createdAt).toLocaleString()}</td>
             </tr>
         `).join("");
@@ -1522,7 +1612,7 @@ async function loadStartProjectEnquiries() {
     table.innerHTML = "<tr><td colspan='9'>Loading...</td></tr>";
 
     try {
-        const res = await fetch(gatewayApi("/api/start-project"));
+        const res = await fetch("http://localhost:5000/api/start-project");
         const data = await res.json();
 
         if (data.length === 0) {
@@ -1554,7 +1644,7 @@ document.addEventListener("DOMContentLoaded", loadStartProjectEnquiries);
 
 
 async function loadInternEnquiries() {
-  const res = await fetch(gatewayApi("/api/internEnquiry"));
+  const res = await fetch("http://localhost:5000/api/internEnquiry");
   const enquiries = await res.json();
 
   const tbody = document.getElementById("internEnquiryTable");

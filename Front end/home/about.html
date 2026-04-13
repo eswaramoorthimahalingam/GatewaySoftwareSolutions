@@ -58,7 +58,7 @@
         .navbar-brand:hover img { transform:scale(1.08); }
         .brand-text { 
             background:var(--gradient-mixed); 
-            -webkit-background-clip:text; 
+            /* -webkit-background-clip:text;  */
             -webkit-text-fill-color:transparent; 
             letter-spacing:-1px; 
             position:relative; 
@@ -230,17 +230,82 @@
             background:linear-gradient(to bottom,var(--primary-orange),var(--secondary-orange));
         }
 
-        /* ---------- TEAM ---------- */
+        /* ==================== TEAM ==================== */
         .team { padding:clamp(60px,12vh,100px) 0; background:#fff; }
         .team .row { display:flex; flex-wrap:wrap; gap:2rem; justify-content:center; }
-        .team-member { 
-            width:100%; max-width:320px; border-radius:15px; overflow:hidden; 
-            box-shadow:0 10px 30px rgba(0,0,0,.08); transition:all .4s ease; cursor:pointer;
+        
+        .team-card {
+            background: #fff;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform .35s, box-shadow .35s, border-color .3s;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            position: relative;
+            width:100%; max-width:320px; display:block; text-decoration:none;
         }
-        .team-member:hover { transform:translateY(-10px); box-shadow:0 15px 35px rgba(0,0,0,.15); }
-        .member-img { height:280px; overflow:hidden; }
-        .member-img img { width:100%; height:100%; object-fit:cover; transition:transform .5s ease; }
-        .team-member:hover .member-img img { transform:scale(1.12); }
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 16px 48px rgba(30,58,138,0.16);
+            border-color: #2563eb;
+        }
+        .card-img-wrap {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            overflow: hidden;
+            background: #e2e8f0;
+            position: relative;
+        }
+        .card-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            transition: transform .5s ease;
+        }
+        .team-card:hover .card-img-wrap img {
+            transform: scale(1.07);
+        }
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(30,58,138,0.55) 0%, transparent 55%);
+            opacity: 0;
+            transition: opacity .35s;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 18px;
+        }
+        .team-card:hover .card-overlay { opacity: 1; }
+        .card-overlay span {
+            color: #fff;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            background: rgba(255,255,255,0.18);
+            border: 1px solid rgba(255,255,255,0.35);
+            padding: 5px 16px;
+            border-radius: 50px;
+        }
+        .card-body {
+            padding: 20px 18px 22px;
+            text-align: center;
+        }
+        .card-body h4 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 6px;
+        }
+        .card-body p {
+            font-size: 0.93rem;
+            color: #64748b;
+            font-weight: 500;
+            margin: 0;
+        }
 
         /* ---------- CONTACT FORM ---------- */
         .contact-form-section { padding:clamp(60px,12vh,100px) 0; background:linear-gradient(135deg,var(--light-blue),#fff); }
@@ -322,16 +387,6 @@
             color: #94a3b8;
         }
 
-        /* ---------- MODAL ---------- */
-        .social-modal { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,.7); 
-            display:flex; align-items:center; justify-content:center; z-index:9999; opacity:0; visibility:hidden; transition:all .3s ease; }
-        .social-modal.active { opacity:1; visibility:visible; }
-        .social-modal-content { background:#fff; border-radius:15px; padding:2rem; max-width:400px; width:90%; text-align:center; 
-            position:relative; transform:scale(0.8); transition:all .3s ease; }
-        .social-modal.active .social-modal-content { transform:scale(1); }
-        .social-modal-close { position:absolute; top:15px; right:15px; background:none; border:none; font-size:1.5rem; color:#666; cursor:pointer; transition:all .3s ease; }
-        .social-modal-close:hover { color:var(--primary); transform:rotate(90deg); }
-
         /* ---------- ANIMATIONS ---------- */
         @keyframes fadeInUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
         @keyframes fadeInLeft { from { opacity:0; transform:translateX(-30px); } to { opacity:1; transform:translateX(0); } }
@@ -380,16 +435,134 @@
             .stats-section .row > div { margin-bottom:1rem; }
         }
     </style>
+    <style>
+        /* ===== MODAL BACKDROP ===== */
+        .modal-backdrop-custom {
+            position: fixed;
+            inset: 0;
+            background: rgba(15,23,42,.65);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity .3s ease, visibility .3s ease;
+        }
+        .modal-backdrop-custom.open { opacity: 1; visibility: visible; }
+        .profile-card {
+            background: #fff;
+            border-radius: 28px;
+            width: 100%;
+            max-width: 380px;
+            overflow: hidden;
+            position: relative;
+            transform: translateY(40px) scale(.97);
+            transition: transform .4s cubic-bezier(.175,.885,.32,1.275);
+            box-shadow: 0 32px 80px rgba(15,23,42,.25);
+        }
+        .modal-backdrop-custom.open .profile-card { transform: translateY(0) scale(1); }
+        .profile-card-top {
+            height: 110px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 60%, #06b6d4 100%);
+            position: relative;
+        }
+        .modal-close-btn {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255,255,255,.25);
+            border: none;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all .2s;
+            z-index: 10;
+        }
+        .modal-close-btn:hover { background: rgba(255,255,255,.4); transform: rotate(90deg); }
+        .profile-card-body { padding: 0 24px 28px; text-align: center; margin-top: -60px; }
+        .profile-img-wrap {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 16px;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 20px rgba(0,0,0,.12);
+            overflow: hidden;
+            background: #e2e8f0;
+        }
+        .profile-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+        .profile-name { font-size: 1.35rem; font-weight: 700; color: #0f172a; margin-bottom: 4px; }
+        .profile-role { font-size: .95rem; font-weight: 500; color: #64748b; margin-bottom: 1.5rem; }
+        .social-row { display: flex; flex-direction: column; gap: 10px; }
+        .social-pill {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 18px;
+            border-radius: 50px;
+            border: 1.5px solid #e2e8f0;
+            background: #f8fafc;
+            color: #0f172a;
+            font-size: .9rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform .22s, background .22s, border-color .22s, color .22s, box-shadow .22s;
+        }
+        .social-pill i { width: 22px; text-align: center; font-size: 1.05rem; flex-shrink: 0; }
+        .social-pill .pill-label { flex: 1; text-align: left; }
+        .social-pill .pill-arrow { font-size: .75rem; opacity: .45; transition: opacity .22s, transform .22s; }
+        .social-pill:hover { transform: translateX(4px); box-shadow: 0 6px 20px rgba(0,0,0,.1); color: #fff; border-color: transparent; }
+        .social-pill:hover .pill-arrow { opacity: 1; transform: translateX(3px); }
+        .social-pill.li:hover { background: #0a66c2; }
+        .social-pill.li:hover i { color: #fff; }
+        .social-pill.fb:hover { background: #1877f2; }
+        .social-pill.fb:hover i { color: #fff; }
+        .social-pill.ig:hover { background: #e4405f; }
+        .social-pill.ig:hover i { color: #fff; }
+        .social-pill.no-link { opacity: 0.5; pointer-events: none; }
+    </style>
 </head>
 <body>
 
 <!-- ==================== NAVBAR (Gateway Software Solutions) ==================== -->
 <div id="header"></div>
 
-<script src="../assets/js/site-config.js"></script>
-<script src="../assets/js/load-nav.js"></script>
 <script>
-  loadGatewayNavbar("../nav-bar.html");
+  // Load navbar
+  fetch('/nav-bar.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('header').innerHTML = data;
+
+      // ✅ Run this only after nav-bar.html is inserted
+      const menuToggle = document.querySelector('.mobile-menu-toggle');
+      const navMenu = document.querySelector('.mobile-nav-menu');
+      const dropdownButtons = document.querySelectorAll('.dropdown-btn');
+
+      menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', !expanded);
+      });
+
+      dropdownButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const parent = btn.closest('.mobile-dropdown');
+          parent.classList.toggle('active');
+        });
+      });
+    })
+    .catch(err => console.error('Header load error:', err));
 </script>
 
 <!-- ==================== HERO ==================== -->
@@ -502,7 +675,7 @@
 </section>
 
 <script>
-const API_URL_COLLEGES = gatewayApi("/api/college");
+const API_URL_COLLEGES = "http://localhost:5000/api/college";
 
 async function loadPartnerColleges() {
     try {
@@ -518,7 +691,7 @@ colleges.forEach(c => {
             const html = `
                 <div class="college-card">
                     <div class="college-logo">
-                        <img src="${gatewayAsset(c.image)}" alt="${c.name}">
+                        <img src="http://localhost:5000${c.image}" alt="${c.name}">
                     </div>
                     <h4 class="college-name">${c.name}</h4>
                     <p class="college-location">${c.location}</p>
@@ -537,6 +710,39 @@ colleges.forEach(c => {
 loadPartnerColleges();
 </script>
 
+
+<!-- ==================== PROFILE MODAL ==================== -->
+<div class="modal-backdrop-custom" id="profileModal" role="dialog" aria-modal="true" aria-labelledby="modalName">
+    <div class="profile-card">
+        <div class="profile-card-top">
+            <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close profile"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="profile-card-body">
+            <div class="profile-img-wrap">
+                <img id="modalImg" src="" alt="">
+            </div>
+            <div class="profile-name" id="modalName"></div>
+            <div class="profile-role" id="modalRole"></div>
+            <div class="social-row" id="socialRow">
+                <a class="social-pill li" id="modalLi" href="#" target="_blank" rel="noopener">
+                    <i class="fab fa-linkedin-in"></i>
+                    <span class="pill-label">LinkedIn</span>
+                    <span class="pill-arrow"><i class="fas fa-arrow-right"></i></span>
+                </a>
+                <a class="social-pill fb" id="modalFb" href="#" target="_blank" rel="noopener">
+                    <i class="fab fa-facebook-f"></i>
+                    <span class="pill-label">Facebook</span>
+                    <span class="pill-arrow"><i class="fas fa-arrow-right"></i></span>
+                </a>
+                <a class="social-pill ig" id="modalIg" href="#" target="_blank" rel="noopener">
+                    <i class="fab fa-instagram"></i>
+                    <span class="pill-label">Instagram</span>
+                    <span class="pill-arrow"><i class="fas fa-arrow-right"></i></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- ==================== MISSION ==================== -->
 <section class="mission" id="mission">
@@ -574,32 +780,44 @@ loadPartnerColleges();
         </div>
         <div class="row">
             <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-                <div class="card team-member animate-on-scroll" data-member="1">
-                    <div class="member-img"><img src="/assets/images/sir.jpeg" alt="Sabarinathan"></div>
-                    <div class="member-info text-center p-3">
+                <a href="ourteam.html" class="team-card animate-on-scroll" data-member="1">
+                    <div class="card-img-wrap">
+                        <img src="../Updated Images/Sabari sir.jpeg" alt="Sabarinathan">
+                        <div class="card-overlay"><span>View Profile</span></div>
+                    </div>
+                    <div class="card-body">
                         <h4>SABARINATHAN MUTHU</h4>
-                        <div class="member-role">Chief Executive Officer</div>
+                        <p>Chief Executive Officer</p>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-                <div class="card team-member animate-on-scroll" data-member="2">
-                    <div class="member-img"><img src="/assets/images/mam.jpeg" alt="Kiruba"></div>
-                    <div class="member-info text-center p-3">
+                <a href="ourteam.html" class="team-card animate-on-scroll" data-member="2">
+                    <div class="card-img-wrap">
+                        <img src="../Updated Images/kiruba Mam.jpeg" alt="Kiruba">
+                        <div class="card-overlay"><span>View Profile</span></div>
+                    </div>
+                    <div class="card-body">
                         <h4>Kiruba</h4>
-                        <div class="member-role">Chief Financial Officer</div>
+                        <p>Chief Financial Officer</p>
                     </div>
-                </div>
+                </a>
             </div>
             <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center">
-                <div class="card team-member animate-on-scroll" data-member="3">
-                    <div class="member-img"><img src="/assets/images/balajijpg.jpg" alt="Balaji"></div>
-                    <div class="member-info text-center p-3">
-                        <h4>Balaji</h4>
-                        <div class="member-role">Chief Executive Director</div>
+                <a href="ourteam.html" class="team-card animate-on-scroll" data-member="3">
+                    <div class="card-img-wrap">
+                        <img src="../Updated Images/Balaji Sir.jpeg" alt="Balaji">
+                        <div class="card-overlay"><span>View Profile</span></div>
                     </div>
-                </div>
+                    <div class="card-body">
+                        <h4>Balaji</h4>
+                        <p>Chief Executive Director</p>
+                    </div>
+                </a>
             </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="ourteam.html" class="btn btn-primary-custom">View Full Team</a>
         </div>
     </div>
 </section>
@@ -831,7 +1049,7 @@ loadPartnerColleges();
     </section>
 
     <script>
-const API_URL_ENQUIRY = gatewayApi("/api/enquiry/add");
+const API_URL_ENQUIRY = "http://localhost:5000/api/enquiry/add";
 
 document.getElementById("contactForm").addEventListener("submit", async function(e) {
     e.preventDefault();
@@ -1222,42 +1440,13 @@ document.getElementById("contactForm").addEventListener("submit", async function
 
         </div>
 
-        <!-- Copyright -->
-        <div class="copyright">
-            © Gateway Software Solutions. All rights reserved. | Empowering Businesses Overturn The Ordinary.
-        </div>
-
     </div>
 </footer>
-
-</body>
-</html>
-
-<!-- ==================== MODAL ==================== -->
-<div class="social-modal" id="socialModal">
-    <div class="social-modal-content">
-        <button class="social-modal-close" id="closeModal"><i class="fas fa-times"></i></button>
-        <div class="social-modal-img"><img id="modalImage" src="" alt=""></div>
-        <h3 class="social-modal-name" id="modalName"></h3>
-        <div class="social-modal-role" id="modalRole"></div>
-        <div class="social-links d-flex justify-content-center gap-3 mt-3">
-            <a href="#" class="social-link facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social-link instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-link linkedin"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-    </div>
-</div>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    const teamMembers = {
-        1: { name: "SABARINATHAN MUTHU.ER", role: "Chief Executive Officer", image: "/assets/images/sir.jpeg" },
-        2: { name: "Kiruba", role: "Chief Financial Officer", image: "/assets/images/mam.jpeg" },
-        3: { name: "Balaji", role: "Chief Executive Director", image: "/assets/images/balajijpg.jpg" }
-    };
-
     // Form validation
     function validateName() {
         const name = document.getElementById('name').value.trim();
@@ -1325,23 +1514,51 @@ document.getElementById("contactForm").addEventListener("submit", async function
         });
 
         // Team modal
-        document.querySelectorAll('.team-member').forEach(m => {
-            m.addEventListener('click', function () {
-                const data = teamMembers[this.dataset.member];
-                if (data) {
-                    document.getElementById('modalImage').src = data.image;
-                    document.getElementById('modalName').textContent = data.name;
-                    document.getElementById('modalRole').textContent = data.role;
-                    document.getElementById('socialModal').classList.add('active');
-                }
+        const teamMembers = {
+            1: { name: "SABARINATHAN MUTHU", role: "Chief Executive Officer", image: "../Updated Images/Sabari sir.jpeg", linkedin: "#", facebook: "#", instagram: "#" },
+            2: { name: "Kiruba", role: "Chief Financial Officer", image: "../Updated Images/kiruba Mam.jpeg", linkedin: "#", facebook: "#", instagram: "#" },
+            3: { name: "Balaji", role: "Chief Executive Director", image: "../Updated Images/Balaji Sir.jpeg", linkedin: "#", facebook: "#", instagram: "#" }
+        };
+        
+        const modal = document.getElementById('profileModal');
+        const modalImg = document.getElementById('modalImg');
+        const modalName = document.getElementById('modalName');
+        const modalRole = document.getElementById('modalRole');
+        const modalLi = document.getElementById('modalLi');
+        const modalFb = document.getElementById('modalFb');
+        const modalIg = document.getElementById('modalIg');
+        const closeBtn = document.getElementById('modalCloseBtn');
+        
+        function openModal(memberId) {
+            const member = teamMembers[memberId];
+            if (!member) return;
+            modalImg.src = member.image;
+            modalImg.alt = member.name;
+            modalName.textContent = member.name;
+            modalRole.textContent = member.role;
+            modalLi.href = member.linkedin || '#';
+            modalFb.href = member.facebook || '#';
+            modalIg.href = member.instagram || '#';
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            modal.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        
+        document.querySelectorAll('.team-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                e.preventDefault();
+                const memberId = this.dataset.member;
+                openModal(memberId);
             });
         });
-        document.getElementById('closeModal').addEventListener('click', () => {
-            document.getElementById('socialModal').classList.remove('active');
-        });
-        document.getElementById('socialModal').addEventListener('click', e => {
-            if (e.target === e.currentTarget) e.currentTarget.classList.remove('active');
-        });
+        
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
         // Contact form
         document.getElementById('contactForm').addEventListener('submit', e => {

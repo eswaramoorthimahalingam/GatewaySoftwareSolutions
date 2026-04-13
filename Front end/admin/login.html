@@ -110,7 +110,6 @@
         </div>
 
     </div>
-<script src="../assets/js/site-config.js"></script>
 <script>
 document.querySelector("form").addEventListener("submit", async function(e){
     e.preventDefault();
@@ -118,19 +117,28 @@ document.querySelector("form").addEventListener("submit", async function(e){
     const email = document.querySelector('input[type="email"]').value;
     const password = document.querySelector('input[type="password"]').value;
 
-    const res = await fetch(gatewayApi("/api/admin/login"), {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({ email, password })
-    });
+    try {
+        const res = await fetch("http://localhost:5000/api/admin/login", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ email, password })
+        });
 
-    const data = await res.json();
+        if (!res.ok) {
+            throw new Error("Server error: " + res.status);
+        }
 
-    if (data.token) {
-        localStorage.setItem("adminToken", data.token);
-        window.location.href = "/admin";
-    } else {
-        alert(data.error || "Login failed");
+        const data = await res.json();
+
+        if (data.token) {
+            localStorage.setItem("adminToken", data.token);
+            window.location.href = "/admin";
+        } else {
+            alert(data.error || "Login failed");
+        }
+    } catch (err) {
+        console.error(err);
+        alert("Cannot connect to server. Make sure backend is running.");
     }
 });
 </script>

@@ -1148,10 +1148,32 @@
   <!-- Navbar -->
 <div id="header"></div>
 
-<script src="assets/js/site-config.js"></script>
-<script src="assets/js/load-nav.js"></script>
 <script>
-  loadGatewayNavbar("nav-bar.html");
+  // Load navbar
+  fetch('nav-bar.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('header').innerHTML = data;
+
+      // ✅ Run this only after nav-bar.html is inserted
+      const menuToggle = document.querySelector('.mobile-menu-toggle');
+      const navMenu = document.querySelector('.mobile-nav-menu');
+      const dropdownButtons = document.querySelectorAll('.dropdown-btn');
+
+      menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', !expanded);
+      });
+
+      dropdownButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const parent = btn.closest('.mobile-dropdown');
+          parent.classList.toggle('active');
+        });
+      });
+    })
+    .catch(err => console.error('Header load error:', err));
 </script>
 
   <!-- Home Screen -->
@@ -1405,7 +1427,7 @@
         <div class="projects-grid">
           <div class="project-card">
             <div class="project-image">
-              <img src="https://images.unsplash.com/photo-1579546929662-711aa81148cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="Turf Management App">
+              <img src="./Updated Images/Turf App.jpeg" alt="Turf Management App">
             </div>
             <div class="project-content">
               <h3>Turf Management App</h3>
@@ -2082,12 +2104,12 @@
             <h2>Turf Management App</h2>
             <p>A comprehensive app for sports facility management, booking, maintenance scheduling, and customer engagement.</p>
             <div class="hero-buttons">
-              <button class="btn-primary">Download App <i class="fas fa-download"></i></button>
-              <button class="btn-secondary">View on App Store <i class="fas fa-apple"></i></button>
+              <button class="btn-primary" onclick="window.open('https://play.google.com/store/apps/details?id=com.bookyourturf.app', '_blank')">Download App <i class="fas fa-download"></i></button>
+              <button class="btn-secondary" onclick="window.open('https://apps.apple.com/in/app/bookyourturf/id6756934347', '_blank')">View on App Store <i class="fas fa-apple"></i></button>
             </div>
           </div>
           <div class="hero-visual">
-            <img src="https://images.unsplash.com/photo-1579546929662-711aa81148cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="Turf App">
+            <img src="./Updated Images/Turf App.jpeg" alt="Turf App">
           </div>
         </div>
       </div>
@@ -2130,13 +2152,13 @@
           <h3>App Screenshots</h3>
           <div class="gallery-grid">
             <div class="gallery-item">
-              <img src="https://images.unsplash.com/photo-1579546929662-711aa81148cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="Booking Screen">
+              <img src="./Updated Images/Turf Images/WhatsApp Image 2026-04-08 at 3.35.35 PM.jpeg" alt="Booking Screen">
             </div>
             <div class="gallery-item">
-              <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="Dashboard">
+              <img src="./Updated Images/Turf Images/WhatsApp Image 2026-04-08 at 3.35.35 PM (7).jpeg" alt="Dashboard">
             </div>
             <div class="gallery-item">
-              <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80" alt="Maintenance">
+              <img src="./Updated Images/Turf Images/WhatsApp Image 2026-04-08 at 3.35.35 PM (2).jpeg" alt="Maintenance">
             </div>
           </div>
         </div>
@@ -3392,7 +3414,7 @@ document.getElementById("project-form").addEventListener("submit", async functio
     };
 
     try {
-        const res = await fetch(gatewayApi("/api/start-project/add"), {
+        const res = await fetch("http://localhost:5000/api/start-project/add", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data)

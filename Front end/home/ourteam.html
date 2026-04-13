@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Team - Gateway Software Solutions</title>
-    <!-- SEO -->
-    <meta name="description" content="Meet the talented team behind Gateway Software-repo." />
+    <meta name="description" content="Meet the talented team behind Gateway Software Solutions." />
     <meta property="og:title" content="Our Core Team | Gateway Software Solutions" />
     <meta property="og:description" content="The professionals driving innovation in AI, IoT, Web, Mobile & Digital Transformation." />
     <meta property="og:image" content="https://www.gatewaysoftwaresolutions.com/assets/gsslogo.png" />
@@ -17,574 +16,846 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
     <style>
-        /* ==== GLOBAL & THEME ==== */
+        /* ===== ROOT & RESET ===== */
         :root {
-            --primary: #1e3a8a; --primary-dark: #2563eb;
-            --secondary: #f97316; --secondary-dark: #fb923c;
-            --accent: #ffd166; --accent2: #06b6d4;
-            --dark: #006aff; --light: #f8fafc;
-            --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            --gradient-secondary: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
-            --gradient-mixed: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary) 100%);
+            --primary:        #1e3a8a;
+            --primary-light:  #2563eb;
+            --secondary:      #f97316;
+            --accent:         #06b6d4;
+            --surface:        #ffffff;
+            --surface-2:      #f8fafc;
+            --border:         #e2e8f0;
+            --text:           #0f172a;
+            --text-muted:     #64748b;
+            --radius-card:    20px;
+            --radius-btn:     50px;
+            --shadow-card:    0 4px 24px rgba(30,58,138,.08);
+            --shadow-hover:   0 16px 48px rgba(30,58,138,.16);
         }
-        * { box-sizing: border-box; }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #fff, #f1f5f9);
-            color: var(--dark);
-            margin: 0; line-height: 1.7;
+            font-family: 'DM Sans', sans-serif;
+            background: var(--surface-2);
+            color: var(--text);
             overflow-x: hidden;
+            line-height: 1.65;
         }
 
-        /* ==== NAVBAR ==== */
+        /* ===== NAVBAR ===== */
         .navbar {
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(20px);
-            padding:20px 0;
-            box-shadow:0 5px 30px rgba(0,0,0,0.08);
-            transition:all .4s ease;
-            height:100px;
+            background: rgba(255,255,255,.96);
+            backdrop-filter: blur(18px);
+            box-shadow: 0 2px 20px rgba(0,0,0,.06);
+            padding: 0;
+            height: 80px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
-        .navbar.scrolled{padding:15px 0;background:rgba(255,255,255,0.98);}
-        .navbar-brand{
-            display:flex;align-items:center;font-family:'Montserrat',sans-serif;
-            font-weight:900;font-size:2.2rem;text-decoration:none;gap:12px;
-        }
-        .navbar-brand img{height:55px;transition:transform .3s ease;}
-        .navbar-brand:hover img{transform:scale(1.08);}
-        .brand-text{
-            background:var(--gradient-mixed);-webkit-background-clip:text;
-            -webkit-text-fill-color:transparent;letter-spacing:-1px;
-            position:relative;display:inline-block;
-        }
-        .brand-text::after{
-            content:'';position:absolute;bottom:-8px;left:0;
-            width:40px;height:4px;background:var(--gradient-mixed);
-            border-radius:4px;
-        }
-        .nav-link{
-            font-weight:600;margin:0 12px;color:var(--dark)!important;
-            position:relative;transition:all .3s;font-size:1.05rem;
-        }
-        .nav-link:hover{color:var(--primary)!important;}
-        .nav-link::after{
-            content:'';position:absolute;bottom:0;left:0;
-            width:0;height:3px;background:var(--gradient-mixed);
-            transition:width .4s;
-        }
-        .nav-link:hover::after{width:100%;}
-
-        /* ==== TEAM SECTION ==== */
-        .team { padding: 120px 0 80px; background: white; }
-        .section-title { text-align: center; margin-bottom: 4rem; }
-        .section-title h2 {
-            font-size: 2.8rem; font-weight: 900; color: var(--primary);
-            margin-bottom: 1rem; position: relative; display: inline-block;
-        }
-        .section-title h2::after {
-            content: ''; position: absolute; bottom: -12px; left: 50%;
-            transform: translateX(-50%); width: 90px; height: 5px;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            border-radius: 3px;
-        }
-        .team-member {
-            background: white; border-radius: 24px; overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all .5s cubic-bezier(.25,.8,.25,1);
-            margin-bottom: 30px; border: 1px solid #e2e8f0; cursor: pointer;
-            height: 100%;
-        }
-        .team-member:hover {
-            transform: translateY(-16px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(56,189,248,0.25); border-color: var(--primary);
-        }
-        .member-img {
-            height: 300px;
-            width: 100%;
-            overflow: hidden;
-            border-radius: 10px;
+        .navbar .container-fluid { height: 100%; }
+        .navbar-brand {
             display: flex;
             align-items: center;
-            justify-content: center;
-            background: #f1f1f1;
+            gap: 10px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        .navbar-brand img { height: 44px; }
+        .nav-link {
+            font-weight: 500;
+            color: var(--text) !important;
+            padding: 8px 14px !important;
+            border-radius: 8px;
+            transition: background .2s, color .2s;
+            font-size: .95rem;
+        }
+        .nav-link:hover { background: #eff6ff; color: var(--primary) !important; }
+        .nav-link.active { color: var(--primary) !important; font-weight: 600; }
+        .navbar-toggler { border: none; }
+        .navbar-toggler:focus { box-shadow: none; }
+
+        /* ===== HERO BANNER ===== */
+        .team-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 60%, var(--accent) 100%);
+            padding: 90px 0 70px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .team-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .team-hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: .75rem;
+        }
+        .team-hero p {
+            color: rgba(255,255,255,.8);
+            font-size: 1.1rem;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,.15);
+            border: 1px solid rgba(255,255,255,.3);
+            color: #fff;
+            font-size: .8rem;
+            font-weight: 600;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            padding: 6px 18px;
+            border-radius: var(--radius-btn);
+            margin-bottom: 1.25rem;
         }
 
-        .member-img img {
+        /* ===== SECTION ===== */
+        .team-section {
+            padding: 72px 0 80px;
+        }
+        .section-label {
+            text-align: center;
+            margin-bottom: 52px;
+        }
+        .section-label h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: .5rem;
+        }
+        .section-label p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+        .section-label .bar {
+            width: 56px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 4px;
+            margin: 14px auto 0;
+        }
+
+        /* ===== TEAM GRID ===== */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 24px;
+        }
+
+        /* ===== TEAM CARD ===== */
+        .team-card {
+            background: var(--surface);
+            border-radius: var(--radius-card);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform .35s cubic-bezier(.25,.8,.25,1),
+                        box-shadow .35s cubic-bezier(.25,.8,.25,1),
+                        border-color .3s;
+            box-shadow: var(--shadow-card);
+            position: relative;
+        }
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary-light);
+        }
+        .card-img-wrap {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            overflow: hidden;
+            background: #e2e8f0;
+            position: relative;
+        }
+        .card-img-wrap img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center;
-            transition: transform 0.5s ease;
-        }
-
-        .team-member:hover .member-img img {
-            transform: scale(1.1);
-        }
-
-.member-info {
-    padding: 1.8rem;
-    text-align: center;
-}
-
-.member-info h4 {
-    color: var(--primary);
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    font-size: 1.25rem;
-}
-
-        .member-role {
-            color: var(--secondary); font-weight: 600; margin-bottom: 0; font-size: 1rem;
-        }
-
-        .team-status {
-            width: 100%;
-            text-align: center;
-            padding: 2rem 1rem;
-            color: #475569;
-            font-size: 1.05rem;
-        }
-
-        .team-source-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.55rem;
-            margin-top: 1.4rem;
-            padding: 0.7rem 1rem;
-            border-radius: 999px;
-            background: rgba(30, 58, 138, 0.08);
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        .team-source-badge::before {
-            content: '\f05a';
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-        }
-
-        .team-status.is-error {
-            color: #b91c1c;
-        }
-
-        .team-status.is-loading {
-            color: var(--primary);
-        }
-
-        .member-cta {
-            margin-top: 1.15rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.45rem;
-            padding: 0.7rem 1rem;
-            border-radius: 999px;
-            border: none;
-            background: rgba(30, 58, 138, 0.08);
-            color: var(--primary);
-            font-weight: 700;
-            transition: all 0.3s ease;
-        }
-
-        .team-member:hover .member-cta {
-            background: var(--gradient-mixed);
-            color: white;
-        }
-
-          .footer {
-            background: #e6f7ff; /* Light Blue Background */
-            padding: 45px 0 25px;
-            border-top: 5px solid #b3e0ff;
-            margin-top: 50px;
-            color: #1a1a1a;
-        }
-        .footer .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 0 20px;
-        }
-
-        /* ---------- Certification Logos ---------- */
-        .cert-logos {
-            text-align: center;
-            margin-bottom: 35px;
-            padding-bottom: 22px;
-            border-bottom: 2px dashed #99d6ff;
-        }
-        .cert-logos img {
-            height: 78px;
-            margin: 0 20px;
-            display: inline-block;
-            vertical-align: middle;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-            transition: transform .3s ease;
-        }
-        .cert-logos img:hover {
-            transform: scale(1.05);
-        }
-
-        /* ---------- 4-Column Grid ---------- */
-        .footer-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 35px;
-            justify-content: space-between;
-        }
-
-        .col {
-            flex: 1;
-            min-width: 180px;
-        }
-        .col h3 {
-            font-size: 18px;
-            margin-bottom: 16px;
-            color: #1e40af;
-            position: relative;
-            font-weight: 600;
-        }
-        .col h3::after {
-            content: '';
-            position: absolute;
-            left: 0; bottom: -7px;
-            width: 34px; height: 3px;
-            background: #f39c12;
-            border-radius: 2px;
-        }
-        .col ul {
-            list-style: none;
-        }
-        .col ul li {
-            margin-bottom: 10px;
-        }
-        .col ul li a {
-            color: #333;
-            text-decoration: none;
-            font-size: 15px;
-            transition: all .3s ease;
+            object-position: center top;
             display: block;
+            transition: transform .5s ease;
         }
-        .col ul li a:hover {
-            color: #f39c12;
-            padding-left: 5px;
+        .team-card:hover .card-img-wrap img {
+            transform: scale(1.07);
+        }
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(30,58,138,.55) 0%, transparent 55%);
+            opacity: 0;
+            transition: opacity .35s;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 18px;
+        }
+        .team-card:hover .card-overlay { opacity: 1; }
+        .card-overlay span {
+            color: #fff;
+            font-size: .8rem;
+            font-weight: 600;
+            letter-spacing: .06em;
+            background: rgba(255,255,255,.18);
+            border: 1px solid rgba(255,255,255,.35);
+            padding: 5px 16px;
+            border-radius: var(--radius-btn);
+        }
+        .card-body {
+            padding: 20px 18px 22px;
+            text-align: center;
+        }
+        .card-body h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+        .card-body p {
+            font-size: .93rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin: 0;
         }
 
-        /* ==== SOCIAL MODAL ==== */
-        .social-modal {
+        /* ===== LOADING STATE ===== */
+        .skeleton {
+            background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.4s infinite;
+            border-radius: var(--radius-card);
+            height: 300px;
+        }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .error-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+        }
+        .error-state i { font-size: 2.5rem; color: #fca5a5; margin-bottom: 1rem; }
+
+        /* ===== MODAL BACKDROP ===== */
+        .modal-backdrop-custom {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.75);
+            inset: 0;
+            background: rgba(15,23,42,.65);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 9999;
+            padding: 20px;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
+            transition: opacity .3s ease, visibility .3s ease;
         }
-        
-        .social-modal.active {
+        .modal-backdrop-custom.open {
             opacity: 1;
             visibility: visible;
         }
-        
-        .social-modal-content {
-            background: white;
+
+        /* ===== PROFILE MODAL CARD ===== */
+        .profile-card {
+            background: var(--surface);
             border-radius: 28px;
-            padding: 2.8rem;
-            max-width: 440px;
-            width: 92%;
-            text-align: center;
+            width: 100%;
+            max-width: 380px;
+            overflow: hidden;
             position: relative;
-            transform: translateY(50px);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 35px 70px rgba(56, 189, 248, 0.3);
-            border: 1px solid #e2e8f0;
+            transform: translateY(40px) scale(.97);
+            transition: transform .4s cubic-bezier(.175,.885,.32,1.275);
+            box-shadow: 0 32px 80px rgba(15,23,42,.25);
         }
-        
-        .social-modal.active .social-modal-content {
-            transform: translateY(0);
+        .modal-backdrop-custom.open .profile-card {
+            transform: translateY(0) scale(1);
         }
-        
-        .social-modal-close {
+
+        /* Card top strip */
+        .profile-card-top {
+            height: 110px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 60%, var(--accent) 100%);
+            position: relative;
+        }
+        .profile-card-top::after {
+            content: '';
             position: absolute;
-            top: 18px;
-            right: 18px;
-            background: #f1f5f9;
-            border: none;
-            width: 48px;
-            height: 48px;
+            inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Cpath d='M20 20c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10zm10 0c0-5.5-4.5-10-10-10s-10 4.5-10 10 4.5 10 10 10 10-4.5 10-10z'/%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        /* Close button */
+        .modal-close-btn {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
-            font-size: 1.5rem;
-            color: #64748b;
-            cursor: pointer;
+            background: rgba(255,255,255,.2);
+            border: 1.5px solid rgba(255,255,255,.35);
+            color: #fff;
+            font-size: 1rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s;
+            cursor: pointer;
+            transition: background .2s, transform .2s;
+            z-index: 10;
         }
-        
-        .social-modal-close:hover {
-            background: var(--primary);
-            color: white;
-            transform: scale(1.15);
+        .modal-close-btn:hover {
+            background: rgba(255,255,255,.35);
+            transform: scale(1.1);
         }
-        
-        .social-modal-img {
-            width: 140px;
-            height: 140px;
+
+        /* Avatar */
+        .profile-avatar-wrap {
+            position: relative;
+            width: 110px;
+            height: 110px;
+            margin: -55px auto 0;
+            z-index: 5;
+        }
+        .profile-avatar-ring {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            padding: 3px;
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary), var(--accent));
+            box-shadow: 0 8px 24px rgba(30,58,138,.25);
+        }
+        .profile-avatar-inner {
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
             overflow: hidden;
-            margin: 0 auto 1.8rem;
-            border: 7px solid #dbeafe;
-            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.25);
+            border: 3px solid #fff;
+            background: #e2e8f0;
         }
-        
-        .social-modal-img img {
+        .profile-avatar-inner img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center top;
+            display: block;
         }
-        
-        .social-modal-name {
-            font-size: 1.75rem;
+
+        /* Card body */
+        .profile-card-body {
+            padding: 1.25rem 1.75rem 2rem;
+            text-align: center;
+        }
+        .profile-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.35rem;
             font-weight: 800;
             color: var(--primary);
-            margin-bottom: 0.5rem;
+            margin: .75rem 0 .25rem;
         }
-        
-        .social-modal-role {
-            color: var(--secondary);
+        .profile-role {
+            display: inline-block;
+            font-size: .78rem;
             font-weight: 600;
-            margin-bottom: 1.8rem;
-            font-size: 1.15rem;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            background: #eff6ff;
+            color: var(--primary-light);
+            padding: 4px 14px;
+            border-radius: var(--radius-btn);
+            margin-bottom: 1.5rem;
+        }
+        .profile-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 0 0 1.5rem;
         }
 
-        .social-empty {
-            margin: 1rem 0 0;
-            color: #64748b;
-            font-size: 0.98rem;
-        }
-
-        /* ==== SOCIAL ICONS WITH ZOOM EFFECT ==== */
-        .social-links {
+        /* Social buttons — pill style */
+        .social-row {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1.5rem;
-            padding: 0;
-            margin: 1.5rem auto 0;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 10px;
         }
-        
-        .social-link {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
+        .social-pill {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            background: #ffffff;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            position: relative;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            gap: 12px;
+            padding: 11px 18px;
+            border-radius: 50px;
+            border: 1.5px solid var(--border);
+            background: var(--surface-2);
+            color: var(--text);
+            font-size: .9rem;
+            font-weight: 600;
             text-decoration: none;
-            border: 3px solid #f8f9fa;
             cursor: pointer;
-        }
-        
-        /* Default icon color */
-        .social-link i {
-            transition: all 0.3s ease;
-            color: #6b7280;
+            transition: transform .22s cubic-bezier(.25,.8,.25,1),
+                        background .22s, border-color .22s, color .22s,
+                        box-shadow .22s;
             position: relative;
-            z-index: 2;
+            overflow: hidden;
         }
-        
-        /* HOVER EFFECT - Zoom in with background color */
-        .social-link:hover {
-              transform: translateY(-14px) scale(1.22);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+        .social-pill i {
+            width: 22px;
+            text-align: center;
+            font-size: 1.05rem;
+            flex-shrink: 0;
+            transition: color .22s;
+        }
+        .social-pill .pill-label { flex: 1; text-align: left; }
+        .social-pill .pill-arrow {
+            font-size: .75rem;
+            opacity: .45;
+            transition: opacity .22s, transform .22s;
+        }
+        .social-pill:hover {
+            transform: translateX(4px);
+            box-shadow: 0 6px 20px rgba(0,0,0,.1);
+            color: #fff;
             border-color: transparent;
         }
-        
-        .social-link:hover i {
-            color: white !important;
-            transform: scale(1.1);
+        .social-pill:hover .pill-arrow { opacity: 1; transform: translateX(3px); }
+        .social-pill.li:hover { background: #0a66c2; }
+        .social-pill.fb:hover { background: #1877f2; }
+        .social-pill.ig:hover {
+            background: linear-gradient(90deg, #f09433, #e6683c 30%, #dc2743 55%, #cc2366 75%, #bc1888);
         }
-        
-        /* LinkedIn - Blue */
-        .social-link.linkedin:hover {
-            background: #0a66c2;
-        }
-        
-        /* Facebook - Blue */
-        .social-link.facebook:hover {
-            background: #1877f2;
-        }
-        
-        /* Instagram - Gradient */
-        .social-link.instagram:hover {
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        /* disabled/no-link state */
+        .social-pill.no-link {
+            opacity: .4;
+            pointer-events: none;
         }
 
-        /* Twitter - Blue */
-        .social-link.twitter:hover {
-            background: #1da1f2;
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #e6f7ff;
+            padding: 50px 0 24px;
+            border-top: 4px solid var(--primary-light);
+            margin-top: 60px;
+        }
+        .cert-logos {
+            text-align: center;
+            margin-bottom: 36px;
+            padding-bottom: 24px;
+            border-bottom: 1px dashed #93c5fd;
+        }
+        .cert-logos img {
+            height: 72px;
+            margin: 0 18px;
+            vertical-align: middle;
+            transition: transform .25s;
+        }
+        .cert-logos img:hover { transform: scale(1.06); }
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            justify-content: space-between;
+        }
+        .footer-col { flex: 1; min-width: 160px; }
+        .footer-col h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 18px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: 0;
+            width: 30px; height: 3px;
+            background: var(--secondary);
+            border-radius: 3px;
+        }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 9px; }
+        .footer-col ul li a {
+            color: #334155;
+            text-decoration: none;
+            font-size: .9rem;
+            transition: color .2s, padding-left .2s;
+            display: inline-block;
+        }
+        .footer-col ul li a:hover { color: var(--secondary); padding-left: 5px; }
+        .footer-social { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
+        .footer-social a {
+            width: 38px; height: 38px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .9rem;
+            text-decoration: none;
+            transition: background .2s, transform .2s;
+        }
+        .footer-social a:hover { background: var(--secondary); transform: translateY(-3px); }
+        .footer-bottom {
+            margin-top: 36px;
+            padding-top: 18px;
+            border-top: 1px solid #bfdbfe;
+            text-align: center;
+            font-size: .82rem;
+            color: #475569;
         }
 
-        /* YouTube - Red */
-        .social-link.youtube:hover {
-            background: #ff0000;
+        /* ===== CARD ENTRANCE ANIMATION ===== */
+        @keyframes cardIn {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .team-card {
+            animation: cardIn .5s ease both;
         }
 
-        /* WhatsApp - Green */
-        .social-link.whatsapp:hover {
-            background: #25d366;
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 767px) {
+            .team-grid { grid-template-columns: repeat(auto-fill, minmax(155px, 1fr)); gap: 16px; }
+            .team-hero  { padding: 60px 0 50px; }
+            .team-section { padding: 52px 0 60px; }
+            .cert-logos img { height: 50px; margin: 0 10px; }
         }
-
-        /* ==== RESPONSIVE ==== */
-        @media (max-width: 768px) {
-            .social-link {
-                width: 60px;
-                height: 60px;
-                font-size: 1.5rem;
-            }
-            .social-links {
-                gap: 1.2rem;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .social-modal-content {
-                padding: 2rem;
-            }
-            .social-modal-img {
-                width: 110px;
-                height: 110px;
-            }
-            .social-link {
-                width: 55px;
-                height: 55px;
-                font-size: 1.4rem;
-            }
+        @media (max-width: 400px) {
+            .team-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+            .profile-card { border-radius: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== NAVBAR ===== -->
-    <div id="header"></div>
+<!-- ===== NAVBAR ===== -->
+<div id="header"></div>
+<script>
+    fetch('../nav-bar.html')
+        .then(r => r.text())
+        .then(d => {
+            document.getElementById('header').innerHTML = d;
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            const nav    = document.querySelector('.mobile-nav-menu');
+            if (toggle && nav) {
+                toggle.addEventListener('click', () => {
+                    nav.classList.toggle('active');
+                    toggle.setAttribute('aria-expanded', toggle.getAttribute('aria-expanded') !== 'true');
+                });
+            }
+            document.querySelectorAll('.dropdown-btn').forEach(btn => {
+                btn.addEventListener('click', () => btn.closest('.mobile-dropdown')?.classList.toggle('active'));
+            });
+        })
+        .catch(e => console.warn('Header not loaded:', e));
+</script>
 
-    <script src="../assets/js/site-config.js"></script>
-    <script src="../assets/js/load-nav.js"></script>
-    <script>
-        loadGatewayNavbar("../nav-bar.html");
-    </script>
+<!-- ===== HERO ===== -->
+<div class="team-hero">
+    <div class="container">
+        <div class="hero-badge">Gateway Software Solutions</div>
+        <h1>Meet Our Core Team</h1>
+        <p>The innovators and professionals driving Gateway's success across AI, IoT, Web, Mobile &amp; Digital Transformation.</p>
+    </div>
+</div>
 
-    <!-- ===== TEAM SECTION ===== -->
-   <section class="team" id="team">
-        <div class="container">
-            <div class="section-title">
-                <h2>Meet Our Core Team</h2>
-                <p class="lead">The innovators behind Gateway's success in digital transformation</p>
-                <div class="team-source-badge" id="teamSourceBadge" hidden></div>
-            </div>
-            <div class="row g-4" id="teamList">
-                <div class="team-status">Loading team members...</div>
-            </div>
+<!-- ===== TEAM SECTION ===== -->
+<section class="team-section" id="team">
+    <div class="container">
+        <div class="section-label">
+            <h2>Our People</h2>
+            <p>Dedicated experts behind every solution we build</p>
+            <div class="bar"></div>
         </div>
-    </section>
 
-    <div class="social-modal" id="socialModal">
-        <div class="social-modal-content">
-            <button class="social-modal-close" id="closeModal"><i class="fas fa-times"></i></button>
-            <div class="social-modal-img"><img id="modalImage" src="" alt=""></div>
-            <h3 class="social-modal-name" id="modalName"></h3>
-            <div class="social-modal-role" id="modalRole"></div>
-            <div class="social-links" id="modalSocialLinks"></div>
+        <!-- Grid -->
+        <div class="team-grid" id="teamGrid">
+            <!-- Skeletons shown while loading -->
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
+            <div class="skeleton"></div>
+        </div>
+
+        <!-- Error message (hidden by default) -->
+        <div class="error-state d-none" id="errorState">
+            <i class="fas fa-triangle-exclamation"></i>
+            <p>Unable to load team members. Please try again later.</p>
         </div>
     </div>
+</section>
 
-    <footer class="footer">
-        <div class="container">
-
-            <!-- Certification Logos – ABOVE Columns -->
-            <div class="cert-logos">
-                <img src="../assets/gsslogo.png"  alt="Gateway Software Solutions">
-                <img src="../assets/certifid.png" alt="ISO 9001:2015 Accredited">
-                <img src="../assets/aicte.png"    alt="AICTE Approved">
-            </div>
-
-            
-            <div class="footer-grid">
-
-                
-                <div class="col">
-                    <h3>Services</h3>
-                    <ul>
-                        <li><a href="../Services/mobile-app-development.html">Application Development</a></li>
-                        <li><a href="../Services/E-commerce.html">Web Development</a></li>
-                        <li><a href="../Services/digital marketing.html">Digital Marketing</a></li>
-                        <li><a href="../Services/logo-design.html">UI/UX Design</a></li>
-                        <li><a href="../Services/ai-agent.html">Ai Development</a></li>
-                    </ul>
-                </div>
-
-                
-                <div class="col">
-                    <h3>Company</h3>
-                    <ul>
-                        <li><a href="../home/about.html">About Us</a></li>
-                        <li><a href="../career.html">Careers</a></li>
-                        <li><a href="../home/ourteam.html">Our Team</a></li>
-                        <li><a href="../home/proo.html">Profile</a></li>
-                        <li><a href="../home/faq.html">Faq</a></li>
-                    </ul>
-                </div>
-
-                <!-- Internship & Course -->
-                <div class="col">
-                    <h3>Internship & Course</h3>
-                    <ul>
-                        <li><a href="../Internshiptraining/webtech.html">Web Designing</a></li>
-                        <li><a href="../Internshiptraining/embeddediot.html">Iot</a></li>
-                        <li><a href="../Internshiptraining/flutterapp.html">Mobile App</a></li>
-                        <li><a href="../Internshiptraining/genai.html">Gen-Ai-Agent</a></li>
-                        <li><a href="../Internshiptraining/pythonds.html">Data Science</a></li>
-                        <li><a href="../Internshiptraining/pythonmysql.html">Full Stack</a></li>
-                    </ul>
-                </div>
-
-                <!-- Connect With Us – VERTICAL SOCIAL ICONS -->
-                <div class="col">
-                    <h3>Connect With Us</h3>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.linkedin.com/company/gateway-software-solutions/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="https://www.instagram.com/gatewaycbe?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.youtube.com/@GatewaySoftwareSolutions-gss" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-          </div>
-                </div>
-
-            </div>
-
-            <!-- Copyright -->
-            <div class="copyright">
-                © Gateway Software Solutions. All rights reserved. | Empowering Businesses Overturn The Ordinary.
-            </div>
-
+<!-- ===== PROFILE MODAL ===== -->
+<div class="modal-backdrop-custom" id="profileModal" role="dialog" aria-modal="true" aria-labelledby="modalName">
+    <div class="profile-card" id="profileCardEl">
+        <!-- Top gradient strip -->
+        <div class="profile-card-top">
+            <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close profile">
+                <i class="fas fa-times"></i>
+            </button>
         </div>
-    </footer>
 
-    <script src="../assets/js/team-directory.js"></script>
-    <script src="../assets/js/ourteam-page.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Avatar -->
+        <div class="profile-avatar-wrap">
+            <div class="profile-avatar-ring">
+                <div class="profile-avatar-inner">
+                    <img id="modalImg" src="" alt="">
+                </div>
+            </div>
+        </div>
+
+        <!-- Info -->
+        <div class="profile-card-body">
+            <div class="profile-name" id="modalName"></div>
+            <div class="profile-role" id="modalRole"></div>
+            <div class="profile-divider"></div>
+
+            <!-- Social links -->
+            <div class="social-row" id="socialRow">
+                <a class="social-pill li" id="modalLi" href="#" target="_blank" rel="noopener">
+                    <i class="fab fa-linkedin-in"></i>
+                    <span class="pill-label">LinkedIn</span>
+                    <i class="fas fa-arrow-right pill-arrow"></i>
+                </a>
+                <a class="social-pill fb" id="modalFb" href="#" target="_blank" rel="noopener">
+                    <i class="fab fa-facebook-f"></i>
+                    <span class="pill-label">Facebook</span>
+                    <i class="fas fa-arrow-right pill-arrow"></i>
+                </a>
+                <a class="social-pill ig" id="modalIg" href="#" target="_blank" rel="noopener">
+                    <i class="fab fa-instagram"></i>
+                    <span class="pill-label">Instagram</span>
+                    <i class="fas fa-arrow-right pill-arrow"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <div class="container">
+        <div class="cert-logos">
+            <img src="../assets/gsslogo.png"  alt="Gateway Software Solutions">
+            <img src="../assets/certifid.png" alt="ISO 9001:2015 Accredited">
+            <img src="../assets/aicte.png"    alt="AICTE Approved">
+        </div>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="../Services/mobile-app-development.html">Application Development</a></li>
+                    <li><a href="../Services/E-commerce.html">Web Development</a></li>
+                    <li><a href="../Services/digital marketing.html">Digital Marketing</a></li>
+                    <li><a href="../Services/logo-design.html">UI/UX Design</a></li>
+                    <li><a href="../Services/ai-agent.html">AI Development</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="../home/about.html">About Us</a></li>
+                    <li><a href="../career.html">Careers</a></li>
+                    <li><a href="../home/ourteam.html">Our Team</a></li>
+                    <li><a href="../home/proo.html">Profile</a></li>
+                    <li><a href="../home/faq.html">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Internship &amp; Course</h3>
+                <ul>
+                    <li><a href="../Internshiptraining/webtech.html">Web Designing</a></li>
+                    <li><a href="../Internshiptraining/embeddediot.html">IoT</a></li>
+                    <li><a href="../Internshiptraining/flutterapp.html">Mobile App</a></li>
+                    <li><a href="../Internshiptraining/genai.html">Gen-AI Agent</a></li>
+                    <li><a href="../Internshiptraining/pythonds.html">Data Science</a></li>
+                    <li><a href="../Internshiptraining/pythonmysql.html">Full Stack</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Connect With Us</h3>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/company/gateway-software-solutions/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/gatewaycbe" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@GatewaySoftwareSolutions-gss" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 Gateway Software Solutions. All rights reserved. | Empowering Businesses Overturn The Ordinary.
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+/* =============================================
+   CONFIGURATION
+   ============================================= */
+const REMOTE_API_BASE = 'https://gateway-backend-wiup.onrender.com';
+const LOCAL_API_BASE = 'http://localhost:5000';
+const LOCAL_HOSTS = ['localhost', '127.0.0.1', '::1'];
+const BASE_URL = LOCAL_HOSTS.includes(window.location.hostname)
+    ? LOCAL_API_BASE
+    : REMOTE_API_BASE;
+const API_URL = `${BASE_URL}/api/team`;
+
+let teamMembers = [];
+
+/* =============================================
+   LOAD TEAM MEMBERS
+   ============================================= */
+async function loadTeam() {
+    try {
+        const res = await fetch(API_URL, { cache: 'no-store' });
+        if (!res.ok) throw new Error('Server error');
+        const data = await res.json();
+        if (!Array.isArray(data) || data.length === 0) throw new Error('Empty');
+        teamMembers = data;
+        renderCards(data);
+    } catch (err) {
+        console.error('Team load error:', err);
+        document.getElementById('teamGrid').innerHTML = '';
+        document.getElementById('errorState').classList.remove('d-none');
+    }
+}
+
+/* =============================================
+   RENDER CARDS
+   ============================================= */
+function renderCards(members) {
+    const grid = document.getElementById('teamGrid');
+    grid.innerHTML = members.map((m, idx) => `
+        <div
+            class="team-card"
+            data-id="${m._id}"
+            style="animation-delay:${idx * 60}ms"
+            tabindex="0"
+            role="button"
+            aria-label="View profile of ${m.name}"
+        >
+            <div class="card-img-wrap">
+                <img
+                    src="${getImageUrl(m.image, m.name)}"
+                    alt="${m.name}"
+                    loading="lazy"
+                    onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(m.name)}&background=1e3a8a&color=fff&size=400'"
+                >
+                <div class="card-overlay"><span>View Profile</span></div>
+            </div>
+            <div class="card-body">
+                <h4>${m.name}</h4>
+                <p>${m.role}</p>
+            </div>
+        </div>
+    `).join('');
+}
+
+function getImageUrl(imagePath, name) {
+    if (!imagePath) {
+        return `https://ui-avatars.com/api/?name=${encodeURIComponent(name || 'Team Member')}&background=1e3a8a&color=fff&size=400`;
+    }
+
+    if (/^https?:\/\//i.test(imagePath)) {
+        return imagePath;
+    }
+
+    return `${BASE_URL}${imagePath.startsWith('/') ? imagePath : `/${imagePath}`}`;
+}
+
+/* =============================================
+   MODAL LOGIC
+   ============================================= */
+const modal       = document.getElementById('profileModal');
+const modalImg    = document.getElementById('modalImg');
+const modalName   = document.getElementById('modalName');
+const modalRole   = document.getElementById('modalRole');
+const modalLi     = document.getElementById('modalLi');
+const modalFb     = document.getElementById('modalFb');
+const modalIg     = document.getElementById('modalIg');
+const closeBtn    = document.getElementById('modalCloseBtn');
+
+function openModal(member) {
+    modalImg.src = getImageUrl(member.image, member.name);
+    modalImg.alt          = member.name;
+    modalName.textContent = member.name;
+    modalRole.textContent = member.role;
+
+    setLink(modalLi, member.linkedin);
+    setLink(modalFb, member.facebook);
+    setLink(modalIg, member.instagram);
+
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+}
+
+function setLink(el, url) {
+    const valid = url && url.trim() !== '' && url.trim() !== '#';
+    if (valid) {
+        el.href = url.trim();
+        el.classList.remove('no-link');
+    } else {
+        el.href = '#';
+        el.classList.add('no-link');
+    }
+}
+
+function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    [modalLi, modalFb, modalIg].forEach(el => el.classList.remove('no-link'));
+}
+
+/* Card click / keyboard */
+document.getElementById('teamGrid').addEventListener('click', handleCardActivate);
+document.getElementById('teamGrid').addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleCardActivate(e);
+    }
+});
+
+function handleCardActivate(e) {
+    const card = e.target.closest('.team-card');
+    if (!card) return;
+    const id = card.dataset.id;
+    const member = teamMembers.find(m => m._id === id);
+    if (member) openModal(member);
+}
+
+/* Close modal */
+closeBtn.addEventListener('click', closeModal);
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+/* =============================================
+   INIT
+   ============================================= */
+document.addEventListener('DOMContentLoaded', loadTeam);
+</script>
 </body>
 </html>

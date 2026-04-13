@@ -1,17 +1,49 @@
 const express = require("express");
 const router = express.Router();
+const multer = require("multer");
 const TeamMember = require("../models/Team");
-const { buildUploadPath, createUploadMiddleware } = require("../utils/uploads");
 
-const upload = createUploadMiddleware("team-members");
+const storage = multer.diskStorage({
+    destination: "./uploads/team-members/",
+    filename: (req, file, cb) => cb(null, Date.now() + "-" + file.originalname),
+});
 
-// Add Team Member
+const upload = multer({ storage });
+
+// GET all team members
+router.get("/", async (req, res) => {
+    console.log("Team API called");
+    try {
+        const members = await TeamMember.find().sort({ order: 1 });
+        console.log("Team count:", members.length);
+        res.json(members);
+    } catch (err) {
+        console.error("Error fetching team members:", err);
+        res.status(500).json({ message: "Failed to fetch team members" });
+    }
+});
+
+// GET single member by ID
+router.get("/:id", async (req, res) => {
+    try {
+        const member = await TeamMember.findById(req.params.id);
+        if (!member) {
+            return res.status(404).json({ message: "Team member not found" });
+        }
+
+        res.json(member);
+    } catch (err) {
+        console.error("Error fetching team member:", err);
+        res.status(500).json({ message: "Failed to fetch team member" });
+    }
+});
+
+// ADD new team member
 router.post("/add", upload.single("image"), async (req, res) => {
     try {
         if (!req.file) {
-            return res.status(400).json({ success: false, error: "Team member image is required" });
+            return res.json({ success: false, error: "Image is required" });
         }
-
         const member = new TeamMember({
             name: req.body.name,
             role: req.body.role,
@@ -19,7 +51,7 @@ router.post("/add", upload.single("image"), async (req, res) => {
             linkedin: req.body.linkedin,
             facebook: req.body.facebook,
             instagram: req.body.instagram,
-            image: buildUploadPath("team-members", req.file.filename)
+            image: "/uploads/team-members/" + req.file.filename
         });
         await member.save();
         res.json({ success: true, message: "Team member added!", member });
@@ -28,28 +60,8 @@ router.post("/add", upload.single("image"), async (req, res) => {
     }
 });
 
-// Get all members
-router.get("/", async (req, res) => {
-    try {
-        const members = await TeamMember.find().sort({ order: 1, createdAt: 1 });
-        res.json(members);
-    } catch (err) {
-        res.status(500).json({ success: false, error: err.message });
-    }
-});
-
-// Get a single member
-router.get("/:id", async (req, res) => {
-    try {
-        const member = await TeamMember.findById(req.params.id);
-        res.json(member);
-    } catch (err) {
-        res.status(500).json({ success: false, error: err.message });
-    }
-});
-
-// Update member
-router.put("/:id", upload.single("image"), async (req, res) => {
+// UPDATE team member (PUT) - JSON
+router.put("/:id", async (req, res) => {
     try {
         const updated = {
             name: req.body.name,
@@ -60,25 +72,40 @@ router.put("/:id", upload.single("image"), async (req, res) => {
             instagram: req.body.instagram
         };
 
-        if (req.file) {
-            updated.image = buildUploadPath("team-members", req.file.filename);
-        }
-
         await TeamMember.findByIdAndUpdate(req.params.id, updated);
         res.json({ success: true, message: "Team member updated!" });
     } catch (err) {
-        res.status(500).json({ success: false, error: err.message });
+        res.json({ success: false, error: err.message });
     }
 });
 
-// Delete member
-router.delete("/:id", async (req, res) => {
+// UPDATE with image (POST with multipart)
+router.post("/edit/:id", upload.single("image"), async (req, res) => {
     try {
-        await TeamMember.findByIdAndDelete(req.params.id);
-        res.json({ success: true, message: "Team member deleted!" });
+        const updateData = {
+            name: req.body.name,
+            role: req.body.role,
+            order: req.body.order,
+            linkedin: req.body.linkedin,
+            facebook: req.body.facebook,
+            instagram: req.body.instagram
+        };
+
+        if (req.file) {
+            updateData.image = "/uploads/team-members/" + req.file.filename;
+        }
+
+        await TeamMember.findByIdAndUpdate(req.params.id, updateData);
+        res.json({ success: true, message: "Team member updated!" });
     } catch (err) {
-        res.status(500).json({ success: false, error: err.message });
+        res.json({ success: false, error: err.message });
     }
+});
+
+// DELETE team member
+router.delete("/:id", async (req, res) => {
+    await TeamMember.findByIdAndDelete(req.params.id);
+    res.json({ success: true, message: "Team member deleted!" });
 });
 
 module.exports = router;

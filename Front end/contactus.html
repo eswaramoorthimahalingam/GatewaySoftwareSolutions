@@ -536,6 +536,7 @@
             <p><a href="tel:+91 7397038881">+91 7397038881  - Coimbatore CMO</a></p>
 
       <p><a href="tel:+919790418880">+91 9790418880  - Coimbatore CAO</a></p>
+      <p><a href="tel:+919944098882"> +91 9944098882  - Erode Lead</a></p>
       <p><a href="tel:+91 7418688845">+91 7418688845  - Chennai CTO</a></p>
       <p><a href="tel:+91 9042707229">+91 9042707229  - Madurai HR  </a></p>
             <p><a href="tel:+91 9566757229">+91 9566757229  - CED Madurai  </a></p>
@@ -596,7 +597,7 @@
   </section>
 
   <script>
-const CONTACT_API = gatewayApi("/api/contact/add"); 
+const CONTACT_API = "http://localhost:5000/api/contact/add"; 
 
 document.getElementById("contactForm").addEventListener("submit", async function (e) {
     e.preventDefault();
@@ -652,7 +653,11 @@ document.getElementById("contactForm").addEventListener("submit", async function
     <div class="office-grid">
       <div class="office">
         <h3><i class="bi bi-palette-fill"></i>Creative Design</h3>
-        <p>Gateway Software Solutions<br>2F,2nd Floor, SLV Aranya Square,<br>Bharathiyar Rd, opposite to Government Polytechnic College for Women's,<br>Siddhapudur, New Siddhapudur,<br>Coimbatore, Tamil Nadu 641044 <br>Phone – 73970 78885..</p>
+        <p>Gateway Software Solutions<br>2F,2nd Floor, SLV Aranya Square,<br>Bharathiyar Rd, opposite to Government Polytechnic College for Women's,<br>Siddhapudur, New Siddhapudur,<br>Coimbatore, Tamil Nadu 641044 <br>Phone – 73970 78885.</p>
+      </div>
+      <div class="office">
+        <h3><i class="bi bi-code-slash"></i>Technical Division</h3>
+        <p>Gateway Software Solutions<br>P.M.B Complex, 19A, Nachiappa Street,<br>Opp to Sri Sakthi Gas Agencies,<br>Erode - 638001<br>Phone – 9944098882.</p>
       </div>
       <div class="office">
         <h3><i class="bi bi-laptop-fill"></i>Development Division</h3>
@@ -773,6 +778,7 @@ document.getElementById("contactForm").addEventListener("submit", async function
           <img src="./assets/duratech.jpeg" alt="Client 12">
           <img src="./assets/genunieit.jpeg" alt="Client 13">
           <img src="./assets/karthikjewels.jpeg" alt="Client 14">
+          <img src="./Updated Images/Turf App.jpeg" alt="client 15">
 
           <!-- Duplicate for seamless infinite scroll -->
           <img src="./assets/angel.jpeg" alt="Client 1">
@@ -1106,11 +1112,13 @@ document.getElementById("contactForm").addEventListener("submit", async function
     // Initialize AOS
     AOS.init({ duration: 1000, once: true });
 
-  </script>
-  <script src="assets/js/site-config.js"></script>
-  <script src="assets/js/load-nav.js"></script>
-  <script>
-    loadGatewayNavbar("nav-bar.html");
+    // Load navbar if needed
+    fetch('nav-bar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('header').innerHTML = data;
+      })
+      .catch(err => console.error('Header load error:', err));
   </script>
 </body>
 </html>

@@ -1,15 +1,21 @@
 const express = require("express");
 const router = express.Router();
+const multer = require("multer");
+const path = require("path");
 const Contact = require("../models/Contact");
-const { buildUploadPath, createUploadMiddleware } = require("../utils/uploads");
 
-const upload = createUploadMiddleware("contact_files");
+// Storage for uploaded files
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => cb(null, "uploads/contact_files"),
+    filename: (req, file, cb) => cb(null, Date.now() + "-" + file.originalname)
+});
+const upload = multer({ storage });
 
 // Add a new contact submission
 router.post("/add", upload.single("file"), async (req, res) => {
     try {
         const data = req.body;
-        if (req.file) data.file = buildUploadPath("contact_files", req.file.filename);
+        if (req.file) data.file = "/uploads/contact_files/" + req.file.filename;
 
         const contact = await Contact.create(data);
         res.json({ success: true, contact });

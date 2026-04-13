@@ -270,10 +270,32 @@
   <!-- NAVBAR -->
 <div id="header"></div>
 
-<script src="../assets/js/site-config.js"></script>
-<script src="../assets/js/load-nav.js"></script>
 <script>
-  loadGatewayNavbar("../nav-bar.html");
+  // Load navbar
+  fetch('../nav-bar.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('header').innerHTML = data;
+
+      // ✅ Run this only after nav-bar.html is inserted
+      const menuToggle = document.querySelector('.mobile-menu-toggle');
+      const navMenu = document.querySelector('.mobile-nav-menu');
+      const dropdownButtons = document.querySelectorAll('.dropdown-btn');
+
+      menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', !expanded);
+      });
+
+      dropdownButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const parent = btn.closest('.mobile-dropdown');
+          parent.classList.toggle('active');
+        });
+      });
+    })
+    .catch(err => console.error('Header load error:', err));
 </script>
 
   <!-- HEADER -->

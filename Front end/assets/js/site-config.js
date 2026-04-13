@@ -13,9 +13,10 @@
   }
 
   const storedApiBase = getStoredApiBase();
-  const defaultApiBase = /^https?:$/.test(win.location.protocol)
-    ? win.location.origin
-    : "http://localhost:5000";
+  const localHosts = ["localhost", "127.0.0.1", "::1"];
+  const defaultApiBase = localHosts.includes(win.location.hostname)
+    ? "http://localhost:5000"
+    : "https://gateway-backend-wiup.onrender.com";
 
   win.gatewayApiBase = (storedApiBase || defaultApiBase).replace(/\/$/, "");
 

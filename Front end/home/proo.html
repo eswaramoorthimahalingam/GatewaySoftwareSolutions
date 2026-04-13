@@ -1015,10 +1015,32 @@
     <!-- ===== NAVBAR ===== -->
    <div id="header"></div>
 
-<script src="../assets/js/site-config.js"></script>
-<script src="../assets/js/load-nav.js"></script>
 <script>
-  loadGatewayNavbar("../nav-bar.html");
+  // Load navbar
+  fetch('../nav-bar.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('header').innerHTML = data;
+
+      // ✅ Run this only after nav-bar.html is inserted
+      const menuToggle = document.querySelector('.mobile-menu-toggle');
+      const navMenu = document.querySelector('.mobile-nav-menu');
+      const dropdownButtons = document.querySelectorAll('.dropdown-btn');
+
+      menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', !expanded);
+      });
+
+      dropdownButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const parent = btn.closest('.mobile-dropdown');
+          parent.classList.toggle('active');
+        });
+      });
+    })
+    .catch(err => console.error('Header load error:', err));
 </script>
 
     <!-- Hero Section -->
@@ -1093,7 +1115,7 @@
 
 
 <script>
-const API_URL = gatewayApi("/api/project");
+const API_URL = "http://localhost:5000/api/project";
 
 // Load Projects
 async function loadPortfolioProjects() {
@@ -1107,7 +1129,7 @@ async function loadPortfolioProjects() {
         container.innerHTML = projects.map(p => `
             <div class="portfolio-item" data-category="${p.category}">
                 <div class="portfolio-img">
-                    <img src="${gatewayAsset(p.image)}" alt="${p.title}">
+                    <img src="http://localhost:5000${p.image}" alt="${p.title}">
                     <div class="portfolio-overlay">
                         <div class="portfolio-links">
                             <a href="#" class="portfolio-link"><i class="fas fa-external-link-alt"></i></a>
@@ -1298,7 +1320,7 @@ function initPortfolioFilters() {
         </div>
       </div>
 <script>
-fetch(gatewayApi("/api/clients"))
+fetch("http://localhost:5000/api/clients")
   .then(res => res.json())
   .then(data => {
       const container = document.getElementById("badgesScroll");
@@ -1306,7 +1328,7 @@ fetch(gatewayApi("/api/clients"))
       // Create slider items
       const items = data.map(c => `
           <div class="client-card">
-              <img src="${gatewayAsset(c.image)}" class="client-logo" />
+              <img src="http://localhost:5000${c.image}" class="client-logo" />
           </div>
       `).join("");
 

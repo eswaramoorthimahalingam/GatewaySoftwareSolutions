@@ -60,9 +60,8 @@
     </div>
 </div>
 
-<script src="../assets/js/site-config.js"></script>
 <script>
-const API = gatewayApi("/api/college");
+const API = "http://localhost:5000/api/colleges";
 
 function showToast(msg, ok=true){
     const toast = new bootstrap.Toast(document.getElementById("toastBox"));
@@ -79,7 +78,7 @@ async function loadColleges() {
     document.getElementById("collegeList").innerHTML = data.map(c => `
         <div class="col-md-3">
             <div class="card p-2">
-                <img src="${gatewayAsset(c.image)}" height="140" class="card-img-top">
+                <img src="http://localhost:5000${c.image}" height="140" class="card-img-top">
                 <h5>${c.name}</h5>
                 <p>${c.location}</p>
                 <span class="badge bg-primary">${c.type}</span>
