@@ -722,6 +722,36 @@ const BASE_URL = LOCAL_HOSTS.includes(window.location.hostname)
     ? LOCAL_API_BASE
     : REMOTE_API_BASE;
 const API_URL = `${BASE_URL}/api/team`;
+const STATIC_TEAM_IMAGES = {
+    'sabarinathan muthu': '../Updated Images/Sabari sir.jpeg',
+    'kiruba': '../Updated Images/kiruba Mam.jpeg',
+    'balaji': '../Updated Images/Balaji Sir.jpeg',
+    'gayathri': '../Updated Images/Gayathri.png',
+    'santhosh kumar': '../Updated Images/Santhosh Sir.jpeg',
+    'ashok': '../Updated Images/Ashok.jpeg',
+    'robin fernandes': '../Updated Images/Robin.jpeg',
+    'eswaramoorthi': '../Updated Images/Eswaramoorthy.jpeg',
+    'chitharanjan': '../Updated Images/Chitharanjan.jpeg',
+    'desika': '../Updated Images/Desika.jpeg',
+    'prem kumar': '../Updated Images/Prem Kumar.jpeg',
+    'kishore kanna': '../Updated Images/Kishore.jpeg',
+    'devi sivasankari': '../Updated Images/Devi.jpeg',
+    'dinesh': '../Updated Images/Dinesh.jpeg',
+    'indhu': '../Updated Images/indhu.jpeg',
+    'bhaherathan': '../Updated Images/bhaherathan.jpeg',
+    'azhagarsamy': '../Updated Images/Alagarsamy.JPG',
+    'sivagami': '../assets/images/team-members/sivagami.jpeg',
+    'riyaz ahamed': '../Updated Images/Riyaz.jpeg',
+    'anbusiva': '../Updated Images/Anbu.jpeg',
+    'hemaraghavan': '../assets/images/team-members/hema.jpeg',
+    'rubini': '../assets/images/team-members/rubini.jpeg',
+    'dhavarsanam': '../assets/images/team-members/dhavarsanam.jpeg',
+    'durgadevi': '../assets/images/team-members/durga.jpeg',
+    'priyadharshini': '../assets/images/team-members/priyadharshini.jpeg',
+    'feni auxily a': '../Updated Images/fenny.jpeg',
+    'mathan kumar': '../Updated Images/Madhan.jpeg',
+    'k karthik': '../Updated Images/karthik.jpeg'
+};
 
 let teamMembers = [];
 
@@ -760,9 +790,11 @@ function renderCards(members) {
             <div class="card-img-wrap">
                 <img
                     src="${getImageUrl(m.image, m.name)}"
+                    data-fallback="${getStaticTeamImage(m.name)}"
+                    data-avatar="${getAvatarUrl(m.name)}"
                     alt="${m.name}"
                     loading="lazy"
-                    onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(m.name)}&background=1e3a8a&color=fff&size=400'"
+                    onerror="handleTeamImageError(this)"
                 >
                 <div class="card-overlay"><span>View Profile</span></div>
             </div>
@@ -776,7 +808,7 @@ function renderCards(members) {
 
 function getImageUrl(imagePath, name) {
     if (!imagePath) {
-        return `https://ui-avatars.com/api/?name=${encodeURIComponent(name || 'Team Member')}&background=1e3a8a&color=fff&size=400`;
+        return getStaticTeamImage(name) || getAvatarUrl(name);
     }
 
     if (/^https?:\/\//i.test(imagePath)) {
@@ -784,6 +816,38 @@ function getImageUrl(imagePath, name) {
     }
 
     return `${BASE_URL}${imagePath.startsWith('/') ? imagePath : `/${imagePath}`}`;
+}
+
+function getAvatarUrl(name) {
+    return `https://ui-avatars.com/api/?name=${encodeURIComponent(name || 'Team Member')}&background=1e3a8a&color=fff&size=400`;
+}
+
+function normalizeMemberName(name) {
+    return String(name || '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, ' ')
+        .trim();
+}
+
+function getStaticTeamImage(name) {
+    const imagePath = STATIC_TEAM_IMAGES[normalizeMemberName(name)];
+    return imagePath ? encodeURI(imagePath) : '';
+}
+
+function handleTeamImageError(img) {
+    const fallback = img.dataset.fallback;
+    const avatar = img.dataset.avatar || getAvatarUrl(img.alt);
+
+    if (fallback && !img.dataset.usedFallback) {
+        img.dataset.usedFallback = 'true';
+        img.src = fallback;
+        return;
+    }
+
+    if (!img.dataset.usedAvatar) {
+        img.dataset.usedAvatar = 'true';
+        img.src = avatar;
+    }
 }
 
 /* =============================================
@@ -799,6 +863,11 @@ const modalIg     = document.getElementById('modalIg');
 const closeBtn    = document.getElementById('modalCloseBtn');
 
 function openModal(member) {
+    modalImg.dataset.fallback = getStaticTeamImage(member.name);
+    modalImg.dataset.avatar = getAvatarUrl(member.name);
+    modalImg.dataset.usedFallback = '';
+    modalImg.dataset.usedAvatar = '';
+    modalImg.onerror = () => handleTeamImageError(modalImg);
     modalImg.src = getImageUrl(member.image, member.name);
     modalImg.alt          = member.name;
     modalName.textContent = member.name;

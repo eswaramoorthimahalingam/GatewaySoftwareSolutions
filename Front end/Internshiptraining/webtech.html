@@ -595,7 +595,7 @@ document.getElementById("gatewayForm").addEventListener("submit", async function
         }
     });
 
-    const response = await fetch("http://localhost:5000/api/internEnquiry/add", {
+    const response = await fetch("https://gateway-backend-wiup.onrender.com/api/internEnquiry/add", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

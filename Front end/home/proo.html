@@ -1044,7 +1044,7 @@
 </script>
 
     <!-- Hero Section -->
-    <section class="hero">Our Clients
+    <section class="hero">
 
         <div class="container hero-content">
             <h1>WELCOME TO GATEWAY SOFTWARE SOLUTIONS</h1>
@@ -1115,7 +1115,29 @@
 
 
 <script>
-const API_URL = "http://localhost:5000/api/project";
+const API_BASE = "https://gateway-backend-wiup.onrender.com";
+const API_URL = `${API_BASE}/api/project`;
+
+function getApiAsset(path) {
+    if (!path) return "";
+    if (/^https?:\/\//i.test(path)) return path;
+    return `${API_BASE}${path.startsWith("/") ? path : `/${path}`}`;
+}
+
+function escapeHtml(value) {
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}
+
+function normalizeTags(tags) {
+    if (Array.isArray(tags)) return tags;
+    if (typeof tags === "string") return tags.split(",").map(tag => tag.trim()).filter(Boolean);
+    return [];
+}
 
 // Load Projects
 async function loadPortfolioProjects() {
@@ -1123,13 +1145,21 @@ async function loadPortfolioProjects() {
     container.innerHTML = "<p>Loading...</p>";
 
     try {
-        const res = await fetch(API_URL);
+        const res = await fetch(API_URL, { cache: "no-store" });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
         const projects = await res.json();
+        if (!Array.isArray(projects)) throw new Error("Invalid projects response");
+
+        if (!projects.length) {
+            container.innerHTML = "<p>No projects available right now.</p>";
+            return;
+        }
 
         container.innerHTML = projects.map(p => `
-            <div class="portfolio-item" data-category="${p.category}">
+            <div class="portfolio-item" data-category="${escapeHtml(p.category || "")}">
                 <div class="portfolio-img">
-                    <img src="http://localhost:5000${p.image}" alt="${p.title}">
+                    <img src="${escapeHtml(getApiAsset(p.image))}" alt="${escapeHtml(p.title || "Project")}">
                     <div class="portfolio-overlay">
                         <div class="portfolio-links">
                             <a href="#" class="portfolio-link"><i class="fas fa-external-link-alt"></i></a>
@@ -1139,10 +1169,10 @@ async function loadPortfolioProjects() {
                 </div>
 
                 <div class="portfolio-content">
-                    <h3>${p.title}</h3>
-                    <p>${p.description}</p>
+                    <h3>${escapeHtml(p.title || "Gateway Project")}</h3>
+                    <p>${escapeHtml(p.description || "")}</p>
                     <div class="portfolio-tags">
-                        ${p.tags.map(t => `<span>${t}</span>`).join("")}
+                        ${normalizeTags(p.tags).map(t => `<span>${escapeHtml(t)}</span>`).join("")}
                     </div>
                 </div>
             </div>
@@ -1151,6 +1181,7 @@ async function loadPortfolioProjects() {
         initPortfolioFilters();
 
     } catch (err) {
+        console.error("Project Load Error:", err);
         container.innerHTML = "<p>Error loading projects</p>";
     }
 }
@@ -1172,7 +1203,7 @@ function initPortfolioFilters() {
             const filter = btn.dataset.filter;
 
             items.forEach(item => {
-                const categories = item.dataset.category.split(",");
+                const categories = item.dataset.category.split(",").map(category => category.trim());
 
                 if (filter === "all" || categories.includes(filter)) {
                     item.style.display = "block";
@@ -1320,15 +1351,19 @@ function initPortfolioFilters() {
         </div>
       </div>
 <script>
-fetch("http://localhost:5000/api/clients")
-  .then(res => res.json())
+fetch(`${API_BASE}/api/clients`, { cache: "no-store" })
+  .then(res => {
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.json();
+  })
   .then(data => {
+      if (!Array.isArray(data)) throw new Error("Invalid clients response");
       const container = document.getElementById("badgesScroll");
 
       // Create slider items
       const items = data.map(c => `
           <div class="client-card">
-              <img src="http://localhost:5000${c.image}" class="client-logo" />
+              <img src="${escapeHtml(getApiAsset(c.image))}" class="client-logo" alt="${escapeHtml(c.name || "Client logo")}" />
           </div>
       `).join("");
 

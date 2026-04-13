@@ -675,7 +675,7 @@
 </section>
 
 <script>
-const API_URL_COLLEGES = "http://localhost:5000/api/college";
+const API_URL_COLLEGES = "https://gateway-backend-wiup.onrender.com/api/college";
 
 async function loadPartnerColleges() {
     try {
@@ -691,7 +691,7 @@ colleges.forEach(c => {
             const html = `
                 <div class="college-card">
                     <div class="college-logo">
-                        <img src="http://localhost:5000${c.image}" alt="${c.name}">
+                        <img src="https://gateway-backend-wiup.onrender.com${c.image}" alt="${c.name}">
                     </div>
                     <h4 class="college-name">${c.name}</h4>
                     <p class="college-location">${c.location}</p>
@@ -1049,7 +1049,7 @@ loadPartnerColleges();
     </section>
 
     <script>
-const API_URL_ENQUIRY = "http://localhost:5000/api/enquiry/add";
+const API_URL_ENQUIRY = "https://gateway-backend-wiup.onrender.com/api/enquiry/add";
 
 document.getElementById("contactForm").addEventListener("submit", async function(e) {
     e.preventDefault();

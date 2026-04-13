@@ -373,7 +373,7 @@
       });
     }
 
-// const API_URL_CAREER = "http://localhost:5000/api/career";
+// const API_URL_CAREER = "https://gateway-backend-wiup.onrender.com/api/career";
 
 // Load careers on page load
 document.addEventListener("DOMContentLoaded", loadJobs);
@@ -383,7 +383,7 @@ let jobs = []; // define globally
 
 async function loadJobs() {
   try {
-    const res = await fetch("http://localhost:5000/api/career");
+    const res = await fetch("https://gateway-backend-wiup.onrender.com/api/career");
     jobs = await res.json();   // store backend jobs in global variable
     renderJobs(jobs);          // render after data arrives
   } catch (err) {
@@ -446,7 +446,7 @@ function renderJobs(jobs) {
     const WHATSAPP_NUMBER = "917397078885";
 
     // Form Submit → WhatsApp
-  const API_URL_CAREER_APPLY = "http://localhost:5000/api/careerApply/submit";
+  const API_URL_CAREER_APPLY = "https://gateway-backend-wiup.onrender.com/api/careerApply/submit";
 
 document.getElementById('applyForm').addEventListener('submit', async function (e) {
   e.preventDefault();

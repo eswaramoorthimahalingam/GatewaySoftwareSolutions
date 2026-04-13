@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const fs = require("fs");
 const path = require("path");
 const app = express();
 
@@ -36,6 +37,58 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(express.static(path.join(__dirname, '../Front end')));
+
+const fallbackAssetDirs = [
+    path.join(__dirname, "../Front end/Updated Images"),
+    path.join(__dirname, "../Front end/assets/images/team-members"),
+    path.join(__dirname, "../Front end/assets/images"),
+    path.join(__dirname, "../Front end/assets"),
+];
+const fallbackAssetIndex = new Map();
+
+function normalizeAssetKey(fileName) {
+    return path
+        .basename(fileName, path.extname(fileName))
+        .replace(/^\d+-/, "")
+        .replace(/[^a-z0-9]+/gi, " ")
+        .trim()
+        .toLowerCase();
+}
+
+function indexFallbackAssets(dir) {
+    if (!fs.existsSync(dir)) {
+        return;
+    }
+
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+        const entryPath = path.join(dir, entry.name);
+
+        if (entry.isDirectory()) {
+            indexFallbackAssets(entryPath);
+            continue;
+        }
+
+        if (entry.isFile()) {
+            const key = normalizeAssetKey(entry.name);
+            if (key && !fallbackAssetIndex.has(key)) {
+                fallbackAssetIndex.set(key, entryPath);
+            }
+        }
+    }
+}
+
+fallbackAssetDirs.forEach(indexFallbackAssets);
+
+app.get("/uploads/:folder/:fileName", (req, res, next) => {
+    const key = normalizeAssetKey(decodeURIComponent(req.params.fileName));
+    const fallbackFile = fallbackAssetIndex.get(key);
+
+    if (!fallbackFile) {
+        return next();
+    }
+
+    return res.sendFile(fallbackFile);
+});
 
 const mongoURI = process.env.MONGODB_URI || "mongodb+srv://gatewaysoftware_db_user:Gatewaysoftware%40321@gatewaysoftwaresolution.6ojni4y.mongodb.net/?appName=gatewaysoftwaresolution";
 

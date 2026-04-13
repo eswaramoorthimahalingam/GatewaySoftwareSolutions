@@ -697,16 +697,16 @@ function logoutAdmin() {
     </div>
 
 <script>
-const API_URL_CLIENTS = "http://localhost:5000/api/clients";
-const API_URL_COLLEGES = "http://localhost:5000/api/college";
-const API_URL_PROJECTS = "http://localhost:5000/api/project";
-const API_URL_TEAM = "http://localhost:5000/api/team";
-const API_URL_MENUS = "http://localhost:5000/api/menus";
-const API_URL_CAREER = "http://localhost:5000/api/career";
-const API_URL_CAREER_APPLY = "http://localhost:5000/api/careerApply";
-const API_URL_CONTACT = "http://localhost:5000/api/contact";
-const API_URL_GET_ENQUIRIES = "http://localhost:5000/api/enquiry";
-const API_URL_PROJECT_ENQUIRIES = "http://localhost:5000/api/project-enquiry";
+const API_URL_CLIENTS = "https://gateway-backend-wiup.onrender.com/api/clients";
+const API_URL_COLLEGES = "https://gateway-backend-wiup.onrender.com/api/college";
+const API_URL_PROJECTS = "https://gateway-backend-wiup.onrender.com/api/project";
+const API_URL_TEAM = "https://gateway-backend-wiup.onrender.com/api/team";
+const API_URL_MENUS = "https://gateway-backend-wiup.onrender.com/api/menus";
+const API_URL_CAREER = "https://gateway-backend-wiup.onrender.com/api/career";
+const API_URL_CAREER_APPLY = "https://gateway-backend-wiup.onrender.com/api/careerApply";
+const API_URL_CONTACT = "https://gateway-backend-wiup.onrender.com/api/contact";
+const API_URL_GET_ENQUIRIES = "https://gateway-backend-wiup.onrender.com/api/enquiry";
+const API_URL_PROJECT_ENQUIRIES = "https://gateway-backend-wiup.onrender.com/api/project-enquiry";
 
 // Team form elements
 const teamName = document.getElementById("teamName");
@@ -773,7 +773,7 @@ async function loadClients() {
         document.getElementById("clientList").innerHTML = clients.map(c => `
             <div class="col-md-3">
                 <div class="card p-2">
-                    <img src="http://localhost:5000${c.image}" class="card-img-top" height="150" alt="Client Logo">
+                    <img src="https://gateway-backend-wiup.onrender.com${c.image}" class="card-img-top" height="150" alt="Client Logo">
                     <button onclick="deleteClient('${c._id}')" class="btn btn-danger mt-2">Delete</button>
                 </div>
             </div>
@@ -841,7 +841,7 @@ async function loadColleges() {
         document.getElementById("collegeList").innerHTML = colleges.map(c => `
             <div class="col-md-3">
                 <div class="card p-2 shadow-sm">
-                    <img src="http://localhost:5000${c.image}" height="140" class="card-img-top mb-2" alt="College Logo">
+                    <img src="https://gateway-backend-wiup.onrender.com${c.image}" height="140" class="card-img-top mb-2" alt="College Logo">
 
                     <h5 class="mb-2">${escapeHtml(c.name)}</h5>
                     <p class="mb-2 text-muted">${escapeHtml(c.location)}</p>
@@ -988,7 +988,7 @@ async function loadProjects() {
         container.innerHTML = projects.map(p => `
             <div class="col-md-4">
                 <div class="card shadow-sm p-2">
-                    <img src="http://localhost:5000${p.image}" class="card-img-top" height="180">
+                    <img src="https://gateway-backend-wiup.onrender.com${p.image}" class="card-img-top" height="180">
 
                     <h5 class="mt-2">${p.title}</h5>
                     <p>${p.description}</p>
@@ -1108,7 +1108,7 @@ async function loadTeams() {
         container.innerHTML = teams.map(m => `
             <div class="col-md-4">
                 <div class="card p-2 shadow-sm">
-                    <img src="http://localhost:5000${m.image}" class="card-img-top" height="200" 
+                    <img src="https://gateway-backend-wiup.onrender.com${m.image}" class="card-img-top" height="200" 
                          onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(m.name)}&background=1e3a8a&color=fff&size=200'"
                          alt="${m.name}">
                     <h5 class="mt-2">${m.name}</h5>
@@ -1234,7 +1234,7 @@ async function editTeam(id) {
 
     const imagePreview = document.getElementById("teamImagePreview");
     if (m.image) {
-        imagePreview.innerHTML = `<img src="http://localhost:5000${m.image}" style="width:100px;height:100px;object-fit:cover;border-radius:8px;">`;
+        imagePreview.innerHTML = `<img src="https://gateway-backend-wiup.onrender.com${m.image}" style="width:100px;height:100px;object-fit:cover;border-radius:8px;">`;
     } else {
         imagePreview.innerHTML = "";
     }
@@ -1510,7 +1510,7 @@ async function loadApplications() {
         <td>${a.phone}</td>
         <td>${a.jobTitle}</td>
        <td>
-  <a href="http://localhost:5000${a.resume}" target="_blank">View Resume</a>
+  <a href="https://gateway-backend-wiup.onrender.com${a.resume}" target="_blank">View Resume</a>
 </td>
         <td>${new Date(a.createdAt).toLocaleString()}</td>
       </tr>
@@ -1538,7 +1538,7 @@ async function loadContacts() {
                 <td>${c.phone}</td>
                 <td>${c.service}</td>
                 <td>${c.message}</td>
-                <td>${c.file ? `<a href="http://localhost:5000${c.file}" target="_blank">View File</a>` : "-"}</td>
+                <td>${c.file ? `<a href="https://gateway-backend-wiup.onrender.com${c.file}" target="_blank">View File</a>` : "-"}</td>
                 <td>${new Date(c.createdAt).toLocaleString()}</td>
             </tr>
         `).join("");
@@ -1612,7 +1612,7 @@ async function loadStartProjectEnquiries() {
     table.innerHTML = "<tr><td colspan='9'>Loading...</td></tr>";
 
     try {
-        const res = await fetch("http://localhost:5000/api/start-project");
+        const res = await fetch("https://gateway-backend-wiup.onrender.com/api/start-project");
         const data = await res.json();
 
         if (data.length === 0) {
@@ -1644,7 +1644,7 @@ document.addEventListener("DOMContentLoaded", loadStartProjectEnquiries);
 
 
 async function loadInternEnquiries() {
-  const res = await fetch("http://localhost:5000/api/internEnquiry");
+  const res = await fetch("https://gateway-backend-wiup.onrender.com/api/internEnquiry");
   const enquiries = await res.json();
 
   const tbody = document.getElementById("internEnquiryTable");

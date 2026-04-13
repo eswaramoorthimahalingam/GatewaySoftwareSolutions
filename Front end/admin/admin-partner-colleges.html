@@ -61,7 +61,7 @@
 </div>
 
 <script>
-const API = "http://localhost:5000/api/colleges";
+const API = "https://gateway-backend-wiup.onrender.com/api/colleges";
 
 function showToast(msg, ok=true){
     const toast = new bootstrap.Toast(document.getElementById("toastBox"));
@@ -78,7 +78,7 @@ async function loadColleges() {
     document.getElementById("collegeList").innerHTML = data.map(c => `
         <div class="col-md-3">
             <div class="card p-2">
-                <img src="http://localhost:5000${c.image}" height="140" class="card-img-top">
+                <img src="https://gateway-backend-wiup.onrender.com${c.image}" height="140" class="card-img-top">
                 <h5>${c.name}</h5>
                 <p>${c.location}</p>
                 <span class="badge bg-primary">${c.type}</span>

@@ -1988,13 +1988,13 @@
              <div class="client-grid" id="clientsDynamic"></div>
 
 <script>
-fetch("http://localhost:5000/api/clients")
+fetch("https://gateway-backend-wiup.onrender.com/api/clients")
     .then(res => res.json())
     .then(data => {
         document.getElementById("clientsDynamic").innerHTML =
             data.map(c => `
                 <div class="client-card">
-                    <img src="http://localhost:5000${c.image}" class="client-logo">
+                    <img src="https://gateway-backend-wiup.onrender.com${c.image}" class="client-logo">
                 </div>
             `).join("");
     });

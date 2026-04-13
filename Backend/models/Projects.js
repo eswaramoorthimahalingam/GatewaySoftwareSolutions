@@ -6,6 +6,6 @@ const ProjectSchema = new mongoose.Schema({
     category: String,   // web, mobile, ecommerce, ai, etc.
     tags: [String],
     image: String
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model("Project", ProjectSchema);
