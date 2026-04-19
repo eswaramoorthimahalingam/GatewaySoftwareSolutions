@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gateway Software Solutions - Navigation</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+  <style>
+    :root {
+      --primary: #3d5aa8;
+      --primary-dark: #4d7bdf;
+      --secondary: #f97316;
+      --secondary-dark: #fb923c;
+      --dark: #1a1a2e;
+      --light: #f8fafc;
+      --gradient-primary: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      --gradient-secondary: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+      --gradient-mixed: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary) 100%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    /* ===== NAVBAR BASE STYLES ===== */
+    .gss-navbar {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 15px 0;
+    }
+
+    .gss-navbar.scrolled {
+      padding: 10px 0;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .gss-navbar .navbar-brand img {
+      height: 50px;
+      transition: all 0.3s ease;
+    }
+
+    .gss-navbar.scrolled .navbar-brand img {
+      height: 42px;
+    }
+
+    /* ===== NAV LINKS ===== */
+    .gss-navbar .nav-link {
+      font-weight: 600;
+      color: var(--dark) !important;
+      font-size: 0.95rem;
+      padding: 8px 16px !important;
+      position: relative;
+      transition: all 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .gss-navbar .nav-link:hover {
+      color: var(--primary) !important;
+    }
+
+    .gss-navbar .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 3px;
+      background: var(--gradient-mixed);
+      transition: all 0.4s ease;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    .gss-navbar .nav-link:hover::after {
+      width: 70%;
+    }
+
+    .gss-navbar .nav-link.active {
+      color: var(--primary) !important;
+    }
+
+    .gss-navbar .nav-link.active::after {
+      width: 70%;
+    }
+
+    /* ===== DROPDOWN MENU ===== */
+    .gss-navbar .dropdown-menu {
+      border: none;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+      border-radius: 12px;
+      padding: 15px 0;
+      animation: gssFadeInDown 0.3s ease;
+      border-top: 3px solid var(--primary);
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    @keyframes gssFadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .gss-navbar .dropdown-item {
+      padding: 12px 24px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--dark);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .gss-navbar .dropdown-item:hover {
+      color: var(--primary) !important;
+      background: rgba(61, 90, 168, 0.08);
+      padding-left: 32px;
+    }
+
+    .gss-navbar .dropdown-item::before {
+      content: '›';
+      position: absolute;
+      left: 16px;
+      opacity: 0;
+      color: var(--primary);
+      font-weight: bold;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .gss-navbar .dropdown-item:hover::before {
+      opacity: 1;
+      left: 20px;
+    }
+
+    /* ===== DROPDOWN TOGGLE ARROW ===== */
+    .gss-navbar .dropdown-toggle::after {
+      display: inline-block;
+      margin-left: 6px;
+      vertical-align: middle;
+      content: "";
+      border-top: 0.35em solid;
+      border-right: 0.3em solid transparent;
+      border-bottom: 0;
+      border-left: 0.3em solid transparent;
+      transition: transform 0.3s ease;
+    }
+
+    .gss-navbar .dropdown:hover .dropdown-toggle::after {
+      transform: rotate(180deg);
+    }
+
+    /* ===== TOGGLER BUTTON ===== */
+    .gss-navbar .navbar-toggler {
+      border: none;
+      padding: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .gss-navbar .navbar-toggler:focus {
+      box-shadow: none;
+    }
+
+    .gss-navbar .navbar-toggler:hover {
+      background: rgba(61, 90, 168, 0.1);
+      border-radius: 8px;
+    }
+
+    .gss-navbar .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2833, 37, 41, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    /* ===== LMS BUTTON ===== */
+    .gss-navbar .lms-btn {
+      background: var(--gradient-secondary);
+      color: white !important;
+      border-radius: 25px;
+      padding: 10px 22px !important;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      border: none;
+      box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+      white-space: nowrap;
+    }
+
+    .gss-navbar .lms-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(249, 115, 22, 0.4);
+    }
+
+    /* ===== MOBILE STYLES ===== */
+    @media (max-width: 991px) {
+      .gss-navbar .navbar-collapse {
+        background: white;
+        padding: 20px;
+        border-radius: 15px;
+        margin-top: 15px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+
+      .gss-navbar .nav-link {
+        padding: 12px 16px !important;
+        border-radius: 8px;
+      }
+
+      .gss-navbar .nav-link:hover {
+        background: rgba(61, 90, 168, 0.08);
+      }
+
+      .gss-navbar .nav-link::after {
+        display: none;
+      }
+
+      .gss-navbar .dropdown-menu {
+        box-shadow: none;
+        border: none;
+        background: rgba(0, 0, 0, 0.03);
+        padding: 10px 0 10px 20px;
+        border-radius: 10px;
+        margin-top: 10px;
+      }
+
+      .gss-navbar .dropdown-item {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+      }
+
+      .gss-navbar .dropdown-item:hover {
+        padding-left: 24px;
+      }
+
+      .gss-navbar .lms-btn {
+        display: inline-block;
+        margin-top: 10px;
+        text-align: center;
+      }
+    }
+
+    /* ===== SCROLLBAR STYLING ===== */
+    .gss-navbar ::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .gss-navbar ::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 2px;
+    }
+
+    /* ===== MEGA MENU (OPTIONAL) ===== */
+    .gss-navbar .mega-menu {
+      position: static;
+    }
+
+    .gss-navbar .mega-menu .dropdown-menu {
+      width: 100%;
+      left: 0;
+      right: 0;
+      padding: 25px 40px;
+    }
+
+    /* ===== BODY PADDING FOR FIXED NAVBAR ===== */
+    body {
+      padding-top: 80px;
+    }
+
+    @media (max-width: 991px) {
+      body {
+        padding-top: 70px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Professional Navigation Bar -->
+  <nav class="navbar navbar-expand-lg fixed-top gss-navbar" id="gssNavbar">
+    <div class="container">
+      <!-- Brand Logo -->
+      <a class="navbar-brand" href="/index.html">
+        <img src="/assets/gsslogo.png" alt="Gateway Software Solutions">
+      </a>
+
+      <!-- Mobile Toggle Button -->
+      <button class="navbar-toggler" type="button" 
+              data-bs-toggle="collapse" 
+              data-bs-target="#gssNavDropdown" 
+              aria-controls="gssNavDropdown" 
+              aria-expanded="false" 
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navigation Menu -->
+      <div class="collapse navbar-collapse" id="gssNavDropdown">
+        <ul class="navbar-nav ms-auto align-items-center">
+          
+          <!-- Home Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Home
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/home/about.html">About Gateway</a></li>
+              <li><a class="dropdown-item" href="/home/proo.html">Company Profile</a></li>
+              <li><a class="dropdown-item" href="/home/ourteam.html">Our Core Team</a></li>
+              <li><a class="dropdown-item" href="/home/faq.html">FAQ</a></li>
+            </ul>
+          </li>
+
+          <!-- Products -->
+          <li class="nav-item">
+            <a class="nav-link" href="/product.html">Products</a>
+          </li>
+
+          <!-- Services Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Services
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/Services/digitalmarketing.html">Digital Marketing</a></li>
+              <li><a class="dropdown-item" href="/Services/Search-Engine.html">Search Engine Optimization</a></li>
+              <li><a class="dropdown-item" href="/Services/E-commerce.html">E-commerce Development</a></li>
+              <li><a class="dropdown-item" href="/Services/mobile-app-development.html">Mobile App Development</a></li>
+              <li><a class="dropdown-item" href="/Services/social-media-marketing.html">Social Media Marketing</a></li>
+              <li><a class="dropdown-item" href="/Services/ai-agent.html">AI Agent Development</a></li>
+              <li><a class="dropdown-item" href="/Services/IOT-development.html">IoT & Robotics</a></li>
+              <li><a class="dropdown-item" href="/Services/word-press-development.html">Wordpress Development</a></li>
+              <li><a class="dropdown-item" href="/Services/branding.html">Branding</a></li>
+              <li><a class="dropdown-item" href="/Services/logo-design.html">Logo Design</a></li>
+              <li><a class="dropdown-item" href="/Services/meta-ads.html">Meta Ads</a></li>
+              <li><a class="dropdown-item" href="/Services/game-development.html">Game Development</a></li>
+              <li><a class="dropdown-item" href="/Services/digital-transformation.html">Digital Transformation</a></li>
+            </ul>
+          </li>
+
+          <!-- Internships Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Internships
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/Internshiptraining/webtech.html">Web Technology</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/flutterapp.html">Mobile App (Flutter)</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/embeddediot.html">Embedded IoT</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/genai.html">Gen AI</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/cybersecurity.html">Cyber Security</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/javaj2ee.html">Java Full Stack</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/pythondj.html">Python with Django</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/powerbi.html">Data Analytics (Power BI)</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/pythonds.html">Data Science</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/pythonmysql.html">Python Full Stack</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/reactjstab.html">React JS</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/rtoolsprog.html">R Programming</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/softwaretesting.html">Software Testing</a></li>
+            </ul>
+          </li>
+
+          <!-- AI Development -->
+          <li class="nav-item">
+            <a class="nav-link" href="/Ai.html">AI Development</a>
+          </li>
+
+          <!-- IoT & Robotics -->
+          <li class="nav-item">
+            <a class="nav-link" href="/iot_robotic.html">IoT & Robotics</a>
+          </li>
+
+          <!-- Careers -->
+          <li class="nav-item">
+            <a class="nav-link" href="/career.html">Careers</a>
+          </li>
+
+          <!-- Contact Us -->
+          <li class="nav-item">
+            <a class="nav-link" href="/contactus.html">Contact Us</a>
+          </li>
+
+          <!-- LMS Portal Button -->
+          <li class="nav-item">
+            <a class="nav-link lms-btn" href="https://lms.sgsoftwaresolution.com/" target="_blank" rel="noopener noreferrer">
+              <i class="fas fa-graduation-cap me-1"></i> LMS Portal
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Navbar JavaScript -->
+  <script>
+    // Initialize dropdowns when DOM is ready
+    function initNavbarDropdowns() {
+      // Initialize Bootstrap dropdowns
+      if (typeof bootstrap !== 'undefined' && bootstrap.Dropdown) {
+        const dropdowns = document.querySelectorAll('.dropdown-toggle');
+        dropdowns.forEach(dropdown => {
+          new bootstrap.Dropdown(dropdown);
+        });
+      }
+    }
+
+    // Run on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      const navbar = document.getElementById('gssNavbar');
+      
+      // Initialize dropdowns immediately
+      initNavbarDropdowns();
+      
+      // Scroll effect for navbar
+      window.addEventListener('scroll', function() {
+        if (navbar) {
+          if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+          } else {
+            navbar.classList.remove('scrolled');
+          }
+        }
+      });
+
+      // Active link highlighting
+      if (navbar) {
+        const currentPath = window.location.pathname;
+        const navLinks = navbar.querySelectorAll('.nav-link');
+        
+        navLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          if (href && currentPath.includes(href) && href !== '/') {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+
+    // Also try to initialize after a short delay in case DOMContentLoaded already fired
+    setTimeout(initNavbarDropdowns, 200);
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: gateway-backend
+    runtime: node
+    rootDir: Backend
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: MONGODB_URI
+        value: mongodb+srv://gatewaysoftware_db_user:Gatewaysoftware%40321@gatewaysoftwaresolution.6ojni4y.mongodb.net/?appName=gatewaysoftwaresolution

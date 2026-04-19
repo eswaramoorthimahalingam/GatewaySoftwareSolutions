@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gateway Admin Login</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #f1f3f9;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .login-container {
+            max-width: 420px;
+            margin: 0 auto;
+            margin-top: 80px;
+        }
+
+        .login-card {
+            background: white;
+            padding: 2.2rem;
+            border-radius: 12px;
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .logo-area {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .logo-area .logo-icon {
+            font-size: 2.5rem;
+            color: rgb(242, 103, 17) ;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo-area h3 {
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .form-control {
+            padding: 0.75rem;
+            border-radius: 8px;
+        }
+
+        .btn-login {
+            background: rgb(242, 103, 17) ;
+            color: white;
+            border-radius: 8px;
+            padding: 0.7rem;
+            width: 100%;
+            font-weight: 600;
+        }
+
+        .btn-login:hover {
+            background:rgb(242, 103, 17);
+        }
+
+        .footer-text {
+            text-align: center;
+            margin-top: 1rem;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <!-- Top Logo -->
+        <div class="logo-area">
+            <div class="logo-icon"><img src="../assets//gsslogo.png" alt="" height="50px"></i></div>
+            <!-- <h3>Gateway Admin</h3> -->
+            <small class="text-muted">Admin Login</small>
+        </div>
+
+        <!-- Login Card -->
+        <div class="login-card">
+
+            <form>
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Email</label>
+                    <input type="email" class="form-control" placeholder="Enter your email">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Password</label>
+                    <input type="password" class="form-control" placeholder="Enter your password">
+                </div>
+
+                <button type="submit" class="btn btn-login">
+                    <i class="fas fa-sign-in-alt me-2"></i> Login
+                </button>
+
+            </form>
+
+        </div>
+
+        <div class="footer-text">
+            © 2025 Gateway Admin Panel
+        </div>
+
+    </div>
+<script>
+document.querySelector("form").addEventListener("submit", async function(e){
+    e.preventDefault();
+
+    const email = document.querySelector('input[type="email"]').value;
+    const password = document.querySelector('input[type="password"]').value;
+
+    try {
+        const apiBaseUrl = "https://gateway-backend-wiup.onrender.com";
+        const res = await fetch(`${apiBaseUrl}/api/admin/login`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({ email, password })
+        });
+
+        if (!res.ok) {
+            throw new Error("Server error: " + res.status);
+        }
+
+        const data = await res.json();
+
+        if (data.token) {
+            localStorage.setItem("adminToken", data.token);
+            window.location.href = "/admin";
+        } else {
+            alert(data.error || "Login failed");
+        }
+    } catch (err) {
+        console.error(err);
+        alert("Cannot connect to server. Make sure backend is running.");
+    }
+});
+</script>
+
+</body>
+</html>
+

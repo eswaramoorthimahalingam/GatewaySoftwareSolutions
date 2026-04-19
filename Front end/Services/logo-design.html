@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Logo Design Services | Gateway Software Solutions</title>
+  <meta name="description" content="Professional Logo Design Services - Custom Logo Creation, Brand Identity, Vector Logos. ISO 9001:2015 Certified." />
+  
+  <!-- SEO -->
+  <meta property="og:title" content="Logo Design Services | Gateway Software Solutions" />
+  <meta property="og:description" content="Create memorable, professional logos with custom design services for businesses of all sizes." />
+  <meta property="og:image" content="https://www.gatewaysoftwaresolutions.com/assets/logo.png" />
+  <meta property="og:url" content="https://www.gatewaysoftwaresolutions.com/logo-design/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- <link rel="icon" href="https://www.gatewaysoftwaresolutions.com/favicon.ico" /> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&family=Montserrat:wght@800;900&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* ============ CSS VARIABLES ============ */
+    :root {
+      --primary: #0ea5e9;
+      --primary-light: #38bdf8;
+      --secondary: #f97316;
+      --secondary-light: #fb923c;
+      --success: #10b981;
+      --danger: #dc2626;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --gray: #64748b;
+      --border: #e2e8f0;
+      --footer-bg: #0f172a;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --glass: rgba(255, 255, 255, 0.15);
+      --neumorph: 8px 8px 16px rgba(0,0,0,0.05), -8px -8px 16px rgba(255,255,255,0.8);
+      --shadow-sm: 0 6px 20px rgba(0,0,0,0.08);
+      --shadow-lg: 0 30px 60px rgba(14,165,233,0.18);
+      --nav-primary: #FF6B35;
+      --nav-primary-dark: #E55A2B;
+      --nav-secondary: #1E88E5;
+      --nav-secondary-dark: #1565C0;
+      --nav-accent: #FFD166;
+      --nav-dark: #1A1D2E;
+      --nav-light: #F8F9FA;
+      --nav-gradient-mixed: linear-gradient(135deg, var(--nav-secondary) 0%, var(--nav-primary) 100%);
+      --dark-footer: #1a1a1a;
+      --primary-orange: #ff9933;
+    }
+    [data-theme="dark"] {
+      --primary: #38bdf8;
+      --secondary: #fb923c;
+      --dark: #f1f5f9;
+      --light: #1e293b;
+      --gray: #94a3b8;
+      --border: #334155;
+      --card-bg: rgba(30, 41, 59, 0.95);
+      --glass: rgba(255, 255, 255, 0.08);
+      --neumorph: 8px 8px 16px rgba(0,0,0,0.3), -8px -8px 16px rgba(255,255,255,0.05);
+      --shadow-sm: 0 6px 20px rgba(0,0,0,0.3);
+      --shadow-lg: 0 30px 60px rgba(56,189,248,0.25);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #e0f2fe, #fed7aa);
+      color: var(--dark);
+      transition: all 0.4s ease;
+      margin: 0;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ============ SCROLL PROGRESS ============ */
+    .scroll-progress {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transform-origin: 0%;
+      transform: scaleX(0);
+      z-index: 9999;
+      border-radius: 0 0 4px 4px;
+      box-shadow: 0 2px 8px rgba(14,165,233,0.3);
+    }
+
+    /* ============ NAVBAR ============ */
+    .navbar {
+      backdrop-filter: blur(16px);
+      background: var(--glass);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.4s;
+      padding: 1.2rem 0;
+      z-index: 1000;
+      box-shadow: var(--neumorph);
+    }
+    .navbar.scrolled {
+      background: var(--card-bg);
+      padding: 0.8rem 0;
+      box-shadow: var(--shadow-sm);
+    }
+    .navbar-brand {
+      font-family: 'Montserrat',sans-serif;
+      font-weight:900;
+      font-size:2.2rem;
+      background:var(--nav-gradient-mixed);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      position:relative;
+      letter-spacing:-1px;
+    }
+    .navbar-brand::after {
+      content:''; position:absolute; bottom:-8px; left:0;
+      width:40px; height:4px; background:var(--nav-gradient-mixed);
+      border-radius:4px;
+    }
+    .nav-link {
+      font-weight:600; margin:0 12px; color:var(--dark)!important;
+      position:relative; transition:all .3s; font-size:1.05rem;
+    }
+    .nav-link:hover { color:var(--primary)!important; }
+    .nav-link::after {
+      content:''; position:absolute; bottom:0; left:0;
+      width:0; height:3px; background:var(--nav-gradient-mixed);
+      transition:width .4s;
+    }
+    .nav-link:hover::after { width:100%; }
+    .dropdown:hover .dropdown-menu { display:block; margin-top:0; animation:fadeInDown .4s; }
+    .dropdown-menu {
+      border:none; box-shadow:0 20px 50px rgba(0,0,0,.15);
+      border-radius:15px; padding:15px 0; border-top:3px solid var(--primary);
+      display:none; position:absolute;
+    }
+    .dropdown-item {
+      padding:12px 25px; transition:all .3s; font-weight:500;
+      position:relative; overflow:hidden;
+    }
+    .dropdown-item::before {
+      content:''; position:absolute; top:0; left:-100%;
+      width:100%; height:100%; background:var(--nav-gradient-mixed);
+      transition:left .3s; z-index:-1;
+    }
+    .dropdown-item:hover::before { left:0; }
+    .dropdown-item:hover { color:white; transform:translateX(8px); }
+    .dropdown-toggle::after {
+      margin-left:8px; border-top:.3em solid;
+      border-right:.3em solid transparent; border-left:.3em solid transparent;
+      transition:transform .3s ease;
+    }
+    .dropdown:hover .dropdown-toggle::after { transform:rotate(180deg); }
+    @keyframes fadeInDown {
+      from {opacity:0; transform:translate3d(0,-10px,0);}
+      to   {opacity:1; transform:translate3d(0,0,0);}
+    }
+    @media (max-width:768px){
+      .navbar-brand{font-size:1.8rem;}
+      .dropdown.show .dropdown-menu{display:block;}
+    }
+
+    /* ============ HERO ============ */
+    .hero {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 8rem 0 6rem;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15), transparent 60%);
+      opacity: 0.6;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .hero-subtitle {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+    }
+
+    /* Logo Service Cards */
+    .logo-service-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      transition: all 0.4s;
+      height: 100%;
+      box-shadow: var(--neumorph);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .logo-service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+    }
+    .logo-service-icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      background: rgba(14,165,233,0.1);
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-feature {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+    .feature-icon {
+      background: rgba(14,165,233,0.1);
+      color: var(--primary);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+      flex-shrink: 0;
+    }
+
+    /* Technology Cards */
+    .tech-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.4s;
+      height: 100%;
+      box-shadow: var(--neumorph);
+      border: 1px solid var(--border);
+    }
+    .tech-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+    .tech-icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+    }
+    .tech-badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+    .tech-badge {
+      background: rgba(14,165,233,0.1);
+      color: var(--primary);
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* Process Steps */
+    .process-step {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      border-radius: 20px;
+      background: var(--card-bg);
+      box-shadow: var(--neumorph);
+      transition: all 0.4s;
+      height: 100%;
+      position: relative;
+    }
+    .process-step:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+    .step-number {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.5rem;
+      margin: 0 auto 1.5rem;
+      box-shadow: 0 8px 20px rgba(14,165,233,0.3);
+    }
+
+    /* Logo Style Cards */
+    .logo-style-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.4s;
+      height: 100%;
+      box-shadow: var(--neumorph);
+      border: 1px solid var(--border);
+    }
+    .logo-style-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+    }
+    .logo-style-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      background: rgba(14,165,233,0.1);
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+
+    /* FAQ Section */
+    .faq-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: var(--neumorph);
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    .faq-card:hover {
+      box-shadow: var(--shadow-sm);
+    }
+    .faq-question {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      display: flex;
+      gap: 12px;
+      align-items: stretch;
+      margin-top: 1.5rem;
+    }
+    .contact-btn, .whatsapp-btn {
+      flex: 1;
+      padding: 0.9rem 1.2rem;
+      border-radius: 16px;
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      transition: all 0.4s;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      min-height: 56px;
+    }
+    .contact-btn {
+      background: var(--secondary);
+      color: white;
+      border: none;
+    }
+    .contact-btn:hover {
+      background: #ea580c;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(249,115,22,0.3);
+    }
+    .whatsapp-btn {
+      background: #25D366;
+      color: white;
+      border: none;
+    }
+    .whatsapp-btn:hover {
+      background: #128C7E;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(37,193,102,0.3);
+    }
+
+    /* Modal Form */
+    .modal-content {
+      border-radius: 20px;
+      border: none;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+    .modal-header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      padding: 1.5rem 2rem;
+    }
+    .modal-title {
+      font-weight: 800;
+      font-size: 1.3rem;
+    }
+    .modal-body {
+      padding: 2rem;
+    }
+    .form-control, .form-select {
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      font-size: 0.95rem;
+      border: 1.5px solid var(--border);
+      transition: all 0.3s;
+    }
+    .form-control:focus, .form-select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 0.2rem rgba(14,165,233,0.25);
+    }
+    .btn-submit {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.85rem 2rem;
+      border-radius: 14px;
+      font-weight: 700;
+      width: 100%;
+      transition: all 0.3s;
+    }
+    .btn-submit:hover {
+      background: #0284c7;
+      transform: translateY(-2px);
+    }
+
+    /* Floating WhatsApp */
+    .floating-whatsapp {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: var(--primary);
+      color: white;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      box-shadow: 0 15px 35px rgba(14,165,233,0.4);
+      z-index: 1000;
+      border: 5px solid white;
+      transition: all 0.4s;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 15px 35px rgba(14,165,233,0.4); }
+      50% { box-shadow: 0 15px 35px rgba(14,165,233,0.6); }
+      100% { box-shadow: 0 15px 35px rgba(14,165,233,0.4); }
+    }
+    .floating-whatsapp:hover {
+      transform: scale(1.15);
+      background: #0284c7;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--dark-footer);
+      color: white;
+      padding: 70px 0 20px;
+      margin-top: 5rem;
+    }
+    .footer-column h4 {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    .footer-column h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: var(--primary-orange);
+    }
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+    .footer-links li { margin-bottom: 0.8rem; }
+    .footer-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .footer-links a:hover {
+      color: var(--primary-orange);
+      padding-left: 5px;
+    }
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    /* Theme Toggle */
+    .dark-toggle {
+      background: var(--glass);
+      border: none;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      color: var(--gray);
+      cursor: pointer;
+      box-shadow: var(--neumorph);
+      transition: all 0.3s;
+    }
+    .dark-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: var(--neumorph);
+    }
+
+    /* Section Headers */
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .section-header h2 {
+      font-weight: 900;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .section-header p {
+      font-size: 1.2rem;
+      color: var(--gray);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .logo-badge {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 12px rgba(14,165,233,0.3);
+    }
+
+    /* Pricing Cards */
+    .pricing-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: all 0.4s;
+      height: 100%;
+      box-shadow: var(--neumorph);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .pricing-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+    }
+    .pricing-card.popular {
+      border: 2px solid var(--primary);
+      transform: scale(1.05);
+    }
+    .pricing-card.popular:hover {
+      transform: scale(1.05) translateY(-10px);
+    }
+    .popular-badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: var(--primary);
+      color: white;
+      padding: 0.5rem 1.5rem;
+      font-weight: 700;
+      font-size: 0.9rem;
+      border-radius: 0 20px 0 20px;
+    }
+    .price {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--primary);
+      margin: 1.5rem 0;
+    }
+    .price-period {
+      font-size: 1rem;
+      color: var(--gray);
+    }
+    .pricing-features {
+      list-style: none;
+      padding: 0;
+      margin: 2rem 0;
+      text-align: left;
+    }
+    .pricing-features li {
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+    }
+    .pricing-features li:last-child { border-bottom: none; }
+    .pricing-features li i { color: var(--success); margin-right: 0.8rem; }
+
+    /* Logo Showcase */
+    .logo-showcase {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      border-radius: 20px;
+      padding: 3rem;
+      color: white;
+      text-align: center;
+      margin: 4rem 0;
+      box-shadow: var(--shadow-lg);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="progress"></div>
+
+  <!-- ==================== FULL CONSISTENT NAVBAR ==================== -->
+   <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="https://www.gatewaysoftwaresolutions.com"><img height="50px" width="200px" src="../assets/gsslogo.png" alt=""></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link active dropdown-toggle" href="../index.html" id="homeDropdown" role="button" >Home</a>
+            <ul class="dropdown-menu" aria-labelledby="homeDropdown">
+              <li><a class="dropdown-item" href="/home/about.html">About Gateway</a></li>
+                            <li><a class="dropdown-item" href="/home/proo.html">Profile</a></li>
+              <li><a class="dropdown-item" href="/home/ourteam.html">Our Core Team</a></li>
+              <li><a class="dropdown-item" href="/home/faq.html">FAQ</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/product.html">Products</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="hireDropdown" role="button" data-bs-toggle="dropdown">
+              Services
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="hireDropdown">
+              <li><a class="dropdown-item" href="/Services/digitalmarketing.html">Digital Marketing</a></li>
+              <li><a class="dropdown-item" href="/Services/Search-Engine.html">Search Engine Optimization</a></li>
+              <li><a class="dropdown-item" href="/Services/E-commerce.html">E-commerce Development</a></li>
+              <li><a class="dropdown-item" href="/Services/mobile-app-development.html">Mobile App Development</a></li>
+              <li><a class="dropdown-item" href="/Services/social-media-marketing.html">Social Media Marketing</a></li>
+              <li><a class="dropdown-item" href="/Services/ai-agent.html">AI Agent Development Company</a></li>
+              <li><a class="dropdown-item" href="/Services/IOT-development.html">IOT & Robotics</a></li>
+              <li><a class="dropdown-item" href="/Services/word-press-development.html">Wordpress Development</a></li>
+              <li><a class="dropdown-item" href="/Services/branding.html">Branding</a></li>
+              <li><a class="dropdown-item" href="/Services/logo-design.html">Logo Design</a></li>
+              <li><a class="dropdown-item" href="/Services/meta-ads.html">Meta Ads</a></li>
+              <li><a class="dropdown-item" href="/Services/game-development.html">Game Development</a></li>
+              <li><a class="dropdown-item" href="/Services/digital-transformation.html">Digital Transformation Services</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button" data-bs-toggle="dropdown">
+              Internships
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="productsDropdown">
+             <li><a class="dropdown-item" href="/Internshiptraining/webtech.html">Web Technology</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/flutterapp.html">Mobile App</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/embeddediot.html">Embedded Iot</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/genai.html">Gen Ai</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/cybersecurity.html">Cyber Security</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/javaj2ee.html">Java</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/pythondj.html">Python With Django</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/powerbi.html">Data Analytics</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/pythonds.html">Data Science</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/pythonmysql.html">Python Full Stack</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/reactjstab.html">React js</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/rtoolsprog.html">R Tool</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/softwaretesting.html">Software Testing</a></li>
+          </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Ai.html">AI Development</a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link" href="/iot_robotic.html">Iot & Robotics</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/career.html">Careers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contactus.html">Contact Us</a>
+          </li>
+          <li class="nav-item">
+  <a 
+    class="nav-link" 
+    href="https://lms.sgsoftwaresolution.com/" 
+    style="color: var(--primary); text-decoration: none; font-weight: 700; border: 2px solid var(--primary); border-radius: 30px; padding: 8px 20px !important;"
+    target="_blank" 
+    rel="noopener noreferrer">
+    LMS Portal
+  </a>
+</li>
+          <li class="nav-item">
+            <button class="dark-toggle ms-3" id="themeToggle">
+              <i class="fas fa-moon"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- ==================== HERO ==================== -->
+  <section class="hero text-center">
+    <div class="container position-relative" data-aos="fade-up">
+      <div class="logo-badge">LOGO DESIGN SERVICES</div>
+      <h1 class="display-3 fw-900 mb-4">Professional <span style="background: linear-gradient(135deg, #fff, #fed7aa); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Logo Design</span></h1>
+      <p class="hero-subtitle">Create Memorable, Professional Logos That Represent Your Brand Identity and Make a Lasting Impression</p>
+      <p class="mb-0 fs-5">
+        <strong>Contact Our Logo Design Experts:</strong> 
+        <span class="copy-text fw-bold text-white" data-copy="+91739707885">+91 73970 78885</span>
+        <button class="btn btn-sm btn-outline-light ms-2 copy-btn" data-copy="+917397078885"><i class="fas fa-copy"></i></button>
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== LOGO DESIGN SERVICES ==================== -->
+  <section class="py-5">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Logo Design Services</h2>
+        <p>Comprehensive logo design solutions from concept to final delivery</p>
+      </div>
+      
+      <div class="row g-4">
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="0">
+          <div class="logo-service-card">
+            <div class="logo-service-icon">
+              <i class="fas fa-pencil-alt"></i>
+            </div>
+            <h3 class="fw-800 mb-3">Custom Logo Design</h3>
+            <p>Unique, custom-designed logos created from scratch to perfectly represent your brand identity and values.</p>
+            
+            <div class="logo-feature">
+              <div class="feature-icon"><i class="fas fa-check"></i></div>
+              <div><h6 class="fw-700">Multiple Concepts</h6><p class="text-muted small">3-8 unique logo concepts to choose from</p></div>
+            </div>
+            <div class="logo-feature">
+              <div class="feature-icon"><i class="fas fa-check"></i></div>
+              <div><h6 class="fw-700">Unlimited Revisions</h6><p class="text-muted small">Refine your chosen concept until perfect</p></div>
+            </div>
+            <div class="logo-feature">
+              <div class="feature-icon"><i class="fas fa-check"></i></div>
+              <div><h6 class="fw-700">Vector Format</h6><p class="text-muted small">Scalable vector files for all applications</p></div>
+            </div>
+            <div class="logo-feature">
+              <div class="feature-icon"><i class="fas fa-check"></i></div>
+              <div><h6 class="fw-700">Color Variations</h6><p class="text-muted small">Full color, black & white versions</p></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="logo-service-card">
+            <div class="logo-service-icon">
+              <i class="fas fa-sync-alt"></i>
+            </div>
+            <h3 class="fw-800 mb-3">Logo Redesign</h3>
+            <p>Refresh your existing logo with modern design principles while maintaining brand recognition.</p>
+            
+            <div class="logo-feature">
+              <div class="feature-icon"><i class="fas fa-check"></i></div>
+              <div><h6 class="fw-700">Brand Analysis</h6><p class="text-muted small">Comprehensive evaluation of current logo</p></div>
+            </div>
+            <div class="logo-feature">
+              <div class="feature-icon"><i class="fas fa-check"></i></div>
+              <div><h6 class="fw-700">Modernization</h6><p class="text-muted small">Update design while keeping core identity</p></div>
+            </div>
+            <div class="logo-feature">
+              <div class="feature-icon"><i class="fas fa-check"></i></div>
+              <div><h6 class="fw-700">Multiple Options</h6><p class="text-muted small">Various redesign approaches</p></div>
+            </div>
+            <div class="logo-feature">
+              <div class="feature-icon"><i class="fas fa-check"></i></div>
+              <div><h6 class="fw-700">Smooth Transition</h6><p class="text-muted small">Guidance for brand transition</p></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="logo-service-card">
+            <div class="logo-service-icon">
+              <i class="fas fa-cube"></i>
+            </div>
+            <h3 class="fw-800 mb-3">3D & Animated Logos</h3>
+            <p>Dynamic 3D logos and animated versions for digital platforms, presentations, and video content.</p>
+            
+            <div class="logo-feature">
+              <div class="feature-icon"><i class="fas fa-check"></i></div>
+              <div><h6 class="fw-700">3D Modeling</h6><p class="text-muted small">Professional 3D logo creation</p></div>
+            </div>
+            <div class="logo-feature">
+              <div class="feature-icon"><i class="fas fa-check"></i></div>
+              <div><h6 class="fw-700">Animation</h6><p class="text-muted small">Dynamic logo animations</p></div>
+            </div>
+            <div class="logo-feature">
+              <div class="feature-icon"><i class="fas fa-check"></i></div>
+              <div><h6 class="fw-700">Multiple Formats</h6><p class="text-muted small">MP4, GIF, and other video formats</p></div>
+            </div>
+            <div class="logo-feature">
+              <div class="feature-icon"><i class="fas fa-check"></i></div>
+              <div><h6 class="fw-700">Social Media Ready</h6><p class="text-muted small">Optimized for digital platforms</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TOOLS & TECHNOLOGIES ==================== -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="section-header">
+        <h2>Logo Design Tools & Technologies</h2>
+        <p>We leverage industry-standard tools and software for professional logo design</p>
+      </div>
+      
+      <div class="row g-4">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+          <div class="tech-card">
+            <div class="tech-icon"><i class="fab fa-adobe"></i></div>
+            <h4 class="fw-800 mb-3">Vector Design</h4>
+            <p class="text-muted">Professional vector design tools for creating scalable, high-quality logos.</p>
+            <div class="tech-badges">
+              <span class="tech-badge">Adobe Illustrator</span>
+              <span class="tech-badge">CorelDRAW</span>
+              <span class="tech-badge">Inkscape</span>
+              <span class="tech-badge">Affinity Designer</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="tech-card">
+            <div class="tech-icon"><i class="fas fa-cube"></i></div>
+            <h4 class="fw-800 mb-3">3D & Animation</h4>
+            <p class="text-muted">Advanced tools for creating 3D logos and animated versions.</p>
+            <div class="tech-badges">
+              <span class="tech-badge">Blender</span>
+              <span class="tech-badge">Cinema 4D</span>
+              <span class="tech-badge">After Effects</span>
+              <span class="tech-badge">Figma</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="tech-card">
+            <div class="tech-icon"><i class="fas fa-magic"></i></div>
+            <h4 class="fw-800 mb-3">Creative Process</h4>
+            <p class="text-muted">Tools and methodologies for the creative design process.</p>
+            <div class="tech-badges">
+              <span class="tech-badge">Sketching</span>
+              <span class="tech-badge">Mood Boards</span>
+              <span class="tech-badge">Color Theory</span>
+              <span class="tech-badge">Typography</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== DESIGN PROCESS ==================== -->
+  <section class="py-5">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Logo Design Process</h2>
+        <p>A systematic approach to creating memorable, effective logos</p>
+      </div>
+      
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="0">
+          <div class="process-step">
+            <div class="step-number">1</div>
+            <h5 class="fw-800 mb-3">Discovery & Research</h5>
+            <p class="text-muted">We analyze your business, target audience, competitors, and industry to understand your brand positioning.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <div class="process-step">
+            <div class="step-number">2</div>
+            <h5 class="fw-800 mb-3">Concept & Sketching</h5>
+            <p class="text-muted">Our designers create multiple concepts and sketches based on the research findings.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+          <div class="process-step">
+            <div class="step-number">3</div>
+            <h5 class="fw-800 mb-3">Design & Refinement</h5>
+            <p class="text-muted">We develop the chosen concept digitally and refine it through multiple iterations.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+          <div class="process-step">
+            <div class="step-number">4</div>
+            <h5 class="fw-800 mb-3">Delivery & Support</h5>
+            <p class="text-muted">We deliver all final files and provide guidance on logo usage and implementation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== LOGO STYLES ==================== -->
+  <section class="py-5 bg-light">
+    <div class="container">
+      <div class="section-header">
+        <h2>Logo Styles We Create</h2>
+        <p>Various logo design styles to match your brand personality</p>
+      </div>
+      
+      <div class="row g-4">
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+          <div class="logo-style-card">
+            <div class="logo-style-icon"><i class="fas fa-font"></i></div>
+            <h5 class="fw-800 mb-3">Wordmark Logos</h5>
+            <p class="text-muted">Text-based logos that focus on your company name with custom typography.</p>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="logo-style-card">
+            <div class="logo-style-icon"><i class="fas fa-gem"></i></div>
+            <h5 class="fw-800 mb-3">Iconic Logos</h5>
+            <p class="text-muted">Symbol-based logos that represent your brand through a unique graphic element.</p>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="logo-style-card">
+            <div class="logo-style-icon"><i class="fas fa-feather-alt"></i></div>
+            <h5 class="fw-800 mb-3">Abstract Logos</h5>
+            <p class="text-muted">Geometric or abstract shapes that convey your brand's essence without literal representation.</p>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+          <div class="logo-style-card">
+            <div class="logo-style-icon"><i class="fas fa-paw"></i></div>
+            <h5 class="fw-800 mb-3">Mascot Logos</h5>
+            <p class="text-muted">Character or illustrated logos that personify your brand and create emotional connections.</p>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="logo-style-card">
+            <div class="logo-style-icon"><i class="fas fa-layer-group"></i></div>
+            <h5 class="fw-800 mb-3">Combination Logos</h5>
+            <p class="text-muted">Logos that combine text and symbols for maximum brand recognition and flexibility.</p>
+          </div>
+        </div>
+        <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="logo-style-card">
+            <div class="logo-style-icon"><i class="fas fa-medal"></i></div>
+            <h5 class="fw-800 mb-3">Emblem Logos</h5>
+            <p class="text-muted">Traditional badge-style logos that convey heritage, quality, and prestige.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PRICING PACKAGES ==================== -->
+  <section class="py-5">
+    <div class="container">
+      <div class="section-header">
+        <h2>Logo Design Packages</h2>
+        <p>Flexible logo design solutions for businesses of all sizes</p>
+      </div>
+      
+      <div class="row g-4">
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="0">
+          <div class="pricing-card">
+            <h4 class="fw-800">Basic Logo</h4>
+            <p class="text-muted">Perfect for startups and small businesses</p>
+            <div class="price">₹999<span class="price-period">one-time</span></div>
+            <ul class="pricing-features">
+              <li><i class="fas fa-check"></i> 3 Logo Concepts</li>
+              <li><i class="fas fa-check"></i> 2 Revisions</li>
+              <li><i class="fas fa-check"></i> Final Logo in Vector Format</li>
+              <li><i class="fas fa-check"></i> Color & B/W Versions</li>
+              <li><i class="fas fa-check"></i> PNG & JPG Files</li>
+              <li><i class="fas fa-check"></i> 1 Week Delivery</li>
+            </ul><a href="/Services/formpro.html">
+            <button class="contact-btn w-100" data-bs-toggle="modal" >Get Started</button></a>
+         </div>
+        </div>
+        
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="pricing-card popular">
+            <div class="popular-badge">MOST POPULAR</div>
+            <h4 class="fw-800">Professional Logo</h4>
+            <p class="text-muted">Ideal for growing businesses</p>
+            <div class="price">₹1,999<span class="price-period">one-time</span></div>
+            <ul class="pricing-features">
+              <li><i class="fas fa-check"></i> 5 Logo Concepts</li>
+              <li><i class="fas fa-check"></i> Unlimited Revisions</li>
+              <li><i class="fas fa-check"></i> All Vector Formats</li>
+              <li><i class="fas fa-check"></i> Stationery Design</li>
+              <li><i class="fas fa-check"></i> Social Media Kit</li>
+              <li><i class="fas fa-check"></i> Basic Brand Guide</li>
+              <li><i class="fas fa-check"></i> 2 Weeks Delivery</li>
+            </ul><a href="/Services/formpro.html">
+            <button class="contact-btn w-100" data-bs-toggle="modal" >Get Started</button></a>
+         </div>
+        </div>
+        
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="pricing-card">
+            <h4 class="fw-800">Premium Logo</h4>
+            <p class="text-muted">For comprehensive branding needs</p>
+            <div class="price">₹2,999<span class="price-period">one-time</span></div>
+            <ul class="pricing-features">
+              <li><i class="fas fa-check"></i> 8+ Logo Concepts</li>
+              <li><i class="fas fa-check"></i> Unlimited Revisions</li>
+              <li><i class="fas fa-check"></i> Complete Brand Identity</li>
+              <li><i class="fas fa-check"></i> Animated Logo</li>
+              <li><i class="fas fa-check"></i> Comprehensive Brand Guide</li>
+              <li><i class="fas fa-check"></i> All File Formats</li>
+              <li><i class="fas fa-check"></i> 3 Weeks Delivery</li>
+            </ul><a href="/Services/formpro.html">
+            <button class="contact-btn w-100" data-bs-toggle="modal" >Get Started</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FAQS ==================== -->
+  <section class="py-5">
+    <div class="container">
+      <div class="section-header">
+        <h2>Logo Design FAQs</h2>
+        <p>Common questions about our logo design services</p>
+      </div>
+      
+      <div class="row">
+        <div class="col-lg-8 mx-auto">
+          <div class="faq-card" data-aos="fade-up">
+            <div class="faq-question">How long does the logo design process take?</div>
+            <p class="text-muted mb-0">The timeline depends on the package. Basic logos take 5-7 days, Professional packages take 10-14 days, and Premium packages take 2-3 weeks. We provide detailed timelines after understanding your requirements.</p>
+          </div>
+          <div class="faq-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="faq-question">What file formats will I receive?</div>
+            <p class="text-muted mb-0">You'll receive all final logos in vector formats (AI, EPS, PDF, SVG) for scalability and raster formats (PNG, JPG) for web and print use. We also provide transparent background versions.</p>
+          </div>
+          <div class="faq-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="faq-question">Do I own the copyright to my logo?</div>
+            <p class="text-muted mb-0">Yes, once the project is completed and payment is received, you own full copyright and commercial rights to your logo design.</p>
+          </div>
+          <div class="faq-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="faq-question">Can you help with trademark registration?</div>
+            <p class="text-muted mb-0">While we're not legal experts, we can provide all necessary files and documentation for trademark registration and guide you through the process. We recommend consulting with a trademark attorney for legal protection.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CTA SHOWCASE ==================== -->
+  <div class="container mb-5">
+    <div class="logo-showcase" data-aos="fade-up">
+      <h3 class="fw-900 mb-3">Ready to Create Your Perfect Logo?</h3>
+      <p class="mb-4 fs-5">Let's design a memorable logo that represents your brand and makes a lasting impression</p>
+      <div class="cta-section justify-content-center">
+        <button class="contact-btn" style="background: white; color: var(--primary);" data-bs-toggle="modal" data-bs-target=""><a href="/Services/formpro.html">
+          <i class="fas fa-pencil-alt"></i> Start Your Logo Design</a>
+        </button>
+        <a href="https://wa.me/917397078885?text=Hi,%20I'm%20interested%20in%20your%20Logo%20Design%20Services" target="_blank" rel="noopener" class="whatsapp-btn">
+          <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FULL CONSISTENT FOOTER ==================== -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gateway Software Solutions – Footer</title>
+
+    <!-- Font Awesome for Social Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+          integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        * { box-sizing: border-box; margin:0; padding:0; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background:#f8f9fa; }
+
+        /* ====================== FOOTER ====================== */
+        .footer {
+            background: #e6f7ff; /* Light Blue Background */
+            padding: 45px 0 25px;
+            border-top: 5px solid #b3e0ff;
+            margin-top: 50px;
+            color: #1a1a1a;
+        }
+        .footer .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        /* ---------- Certification Logos ---------- */
+        .cert-logos {
+            text-align: center;
+            margin-bottom: 35px;
+            padding-bottom: 22px;
+            border-bottom: 2px dashed #99d6ff;
+        }
+        .cert-logos img {
+            height: 78px;
+            margin: 0 20px;
+            display: inline-block;
+            vertical-align: middle;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+            transition: transform .3s ease;
+        }
+        .cert-logos img:hover {
+            transform: scale(1.05);
+        }
+
+        /* ---------- 4-Column Grid ---------- */
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 35px;
+            justify-content: space-between;
+        }
+
+        .col {
+            flex: 1;
+            min-width: 180px;
+        }
+        .col h3 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: #1e40af;
+            position: relative;
+            font-weight: 600;
+        }
+        .col h3::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: -7px;
+            width: 34px; height: 3px;
+            background: #f39c12;
+            border-radius: 2px;
+        }
+        .col ul {
+            list-style: none;
+        }
+        .col ul li {
+            margin-bottom: 10px;
+        }
+        .col ul li a {
+            color: #333;
+            text-decoration: none;
+            font-size: 15px;
+            transition: all .3s ease;
+            display: block;
+        }
+        .col ul li a:hover {
+            color: #f39c12;
+            padding-left: 5px;
+        }
+
+        /* ---------- SOCIAL LINKS – VERTICAL ---------- */
+        .social-links {
+            display: flex;
+            flex-direction: column;   /* ← VERTICAL ALIGNMENT */
+            gap: 12px;
+            margin-top: 14px;
+        }
+        .social-links a {
+            color: #f39c12;
+            font-size: 20px;
+            width: 44px;
+            height: 44px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all .3s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+        }
+        .social-links a:hover {
+            background: #f39c12;
+            color: #fff;
+            transform: translateX(5px);
+            box-shadow: 0 6px 14px rgba(243,156,18,0.4);
+        }
+
+        /* ---------- Copyright ---------- */
+        .copyright {
+            text-align: center;
+            margin-top: 35px;
+            padding: 16px 0;
+            background: #ffffff;
+            color: #444;
+            font-size: 14px;
+            border-radius: 8px;
+            margin-left: -20px;
+            margin-right: -20px;
+            margin-bottom: -25px;
+            box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 768px) {
+            .footer-grid {
+                flex-direction: column;
+                text-align: center;
+            }
+            .col h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .cert-logos img {
+                height: 60px;
+                margin: 10px;
+            }
+            .social-links {
+                flex-direction: row;        /* ← Horizontal on mobile for space */
+                justify-content: center;
+                gap: 15px;
+            }
+            .social-links a {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            .copyright {
+                margin-left: -20px;
+                margin-right: -20px;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ====================== FOOTER (Social Links VERTICAL) ====================== -->
+<footer class="footer">
+    <div class="container">
+
+        <!-- Certification Logos – ABOVE Columns -->
+        <div class="cert-logos">
+            <img src="../assets/gsslogo.png"  alt="Gateway Software Solutions">
+            <img src="../assets/certifid.png" alt="ISO 9001:2015 Accredited">
+            <img src="../assets/aicte.png"    alt="AICTE Approved">
+        </div>
+
+        <!-- 4-Column Layout -->
+        <div class="footer-grid">
+
+            <!-- Services -->
+            <div class="col">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="../Services/mobile-app-development.html">Application Development</a></li>
+                    <li><a href="../Services/E-commerce.html">Web Development</a></li>
+                    <li><a href="../Services/digitalmarketing.html">Digital Marketing</a></li>
+                    <li><a href="../Services/logo-design.html">UI/UX Design</a></li>
+                    <li><a href="../Services/ai-agent.html">Ai Development</a></li>
+                </ul>
+            </div>
+
+            <!-- Company -->
+            <div class="col">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="../home/about.html">About Us</a></li>
+                    <li><a href="../career.html">Careers</a></li>
+                    <li><a href="../home/ourteam.html">Our Team</a></li>
+                    <li><a href="../home/proo.html">Profile</a></li>
+                    <li><a href="../home/faq.html">Faq</a></li>
+                </ul>
+            </div>
+
+            <!-- Internship & Course -->
+            <div class="col">
+                <h3>Internship & Course</h3>
+                <ul>
+                    <li><a href="../Internshiptraining/webtech.html">Web Designing</a></li>
+                    <li><a href="../Internshiptraining/embeddediot.html">Iot</a></li>
+                    <li><a href="../Internshiptraining/flutterapp.html">Mobile App</a></li>
+                    <li><a href="../Internshiptraining/genai.html">Gen-Ai-Agent</a></li>
+                    <li><a href="../Internshiptraining/pythonds.html">Data Science</a></li>
+                    <li><a href="../Internshiptraining/pythonmysql.html">Full Stack</a></li>
+                </ul>
+            </div>
+
+            <!-- Connect With Us – VERTICAL SOCIAL ICONS -->
+            <div class="col">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/company/gateway-software-solutions/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/gatewaycbe?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@GatewaySoftwareSolutions-gss" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Copyright -->
+        <div class="copyright">
+            © Gateway Software Solutions. All rights reserved. | Empowering Businesses Overturn The Ordinary.
+        </div>
+
+    </div>
+</footer>
+
+</body>
+</html>
+  <!-- ==================== FLOATING WHATSAPP ==================== -->
+  <a href="https://wa.me/917397078885?text=Hi,%20I'm%20interested%20in%20your%20Logo%20Design%20Services" class="floating-whatsapp" target="_blank" rel="noopener">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- ==================== CONTACT MODAL ==================== -->
+  <div class="modal fade" id="contactModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="fas fa-envelope me-2"></i> Get a Free Logo Design Consultation</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="contactForm" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6"><input type="text" class="form-control" placeholder="Full Name *" required></div>
+              <div class="col-md-6"><input type="email" class="form-control" placeholder="Email *" required></div>
+              <div class="col-md-6"><input type="tel" class="form-control" placeholder="Phone *" required></div>
+              <div class="col-md-6"><input type="text" class="form-control" placeholder="Company Name"></div>
+              <div class="col-12">
+                <select class="form-select" required>
+                  <option value="">Logo Service Interested In *</option>
+                  <option>Custom Logo Design</option>
+                  <option>Logo Redesign</option>
+                  <option>3D & Animated Logo</option>
+                  <option>Complete Brand Identity</option>
+                  <option>Free Logo Consultation</option>
+                </select>
+              </div>
+              <div class="col-12"><textarea class="form-control" rows="3" placeholder="Tell us about your logo design requirements..."></textarea></div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-submit">
+                  <i class="fas fa-paper-plane"></i> Request Free Consultation
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SCRIPTS ==================== -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <script>
+    // Navbar Scroll & Progress
+    window.addEventListener('scroll', () => {
+      document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50);
+      const scrolled = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+      document.getElementById('progress').style.transform = `scaleX(${scrolled / 100})`;
+    });
+
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    html.dataset.theme = currentTheme;
+    themeToggle.innerHTML = currentTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    themeToggle.addEventListener('click', () => {
+      const newTheme = html.dataset.theme === 'dark' ? 'light' : 'dark';
+      html.dataset.theme = newTheme;
+      localStorage.setItem('theme', newTheme);
+      themeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    });
+
+    // Copy Button
+    document.addEventListener('click', e => {
+      if (e.target.closest('.copy-btn')) {
+        const btn = e.target.closest('.copy-btn');
+        const text = btn.dataset.copy;
+        navigator.clipboard.writeText(text);
+        const icon = btn.querySelector('i');
+        icon.classList.replace('fa-copy', 'fa-check');
+        setTimeout(() => icon.classList.replace('fa-check', 'fa-copy'), 2000);
+      }
+    });
+
+    // Mobile Dropdown Fix
+    document.querySelectorAll('.dropdown-menu').forEach(menu => {
+      menu.addEventListener('click', e => e.stopPropagation());
+    });
+
+    // Form Validation
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      if (!this.checkValidity()) {
+        e.preventDefault();
+        this.classList.add('was-validated');
+        return;
+      }
+      alert('Thank you! Our logo design expert will contact you within 24 hours.');
+      bootstrap.Modal.getInstance(document.getElementById('contactModal')).hide();
+      this.reset();
+      this.classList.remove('was-validated');
+    });
+
+    // AOS Init
+    AOS.init({ duration: 1000, once: true });
+
+    // JSON-LD
+    const ld = document.createElement('script');
+    ld.type = "application/ld+json";
+    ld.text = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Logo Design Services",
+      "provider": {
+        "@type": "Organization",
+        "name": "Gateway Software Solutions",
+        "sameAs": "https://www.gatewaysoftwaresolutions.com"
+      },
+      "areaServed": "India",
+      "description": "Professional logo design services including custom logos, logo redesign, and 3D animated logos.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Logo Design Services",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Logo Design" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Logo Redesign" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "3D & Animated Logos" } }
+        ]
+      }
+    });
+    document.head.appendChild(ld);
+  </script>
+</body>
+</html>
+

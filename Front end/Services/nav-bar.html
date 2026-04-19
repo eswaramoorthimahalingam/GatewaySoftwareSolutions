@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js" integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mobile Navbar | Gateway Software Solutions</title>
+
+  <style>
+    :root {
+      --primary: #ff6600; /* Orange color (Gateway theme) */
+      --secondary: #333;
+      --dark: #222;
+      --border: #ddd;
+      --card-bg: #fff;
+    }
+
+    /* ===== MOBILE NAVBAR ===== */
+    .mobile-navbar {
+      display: none;
+      background: var(--card-bg);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 2000;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .mobile-nav-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mobile-brand img {
+      height: 40px;
+    }
+
+    .mobile-menu-toggle {
+      background: none;
+      border: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: var(--dark);
+    }
+
+    /* Menu container */
+    .mobile-nav-menu {
+      display: none;
+      flex-direction: column;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    /* Show menu when active */
+    .mobile-nav-menu.active {
+      display: flex;
+    }
+
+    /* Top-level items */
+    .mobile-nav-menu > li > a,
+    .dropdown-btn {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 10px;
+      font-weight: 600;
+      color: var(--dark);
+      background: white;
+      border: none;
+      outline: none;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .mobile-nav-menu > li > a:hover,
+    .dropdown-btn:hover {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    /* Dropdown content */
+    .dropdown-content {
+      display: none;
+      padding: 10px;
+      flex-direction: column;
+      background: #f9f9f9;
+    }
+
+    .dropdown-content a {
+      padding: 10px;
+      text-decoration: none;
+      color: var(--dark);
+      transition: background 0.3s;
+    }
+
+    .dropdown-content a:hover {
+      border-bottom: 1px solid rgb(154, 152, 152);
+      padding: 0px;
+      margin: 0px;
+    }
+
+    /* When dropdown is active */
+    .mobile-dropdown.active .dropdown-content {
+      display: flex;
+    }
+
+    /* Show only on mobile */
+    @media (max-width: 768px) {
+      .mobile-navbar {
+        display: block;
+      }
+    }
+
+    /* Hide scrollbar for a cleaner look */
+    .mobile-nav-menu::-webkit-scrollbar {
+      width: 4px;
+    }
+    .mobile-nav-menu::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 2px;
+    }
+</style>
+
+ <style>
+
+        /* Enhanced Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 20px 0;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 15px 0;
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .navbar-brand {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 2.2rem;
+            background: var(--gradient-mixed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            letter-spacing: -1px;
+        }
+
+        .navbar-brand::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 4px;
+            background: var(--gradient-mixed);
+            border-radius: 4px;
+        }
+
+        .nav-link {
+            font-weight: 600;
+            margin: 0 12px;
+            color: var(--dark) !important;
+            position: relative;
+            transition: all 0.3s;
+            font-size: 1.05rem;
+        }
+
+        .nav-link:hover {
+            color: var(--primary) !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--gradient-mixed);
+            transition: width 0.4s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Enhanced Dropdown Menu */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            margin-top: 0;
+            animation: fadeInDown 0.4s;
+        }
+
+        .dropdown-menu {
+            border: none;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+            border-radius: 15px;
+            padding: 15px 0;
+            animation: fadeInDown 0.4s;
+            border-top: 3px solid var(--primary);
+            display: none;
+            position: absolute;
+        }
+
+        .dropdown-item {
+            padding: 12px 25px;
+            transition: all 0.3s;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dropdown-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-mixed);
+            transition: left 0.3s;
+            z-index: -1;
+        }
+
+        .dropdown-item:hover::before {
+            left: 0;
+        }
+
+        .dropdown-item:hover {
+            color: white;
+            transform: translateX(8px);
+        }
+
+        /* Dropdown Arrow */
+        .dropdown-toggle::after {
+            display: inline-block;
+            margin-left: 8px;
+            vertical-align: middle;
+            content: "";
+            border-top: 0.3em solid;
+            border-right: 0.3em solid transparent;
+            border-bottom: 0;
+            border-left: 0.3em solid transparent;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-toggle::after {
+            transform: rotate(180deg);
+        }
+</style>
+
+</head>
+<body>
+  <!-- Mobile Navbar -->
+  <!-- <nav class="mobile-navbar     d-block d-lg-none" >
+    <div class="mobile-nav-header">
+        <a href="./index.html" class="mobile-brand">
+            <img src="/assets/gsslogo.png" alt="Gateway Logo" />
+        </a>
+      <button class="mobile-menu-toggle" aria-label="Toggle Menu" aria-expanded="false">☰</button>
+    </div>
+
+    <ul class="mobile-nav-menu">
+      <li class="mobile-dropdown">
+        <button class="dropdown-btn">Home ▾</button>
+        <ul class="dropdown-content">
+          <li><a class="dropdown-item" href="/home/about.html">About Gateway</a></li>
+          <li><a class="dropdown-item"  href="/home/proo.html">Profile</a></li>
+          <li><a class="dropdown-item" href="/home/ourteam.html">Our Core Team</a></li>
+          <li><a class="dropdown-item" href="/home/faq.html">FAQ</a></li>
+          
+        </ul>
+
+    </li>
+    <li><a href="/product.html">Products</a></li>
+    
+      <li class="mobile-dropdown">
+        <button class="dropdown-btn">Services ▾</button>
+        <ul class="dropdown-content">
+           <li><a class="dropdown-item" href="/Services/digitalmarketing.html">Digital Marketing</a></li>
+              <li><a class="dropdown-item" href="/Services/Search-Engine.html">Search Engine Optimization</a></li>
+              <li><a class="dropdown-item" href="/Services/E-commerce.html">E-commerce Development</a></li>
+              <li><a class="dropdown-item" href="/Services/mobile-app-development.html">Mobile App Development</a></li>
+              <li><a class="dropdown-item" href="/Services/social-media-marketing.html">Social Media Marketing</a></li>
+              <li><a class="dropdown-item" href="/Services/ai-agent.html">AI Agent Development</a></li>
+              <li><a class="dropdown-item" href="/Services/IOT-development.html">IOT & Robotics</a></li>
+              <li><a class="dropdown-item" href="/Services/word-press-development.html">Wordpress Development</a></li>
+              <li><a class="dropdown-item" href="/Services/branding.html">Branding</a></li>
+              <li><a class="dropdown-item" href="/Services/logo-design.html">Logo Design</a></li>
+              <li><a class="dropdown-item" href="/Services/meta-ads.html">Meta Ads</a></li>
+              <li><a class="dropdown-item" href="/Services/game-development.html">Game Development</a></li>
+              <li><a class="dropdown-item" href="/Services/digital-transformation.html">Digital Transformation</a></li>
+            
+        </ul>
+      </li>
+
+
+      <li class="mobile-dropdown">
+        <button class="dropdown-btn">Internships▾</button>
+        <ul class="dropdown-content">
+             <li><a class="dropdown-item" href="/Internshiptraining/webtech.html">Web Technology</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/flutterapp.html">Mobile App</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/embeddediot.html">Embedded Iot</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/genai.html">Gen Ai</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/cybersecurity.html">Cyber Security</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/javaj2ee.html">Java</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/pythondj.html">Python With Django</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/powerbi.html">Data Analytics</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/pythonds.html">Data Science</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/pythonmysql.html">Python Full Stack</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/reactjstab.html">React js</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/rtoolsprog.html">R Tool</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/softwaretesting.html">Software Testing</a></li>
+           </ul>
+      </li>
+
+ 
+
+      <li><a  href="./Ai.html">AI Development</a></li>
+      <li><a  href="./iot_robotic.html">IoT & Robotics</a></li>
+      <li><a href="./contactus.html">Contact Us</a></li>
+        </ul>
+     
+    </ul>
+  </nav> -->
+
+    <!-- Navigation -->
+  <div id="header"></div>
+
+<script>
+  // Load navbar
+  fetch('../nav-bar.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('header').innerHTML = data;
+
+      // ✅ Run this only after nav-bar.html is inserted
+      const menuToggle = document.querySelector('.mobile-menu-toggle');
+      const navMenu = document.querySelector('.mobile-nav-menu');
+      const dropdownButtons = document.querySelectorAll('.dropdown-btn');
+
+      menuToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        menuToggle.setAttribute('aria-expanded', !expanded);
+      });
+
+      dropdownButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const parent = btn.closest('.mobile-dropdown');
+          parent.classList.toggle('active');
+        });
+      });
+    })
+    .catch(err => console.error('Header load error:', err));
+</script>
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top d-none d-lg-block">
+  <div class="container">
+    <a class="navbar-brand" href="https://www.gatewaysoftwaresolutions.com">
+      <img src="/assets/gsslogo.png" height="50px" width="200px" alt="Gateway Logo">
+    </a>
+   
+    <button class="navbar-toggler" type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#navbarNavDropdown" 
+            aria-controls="navbarNavDropdown" 
+            aria-expanded="false" 
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+   
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <!-- உங்க மத்தது nav items இப்படியே இருக்கட்டும் -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="./index.html" role="button" >Home</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/home/about.html">About Gateway</a></li>
+            <li><a class="dropdown-item" href="/home/proo.html">Profile</a></li>
+            <li><a class="dropdown-item" href="/home/ourteam.html">Our Core Team</a></li>
+            <li><a class="dropdown-item" href="/home/faq.html">FAQ</a></li>
+          </ul>
+        </li>
+           <li class="nav-item"><a class="nav-link" href="/product.html">Products</a></li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Services</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/Services/digitalmarketing.html">Digital Marketing</a></li>
+              <li><a class="dropdown-item" href="/Services/Search-Engine.html">Search Engine Optimization</a></li>
+              <li><a class="dropdown-item" href="/Services/E-commerce.html">E-commerce Development</a></li>
+              <li><a class="dropdown-item" href="/Services/mobile-app-development.html">Mobile App Development</a></li>
+              <li><a class="dropdown-item" href="/Services/social-media-marketing.html">Social Media Marketing</a></li>
+              <li><a class="dropdown-item" href="/Services/ai-agent.html">AI Agent Development</a></li>
+              <li><a class="dropdown-item" href="/Services/IOT-development.html">IOT & Robotics</a></li>
+              <li><a class="dropdown-item" href="/Services/word-press-development.html">Wordpress Development</a></li>
+              <li><a class="dropdown-item" href="/Services/branding.html">Branding</a></li>
+              <li><a class="dropdown-item" href="/Services/logo-design.html">Logo Design</a></li>
+              <li><a class="dropdown-item" href="/Services/meta-ads.html">Meta Ads</a></li>
+              <li><a class="dropdown-item" href="/Services/game-development.html">Game Development</a></li>
+              <li><a class="dropdown-item" href="/Services/digital-transformation.html">Digital Transformation</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Internships</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/Internshiptraining/webtech.html">Web Technology</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/flutterapp.html">Mobile App</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/embeddediot.html">Embedded IoT</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/genai.html">Gen AI</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/cybersecurity.html">Cyber Security</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/javaj2ee.html">Java</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/pythondj.html">Python With Django</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/powerbi.html">Data Analytics</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/pythonds.html">Data Science</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/pythonmysql.html">Python Full Stack</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/reactjstab.html">React JS</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/rtoolsprog.html">R Tool</a></li>
+              <li><a class="dropdown-item" href="/Internshiptraining/softwaretesting.html">Software Testing</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a class="nav-link" href="./Ai.html">AI Development</a></li>
+          <li class="nav-item"><a class="nav-link" href="./iot_robotic.html">IoT & Robotics</a></li>
+          <li class="nav-item"><a class="nav-link" href="./career.html">Careers</a></li>
+          <li class="nav-item"><a class="nav-link" href="./contactus.html">Contact Us</a></li>
+          <li class="nav-item">
+  <a 
+    class="nav-link" 
+    href="https://lms.sgsoftwaresolution.com/" 
+    style="color: var(--primary); text-decoration: none; font-weight: 700; border: 2px solid var(--primary); border-radius: 30px; padding: 8px 20px !important;"
+    target="_blank" 
+    rel="noopener noreferrer">
+    LMS Portal
+  </a>
+</li>
+        </ul>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+
+  <script>
+    // Mobile menu toggle
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    console.log(menuToggle);
+    
+    const navMenu = document.querySelector('.mobile-nav-menu');
+    const dropdownButtons = document.querySelectorAll('.dropdown-btn');
+
+    menuToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', !expanded);
+    });
+
+    // Dropdown toggle
+    dropdownButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const parent = btn.closest('.mobile-dropdown');
+        parent.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>
+

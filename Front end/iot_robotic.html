@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Robotics and Embedded IoT | Gateway Software Solutions</title>
+  <meta name="description" content="Master Robotics & Embedded IoT with hands-on projects. Learn Arduino, ESP32, ROS, AI, and build real-world automation systems." />
+
+  <!-- SEO -->
+  <meta property="og:title" content="Robotics & Embedded IoT Internship | Gateway Software Solutions" />
+  <meta property="og:description" content="12-week internship in Robotics, IoT, Embedded Systems, AI, and Automation. Build real projects." />
+  <meta property="og:image" content="https://www.gatewaysoftwaresolutions.com/assets/robotics-preview.jpg" />
+  <meta property="og:url" content="https://www.gatewaysoftwaresolutions.com/embeddediot.html" />
+  <meta property="og:type" content="website" />
+
+  <!-- <link rel="icon" href="https://www.gatewaysoftwaresolutions.com/favicon.ico" /> -->
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&family=Montserrat:wght@800;900&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* ============ CSS VARIABLES ============ */
+    :root {
+      --primary: #0ea5e9;
+      --primary-light: #38bdf8;
+      --secondary: #f97316;
+      --secondary-light: #fb923c;
+      --success: #10b981;
+      --danger: #dc2626;
+      --dark: #0f172a;
+      --light: #f8fafc;
+      --gray: #64748b;
+      --border: #e2e8f0;
+      --card-bg: rgba(255, 255, 255, 0.95);
+      --glass: rgba(255, 255, 255, 0.15);
+      --neumorph: 8px 8px 16px rgba(0,0,0,0.05), -8px -8px 16px rgba(255,255,255,0.8);
+      --shadow-sm: 0 6px 20px rgba(0,0,0,0.08);
+      --shadow-lg: 0 30px 60px rgba(14,165,233,0.18);
+      --nav-primary: #FF6B35;
+      --nav-primary-dark: #E55A2B;
+      --nav-secondary: #1E88E5;
+      --nav-secondary-dark: #1565C0;
+      --nav-accent: #FFD166;
+      --nav-dark: #1A1D2E;
+      --nav-light: #F8F9FA;
+      --nav-gradient-mixed: linear-gradient(135deg, var(--nav-secondary) 0%, var(--nav-primary) 100%);
+      --dark-footer: #1a1a1a;
+      --primary-orange: #ff9933;
+    }
+    [data-theme="dark"] {
+      --primary: #38bdf8;
+      --secondary: #fb923c;
+      --dark: #f1f5f9;
+      --light: #1e293b;
+      --gray: #94a3b8;
+      --border: #334155;
+      --card-bg: rgba(30, 41, 59, 0.95);
+      --glass: rgba(255, 255, 255, 0.08);
+      --neumorph: 8px 8px 16px rgba(0,0,0,0.3), -8px -8px 16px rgba(255,255,255,0.05);
+      --shadow-sm: 0 6px 20px rgba(0,0,0,0.3);
+      --shadow-lg: 0 30px 60px rgba(56,189,248,0.25);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #fff, #f1f5f9);
+      color: var(--dark);
+      transition: all 0.4s ease;
+      margin: 0;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ============ SCROLL PROGRESS ============ */
+    .scroll-progress {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      transform-origin: 0%;
+      transform: scaleX(0);
+      z-index: 9999;
+      border-radius: 0 0 4px 4px;
+      box-shadow: 0 2px 8px rgba(14,165,233,0.3);
+    }
+
+    /* ============ NAVBAR ============ */
+    .navbar {
+      backdrop-filter: blur(16px);
+      background: var(--glass);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.4s;
+      padding: 1.2rem 0;
+      z-index: 1000;
+      box-shadow: var(--neumorph);
+    }
+    .navbar.scrolled {
+      background: var(--card-bg);
+      padding: 0.8rem 0;
+      box-shadow: var(--shadow-sm);
+    }
+    .navbar-brand {
+      font-family: 'Montserrat',sans-serif;
+      font-weight:900;
+      font-size:2.2rem;
+      background:var(--nav-gradient-mixed);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      position:relative;
+      letter-spacing:-1px;
+    }
+    .navbar-brand::after {
+      content:''; position:absolute; bottom:-8px; left:0;
+      width:40px; height:4px; background:var(--nav-gradient-mixed);
+      border-radius:4px;
+    }
+    .nav-link {
+      font-weight:600; margin:0 12px; color:var(--dark)!important;
+      position:relative; transition:all .3s; font-size:1.05rem;
+    }
+    .nav-link:hover { color:var(--primary)!important; }
+    .nav-link::after {
+      content:''; position:absolute; bottom:0; left:0;
+      width:0; height:3px; background:var(--nav-gradient-mixed);
+      transition:width .4s;
+    }
+    .nav-link:hover::after { width:100%; }
+    .dropdown:hover .dropdown-menu { display:block; margin-top:0; animation:fadeInDown .4s; }
+    .dropdown-menu {
+      border:none; box-shadow:0 20px 50px rgba(0,0,0,.15);
+      border-radius:15px; padding:15px 0; border-top:3px solid var(--primary);
+      display:none; position:absolute;
+    }
+    .dropdown-item {
+      padding:12px 25px; transition:all .3s; font-weight:500;
+      position:relative; overflow:hidden;
+    }
+    .dropdown-item::before {
+      content:''; position:absolute; top:0; left:-100%;
+      width:100%; height:100%; background:var(--nav-gradient-mixed);
+      transition:left .3s; z-index:-1;
+    }
+    .dropdown-item:hover::before { left:0; }
+    .dropdown-item:hover { color:white; transform:translateX(8px); }
+    .dropdown-toggle::after {
+      margin-left:8px; border-top:.3em solid;
+      border-right:.3em solid transparent; border-left:.3em solid transparent;
+      transition:transform .3s ease;
+    }
+    .dropdown:hover .dropdown-toggle::after { transform:rotate(180deg); }
+    @keyframes fadeInDown {
+      from {opacity:0; transform:translate3d(0,-10px,0);}
+      to   {opacity:1; transform:translate3d(0,0,0);}
+    }
+    @media (max-width:768px){
+      .navbar-brand{font-size:1.8rem;}
+      .dropdown:hover .dropdown-menu{display:none;}
+      .dropdown.show .dropdown-menu{display:block;}
+    }
+
+    /* ============ HERO (ROBOTICS) ============ */
+    .hero-robotics {
+      background: linear-gradient(135deg, #0085CA 0%, #ff9524 100%);
+      color: white;
+      padding: 180px 0 100px;
+      position: relative;
+      overflow: hidden;
+      margin-top: 80px;
+    }
+    .hero-robotics::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(255,255,255,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    }
+    .robotics-animation {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      opacity: 0.3;
+    }
+    .circuit-line {
+      position: absolute;
+      background: rgba(255,255,255,0.2);
+      height: 2px;
+      animation: circuitFlow 8s linear infinite;
+    }
+    .circuit-line:nth-child(1) { top: 20%; left: -100px; width: 150px; animation-delay: 0s; }
+    .circuit-line:nth-child(2) { top: 40%; left: -200px; width: 200px; animation-delay: 1s; }
+    .circuit-line:nth-child(3) { top: 60%; left: -150px; width: 180px; animation-delay: 2s; }
+    .circuit-line:nth-child(4) { top: 80%; left: -250px; width: 220px; animation-delay: 3s; }
+    @keyframes circuitFlow {
+      0% { transform: translateX(0); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateX(calc(100vw + 250px)); opacity: 0; }
+    }
+    .hero-content { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
+    .hero-main { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .hero-robotics h1 { font-size: 3.5rem; font-weight: 900; margin-bottom: 20px; line-height: 1.2; }
+    .hero-robotics p { font-size: 1.2rem; margin-bottom: 30px; opacity: 0.9; }
+    .robotics-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 40px 0; }
+    .stat-item { text-align: center; padding: 20px; background: rgba(255,255,255,0.1); border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(10px); }
+    .stat-number { font-size: 2rem; font-weight: 800; margin-bottom: 5px; }
+    .stat-label { font-size: 0.9rem; color: rgba(255,255,255,0.8); }
+    .cta-buttons { display: flex; gap: 20px; margin-top: 30px; }
+    .btn { padding: 15px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 16px; transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px; }
+    .btn-primary { background: #0085CA; color: white; border: 2px solid #0085CA; }
+    .btn-primary:hover { background: #0085CA; border-color: #0085CA; transform: translateY(-2px); }
+    .btn-secondary { background: #ff9524; color: white; border: 2px solid #ff9524; }
+    .btn-secondary:hover { background: #ff9524; border-color: #ff9524; transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: white; border: 2px solid white; }
+    .btn-outline:hover { background: white; color: #333; transform: translateY(-2px); }
+
+    /* Robot Visualization */
+    .robot-visual { position: relative; display: flex; justify-content: center; align-items: center; }
+    .robot-container { position: relative; width: 300px; height: 300px; }
+    .robot-body { width: 100%; height: 100%; background: rgba(255,255,255,0.1); border-radius: 20px; border: 2px solid rgba(255,255,255,0.5); display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .robot-head { width: 100px; height: 80px; background: linear-gradient(135deg, #0085CA, #0f172a); border-radius: 15px 15px 0 0; position: relative; }
+    .robot-eye { position: absolute; width: 20px; height: 20px; background: #ff9524; border-radius: 50%; top: 25px; animation: eyePulse 2s ease-in-out infinite; }
+    .robot-eye.left { left: 20px; }
+    .robot-eye.right { right: 20px; }
+    @keyframes eyePulse {
+      0%, 100% { opacity: 0.7; box-shadow: 0 0 10px #ff9524; }
+      50% { opacity: 1; box-shadow: 0 0 20px #ff9524; }
+    }
+    .data-flow { position: absolute; width: 100%; height: 100%; }
+    .data-point { position: absolute; width: 8px; height: 8px; background: #0085CA; border-radius: 50%; animation: dataMove 3s linear infinite; }
+    .data-point:nth-child(1) { top: 10%; left: 20%; animation-delay: 0s; }
+    .data-point:nth-child(2) { top: 30%; left: 80%; animation-delay: 0.5s; }
+    .data-point:nth-child(3) { top: 70%; left: 10%; animation-delay: 1s; }
+    .data-point:nth-child(4) { top: 90%; left: 60%; animation-delay: 1.5s; }
+    @keyframes dataMove {
+      0% { transform: translate(0, 0); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translate(100px, -100px); opacity: 0; }
+    }
+
+    /* ============ SECTIONS ============ */
+    .section-title { text-align: center; margin-bottom: 60px; }
+    .section-title h2 { font-size: 2.5rem; font-weight: 800; color: #333; margin-bottom: 15px; }
+    .section-title p { font-size: 1.1rem; color: #666; max-width: 600px; margin: 0 auto; }
+
+    .applications-grid, .gallery-grid, .stack-container, .path-container, .partners-grid, .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .application-card, .project-card, .stack-item, .path-step, .testimonial-card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+    .application-card:hover, .project-card:hover, .stack-item:hover, .testimonial-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(14,165,233,0.15);
+    }
+
+    .app-icon, .tech-icon, .project-visual {
+      width: 80px; height: 80px;
+      background: linear-gradient(135deg, #ff9524);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 25px; color: white; font-size: 2rem;
+    }
+    .project-visual {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #0ea5e9);
+      color: #ff8a2a;
+      font-size: 2rem;
+    }
+
+    .app-features, .path-step ul { list-style: none; padding-left: 0; }
+    .app-features li, .path-step li {
+      padding: 8px 0; color: #666; display: flex; align-items: center; gap: 10px;
+    }
+    .app-features li i, .path-step li i { color: #0ea5e9; font-size: 14px; }
+
+    .tech-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 15px; }
+    .tech-tag { background: #ff9524; color: white; padding: 4px 12px; border-radius: 15px; font-size: 0.8rem; font-weight: 500; }
+
+    .project-details { display: flex; justify-content: space-between; align-items: center; margin-top: 15px; }
+    .complexity { background: #ff9524; color: white; padding: 4px 12px; border-radius: 15px; font-size: 0.8rem; font-weight: 500; }
+
+    .testimonial-text { font-style: italic; color: #666; margin-bottom: 20px; position: relative; }
+    .testimonial-text::before { content: '"'; font-size: 3rem; color: #0ea5e9; position: absolute; top: -20px; left: -10px; opacity: 0.3; }
+    .author-avatar { width: 50px; height: 50px; border-radius: 50%; background: #0ea5e9; color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+
+    .cta-section-robotics {
+      background: linear-gradient(135deg, #0ea5e9, #0f172a);
+      color: white; padding: 80px 0; text-align: center;
+    }
+    .cta-section-robotics h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 20px; }
+    .cta-section-robotics p { font-size: 1.2rem; margin-bottom: 30px; opacity: 0.9; }
+
+    .industry-partners { padding: 80px 0; background: #f8f9fa; text-align: center; }
+    .partners-grid { align-items: center; }
+    .partner-logo { height: 60px; filter: grayscale(100%); opacity: 0.7; transition: all 0.3s ease; }
+    .partner-logo:hover { filter: grayscale(0%); opacity: 1; }
+
+    /* ============ NEW FOOTER (REPLACED WITH YOUR PROVIDED CODE) ============ */
+    footer {
+      background-color: var(--dark);
+      color: white;
+      padding: 70px 0 20px;
+    }
+    .footer-column h4 {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    .footer-column h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: var(--primary-orange);
+    }
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+    .footer-links li {
+      margin-bottom: 0.8rem;
+    }
+    .footer-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .footer-links a:hover {
+      color: var(--primary-orange);
+      padding-left: 5px;
+    }
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    /* ============ FLOATING WHATSAPP ============ */
+    .floating-whatsapp {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #25d366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      box-shadow: 0 0 0 4px #fff, 0 8px 20px rgba(37,193,102,0.4);
+      z-index: 9999;
+      transition: all 0.3s ease;
+      animation: floatPulse 2s ease-in-out infinite;
+      text-decoration: none;
+      overflow: visible;
+      box-sizing: border-box;
+    }
+    @keyframes floatPulse {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+    .floating-whatsapp:hover {
+      transform: scale(1.1);
+      background: #20c997;
+      box-shadow: 0 0 0 4px #fff, 0 12px 25px rgba(37,193,102,0.5);
+    }
+
+    /* ============ THEME TOGGLE ============ */
+    .dark-toggle {
+      background: var(--glass);
+      border: none;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      color: var(--gray);
+      cursor: pointer;
+      box-shadow: var(--neumorph);
+      transition: all 0.3s;
+    }
+    .dark-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: var(--neumorph);
+    }
+
+    @media (max-width: 768px) {
+      .hero-main { grid-template-columns: 1fr; text-align: center; }
+      .hero-robotics h1 { font-size: 2.5rem; }
+      .robotics-stats { grid-template-columns: repeat(2, 1fr); }
+      .cta-buttons { flex-direction: column; align-items: center; }
+      .btn { width: 200px; justify-content: center; }
+      .robot-container { width: 250px; height: 250px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="progress"></div>
+
+  <!-- ==================== NAVBAR ==================== -->
+<div id="header"></div>
+
+<script>
+  // Load navbar
+  fetch('nav-bar.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('header').innerHTML = data;
+      
+      // Initialize dropdowns - try multiple methods
+      setTimeout(() => {
+        // Method 1: Bootstrap Dropdown
+        if (typeof bootstrap !== 'undefined' && bootstrap.Dropdown) {
+          document.querySelectorAll('.dropdown-toggle').forEach(el => {
+            new bootstrap.Dropdown(el);
+          });
+        }
+        
+        // Method 2: Manual click handlers as fallback
+        document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+          toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            const parent = this.closest('.dropdown');
+            const menu = parent.querySelector('.dropdown-menu');
+            const isShown = menu.classList.contains('show');
+            
+            // Close all dropdowns first
+            document.querySelectorAll('.dropdown-menu.show').forEach(m => m.classList.remove('show'));
+            
+            if (!isShown) {
+              menu.classList.add('show');
+            }
+          });
+        });
+        
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(e) {
+          if (!e.target.closest('.dropdown')) {
+            document.querySelectorAll('.dropdown-menu.show').forEach(m => m.classList.remove('show'));
+          }
+        });
+      }, 100);
+    })
+    .catch(err => console.error('Header load error:', err));
+</script>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section class="hero-robotics">
+    <div class="robotics-animation">
+      <div class="circuit-line"></div>
+      <div class="circuit-line"></div>
+      <div class="circuit-line"></div>
+      <div class="circuit-line"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-main">
+        <div class="hero-text">
+          <h1><i class="fas fa-robot"></i> Robotics & Embedded IoT</h1>
+          <p>Master the future of automation and connected systems. Learn to design, build, and program intelligent robots and IoT devices with industry-relevant skills.</p>
+          
+          <div class="robotics-stats">
+            <div class="stat-item">
+              <div class="stat-number">25+</div>
+              <div class="stat-label">IoT Devices by 2025</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">$1.1T</div>
+              <div class="stat-label">Robotics Market Value</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">65%</div>
+              <div class="stat-label">Industry Adoption Rate</div>
+            </div>
+          </div>
+
+          <div class="cta-buttons">
+            <a href="#apply" class="btn btn-primary">
+              <i class="fas fa-microchip"></i>
+              Start Building Robots
+            </a>
+            <a href="#projects" class="btn btn-secondary">
+              <i class="fas fa-project-diagram"></i>
+              View Projects
+            </a>
+          </div>
+        </div>
+        <div class="robot-visual">
+          <div class="robot-container">
+            <div class="robot-body">
+              <div class="robot-head">
+                <div class="robot-eye left"></div>
+                <div class="robot-eye right"></div>
+              </div>
+              <div class="data-flow">
+                <div class="data-point"></div>
+                <div class="data-point"></div>
+                <div class="data-point"></div>
+                <div class="data-point"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== APPLICATIONS ==================== -->
+  <section class="robotics-applications" id="applications">
+    <div class="container">
+      <div class="section-title">
+        <h2>Robotics & IoT Applications</h2>
+        <p>Build intelligent systems for real-world challenges across industries</p>
+      </div>
+      
+      <div class="applications-grid">
+        <div class="application-card">
+          <div class="app-icon"><i class="fas fa-industry"></i></div>
+          <h3>Industrial Automation</h3>
+          <p>Design automated systems for manufacturing, quality control, and production line optimization</p>
+        </div>
+        <div class="application-card">
+          <div class="app-icon"><i class="fas fa-home"></i></div>
+          <h3>Smart Home Systems</h3>
+          <p>Create intelligent home automation with embedded sensors and IoT connectivity</p>
+        </div>
+        <div class="application-card">
+          <div class="app-icon"><i class="fas fa-heartbeat"></i></div>
+          <h3>Healthcare Robotics</h3>
+          <p>Develop a robotic arm that copies human movements using HMI technology</p>
+        </div>
+        <div class="application-card">
+          <div class="app-icon"><i class="fas fa-car-side"></i></div>
+          <h3>Autonomous Vehicles</h3>
+          <p>Build self-driving systems with sensor fusion and AI decision making</p>
+        </div>
+        <div class="application-card">
+          <div class="app-icon"><i class="fas fa-tractor"></i></div>
+          <h3>Agricultural Robotics</h3>
+          <p>Develop smart farming solutions with autonomous drones and ground vehicles</p>
+        </div>
+        <div class="application-card">
+          <div class="app-icon"><i class="fas fa-warehouse"></i></div>
+          <h3>Logistics & Warehousing</h3>
+          <p>Create automated material handling and inventory management system</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== LEARNING PATH ==================== -->
+  <section class="learning-path">
+    <div class="container">
+      <div class="section-title">
+        <h2>Comprehensive Learning Path</h2>
+        <p>Structured curriculum designed to take you from beginner to robotics expert</p>
+      </div>
+      
+      <div class="path-container">
+        <div class="project-card">
+          <div class="project-visual"><i class="fas fa-microchip"></i></div>
+          <div class="project-info path-step">
+            <h4>Fundamentals</h4>
+            <ul>
+              <li><i class="fas fa-check"></i> Electronics & Circuit Design</li>
+              <li><i class="fas fa-check"></i> Microcontroller Programming</li>
+              <li><i class="fas fa-check"></i> Sensors & Actuators</li>
+              <li><i class="fas fa-check"></i> Basic Robotics Concepts</li>
+              <li><i class="fas fa-check"></i> Introduction to IoT Protocols</li>
+            </ul>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-visual"><i class="fas fa-satellite"></i></div>
+          <div class="project-info path-step">
+            <h4>Intermediate Skills</h4>
+            <ul>
+              <li><i class="fas fa-check"></i> Embedded C/C++ Programming</li>
+              <li><i class="fas fa-check"></i> Real-time Operating Systems</li>
+              <li><i class="fas fa-check"></i> Wireless Communication</li>
+              <li><i class="fas fa-check"></i> Motor Control & Robotics Kinematics</li>
+              <li><i class="fas fa-check"></i> IoT Cloud Platforms</li>
+            </ul>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-visual"><i class="fas fa-rocket"></i></div>
+          <div class="project-info path-step">
+            <h4>Advanced Applications</h4>
+            <ul>
+              <li><i class="fas fa-check"></i> Computer Vision with OpenCV</li>
+              <li><i class="fas fa-check"></i> Machine Learning for Robotics</li>
+              <li><i class="fas fa-check"></i> ROS (Robot Operating System)</li>
+              <li><i class="fas fa-check"></i> Autonomous Navigation</li>
+              <li><i class="fas fa-check"></i> Edge Computing & AI at the Edge</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TECH STACK ==================== -->
+  <section class="tech-stack">
+    <div class="container">
+      <div class="section-title">
+        <h2>Technology Stack</h2>
+        <p>Master industry-standard tools and platforms for robotics and IoT development</p>
+      </div>
+      
+      <div class="stack-container">
+        <div class="stack-item">
+          <div class="tech-icon"><i class="fas fa-microchip"></i></div>
+          <h4>Embedded Platforms</h4>
+          <p>Raspberry Pi, Arduino, ESP8266, ESP32 with MicroPython</p>
+        </div>
+        <div class="stack-item">
+          <div class="tech-icon"><i class="fab fa-python"></i></div>
+          <h4>Programming & AI</h4>
+          <p>Python, C++, ROS, Computer Vision, Machine Learning</p>
+        </div>
+        <div class="stack-item">
+          <div class="tech-icon"><i class="fas fa-wifi"></i></div>
+          <h4>Connectivity</h4>
+          <p>WiFi, Bluetooth, MQTT, REST APIs, WebSocket Communication</p>
+        </div>
+        <div class="stack-item">
+          <div class="tech-icon"><i class="fas fa-cloud"></i></div>
+          <h4>Cloud & Dashboard</h4>
+          <p>Embedded Web Servers, Data Visualization, Remote Monitoring</p>
+        </div>
+        <div class="stack-item">
+          <div class="tech-icon"><i class="fas fa-robot"></i></div>
+          <h4>Robotics Frameworks</h4>
+          <p>ROS, Gazebo, MATLAB, Simulink for simulation and control</p>
+        </div>
+        <div class="stack-item">
+          <div class="tech-icon"><i class="fas fa-shield-alt"></i></div>
+          <h4>Security & Protocols</h4>
+          <p>TLS/SSL, OAuth, CoAP, LoRaWAN for secure IoT communication</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PROJECTS GALLERY ==================== -->
+  <section class="projects-gallery" id="projects">
+    <div class="container">
+      <div class="section-title">
+        <h2>Hands-on Robotics Projects</h2>
+        <p>Build real-world robotics and IoT systems during your internship</p>
+      </div>
+      
+      <div class="gallery-grid">
+        <div class="project-card">
+          <div class="project-visual"><i class="fas fa-robot"></i></div>
+          <div class="project-info">
+            <h4>Line Follower Robot</h4>
+            <p>Build an autonomous robot that follows lines using PID algorithm and infrared sensors</p>
+            <div class="project-details">
+              <div class="tech-tags">
+                <span class="tech-tag">Arduino</span>
+                <span class="tech-tag">PID</span>
+              </div>
+              <span class="complexity">Beginner</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-visual"><i class="fas fa-temperature-high"></i></div>
+          <div class="project-info">
+            <h4>Smart Environmental Monitor</h4>
+            <p>Create an IoT system that monitors temperature, humidity and air quality with web dashboard</p>
+            <div class="project-details">
+              <div class="tech-tags">
+                <span class="tech-tag">ESP32</span>
+                <span class="tech-tag">MQTT</span>
+              </div>
+              <span class="complexity">Intermediate</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-visual"><i class="fas fa-brain"></i></div>
+          <div class="project-info">
+            <h4>HMI-Based Robotic Arm</h4>
+            <p>Develop a robotic arm that copies human movements using HMI technology</p>
+            <div class="project-details">
+              <div class="tech-tags">
+                <span class="tech-tag">ROS</span>
+                <span class="tech-tag">Python</span>
+              </div>
+              <span class="complexity">Advanced</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-visual"><i class="fas fa-car-side"></i></div>
+          <div class="project-info">
+            <h4>Autonomous Rover</h4>
+            <p>Build a self-driving rover with obstacle avoidance and GPS navigation</p>
+            <div class="project-details">
+              <div class="tech-tags">
+                <span class="tech-tag">Raspberry Pi</span>
+                <span class="tech-tag">OpenCV</span>
+              </div>
+              <span class="complexity">Advanced</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-visual"><i class="fas fa-vr-cardboard"></i></div>
+          <div class="project-info">
+            <h4>VR-Controlled Drone</h4>
+            <p>Create a drone that can be controlled through virtual reality headset</p>
+            <div class="project-details">
+              <div class="tech-tags">
+                <span class="tech-tag">ESP32</span>
+                <span class="tech-tag">WebSocket</span>
+              </div>
+              <span class="complexity">Intermediate</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-visual"><i class="fas fa-leaf"></i></div>
+          <div class="project-info">
+            <h4>Smart Agriculture System</h4>
+            <p>Develop an automated farming system with soil monitoring and irrigation control</p>
+            <div class="project-details">
+              <div class="tech-tags">
+                <span class="tech-tag">Arduino</span>
+                <span class="tech-tag">IoT</span>
+              </div>
+              <span class="complexity">Intermediate</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-visual"><i class="fas fa-hand-paper"></i></div>
+          <div class="project-info">
+            <h4>Gesture-Controlled Robot</h4>
+            <p>Build a robot that responds to hand gestures using accelerometer and ML</p>
+            <div class="project-details">
+              <div class="tech-tags">
+                <span class="tech-tag">ML</span>
+                <span class="tech-tag">Arduino</span>
+              </div>
+              <span class="complexity">Advanced</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-visual"><i class="fas fa-home"></i></div>
+          <div class="project-info">
+            <h4>Home Automation Hub</h4>
+            <p>Create a central hub to control all smart home devices with voice commands</p>
+            <div class="project-details">
+              <div class="tech-tags">
+                <span class="tech-tag">Raspberry Pi</span>
+                <span class="tech-tag">Python</span>
+              </div>
+              <span class="complexity">Intermediate</span>
+            </div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-visual"><i class="fas fa-warehouse"></i></div>
+          <div class="project-info">
+            <h4>Warehouse Inventory Robot</h4>
+            <p>Develop an autonomous robot for inventory tracking in warehouses</p>
+            <div class="project-details">
+              <div class="tech-tags">
+                <span class="tech-tag">ROS</span>
+                <span class="tech-tag">RFID</span>
+              </div>
+              <span class="complexity">Advanced</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== INDUSTRY PARTNERS ==================== -->
+  <section class="industry-partners">
+    <div class="container">
+      <div class="section-title">
+        <h2>Industry Partners</h2>
+        <p>Our students have interned with leading companies in robotics and IoT</p>
+      </div>
+      
+      <div class="partners-grid">
+        <img src="assets/BOSH.png" alt="Bosch" class="partner-logo">
+        <img src="assets/Siemens.png" alt="Siemens" class="partner-logo">
+        <img src="assets/Fanuc.png" alt="Fanuc" class="partner-logo">
+        <img src="assets/ABB.png" alt="ABB" class="partner-logo">
+        <img src="assets/Intel.png" alt="Intel" class="partner-logo">
+        <img src="assets/Qualcomm.png" alt="Qualcomm" class="partner-logo">
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TESTIMONIALS ==================== -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-title">
+        <h2>Student Success Stories</h2>
+        <p>Hear from our alumni who are now working in top robotics companies</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <!-- Add testimonials here if needed -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CTA ==================== -->
+  <section class="cta-section-robotics">
+    <div class="container">
+      <h2>Ready to Build Intelligent Systems?</h2>
+      <p>Join our Robotics and Embedded IoT internship and master cutting-edge technology in 12 weeks</p>
+      <div class="cta-buttons">
+        <a href="contact.html" class="btn btn-outline">
+          <i class="fas fa-comments"></i>
+          Speak with Mentor
+        </a>
+        <a href="tel:+917397078885" class="btn btn-secondary">
+          <i class="fas fa-phone"></i>
+          Call +91 7397078885
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== REPLACED FOOTER ==================== -->
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gateway Software Solutions – Footer</title>
+
+    <!-- Font Awesome for Social Icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+          integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        * { box-sizing: border-box; margin:0; padding:0; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background:#f8f9fa; }
+
+        /* ====================== FOOTER ====================== */
+        .footer {
+            background: #e6f7ff; /* Light Blue Background */
+            padding: 45px 0 25px;
+            border-top: 5px solid #b3e0ff;
+            margin-top: 50px;
+            color: #1a1a1a;
+        }
+        .footer .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        /* ---------- Certification Logos ---------- */
+        .cert-logos {
+            text-align: center;
+            margin-bottom: 35px;
+            padding-bottom: 22px;
+            border-bottom: 2px dashed #99d6ff;
+        }
+        .cert-logos img {
+            height: 78px;
+            margin: 0 20px;
+            display: inline-block;
+            vertical-align: middle;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+            transition: transform .3s ease;
+        }
+        .cert-logos img:hover {
+            transform: scale(1.05);
+        }
+
+        /* ---------- 4-Column Grid ---------- */
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 35px;
+            justify-content: space-between;
+        }
+
+        .col {
+            flex: 1;
+            min-width: 180px;
+        }
+        .col h3 {
+            font-size: 18px;
+            margin-bottom: 16px;
+            color: #1e40af;
+            position: relative;
+            font-weight: 600;
+        }
+        .col h3::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: -7px;
+            width: 34px; height: 3px;
+            background: #f39c12;
+            border-radius: 2px;
+        }
+        .col ul {
+            list-style: none;
+        }
+        .col ul li {
+            margin-bottom: 10px;
+        }
+        .col ul li a {
+            color: #333;
+            text-decoration: none;
+            font-size: 15px;
+            transition: all .3s ease;
+            display: block;
+        }
+        .col ul li a:hover {
+            color: #f39c12;
+            padding-left: 5px;
+        }
+
+        /* ---------- SOCIAL LINKS – VERTICAL ---------- */
+        .social-links {
+            display: flex;
+            flex-direction: column;   /* ← VERTICAL ALIGNMENT */
+            gap: 12px;
+            margin-top: 14px;
+        }
+        .social-links a {
+            color: #f39c12;
+            font-size: 20px;
+            width: 44px;
+            height: 44px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all .3s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+        }
+        .social-links a:hover {
+            background: #f39c12;
+            color: #fff;
+            transform: translateX(5px);
+            box-shadow: 0 6px 14px rgba(243,156,18,0.4);
+        }
+
+        /* ---------- Copyright ---------- */
+        .copyright {
+            text-align: center;
+            margin-top: 35px;
+            padding: 16px 0;
+            background: #ffffff;
+            color: #444;
+            font-size: 14px;
+            border-radius: 8px;
+            margin-left: -20px;
+            margin-right: -20px;
+            margin-bottom: -25px;
+            box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 768px) {
+            .footer-grid {
+                flex-direction: column;
+                text-align: center;
+            }
+            .col h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .cert-logos img {
+                height: 60px;
+                margin: 10px;
+            }
+            .social-links {
+                flex-direction: row;        /* ← Horizontal on mobile for space */
+                justify-content: center;
+                gap: 15px;
+            }
+            .social-links a {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            .copyright {
+                margin-left: -20px;
+                margin-right: -20px;
+                border-radius: 0;
+            }
+        }
+        @media (max-width: 991px) {
+  .navbar {
+    height: auto;
+    padding: 10px 0;
+  }
+  .navbar-collapse {
+    background: rgba(255,255,255,0.95);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  .nav-link {
+    display: block;
+    margin: 10px 0;
+    text-align: center;
+  }
+}
+
+    </style>
+</head>
+<body>
+
+<!-- ====================== FOOTER (Social Links VERTICAL) ====================== -->
+<footer class="footer">
+    <div class="container">
+
+        <!-- Certification Logos – ABOVE Columns -->
+        <div class="cert-logos">
+            <img src="assets/gsslogo.png"  alt="Gateway Software Solutions">
+            <img src="assets/certifid.png" alt="ISO 9001:2015 Accredited">
+            <img src="assets/aicte.png"    alt="AICTE Approved">
+        </div>
+
+        <!-- 4-Column Layout -->
+        <div class="footer-grid">
+
+            <!-- Services -->
+            <div class="col">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="Services/mobile-app-development.html">Application Development</a></li>
+                    <li><a href="Services/E-commerce.html">Web Development</a></li>
+                    <li><a href="Services/digitalmarketing.html">Digital Marketing</a></li>
+                    <li><a href="Services/logo-design.html">UI/UX Design</a></li>
+                    <li><a href="Services/ai-agent.html">Ai Development</a></li>
+                </ul>
+            </div>
+
+            <!-- Company -->
+            <div class="col">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="home/about.html">About Us</a></li>
+                    <li><a href="career.html">Careers</a></li>
+                    <li><a href="home/ourteam.html">Our Team</a></li>
+                    <li><a href="home/proo.html">Profile</a></li>
+                    <li><a href="home/faq.html">Faq</a></li>
+                </ul>
+            </div>
+
+            <!-- Internship & Course -->
+            <div class="col">
+                <h3>Internship & Course</h3>
+                <ul>
+                    <li><a href="Internshiptraining/webtech.html">Web Designing</a></li>
+                    <li><a href="Internshiptraining/embeddediot.html">Iot</a></li>
+                    <li><a href="Internshiptraining/flutterapp.html">Mobile App</a></li>
+                    <li><a href="Internshiptraining/genai.html">Gen-Ai-Agent</a></li>
+                    <li><a href="Internshiptraining/pythonds.html">Data Science</a></li>
+                    <li><a href="Internshiptraining/pythonmysql.html">Full Stack</a></li>
+                </ul>
+            </div>
+
+            <!-- Connect With Us – VERTICAL SOCIAL ICONS -->
+            <div class="col">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.linkedin.com/company/gateway-software-solutions/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.instagram.com/gatewaycbe?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@GatewaySoftwareSolutions-gss" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Copyright -->
+        <div class="copyright">
+            © Gateway Software Solutions. All rights reserved. | Empowering Businesses Overturn The Ordinary.
+        </div>
+
+    </div>
+</footer>
+
+</body>
+</html>
+
+  <!-- ==================== FLOATING WHATSAPP ==================== -->
+  <a href="https://wa.me/917397078885" class="floating-whatsapp" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- ==================== SCRIPTS ==================== -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    // Scroll Progress & Navbar
+    window.addEventListener('scroll', () => {
+      document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50);
+      const scrolled = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+      document.getElementById('progress').style.transform = `scaleX(${scrolled / 100})`;
+    });
+
+    // Theme Toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    html.dataset.theme = currentTheme;
+    themeToggle.innerHTML = currentTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    themeToggle.addEventListener('click', () => {
+      const newTheme = html.dataset.theme === 'dark' ? 'light' : 'dark';
+      html.dataset.theme = newTheme;
+      localStorage.setItem('theme', newTheme);
+      themeToggle.innerHTML = newTheme === 'dark' ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    });
+
+    // Mobile Menu Toggle (if needed)
+    document.querySelector('.mobile-menu-btn')?.addEventListener('click', function() {
+      document.querySelector('.nav-menu').classList.toggle('active');
+    });
+
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    AOS.init({ duration: 1000, once: true });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+

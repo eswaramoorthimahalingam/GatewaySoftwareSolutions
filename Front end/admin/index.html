@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gateway - Admin Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --sidebar-bg: linear-gradient(135deg, #033c7c 33%, #eb6308 100%);
+            --sidebar-hover: #2d3142;
+            --primary-color: #6366f1;
+            --text-muted: #9ca3af;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 250px;
+            background: var(--sidebar-bg);
+            color: white;
+            padding-top: 1rem;
+            overflow-y: auto;
+        }
+
+        .sidebar .logo {
+            font-size: 1.4rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar .logo img {
+            height: 50px;
+        }
+
+        .nav-section-title {
+            padding: 1rem 1.5rem 0.5rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 0.5px;
+        }
+
+        .nav-item {
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #e5e7eb;
+            text-decoration: none;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-item:hover {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        .nav-item.active {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            border-right: 3px solid white;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 250px;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .top-header {
+            background: white;
+            padding: 1rem 2rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-logout {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-logout:hover {
+            background: #dc2626;
+        }
+
+        .content-area {
+            padding: 2rem;
+        }
+
+        .dashboard-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-content {
+            display: none;
+        }
+
+        .section-content.active {
+            display: block;
+        }
+
+        .card {
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        .card img {
+            object-fit: contain;
+            padding: 10px;
+        }
+        #projectList .card {
+    height: 380px;
+    display: flex;
+    flex-direction: column;
+}
+
+#projectList .card img {
+    height: 180px;
+    object-fit: cover;
+    width: 100%;
+}
+
+#projectList .card h5 {
+    flex-shrink: 0;
+}
+
+#projectList .card p {
+    flex: 1;
+    overflow: hidden;
+}
+
+#projectList .card .badge {
+    flex-shrink: 0;
+}
+
+.toast-alert {
+    position: fixed;
+    top: 130px;
+    right: 20px;
+    background: #ee0707;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 6px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s ease-in-out;
+    z-index: 9999;
+}
+.toast-alert.show {
+    opacity: 1;
+    transform: translateY(-10px);
+}
+    </style>
+</head>
+<body>
+<div id="logoutToast" class="toast-alert">Logged out successfully!</div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <a href="#" class="logo">
+         <img src="/assets/gsslogo.png" alt="logo" onerror="this.style.display='none'">
+        </a>
+
+        <div class="nav-section-title">Main Menu</div>
+        <a href="#" class="nav-item active" data-section="clients">
+            <i class="fas fa-users"></i> Our Clients
+        </a>
+        <a href="#" class="nav-item" data-section="colleges">
+            <i class="fas fa-university"></i> Our Partner Colleges 
+        </a>
+        <a href="#" class="nav-item" data-section="projects">
+    <i class="fas fa-briefcase"></i> Our Projects
+</a>
+     <a href="#" class="nav-item" data-section="teams">
+    <i class="fas fa-users-cog"></i> Our Core Team
+</a>
+<a href="#" class="nav-item" data-section="menus">
+    <i class="fas fa-list-alt"></i> Internship Menus
+</a>
+<a href="#" class="nav-item" data-section="career">
+    <i class="fas fa-briefcase"></i> Career
+</a>
+
+<a href="#" class="nav-item" data-section="contact">
+    <i class="fas fa-address-book"></i> User Contact
+</a>
+
+<a href="#" class="nav-item" data-section="enquiry">
+    <i class="fas fa-question-circle"></i> User Enquiry
+</a>
+
+<a href="#" class="nav-item" data-section="projectEnquiry">
+    <i class="fas fa-file-signature"></i> Project Enquiry
+</a>
+
+<a href="#" class="nav-item" data-section="startProject">
+    <i class="fas fa-file"></i>Start Project Enquiry
+</a>
+
+<a href="#" class="nav-item" data-section="internEnquiry">
+    <i class="fas fa-clipboard-list"></i>Internship Enquiry
+</a>
+    </div>
+
+    
+    <!-- Main Area -->
+    <div class="main-content">
+
+        <!-- Header -->
+        <div class="top-header">
+            <h2 class="m-0" id="pageTitle">Gateway - Admin Dashboard</h2>
+
+            <button class="btn-logout" onclick="logoutAdmin()">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+<script>
+function logoutAdmin() {
+    // Remove localStorage
+    localStorage.removeItem("adminToken");
+    localStorage.removeItem("adminEmail");
+
+    // Show toast
+    const toast = document.getElementById("logoutToast");
+    toast.classList.add("show");
+
+    // Hide toast after 2 seconds and redirect
+    setTimeout(() => {
+        toast.classList.remove("show");
+        window.location.href = "/admin/login";
+    }, 1800);
+}
+</script>
+
+
+        <!-- Page Content -->
+        <div class="content-area">
+
+            <!-- Toast Message -->
+            <div class="position-fixed top-0 end-0 p-3" style="z-index: 1055">
+                <div id="toastBox" class="toast align-items-center text-bg-primary border-0" role="alert">
+                    <div class="d-flex">
+                        <div class="toast-body" id="toastMsg">Message Appears Here</div>
+                        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CLIENTS SECTION -->
+            <div id="clients-section" class="section-content active">
+                <h3 class="dashboard-title">Add Clients</h3>
+
+                <!-- Add Client Form -->
+                <form id="addClientForm" enctype="multipart/form-data" class="mb-4">
+                    <label class="form-label">Upload Client Logo</label>
+                    <input type="file" class="form-control" name="image" style="max-width: 400px;" required>
+                    <button type="submit" class="btn mt-3" style="color:#e5e7eb; background-color:rgb(214, 96, 17)">Add Client</button>
+                </form>
+
+                <hr>
+
+                <!-- Clients List -->
+                <h4>Existing Clients</h4>
+                <div id="clientList" class="row g-3"></div>
+            </div>
+
+            <!-- COLLEGES SECTION -->
+            <div id="colleges-section" class="section-content">
+               <h3 id="collegeFormTitle" class="dashboard-title">Add Partner College</h3>
+
+<form id="addCollegeForm" enctype="multipart/form-data" class="mb-4">
+    <input type="hidden" id="editCollegeId">
+
+    <div class="row g-3">
+
+        <div class="col-md-4">
+            <label class="form-label">College Name</label>
+            <input type="text" id="collegeName" class="form-control" required>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Location</label>
+            <input type="text" id="collegeLocation" class="form-control" required>
+        </div>
+
+        <div class="col-md-4">
+            <label class="form-label">Type</label>
+            <select id="collegeType" class="form-control" required>
+                <option>Select Type</option>
+                <option>Engineering</option>
+                <option>Arts & Science</option>
+                <option>Deemed University</option>
+            </select>
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">College Logo</label>
+            <input type="file" id="collegeImage" class="form-control" required>
+            <small id="imageNote" class="text-muted"></small>
+        </div>
+
+        <div class="col-md-12">
+            <button type="submit" id="collegeSubmitBtn" class="btn mt-3" style="color:#e5e7eb; background-color:rgb(214, 96, 17)">Add College</button>
+            <button type="button" id="collegeCancelBtn" class="btn btn-secondary mt-3 ms-2" style="display:none;" onclick="cancelEditCollege()">Cancel</button>
+        </div>
+    </div>
+</form>
+
+
+                <hr>
+
+                <h4>Existing Colleges</h4>
+                <div id="collegeList" class="row g-3"></div>
+            </div>
+
+            <!-- PROJECTS SECTION -->
+<div id="projects-section" class="section-content">
+    <h3 id="projectFormTitle" class="dashboard-title">Add Project</h3>
+
+    <form id="addProjectForm" enctype="multipart/form-data" class="mb-4">
+        <input type="hidden" id="editProjectId">
+
+        <div class="row g-3">
+
+            <div class="col-md-6">
+                <label class="form-label">Project Title</label>
+                <input type="text" id="projectTitle" class="form-control" required>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Category</label>
+                <select id="projectCategory" class="form-control" required>
+                    <option>Select Category</option>
+                    <option value="web">Web Development</option>
+                    <option value="mobile">Mobile Apps</option>
+                    <option value="ecommerce">E-commerce</option>
+                    <option value="enterprise">Enterprise Solutions</option>
+                    <option value="ai">AI & ML</option>
+                </select>
+            </div>
+
+            <div class="col-md-12">
+                <label class="form-label">Description</label>
+                <textarea id="projectDescription" class="form-control" rows="3"></textarea>
+            </div>
+
+            <div class="col-md-12">
+                <label class="form-label">Tags (comma separated)</label>
+                <input type="text" id="projectTags" placeholder="React, Node.js, MongoDB" class="form-control">
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Project Image</label>
+                <input type="file" id="projectImage" class="form-control">
+            </div>
+
+            <div class="col-md-12">
+                <button type="submit" id="projectSubmitBtn" class="btn mt-3" style="color:#fff; background-color:#d66011">
+                    Add Project
+                </button>
+
+                <button type="button" id="projectCancelBtn" class="btn btn-secondary mt-3 ms-2" style="display:none;" onclick="cancelEditProject()">
+                    Cancel
+                </button>
+            </div>
+
+        </div>
+    </form>
+
+    <hr>
+
+    <h4>Existing Projects</h4>
+    <div id="projectList" class="row g-3"></div>
+</div>
+
+<!-- TEAM SECTION -->
+<div id="teams-section" class="section-content">
+
+    <h3 id="teamFormTitle" class="dashboard-title">Add Core Team Member</h3>
+
+    <form id="addTeamForm" enctype="multipart/form-data" class="mb-4">
+        <input type="hidden" id="editTeamId">
+
+        <div class="row g-3">
+
+            <div class="col-md-4">
+                <label class="form-label">Member Name</label>
+                <input type="text" id="teamName" class="form-control" required>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Role / Designation</label>
+                <input type="text" id="teamRole" class="form-control" required>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Position (1-34)</label>
+                <input type="number" id="teamOrder" class="form-control" min="1" max="34" value="1">
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Upload Photo</label>
+                <input type="file" id="teamImage" class="form-control">
+                <div id="teamImagePreview" class="mt-2"></div>
+            </div>
+            <div class="col-md-4">
+    <label class="form-label">LinkedIn URL</label>
+    <input type="text" id="teamLinkedIn" class="form-control">
+</div>
+
+<div class="col-md-4">
+    <label class="form-label">Facebook URL</label>
+    <input type="text" id="teamFacebook" class="form-control">
+</div>
+
+<div class="col-md-4">
+    <label class="form-label">Instagram URL</label>
+    <input type="text" id="teamInstagram" class="form-control">
+</div>
+
+
+        </div>
+
+        <button type="submit" id="teamSubmitBtn"
+            class="btn mt-3" style="color:#fff; background-color:#d66011">
+            Add Member
+        </button>
+
+        <button type="button" id="teamCancelBtn"
+            class="btn btn-secondary mt-3 ms-2"
+            style="display:none;" onclick="cancelEditTeam()">
+            Cancel
+        </button>
+
+    </form>
+
+    <hr>
+
+    <h4>Core Team Members</h4>
+    <div id="teamList" class="row g-3"></div>
+
+</div>
+
+<div id="menus-section" class="section-content">
+    <h3 id="menuFormTitle" class="dashboard-title">Internship Menus</h3>
+
+    <form id="addMenuForm" class="mb-4">
+
+        <!-- Hidden ID for Update -->
+        <input type="hidden" id="editMenuId">
+
+        <div class="row g-3">
+
+            <div class="col-md-4">
+                <input type="text" id="menuName" class="form-control"
+                       placeholder="Enter menu name" required>
+            </div>
+<div class="col-md-4">
+    <input type="text" id="menuPath" class="form-control"
+           placeholder="Enter page path (Ex: webtech.html)" required>
+</div>
+
+            <div class="col-md-3 d-flex gap-2">
+                <button type="submit" id="menuSubmitBtn" class="btn flex-fill" style="color:#fff; background-color:#d66011">Add Menu</button>
+                <button type="button" id="menuCancelBtn" class="btn btn-secondary flex-fill"
+                        style="display:none;" onclick="cancelEditMenu()">Cancel</button>
+            </div>
+
+        </div>
+    </form>
+
+    <hr>
+
+    <h4>Existing Internship Menus</h4>
+    <div id="menuList" class="row g-3 mt-2"></div>
+</div>
+
+<div id="career-section" class="section-content">
+    <h3 id="menuFormTitle" class="dashboard-title">Career</h3>
+
+  <form id="addJobForm" class="mb-4">
+
+
+<div class="row g-3">
+<input type="hidden" id="editJobId">
+
+<div class="col-md-4">
+    <input type="text" id="jobTitle" class="form-control" placeholder="Job Title" required>
+</div>
+
+<div class="col-md-4">
+    <label class="form-check-label" for="jobUrgent">Urgent</label>
+    <input class="form-check-input" type="checkbox" id="jobUrgent">
+</div>
+
+<div class="col-md-4">
+    <input type="text" id="jobExp" class="form-control" placeholder="Experience (Fresher, 2 yrs)" required>
+</div>
+
+<div class="col-md-4">
+    <input type="text" id="jobYear" class="form-control" placeholder="Year Range (2023-2025)" required>
+</div>
+
+<div class="col-md-4">
+    <input type="text" id="jobRole" class="form-control" placeholder="Role" required>
+</div>
+
+<div class="col-md-4">
+    <input type="text" id="jobSalary" class="form-control" placeholder="Salary" required>
+</div>
+
+<div class="col-md-4">
+    <input type="text" id="jobPerks" class="form-control" placeholder="Perks" required>
+</div>
+
+<div class="col-md-12">
+    <textarea id="jobDescription" class="form-control" placeholder="Job Description" rows="3" required></textarea>
+</div>
+
+
+
+<div class="col-md-3 d-flex gap-2 mt-2">
+<button type="submit" id="jobSubmitBtn" class="btn w-100" style="color:#fff; background:#d66011">Add Job</button>
+<button type="button" id="jobCancelBtn" class="btn btn-secondary w-100" style="display:none;" onclick="cancelEditJob()">Cancel</button>
+</div>
+</div>
+</form>
+
+<h3>Existing Careers</h3>
+<div id="jobList" class="row g-3 mt-2"></div>
+
+
+<hr class="my-4">
+
+
+<h2>Applications Received</h2>
+<table class="table table-bordered table-striped mt-3">
+<thead class="table-dark">
+<tr>
+    <th>S.No</th>
+<th>Name</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Job Applied</th>
+<th>Resume</th>
+<th>Submitted</th>
+</tr>
+</thead>
+<tbody id="applicationsTable"></tbody>
+</table>
+
+</div>
+
+<div id="contact-section" class="section-content">
+
+<h2>Contact Submissions</h2>
+<table class="table table-bordered table-striped mt-3">
+<thead class="table-dark">
+<tr>
+    <th>S.No</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Service</th>
+    <th>Message</th>
+    <th>File</th>
+    <th>Submitted</th>
+</tr>
+</thead>
+<tbody id="contactTable"></tbody>
+</table>
+
+
+</div>
+
+<div id="enquiry-section" class="section-content">
+
+<h2>User Enquiry</h2>
+<table class="table table-bordered table-striped mt-3">
+<thead class="table-dark">
+<tr>
+    <th>S.No</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Mobile Number</th>
+    <th>Message</th>
+    <th>Submitted</th>
+</tr>
+</thead>
+<tbody id="enquiryTable"></tbody>
+</table>
+
+
+</div>
+
+
+<div id="projectEnquiry-section" class="section-content">
+
+<h2>Project Enquiry</h2>
+<table class="table table-bordered table-striped mt-3">
+<thead class="table-dark">
+<tr>
+    <th>S.No</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Project Type</th>
+    <th>Company</th>
+    <th>Budget</th>
+    <th>timeline</th>
+    <th>description</th>
+</tr>
+</thead>
+<tbody id="projectEnquiryTable"></tbody>
+</table>
+
+
+</div>
+
+<div id="startProject-section" class="section-content">
+
+<h2>Start Project Enquiry</h2>
+<table class="table table-bordered table-striped mt-3">
+<thead class="table-dark">
+<tr>
+    <th>S.No</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Service</th>
+    <th>Company</th>
+    <th>Budget</th>
+    <th>timeline</th>
+    <th>description</th>
+</tr>
+</thead>
+<tbody id="startProjectEnquiryTable"></tbody>
+</table>
+
+
+</div>
+
+
+<div id="internEnquiry-section" class="section-content">
+
+<h2>Internship Enquiry</h2>
+<table class="table table-bordered table-striped mt-3">
+<thead class="table-dark">
+<tr>
+    <th>S.No</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Requirement</th>
+    <th>Position</th>
+    <th>Education Details</th>
+</tr>
+</thead>
+<tbody id="internEnquiryTable"></tbody>
+</table>
+
+
+</div>
+
+        </div>
+    </div>
+
+<script>
+const API_BASE_URL = "https://gateway-backend-wiup.onrender.com";
+const API_URL_CLIENTS = `${API_BASE_URL}/api/clients`;
+const API_URL_COLLEGES = `${API_BASE_URL}/api/college`;
+const API_URL_PROJECTS = `${API_BASE_URL}/api/project`;
+const API_URL_TEAM = `${API_BASE_URL}/api/team`;
+const API_URL_MENUS = `${API_BASE_URL}/api/menus`;
+const API_URL_CAREER = `${API_BASE_URL}/api/career`;
+const API_URL_CAREER_APPLY = `${API_BASE_URL}/api/careerApply`;
+const API_URL_CONTACT = `${API_BASE_URL}/api/contact`;
+const API_URL_GET_ENQUIRIES = `${API_BASE_URL}/api/enquiry`;
+const API_URL_PROJECT_ENQUIRIES = `${API_BASE_URL}/api/project-enquiry`;
+
+// Team form elements
+const teamName = document.getElementById("teamName");
+const teamRole = document.getElementById("teamRole");
+const teamOrder = document.getElementById("teamOrder");
+const teamImage = document.getElementById("teamImage");
+const teamLinkedIn = document.getElementById("teamLinkedIn");
+const teamFacebook = document.getElementById("teamFacebook");
+const teamInstagram = document.getElementById("teamInstagram");
+const editTeamId = document.getElementById("editTeamId");
+const addTeamForm = document.getElementById("addTeamForm");
+const teamSubmitBtn = document.getElementById("teamSubmitBtn");
+const teamCancelBtn = document.getElementById("teamCancelBtn");
+
+
+document.querySelectorAll('.nav-item').forEach(item => {
+    item.addEventListener('click', function(e) {
+        e.preventDefault();
+                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                this.classList.add('active');
+        
+        document.querySelectorAll('.section-content').forEach(section => {
+            section.classList.remove('active');
+        });
+        
+        const sectionName = this.getAttribute('data-section');
+        document.getElementById(`${sectionName}-section`).classList.add('active');
+        
+        // Update page title
+        // const titles = {
+        //     'clients': 'Add Clients',
+        //     'colleges': 'Add Partner Colleges'
+        // };
+        // document.getElementById('pageTitle').textContent = titles[sectionName] || 'Gateway - Admin Dashboard';
+        
+        // Load data for the section
+        if (sectionName === 'clients') {
+            loadClients();
+        } else if (sectionName === 'colleges') {
+            loadColleges();
+        }
+    });
+});
+
+// ---------- TOAST FUNCTION ----------
+function showToast(message, color="primary") {
+    const toastEl = document.getElementById("toastBox");
+    const toastMsg = document.getElementById("toastMsg");
+    toastMsg.innerText = message;
+
+    toastEl.className = `toast align-items-center text-bg-${color} border-0`;
+    const toast = new bootstrap.Toast(toastEl);
+    toast.show();
+}
+
+// ========== CLIENTS FUNCTIONS ==========
+
+// Load Clients
+async function loadClients() {
+    try {
+        const res = await fetch(API_URL_CLIENTS);
+        const clients = await res.json();
+
+        document.getElementById("clientList").innerHTML = clients.map(c => `
+            <div class="col-md-3">
+                <div class="card p-2">
+                    <img src="${API_BASE_URL}${c.image}" class="card-img-top" height="150" alt="Client Logo">
+                    <button onclick="deleteClient('${c._id}')" class="btn btn-danger mt-2">Delete</button>
+                </div>
+            </div>
+        `).join("");
+
+    } catch (err) {
+        showToast("Failed to load clients!", "danger");
+    }
+}
+
+// Add Client
+document.getElementById("addClientForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+
+    try {
+        const res = await fetch(`${API_URL_CLIENTS}/add`, {
+            method: "POST",
+            body: formData
+        });
+
+        const data = await res.json();
+
+        if (data.success) {
+            showToast("Client Added Successfully!", "success");
+            e.target.reset();
+            loadClients();
+        } else {
+            showToast("Upload Failed!", "danger");
+        }
+
+    } catch (err) {
+        showToast("Something went wrong!", "danger");
+    }
+});
+
+// Delete Client
+async function deleteClient(id) {
+    if (!confirm("Are you sure you want to delete this client?")) return;
+
+    try {
+        const res = await fetch(`${API_URL_CLIENTS}/${id}`, { method: "DELETE" });
+        const data = await res.json();
+
+        if (data.success) {
+            showToast("Client Deleted", "warning");
+            loadClients();
+        } else {
+            showToast("Delete Failed!", "danger");
+        }
+
+    } catch (err) {
+        showToast("Server Error!", "danger");
+    }
+}
+
+// ========== COLLEGES FUNCTIONS ==========
+
+// Load Colleges
+async function loadColleges() {
+    try {
+        const res = await fetch(API_URL_COLLEGES);
+        const colleges = await res.json();
+
+        document.getElementById("collegeList").innerHTML = colleges.map(c => `
+            <div class="col-md-3">
+                <div class="card p-2 shadow-sm">
+                    <img src="${API_BASE_URL}${c.image}" height="140" class="card-img-top mb-2" alt="College Logo">
+
+                    <h5 class="mb-2">${escapeHtml(c.name)}</h5>
+                    <p class="mb-2 text-muted">${escapeHtml(c.location)}</p>
+
+                    <span class="badge bg-primary mb-3">${escapeHtml(c.type)}</span>
+
+                    <div class="d-flex gap-2">
+                        <button 
+                            class="btn btn-warning btn-sm flex-fill"
+                            onclick="editCollege('${c._id}', '${escapeHtml(c.name)}', '${escapeHtml(c.location)}', '${escapeHtml(c.type)}')"
+                        >
+                            Edit
+                        </button>
+
+                        <button 
+                            class="btn btn-danger btn-sm flex-fill"
+                            onclick="deleteCollege('${c._id}')"
+                        >
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `).join("");
+
+    } catch (err) {
+        showToast("Failed to load colleges!", "danger");
+    }
+}
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+
+document.getElementById("addCollegeForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const id = document.getElementById("editCollegeId").value;
+    const formData = new FormData();
+
+    formData.append("name", document.getElementById("collegeName").value);
+    formData.append("location", document.getElementById("collegeLocation").value);
+    formData.append("type", document.getElementById("collegeType").value);
+
+    let method = "POST";
+    let url = `${API_URL_COLLEGES}/add`;
+
+    if (id) {
+        method = "PUT";
+        url = `${API_URL_COLLEGES}/${id}`;
+    }
+
+    const imageFile = document.getElementById("collegeImage").files[0];
+    if (imageFile) {
+        formData.append("image", imageFile);
+    }
+
+    try {
+        const res = await fetch(url, {
+            method,
+            body: formData
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+            throw new Error(data.message || "Update failed");
+        }
+
+        showToast(id ? "College updated!" : "College added!", "success");
+
+        cancelEditCollege();
+
+        loadColleges();
+
+    } catch (error) {
+        showToast("Something went wrong", "danger");
+        console.error(error);
+    }
+});
+
+async function deleteCollege(id) {
+    if (!confirm("Are you sure you want to delete this college?")) return;
+
+    try {
+        const res = await fetch(`${API_URL_COLLEGES}/${id}`, { method: "DELETE" });
+        const json = await res.json();
+
+        showToast(json.message || "College Deleted", "warning");
+        loadColleges();
+
+    } catch (err) {
+        showToast("Server Error!", "danger");
+    }
+}
+
+function editCollege(id, name, location, type) {
+    document.getElementById("addCollegeForm").scrollIntoView({ behavior: 'smooth' });
+
+    document.getElementById("editCollegeId").value = id;
+    document.getElementById("collegeName").value = name;
+    document.getElementById("collegeLocation").value = location;
+    document.getElementById("collegeType").value = type;
+
+    document.getElementById("collegeSubmitBtn").textContent = "Save Changes";
+    document.getElementById("collegeSubmitBtn").className = "btn btn-success mt-3";
+
+    document.getElementById("collegeCancelBtn").style.display = "inline-block";
+
+    document.getElementById("collegeImage").removeAttribute("required");
+}
+
+function cancelEditCollege() {
+    document.getElementById("addCollegeForm").reset();
+    document.getElementById("editCollegeId").value = "";
+    document.getElementById("collegeSubmitBtn").textContent = "Add College";
+    document.getElementById("collegeSubmitBtn").className = "btn btn-primary mt-3";
+    document.getElementById("collegeCancelBtn").style.display = "none";
+    document.getElementById("collegeFormTitle").textContent = "Add Partner College";
+    document.getElementById("collegeImage").setAttribute("required", "required");
+    document.getElementById("imageNote").textContent = "";
+}
+loadClients();
+
+
+document.addEventListener("DOMContentLoaded", loadProjects);
+
+async function loadProjects() {
+    try {
+        const res = await fetch(API_URL_PROJECTS, { cache: "no-store" });
+        const projects = await res.json();
+
+        if (!Array.isArray(projects)) {
+            console.error("Invalid API response:", projects);
+            showToast("Failed to load project data!", "danger");
+            return;
+        }
+
+        const container = document.getElementById("projectList");
+
+        container.innerHTML = projects.map(p => `
+            <div class="col-md-4">
+                <div class="card shadow-sm p-2">
+                    <img src="${API_BASE_URL}${p.image}" class="card-img-top" height="180">
+
+                    <h5 class="mt-2">${p.title}</h5>
+                    <p>${p.description}</p>
+
+                    <span class="badge bg-primary">${p.category}</span>
+
+                    <div class="mt-2">
+                        ${Array.isArray(p.tags)
+                            ? p.tags.map(t => `<span class="badge bg-dark me-1">${t}</span>`).join("")
+                            : ""}
+                    </div>
+
+                    <div class="d-flex mt-3 gap-2">
+                        <button class="btn btn-warning btn-sm flex-fill"
+                            onclick="editProject('${p._id}')">Edit</button>
+                        
+                        <button class="btn btn-danger btn-sm flex-fill"
+                            onclick="deleteProject('${p._id}')">Delete</button>
+                    </div>
+                </div>
+            </div>
+        `).join("");
+
+    } catch (err) {
+        console.error(err);
+        showToast("Failed to load projects!", "danger");
+    }
+}
+
+document.getElementById("addProjectForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const id = document.getElementById("editProjectId").value;
+    let url = `${API_URL_PROJECTS}/add`;
+    let method = "POST";
+
+    if (id) {
+        url = `${API_URL_PROJECTS}/${id}`;
+        method = "PUT";
+    }
+
+    const formData = new FormData();
+    formData.append("title", projectTitle.value);
+    formData.append("description", projectDescription.value);
+    formData.append("category", projectCategory.value);
+    formData.append("tags", JSON.stringify(projectTags.value.split(",")));
+
+    const imageFile = document.getElementById("projectImage").files[0];
+    if (imageFile) formData.append("image", imageFile);
+
+    const res = await fetch(url, { method, body: formData });
+    const data = await res.json();
+
+    if (data.success) {
+        showToast(id ? "Project Updated!" : "Project Added!", "success");
+        cancelEditProject();
+        loadProjects();
+    }
+});
+
+async function editProject(id) {
+    const res = await fetch(API_URL_PROJECTS);
+    const projects = await res.json();
+    const p = projects.find(pr => pr._id === id);
+
+    editProjectId.value = p._id;
+    projectTitle.value = p.title;
+    projectDescription.value = p.description;
+    projectCategory.value = p.category;
+    projectTags.value = p.tags.join(",");
+
+    document.getElementById("projectFormTitle").textContent = "Edit Project";
+    projectSubmitBtn.textContent = "Update Project";
+    projectCancelBtn.style.display = "inline-block";
+}
+
+function cancelEditProject() {
+    editProjectId.value = "";
+    addProjectForm.reset();
+    document.getElementById("projectFormTitle").textContent = "Add Project";
+    projectSubmitBtn.textContent = "Add Project";
+    projectCancelBtn.style.display = "none";
+}
+
+async function deleteProject(id) {
+    if (!confirm("Delete this project?")) return;
+
+    await fetch(`${API_URL_PROJECTS}/${id}`, { method: "DELETE" });
+
+    showToast("Project deleted!", "danger");
+    loadProjects();
+}
+
+
+document.addEventListener("DOMContentLoaded", loadTeams);
+
+async function loadTeams() {
+    try {
+        const res = await fetch(API_URL_TEAM, { cache: "no-store" });
+        const teams = await res.json();
+
+        if (!Array.isArray(teams)) {
+            console.error("API Response is not an array:", teams);
+            showToast("Invalid data from server!", "danger");
+            return;
+        }
+
+        const maxOrder = teams.length > 0 ? Math.max(...teams.map(t => t.order || 0)) : 0;
+        const nextPosition = maxOrder + 1;
+        
+        if (!document.getElementById("editTeamId").value) {
+            teamOrder.value = nextPosition;
+        }
+
+        const container = document.getElementById("teamList");
+
+        container.innerHTML = teams.map(m => `
+            <div class="col-md-4">
+                <div class="card p-2 shadow-sm">
+                    <img src="${API_BASE_URL}${m.image}" class="card-img-top" height="200"
+                         onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(m.name)}&background=1e3a8a&color=fff&size=200'"
+                         alt="${m.name}">
+                    <h5 class="mt-2">${m.name}</h5>
+                    <p class="text-muted">${m.role}</p>
+                    <p class="text-muted">${m.linkedin}</p>
+                    <p class="text-muted">${m.facebook}</p>
+                    <p class="text-muted">${m.instagram}</p>
+                    <div class="d-flex gap-2 mt-3">
+                        <button class="btn btn-warning btn-sm flex-fill"
+                            onclick="editTeam('${m._id}')">Edit</button>
+
+                        <button class="btn btn-danger btn-sm flex-fill"
+                            onclick="deleteTeam('${m._id}')">Delete</button>
+                    </div>
+                </div>
+            </div>
+        `).join("");
+
+    } catch (err) {
+        console.error(err);
+        showToast("Failed to load team members!", "danger");
+    }
+}
+
+document.getElementById("addTeamForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const id = document.getElementById("editTeamId").value;
+    const isEdit = !!id;
+    const img = document.getElementById("teamImage").files[0];
+
+    if (isEdit) {
+        // EDIT MODE - use POST with image if new image selected, PUT otherwise
+        if (img) {
+            const formData = new FormData();
+            formData.append("name", teamName.value);
+            formData.append("role", teamRole.value);
+            formData.append("order", teamOrder.value);
+            formData.append("linkedin", teamLinkedIn.value);
+            formData.append("facebook", teamFacebook.value);
+            formData.append("instagram", teamInstagram.value);
+            formData.append("image", img);
+
+            const res = await fetch(`${API_URL_TEAM}/edit/${id}`, {
+                method: "POST",
+                body: formData
+            });
+            const data = await res.json();
+            
+            if (data.success) {
+                showToast("Team Member Updated!", "success");
+                cancelEditTeam();
+                loadTeams();
+            } else {
+                showToast(data.error || "Failed to update!", "danger");
+            }
+        } else {
+            const res = await fetch(`${API_URL_TEAM}/${id}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: teamName.value,
+                    role: teamRole.value,
+                    order: teamOrder.value,
+                    linkedin: teamLinkedIn.value,
+                    facebook: teamFacebook.value,
+                    instagram: teamInstagram.value
+                })
+            });
+            const data = await res.json();
+            
+            if (data.success) {
+                showToast("Team Member Updated!", "success");
+                cancelEditTeam();
+                loadTeams();
+            }
+        }
+    } else {
+        // ADD MODE
+        if (!img) {
+            showToast("Please select an image!", "warning");
+            return;
+        }
+        
+        const formData = new FormData();
+        formData.append("name", teamName.value);
+        formData.append("role", teamRole.value);
+        formData.append("order", teamOrder.value);
+        formData.append("linkedin", teamLinkedIn.value);
+        formData.append("facebook", teamFacebook.value);
+        formData.append("instagram", teamInstagram.value);
+        formData.append("image", img);
+
+        const res = await fetch(`${API_URL_TEAM}/add`, {
+            method: "POST",
+            body: formData
+        });
+        const data = await res.json();
+        console.log("Add response:", data);
+
+        if (data.success) {
+            showToast("Member Added!", "success");
+            cancelEditTeam();
+            loadTeams();
+        } else {
+            showToast(data.error || "Failed to add member!", "danger");
+        }
+    }
+});
+
+async function editTeam(id) {
+    const res = await fetch(`${API_URL_TEAM}/${id}`);
+    const m = await res.json();
+
+    editTeamId.value = m._id;
+    teamName.value = m.name;
+    teamRole.value = m.role;
+    teamOrder.value = m.order || 1;
+
+    teamLinkedIn.value = m.linkedin || "";
+    teamFacebook.value = m.facebook || "";
+    teamInstagram.value = m.instagram || "";
+
+    const imagePreview = document.getElementById("teamImagePreview");
+    if (m.image) {
+        imagePreview.innerHTML = `<img src="${API_BASE_URL}${m.image}" style="width:100px;height:100px;object-fit:cover;border-radius:8px;">`;
+    } else {
+        imagePreview.innerHTML = "";
+    }
+
+    document.getElementById("teamFormTitle").textContent = "Edit Team Member";
+    teamSubmitBtn.textContent = "Update Member";
+    teamCancelBtn.style.display = "inline-block";
+}
+
+
+function cancelEditTeam() {
+    editTeamId.value = "";
+    addTeamForm.reset();
+    teamImage.value = "";
+    teamOrder.value = "1";
+    teamCancelBtn.style.display = "none";
+    document.getElementById("teamImagePreview").innerHTML = "";
+
+    document.getElementById("teamFormTitle").textContent = "Add Core Team Member";
+    teamSubmitBtn.textContent = "Add Member";
+}
+
+async function deleteTeam(id) {
+    if (!confirm("Delete this member?")) return;
+
+    await fetch(`${API_URL_TEAM}/${id}`, { method: "DELETE" });
+
+    showToast("Team member deleted!", "danger");
+    loadTeams();
+}
+
+document.addEventListener("DOMContentLoaded", loadMenus);
+
+async function loadMenus() {
+    try {
+        const res = await fetch(API_URL_MENUS, { cache: "no-store" });
+        const menus = await res.json();
+
+        const container = document.getElementById("menuList");
+container.innerHTML = menus.map(m => `
+    <div class="col-md-4">
+        <div class="card p-2 shadow-sm">
+            <h6>${m.name}</h6>
+            <small class="text-muted">${m.path}</small>
+
+            <div class="d-flex gap-2 mt-3">
+                <button class="btn btn-warning btn-sm"
+                    data-action="edit"
+                    data-id="${m._id}"
+                    data-name="${m.name}"
+                    data-path="${m.path}">
+                    Edit
+                </button>
+
+                <button class="btn btn-danger btn-sm"
+                    data-action="delete"
+                    data-id="${m._id}">
+                    Delete
+                </button>
+            </div>
+        </div>
+    </div>
+`).join("");
+
+    } catch (err) {
+        console.error("Load Menus Error:", err);
+        showToast("Failed to load menus!", "danger");
+    }
+}
+
+document.getElementById("menuList").addEventListener("click", function(e) {
+    const btn = e.target.closest("button");
+    if (!btn) return;
+
+    const action = btn.dataset.action;
+    const id = btn.dataset.id;
+
+    if (action === "edit") {
+        const name = btn.dataset.name;
+        const path = btn.dataset.path;
+        editMenu(id, name, path);
+    } else if (action === "delete") {
+        deleteMenu(id);
+    }
+});
+
+document.getElementById("addMenuForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const id = editMenuId.value;
+    const name = menuName.value;
+    const path = menuPath.value;  
+
+    let url = `${API_URL_MENUS}/add`;
+    let method = "POST";
+
+    if (id) {
+        url = `${API_URL_MENUS}/${id}`;
+        method = "PUT";
+    }
+
+    const res = await fetch(url, {
+        method,
+        headers: {
+            "Content-Type": "application/json",
+            "Cache-Control": "no-cache"
+        },
+        body: JSON.stringify({ name, path }) // SEND PATH
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+        showToast(id ? "Menu Updated!" : "Menu Added!", "success");
+        cancelEditMenu();
+        loadMenus();
+    }
+});
+
+function editMenu(id, name, path) {
+    editMenuId.value = id;
+    menuName.value = name;
+    menuPath.value = path;
+
+    menuFormTitle.textContent = "Edit Internship Menu";
+    menuSubmitBtn.textContent = "Update Menu";
+    menuCancelBtn.style.display = "inline-block";
+}
+
+function cancelEditMenu() {
+    editMenuId.value = "";
+    addMenuForm.reset();
+
+    document.getElementById("menuFormTitle").textContent = "Add Internship Menu";
+    menuSubmitBtn.textContent = "Add Menu";
+    menuCancelBtn.style.display = "none";
+}
+
+async function deleteMenu(id) {
+    if (!confirm("Delete this menu?")) return;
+
+    await fetch(`${API_URL_MENUS}/${id}`, { method: "DELETE" });
+
+    showToast("Menu deleted!", "danger");
+    loadMenus(); // This will refresh the menu list after deletion
+}
+
+document.addEventListener("DOMContentLoaded", loadCareers);
+
+async function loadCareers() {
+    try {
+        const res = await fetch(API_URL_CAREER);
+        const careers = await res.json();
+
+        const container = document.getElementById("jobList");
+
+        container.innerHTML = careers.map(c => `
+            <div class="col-md-4">
+                <div class="card p-3 shadow-sm">
+
+                    <h5>${c.title}</h5>
+                     ${c.urgent ? '<span class="badge-urgent">URGENT</span>' : ''}
+                    <p class="text-muted small">${c.desc}</p>
+
+                    <div class="mt-2 small">
+                        <b>Exp:</b> ${c.exp}<br>
+                        <b>Year:</b> ${c.year}<br>
+                        <b>Role:</b> ${c.role}<br>
+                        <b>Salary:</b> ${c.salary}<br>
+                        <b>Perks:</b> ${c.perks}
+                    </div>
+
+                    <div class="d-flex gap-2 mt-3">
+                        <button class="btn btn-warning btn-sm flex-fill" onclick="editCareer('${c._id}')">Edit</button>
+                        <button class="btn btn-danger btn-sm flex-fill" onclick="deleteCareer('${c._id}')">Delete</button>
+                    </div>
+
+                </div>
+            </div>
+        `).join("");
+    } catch (err) {
+        console.error(err);
+        showToast("Failed to load careers!", "danger");
+    }
+}
+
+document.getElementById("addJobForm").addEventListener("submit", async e => {
+    e.preventDefault();
+
+    const id = editJobId.value;
+    const method = id ? "PUT" : "POST";
+    const url = id ? `${API_URL_CAREER}/${id}` : `${API_URL_CAREER}/add`;
+
+    const payload = {
+        title: jobTitle.value,
+        exp: jobExp.value,
+        year: jobYear.value,
+        role: jobRole.value,
+        salary: jobSalary.value,
+        perks: jobPerks.value,
+        desc: jobDescription.value,
+        urgent: jobUrgent.checked 
+    };
+
+    const res = await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    });
+
+    const data = await res.json();
+
+    if (data.success) {
+        showToast(id ? "Career Updated!" : "Career Added!", "success");
+        cancelEditJob();
+        loadCareers();
+    }
+});
+
+async function editCareer(id) {
+    const res = await fetch(`${API_URL_CAREER}/${id}`);
+    const c = await res.json();
+
+    editJobId.value = c._id;
+
+    jobTitle.value = c.title;
+    jobExp.value = c.exp;
+    jobYear.value = c.year;
+    jobRole.value = c.role;
+    jobSalary.value = c.salary;
+    jobPerks.value = c.perks;
+    jobDescription.value = c.desc;
+
+    jobSubmitBtn.textContent = "Update Job";
+    jobCancelBtn.style.display = "inline-block";
+}
+
+function cancelEditJob() {
+    editJobId.value = "";
+    addJobForm.reset();
+
+    jobSubmitBtn.textContent = "Add Job";
+    jobCancelBtn.style.display = "none";
+}
+
+
+async function deleteCareer(id) {
+    if (!confirm("Delete this job?")) return;
+
+    const res = await fetch(`${API_URL_CAREER}/${id}`, { method: "DELETE" });
+    const data = await res.json();
+
+    if (data.success) {
+        showToast("Career Deleted!", "danger");
+        loadCareers();
+    }
+}
+
+
+document.addEventListener("DOMContentLoaded", loadApplications);
+
+async function loadApplications() {
+  try {
+    const res = await fetch(API_URL_CAREER_APPLY);
+    const apps = await res.json();
+
+    const table = document.getElementById("applicationsTable");
+    table.innerHTML = apps.map((a, index) => `
+      <tr>
+    <td>${index+1}</td>
+        <td>${a.name}</td>
+        <td>${a.email}</td>
+        <td>${a.phone}</td>
+        <td>${a.jobTitle}</td>
+       <td>
+  <a href="${API_BASE_URL}${a.resume}" target="_blank">View Resume</a>
+</td>
+        <td>${new Date(a.createdAt).toLocaleString()}</td>
+      </tr>
+    `).join("");
+
+  } catch (err) {
+    console.error("Failed to load applications", err);
+  }
+}
+
+
+async function loadContacts() {
+    try {
+        const res = await fetch(`${API_URL_CONTACT}`);
+        const data = await res.json();
+
+        if (!data.success) return;
+
+        const table = document.getElementById("contactTable");
+        table.innerHTML = data.contacts.map((c, index) => `
+            <tr>
+                <td>${index+1}</td>
+                <td>${c.name}</td>
+                <td>${c.email}</td>
+                <td>${c.phone}</td>
+                <td>${c.service}</td>
+                <td>${c.message}</td>
+                <td>${c.file ? `<a href="${API_BASE_URL}${c.file}" target="_blank">View File</a>` : "-"}</td>
+                <td>${new Date(c.createdAt).toLocaleString()}</td>
+            </tr>
+        `).join("");
+    } catch (err) {
+        console.error("Failed to load contacts", err);
+    }
+}
+
+// Call it on page load
+document.addEventListener("DOMContentLoaded", loadContacts);
+
+
+
+document.addEventListener("DOMContentLoaded", loadEnquiries);
+
+async function loadEnquiries() {
+    const tbody = document.getElementById("enquiryTable");
+
+    try {
+        const res = await fetch(API_URL_GET_ENQUIRIES);
+        const enquiries = await res.json();
+
+        tbody.innerHTML = enquiries.map((e, i) => `
+            <tr>
+                <td>${i + 1}</td>
+                <td>${e.name}</td>
+                <td>${e.email}</td>
+                <td>${e.phone}</td>
+                <td>${e.message}</td>
+                <td>${new Date(e.createdAt).toLocaleString()}</td>
+            </tr>
+        `).join("");
+    } catch (err) {
+        tbody.innerHTML = `<tr><td colspan="6" class="text-danger">Failed to load enquiries</td></tr>`;
+    }
+}
+
+
+
+document.addEventListener("DOMContentLoaded", loadProjectEnquiries);
+
+async function loadProjectEnquiries() {
+    const tbody = document.getElementById("projectEnquiryTable");
+
+    try {
+        const res = await fetch(API_URL_PROJECT_ENQUIRIES);
+        const list = await res.json();
+
+        tbody.innerHTML = list.map((e, i) => `
+            <tr>
+                <td>${i + 1}</td>
+                <td>${e.name}</td>
+                <td>${e.company || "-"}</td>
+                <td>${e.phone}</td>
+                <td>${e.email || "-"}</td>
+                <td>${e.projectType}</td>
+                <td>${e.budget || "-"}</td>
+                <td>${e.timeline || "-"}</td>
+                <td>${e.description}</td>
+            </tr>
+        `).join("");
+    } catch (err) {
+        tbody.innerHTML =
+            `<tr><td colspan="10" class="text-danger">Failed to load project enquiries</td></tr>`;
+    }
+}
+
+
+async function loadStartProjectEnquiries() {
+    const table = document.getElementById("startProjectEnquiryTable");
+    table.innerHTML = "<tr><td colspan='9'>Loading...</td></tr>";
+
+    try {
+        const res = await fetch(`${API_BASE_URL}/api/start-project`);
+        const data = await res.json();
+
+        if (data.length === 0) {
+            table.innerHTML = "<tr><td colspan='9'>No enquiries found</td></tr>";
+            return;
+        }
+
+        table.innerHTML = data.map((p, index) => `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${p.name}</td>
+                <td>${p.email}</td>
+                <td>${p.phone}</td>
+                <td>${p.service}</td>
+                <td>${p.company}</td>
+                <td>${p.budget}</td>
+                <td>${p.timeline}</td>
+                <td>${p.message}</td>
+            </tr>
+        `).join("");
+
+    } catch (error) {
+        console.error("Error:", error);
+        table.innerHTML = "<tr><td colspan='9'>Error loading data</td></tr>";
+    }
+}
+
+document.addEventListener("DOMContentLoaded", loadStartProjectEnquiries);
+
+
+async function loadInternEnquiries() {
+  const res = await fetch(`${API_BASE_URL}/api/internEnquiry`);
+  const enquiries = await res.json();
+
+  const tbody = document.getElementById("internEnquiryTable");
+  tbody.innerHTML = "";
+
+  enquiries.forEach((e, index) => {
+    tbody.innerHTML += `
+      <tr>
+        <td>${index + 1}</td>
+        <td>${e.name}</td>
+        <td>${e.mail}</td>
+        <td>${e.number}</td>
+        <td>${e.requirement?.join(", ")}</td>
+        <td>${e.position?.join(", ")}</td>
+        <td>${e.degree} - ${e.collegeName} (${e.passoutYear})</td>
+      </tr>
+    `;
+  });
+}
+document.addEventListener("DOMContentLoaded", loadInternEnquiries);
+
+
+
+</script>
+
+<!-- Bootstrap JS CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+
+</body>
+<script>
+if (!localStorage.getItem("adminToken")) {
+    window.location.href = "/admin/login.html";
+}
+</script>
+
+</html>
+
